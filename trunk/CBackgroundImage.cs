@@ -22,5 +22,9 @@ namespace GnomeArtNG
 
 		}
 		
+		//In version2 dafür gedacht, das Hintergrundbild auf eine beliebige Größe zu stutzen 
+		public void Cut(){
+		
+		}
 	}
 }

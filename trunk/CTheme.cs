@@ -38,9 +38,9 @@ namespace GnomeArtNG
 		public bool RevertIsAvailable{ get{ return revertIsAvailable;} }
 		public bool InstallationIsPossible{ get{ return installationIsPossible;} }
 		
-		protected WebClient webclient;
-		//Alle Themes herunterladen 
+		private WebClient webclient;
 		
+		//Alle Themes herunterladen 
 		public void GetThumbnailImage(){
 			LocalThumbnailFile=Path.Combine(config.ThumbsPath,Path.GetFileName(SmallThumbnailUrl));
 			FileInfo file = new FileInfo(LocalThumbnailFile);

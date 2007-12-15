@@ -55,8 +55,7 @@ namespace GnomeArtNG
 				sw.Mainlabel=Catalog.GetString("Downloading the file from art.gnome.org");
 				//Herunterladen
 				if (!File.Exists(InstallThemeFile)){
-					webclient.DownloadFile(DownloadUrl, LocalThemeFile);
-					//File.Copy
+					DownloadFile(DownloadUrl, LocalThemeFile);
 					File.Copy(LocalThemeFile,InstallThemeFile);
 				}
 				sw.SetProgress("2/"+stepCount);

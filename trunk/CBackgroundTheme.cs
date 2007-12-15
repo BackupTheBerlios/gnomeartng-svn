@@ -9,6 +9,7 @@ using System.IO;
 using System.Collections;
 using System.Net;
 using System.Drawing;
+using GConf;
 
 namespace GnomeArtNG
 {
@@ -32,6 +33,7 @@ namespace GnomeArtNG
 		private ArrayList currentList;
 		private int currentIndex;
 		
+		//Aktueller Bild-Index (gibt somit die gewählte Auflösung an)
 		public int ImageIndex{
 			get {return currentIndex;}
 			set {currentIndex = value;}
@@ -99,7 +101,15 @@ namespace GnomeArtNG
 		}
 			
 		override public void Install(){
-			//Index und Type vorher wählen lassen GConf client und dann installieren 
+			//Index und Type vorher wählen lassen GConf client und dann installieren
+			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
+			string InstallThemeFile=config.SplashInstallPath+Path.GetFileName(DownloadUrl);
+			if (!File.Exists(LocalThemeFile)) {
+				DownloadFile(DownloadUrl, LocalThemeFile);
+				File.Copy(LocalThemeFile,InstallThemeFile);
+			}
+			//Installieren
+			config.Execute("gnome-appearance-properties",InstallThemeFile);
 		}
 		
 		override public void Revert(){

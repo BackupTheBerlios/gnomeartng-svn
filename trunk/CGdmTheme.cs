@@ -34,7 +34,7 @@ namespace GnomeArtNG
 			gdmConfAvailable=File.Exists(gdmconfig);
 			customGdmConfAvailable=File.Exists(gdmconfig+"-custom");
 			if (!installationIsPossible) 
-				throw new Exception("Installation is not possible! Please install \"grep\"");
+				throw new Exception("Installation is not possible! Please check your environment");
 			if (gdmConfAvailable){
 				sb = config.Execute("grep","GraphicalThemeRand= "+gdmconfig);
 				if (sb.Length<1) 
@@ -49,7 +49,7 @@ namespace GnomeArtNG
 					
 					//Herunterladen
 					if (!File.Exists(LocalThemeFile))
-						webclient.DownloadFile(DownloadUrl, LocalThemeFile);
+						DownloadFile(DownloadUrl, LocalThemeFile);
 					
 					//Entpacken
 					sb = config.Execute("gksu","'"+tarParams+LocalThemeFile+" -C "+config.GdmInstallPath+"'");

@@ -24,7 +24,7 @@ namespace GnomeArtNG
 			tarParams=config.GetTarParams(Path.GetExtension(DownloadUrl));
 			if (!File.Exists(InstallThemeFile)){
 				//Herunterladen
-				webclient.DownloadFile(DownloadUrl, LocalThemeFile);
+				DownloadFile(DownloadUrl, LocalThemeFile);
 			}
 			//Entpacken
 			Console.WriteLine("Command: tar"+tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);

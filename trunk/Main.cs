@@ -174,7 +174,8 @@ public class GnomeArtNgApp
 	}
 	
 	private void FillExtendedSection(CTheme theme){
-		bool isImage = config.ThemeType == CConfiguration.ArtType.atBackground_gnome;
+		bool isImage = ((config.ThemeType == CConfiguration.ArtType.atBackground_gnome) | 
+		                (config.ThemeType == CConfiguration.ArtType.atBackground_other));
 		ExtInfoImage.Pixbuf = new Gdk.Pixbuf(theme.LocalThumbnailFile);
 		ExtInfoName.Text = theme.Name;
 		ExtInfoAuthor.Text = theme.Author;
