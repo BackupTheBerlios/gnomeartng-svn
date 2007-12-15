@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<UserCombinePreferences filename="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/GnomeArtNG.mds">
+  <Files>
+    <File filename="Welcome" />
+    <File filename="./Main.cs" />
+    <File filename="./CArtManager.cs" />
+    <File filename="./CApplicationTheme.cs" />
+  </Files>
+  <Views>
+    <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ProjectPad">
+      <TreeView>
+        <Node expanded="True">
+          <Node name="GnomeArtNG" expanded="True">
+            <Node name="Resources" expanded="True">
+              <Option id="ShowAllFiles" value="True" />
+              <Option id="ShowVersionControlOverlays" value="True" />
+              <Option id="ShowCodeBehindFiles" value="True" />
+              <Option id="ShowCodeBehindClasses" value="True" />
+            </Node>
+            <Node name="AssemblyInfo.cs" expanded="False" selected="True">
+              <Option id="ShowAllFiles" value="False" />
+              <Option id="ShowVersionControlOverlays" value="True" />
+              <Option id="ShowCodeBehindFiles" value="False" />
+              <Option id="ShowCodeBehindClasses" value="True" />
+            </Node>
+          </Node>
+        </Node>
+      </TreeView>
+    </ViewMemento>
+    <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ClassPad">
+      <TreeView>
+        <Node expanded="True" />
+      </TreeView>
+    </ViewMemento>
+  </Views>
+  <Properties>
+    <Properties>
+      <Property key="ActiveConfiguration" value="Debug" />
+      <Property key="ActiveWindow" value="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CApplicationTheme.cs" />
+    </Properties>
+  </Properties>
+</UserCombinePreferences>
