@@ -13,6 +13,9 @@ namespace GnomeArtNG
 	
 	public class CApplicationTheme:CTheme
 	{
+		private GConf.Client client; 
+		private string previousApplicationTheme="";
+		static string GConfApplicationKey ="/desktop/gnome/interface/gtk_theme";
 		override public void Install(){
 			string tarParams="";
 			string LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
@@ -22,26 +25,26 @@ namespace GnomeArtNG
 			if (!File.Exists(InstallThemeFile)){
 				//Herunterladen
 				webclient.DownloadFile(DownloadUrl, LocalThemeFile);
-				//Entpacken
-				Console.WriteLine("Command: tar"+tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
-				System.Text.StringBuilder ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
-				//Eigenschaftendialog ausführen
-				//TODO: GCONF wert setzen in desktop/gnome/---
-				config.Execute("gnome-appearance-properties","");
 			}
-			
+			//Entpacken
+			Console.WriteLine("Command: tar"+tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
+			System.Text.StringBuilder ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
 			//Installieren
-
-			
+			client = new GConf.Client();
+			previousApplicationTheme = (string)client.Get(GConfApplicationKey);
+			client.Set(GConfApplicationKey,ConOutp.ToString().Split('/')[0]);
+			//config.Execute("gnome-appearance-properties","");
 			//Revert verfügbar machen
 			revertIsAvailable=true;
-			/*
-            command = "tar #{command_param} #{temp_file} -C " + folder
-            system(command), dann nachfragen
-            system("gnome-theme-manager &")
-			 */
+			
 		}
-		override public void Revert(){}
+		override public void Revert(){
+			if (revertIsAvailable){
+				new GConf.Client().Set(GConfApplicationKey,previousApplicationTheme);
+				revertIsAvailable=false;
+			}
+		}
+		
 		public CApplicationTheme(CConfiguration config):base(config)
 		{
 		}

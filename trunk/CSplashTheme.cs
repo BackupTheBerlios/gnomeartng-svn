@@ -30,10 +30,12 @@ namespace GnomeArtNG
 		private string prevSplash="";
 			
 		override public void Revert(){
-			client = new GConf.Client();
-			client.Set(GConfShowSplashKey,splashWasActive);
-			client.Set(GConfSplashImageKey,prevSplash);
-			revertIsAvailable=false;
+			if (revertIsAvailable){
+				client = new GConf.Client();
+				client.Set(GConfShowSplashKey,splashWasActive);
+				client.Set(GConfSplashImageKey,prevSplash);
+				revertIsAvailable=false;
+			}
 		}
 		
 		override public void Install(){
@@ -76,9 +78,7 @@ namespace GnomeArtNG
 		}
 		
 		public CSplashTheme(CConfiguration config):base(config) {
-			
-			//UpdateValuesFromGConf();
-			//client.AddNotify (GConfAppPath, new NotifyEventHandler (GConf_Changed));
+
 		}
 		
 	}
