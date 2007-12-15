@@ -6,7 +6,7 @@
 //not used yet 
 using System;
 using System.Net;
-using System.Drawing;
+//using System.Drawing;
 using System.Collections;
 using System.Threading;
 using System.IO;
@@ -17,6 +17,7 @@ namespace GnomeArtNG
 	
 	public class CFileDownloader
 	{
+		/*
 		private static int maxThreads=10;
 		private string[] urls = new String[maxThreads];
 		private string[] savePaths = new String[maxThreads];
@@ -31,6 +32,7 @@ namespace GnomeArtNG
 			}
 		}
 		
+		//TODO: System.Image wieder zu den Referenzen falls die Klasse zum Einsatz kommt 
 		private void startWorker(){
 			currentRunningThreads++;
 			string localSavePath=savePaths[currentThreadIndex];
@@ -41,7 +43,7 @@ namespace GnomeArtNG
 	        // Die Antworten abrufen.
 	        WebResponse responsePic = requestPic.GetResponse();
 	        // Den Antwort-Stream lesen.
-	        Image downloadedImage = Image.FromStream(responsePic.GetResponseStream());
+			Image downloadedImage = Image.FromStream(responsePic.GetResponseStream());
 			downloadedImage.Save(localSavePath);
 			responsePic.Close();
 			currentRunningThreads--;
@@ -54,7 +56,7 @@ namespace GnomeArtNG
 				WorkerThreads[currentThreadIndex] = new Thread(new ThreadStart(startWorker)); // Threads werden erzeugt
 			}
 		}
-		
+		*/
 		public CFileDownloader() {
 			
 		}

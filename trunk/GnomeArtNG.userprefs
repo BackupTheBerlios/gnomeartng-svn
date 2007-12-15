@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <UserCombinePreferences filename="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/GnomeArtNG.mds">
   <Files>
-    <File filename="Welcome" />
     <File filename="./Main.cs" />
     <File filename="./CArtManager.cs" />
     <File filename="./CApplicationTheme.cs" />
+    <File filename="Welcome" />
   </Files>
   <Views>
     <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ProjectPad">
@@ -17,12 +17,13 @@
               <Option id="ShowCodeBehindFiles" value="True" />
               <Option id="ShowCodeBehindClasses" value="True" />
             </Node>
-            <Node name="AssemblyInfo.cs" expanded="False" selected="True">
+            <Node name="AssemblyInfo.cs" expanded="False">
               <Option id="ShowAllFiles" value="False" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="False" />
               <Option id="ShowCodeBehindClasses" value="True" />
             </Node>
+            <Node name="CApplicationTheme.cs" expanded="False" selected="True" />
           </Node>
         </Node>
       </TreeView>
@@ -36,7 +37,7 @@
   <Properties>
     <Properties>
       <Property key="ActiveConfiguration" value="Debug" />
-      <Property key="ActiveWindow" value="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CApplicationTheme.cs" />
+      <Property key="ActiveWindow" value="Welcome" />
     </Properties>
   </Properties>
 </UserCombinePreferences>

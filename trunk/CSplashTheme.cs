@@ -7,7 +7,6 @@
 using System;
 using GConf;
 using System.Net;
-using System.Drawing;
 using System.IO;
 using Mono.Unix;
 

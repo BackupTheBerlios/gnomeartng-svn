@@ -8,7 +8,6 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Net;
-using System.Drawing;
 using GConf;
 
 namespace GnomeArtNG

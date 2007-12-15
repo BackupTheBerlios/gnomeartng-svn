@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-10 00:27+0100\n"
+"POT-Creation-Date: 2007-12-15 12:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: CArtManager.cs:76
+#: CArtManager.cs:76 CArtManager.cs:90
 #, csharp-format
 msgid "Download {0} has been started"
 msgstr "Download {0} wurde gestartet"
 
-#: CArtManager.cs:78
+#: CArtManager.cs:78 CArtManager.cs:92
 #, csharp-format
 msgid "Download {0} has been finished"
 msgstr "Download {0} wurde beendet"
@@ -79,56 +79,58 @@ msgid "gtk-about"
 msgstr ""
 
 #: gui.glade:149 gui.glade:201 gui.glade:257 gui.glade:312 gui.glade:367
-#: gui.glade:422 gui.glade:477 gui.glade:532
+#: gui.glade:422 gui.glade:477 gui.glade:532 gui.glade:194 gui.glade:243
+#: gui.glade:291 gui.glade:339 gui.glade:387 gui.glade:435 gui.glade:483
 msgid "<b>Bitte wähle einen Hintergrund</b>"
 msgstr ""
 
-#: gui.glade:184
+#: gui.glade:184 gui.glade:177
 msgid ""
 "Gnome\n"
 "Background"
 msgstr ""
 
-#: gui.glade:239
+#: gui.glade:239 gui.glade:225
 msgid ""
 "Andere\n"
 "Backgrounds"
 msgstr ""
 
-#: gui.glade:295
+#: gui.glade:295 gui.glade:274
 msgid "Application"
 msgstr ""
 
-#: gui.glade:350
+#: gui.glade:350 gui.glade:322
 msgid "WindowDeco"
 msgstr ""
 
-#: gui.glade:405
+#: gui.glade:405 gui.glade:370
 msgid "Icons"
 msgstr ""
 
-#: gui.glade:460
+#: gui.glade:460 gui.glade:418
 msgid "GDM Greeter"
 msgstr ""
 
-#: gui.glade:515
+#: gui.glade:515 gui.glade:466
 msgid "Splash"
 msgstr ""
 
-#: gui.glade:570
+#: gui.glade:570 gui.glade:514
 msgid "Gtk-Engine"
 msgstr ""
 
-#: gui.glade:638
+#: gui.glade:638 gui.glade:582
 msgid "<b>Name:</b>"
 msgstr ""
 
 #: gui.glade:648 gui.glade:677 gui.glade:704 gui.glade:814 gui.glade:842
-#: gui.glade:1093 gui.glade:1403
+#: gui.glade:1093 gui.glade:1403 gui.glade:592 gui.glade:621 gui.glade:747
+#: gui.glade:773 gui.glade:1044 gui.glade:1368
 msgid "label"
 msgstr ""
 
-#: gui.glade:664
+#: gui.glade:664 gui.glade:608
 msgid "<b>Author:</b>"
 msgstr ""
 
@@ -148,7 +150,7 @@ msgstr ""
 msgid "<b>Auflösungen:</b>"
 msgstr ""
 
-#: gui.glade:829
+#: gui.glade:829 gui.glade:760
 msgid "<b>Rating:</b>"
 msgstr ""
 
@@ -156,67 +158,67 @@ msgstr ""
 msgid "<b>Anzahl Downloads:</b>"
 msgstr ""
 
-#: gui.glade:885 gui.glade:1246
+#: gui.glade:885 gui.glade:1246 gui.glade:836 gui.glade:1198
 msgid "Installieren"
 msgstr ""
 
-#: gui.glade:895
+#: gui.glade:895 gui.glade:846
 msgid "gtk-undo"
 msgstr ""
 
-#: gui.glade:909
+#: gui.glade:909 gui.glade:860
 msgid "StartButton"
 msgstr ""
 
-#: gui.glade:933
+#: gui.glade:933 gui.glade:884
 msgid "<b>Erweiterte Theme-Informationen</b>"
 msgstr ""
 
-#: gui.glade:956
+#: gui.glade:956 gui.glade:907
 msgid "About Gnome-Art-NG"
 msgstr ""
 
-#: gui.glade:971
+#: gui.glade:971 gui.glade:922
 msgid "<big><b><u>About Gnome-Art-NG</u></b></big>"
 msgstr ""
 
-#: gui.glade:996
+#: gui.glade:996 gui.glade:947
 msgid ""
 "<b><i>Version:</i></b> 0.2\n"
 "<b><i>Entwickler:</i></b> Thomas Beck\n"
 "<b><i>Grüße gehen an:</i></b> Meine Prinzessin Isi"
 msgstr ""
 
-#: gui.glade:1015
+#: gui.glade:1015 gui.glade:966
 msgid ""
 "<b>Gnome-Art-NG</b> wurde in C# geschrieben von Thomas Beck. Falls ihr "
 "Fehler findet dann schreibt mir einfach eine Mail: "
 "<i>software@plasmasolutions.de</i>"
 msgstr ""
 
-#: gui.glade:1060
+#: gui.glade:1060 gui.glade:1011
 msgid "<big><b>Downloading</b></big>"
 msgstr ""
 
-#: gui.glade:1100
+#: gui.glade:1100 gui.glade:1051
 msgid "Genauer Fortschritt"
 msgstr ""
 
-#: gui.glade:1118
+#: gui.glade:1118 gui.glade:1069
 msgid ""
 "Bitte haben Sie einen Moment Geduld bis alle zu ihrer Auswahl passenden "
 "Themen von art.gnome.org heruntergeladen sind"
 msgstr ""
 
-#: gui.glade:1161
+#: gui.glade:1161 gui.glade:1113
 msgid "Abbrechen"
 msgstr ""
 
-#: gui.glade:1189
+#: gui.glade:1189 gui.glade:1141
 msgid "<big><b>Vorschau für</b></big>"
 msgstr ""
 
-#: gui.glade:1236
+#: gui.glade:1236 gui.glade:1188
 msgid "Schließen"
 msgstr ""
 
@@ -229,13 +231,88 @@ msgid ""
 "Viel Spaß wünscht Thomas Beck!"
 msgstr ""
 
-#: gui.glade:1322
+#: gui.glade:1322 gui.glade:1277
 msgid ""
 "Welches Thema möchten sie installieren? \n"
 "Um eine Wahl zu treffen klicken sie bitte auf eine der angezeigten "
 "Schaltflächen"
 msgstr ""
 
-#: gui.glade:1416
+#: gui.glade:1416 gui.glade:1360
 msgid "button"
+msgstr ""
+
+#: Main.cs:141
+msgid "Vorschau für \""
+msgstr ""
+
+#: Main.cs:143
+msgid "<b>Achtung: Das Vorschaubild konnte nicht geladen werden!</b>"
+msgstr ""
+
+#: CArtManager.cs:300
+msgid "<b>Downloading new themes...</b>"
+msgstr ""
+
+#: CSplashTheme.cs:49
+msgid "Saving the previous settings"
+msgstr ""
+
+#: CSplashTheme.cs:55
+msgid "Downloading the file from art.gnome.org"
+msgstr ""
+
+#: CSplashTheme.cs:62
+msgid "Installing the theme"
+msgstr ""
+
+#: CSplashTheme.cs:66
+msgid "Install finished"
+msgstr ""
+
+#: gui.glade:635
+msgid "<b>License:</b>"
+msgstr ""
+
+#: gui.glade:685
+msgid "<b>Description:</b>"
+msgstr ""
+
+#: gui.glade:700
+msgid "No description has been entered by the author"
+msgstr ""
+
+#: gui.glade:738
+msgid "<b>Download count:</b>"
+msgstr ""
+
+#: gui.glade:788
+msgid "<b>Resolutions:</b>"
+msgstr ""
+
+#: gui.glade:802
+msgid "<b>Image type:</b>"
+msgstr ""
+
+#: gui.glade:1245
+msgid ""
+"<i>Willkommen zu GNOME-Art-ng.</i>\n"
+"\n"
+"Dieses Programm ist dafür gedacht, den Umgang mit den verschiedenen Themes "
+"die unter Linux verfügbar sind zu erleichtern und gleichzeitig für die Seite "
+"art.gnome.org ein passendes Frontend zur Verfügung zu stellen. \n"
+"\n"
+"<i>Viel Spaß wünscht Thomas Beck!</i>"
+msgstr ""
+
+#: gui.glade:1417
+msgid "<b>Achtung, die Aktion ist fehlgeschlagen</b>"
+msgstr ""
+
+#: gui.glade:1459
+msgid "Genaue Beschreibung des Fehlers:"
+msgstr ""
+
+#: gui.glade:1478
+msgid "Ok"
 msgstr ""
