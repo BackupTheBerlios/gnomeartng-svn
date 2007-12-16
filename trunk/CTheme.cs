@@ -24,50 +24,80 @@ namespace GnomeArtNG
 		public int VoteCount=0;
 		public int DownloadCount=0;
 		public string License="";
-		public string SmallThumbnailUrl="";
-		public string PreviewUrl="";
-		public string LocalThumbnailFile="";
-		public string LocalPreviewFile="";
 		public string LocalThemeFile="";
 		public string DownloadUrl="";
+		public bool LocalThumbExists=false;
+		public bool LocalPreviewExists=false;
+
+		public string SmallThumbnailUrl{
+			get{return smallThumbnailUrl;}
+			set{
+				smallThumbnailUrl=value;
+				localThumbnailFile=Path.Combine(config.ThumbsPath,Path.GetFileName(smallThumbnailUrl));
+				LocalThumbExists=File.Exists(localThumbnailFile);
+				//Console.WriteLine("LocalThumb: "+localThumbnailFile);
+			}
+		}
+		
+		public string LocalPreviewFile{get{return localPreviewFile;}}
+		public string LocalThumbnailFile{
+			get{
+				if(LocalThumbExists) 
+					return localThumbnailFile;
+				else
+					return config.NoThumb;
+			}
+		}
+		public Gdk.Pixbuf ThumbnailPic{
+			get{return new Gdk.Pixbuf(LocalThumbnailFile);}
+		}
+		
+		public string PreviewUrl{
+			get{return previewUrl;}
+			set{
+				previewUrl=value;
+				localPreviewFile=Path.Combine(config.PreviewPath,Path.GetFileName(previewUrl));
+				LocalPreviewExists=File.Exists(localPreviewFile);
+				//Console.WriteLine("LocalPreview: "+localPreviewFile);
+			}
+		}
+		
+		protected CConfiguration config;
 		
 		protected bool revertIsAvailable=false;
 		protected bool installationIsPossible=true;
-		protected CConfiguration config;
+		protected string smallThumbnailUrl="";
+		protected string previewUrl="";
+		protected string localThumbnailFile="";
+		protected string localPreviewFile="";
 		
 		public bool RevertIsAvailable{ get{ return revertIsAvailable;} }
 		public bool InstallationIsPossible{ get{ return installationIsPossible;} }
 		
 		private WebClient webclient;
 		
-		//Alle Themes herunterladen 
+		//Thumbnail herunterladen 
 		public void GetThumbnailImage(){
-			LocalThumbnailFile=Path.Combine(config.ThumbsPath,Path.GetFileName(SmallThumbnailUrl));
-			FileInfo file = new FileInfo(LocalThumbnailFile);
-			if(!file.Exists)
-				webclient.DownloadFile(SmallThumbnailUrl,LocalThumbnailFile);
+			if (!LocalThumbExists){
+				DownloadFile(SmallThumbnailUrl,localThumbnailFile);
+				LocalThumbExists=true;
+			}
 		}
 		
 		public void GetPreviewImage(){
 			try{
-				LocalPreviewFile=Path.Combine(config.PreviewPath,Path.GetFileName(PreviewUrl));
-				FileInfo file = new FileInfo(LocalPreviewFile);
-				if(!file.Exists)
-					webclient.DownloadFile(PreviewUrl,LocalPreviewFile);
+				if (!LocalPreviewExists){
+					DownloadFile(PreviewUrl,LocalPreviewFile);
+					LocalPreviewExists=true;
+				}
 			} catch (Exception ex) {
 				Console.WriteLine("Exception occured in GetPreviewImage");
+				LocalPreviewExists=false;
 				throw ex;
 			}
 
 		}
 		
-		/*abstract*/ public void DownloadTheme(){
-			//Nacheinander download;
-			//kann man abbrechen;
-			//Legt die Bilder in thumbsDir+ArtType ab
-			//setzt localThemeFile
-		}
-			
 		//Lädt eine Datei herunter
 		protected virtual void DownloadFile(string From, string To){
 			webclient.DownloadFile(From,To);

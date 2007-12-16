@@ -47,7 +47,21 @@ namespace GnomeArtNG
 				ThemeIndex = 0;
 			}
 		}
-
+		
+		public void GetThumb(){
+			try{
+				ArrayList list = getThemeList();
+				((CTheme)list[currentThemeIndex]).GetThumbnailImage();
+			} catch {
+				//TODO:Fehlerbehandlung!
+			}
+		}
+		
+		public void GetThumb(int Index){
+			ThemeIndex=Index;
+			GetThumb();
+		}
+		
 		public int ThemeIndex{
 			get {return currentThemeIndex;}
 			set {
@@ -296,16 +310,61 @@ namespace GnomeArtNG
 		
 		public void GetAllThumbs(){
 			ArrayList list = getThemeList();
+			ArrayList downloadList = new ArrayList();
+			CTheme theme;
+			
 			int themeCount=list.Count;
-			CStatusWindow w= new CStatusWindow(Catalog.GetString("<b>Downloading new themes...</b>"),true,themeCount);
+			CStatusWindow w= new CStatusWindow(Catalog.GetString("Reading thumbnails on harddisc"),themeCount,true,true);
+			w.SetButtonSensitive(false);
+			//Thumbs von der Platte lesen
+			
 			for (int i=0;i<(int)(themeCount/5);i++){
+				theme = ((CTheme)list[i]);
 				w.SetProgress((i+1).ToString()+"/"+themeCount.ToString());
-				((CTheme)list[i]).GetThumbnailImage();
+				w.ExtInfoLabel = theme.SmallThumbnailUrl;
+				if (!theme.LocalThumbExists)
+					downloadList.Add(theme);
+				else 
+					theme.GetThumbnailImage();
+			}
+			
+			//Thumbs herunterladen
+			int downloadCount=downloadList.Count;
+			if (downloadCount>0){
+				w.Headline=Catalog.GetString("Downloading missing thumbnails");
+				w.SetButtonSensitive(true);
+				w.SetProgressStep(downloadList.Count);
+				Console.WriteLine("Herunterzuladende Dateien: "+downloadList.Count);
+				for (int i=0;i<downloadList.Count;i++){
+					if (w.CloseRequested){
+						break;
+					}
+					theme = ((CTheme)downloadList[i]);
+					w.SetProgress((i+1).ToString()+"/"+downloadCount.ToString());
+					w.ExtInfoLabel = Path.GetFileName(theme.SmallThumbnailUrl);
+					theme.GetThumbnailImage();
+				}
 			}
 			w.Close();
-			
 		}
-		
+/*
+		 			ArrayList list = getThemeList();
+			ArrayList downloadList = new ArrayList();
+			int themeCount=list.Count;
+			CStatusWindow w= new CStatusWindow(Catalog.GetString("<b>Getting thumbnails</b>"),themeCount,true,true);
+			for (int i=0;i<(int)(themeCount/5);i++){
+				if (w.CloseRequested){
+					w.Close();
+					break;
+				}
+				CTheme theme = ((CTheme)list[i]);
+				w.SetProgress((i+1).ToString()+"/"+themeCount.ToString());
+				w.ExtInfoLabel = theme.DownloadUrl;
+				theme.GetThumbnailImage();
+			}
+			w.Close();
+
+		 */		
 		public void GetAllThumbs(CConfiguration.ArtType Type){
 			ArtType=Type;
 			GetAllThumbs();

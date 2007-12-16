@@ -43,7 +43,6 @@ namespace GnomeArtNG
 		private string iconDir=".icons";
 		private string gdmInstallPath="/usr/share/gdm/themes/";
 		
-		
 		private bool tarIsAvailable=false;
 		private bool grepIsAvailable=false;
 		private bool sedIsAvailable=false;
@@ -59,6 +58,8 @@ namespace GnomeArtNG
 			get { return artType;} 
 			set { artType = value;} 
 		}
+
+		public string NoThumb{get{return "./linuxfirefox.gif";}}
 		
 		public string SplashInstallPath{get{return splashInstallPath;}}
 		public string ApplicationInstallPath{get{return applicationInstallPath;}}
@@ -109,8 +110,8 @@ namespace GnomeArtNG
 			splashInstallPath = homePath+dirSep+splashInstallDir+dirSep;
 			applicationInstallPath = homePath+dirSep+"."+themesDir+dirSep;
 			iconInstallPath = homePath+dirSep+iconDir+dirSep;
-			tarIsAvailable = TestIfProgIsInstalled("tar","--version","tar (gnu tar)");
-			grepIsAvailable = TestIfProgIsInstalled("grep","--version","grep (gnu grep)");
+			tarIsAvailable = TestIfProgIsInstalled("tar","--version","gnu tar");
+			grepIsAvailable = TestIfProgIsInstalled("grep","--version","gnu grep");
 			sedIsAvailable = TestIfProgIsInstalled("sed","--version","gnu sed");
 			Console.WriteLine(tarIsAvailable+" "+grepIsAvailable);
 			CreateDirectories();

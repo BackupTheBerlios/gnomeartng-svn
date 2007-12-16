@@ -18,8 +18,12 @@ namespace GnomeArtNG
 	{
 		
 		private Gtk.Window mainWindow;
+		private bool closeRequested;
 		public Gtk.Window MainWindow {
 			get {return mainWindow;}
+		}
+		public bool CloseRequested{
+			get{ return closeRequested;}
 		}
 		
 		//StatusWindow
@@ -27,12 +31,23 @@ namespace GnomeArtNG
 		[Widget] Gtk.Label StatusMainLabel;
 		[Widget] Gtk.Button StatusCancelButton;
 		[Widget] Gtk.ProgressBar StatusProgressBar;
+		[Widget] Gtk.Label StatusExtInfoLabel;
 		
 		
 		public string Headline{
 			get{return StatusHeadLabel.Text;}
-			set{StatusHeadLabel.Text = value;
-			StatusHeadLabel.UseMarkup=true;}
+			set{
+				StatusHeadLabel.Text = "<b>"+value+"</b>";
+				StatusHeadLabel.UseMarkup=true;
+			}
+		}
+		
+		public string ExtInfoLabel{
+			get{ return StatusExtInfoLabel.Text; }
+			set{ 
+				StatusExtInfoLabel.Text="<i>"+value+"</i>";
+				StatusExtInfoLabel.UseMarkup=true;
+			}
 		}
 		
 		public string Mainlabel{
@@ -51,35 +66,52 @@ namespace GnomeArtNG
 			Invalidate();
 		}
 		
+		public void SetButtonSensitive(bool IsSensitive){
+			StatusCancelButton.Sensitive=IsSensitive;
+		}
+		
 		public void Invalidate(){
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration ();
 		}
 		
-		public CStatusWindow(string Headline,bool ShowWindow,int MaxCount)	{
+		public void SetProgressStep(int MaxCount){
+			StatusProgressBar.PulseStep=(double)(1/MaxCount);
+			StatusProgressBar.Fraction=0.0;
+		}
+		
+		public CStatusWindow(string Headline,int MaxCount,bool CloseByRequest, bool ShowWindow)	{
 			string statusW="StatusWindow";
 			Glade.XML statusXml= new Glade.XML (null, "gui.glade", statusW, null);
 			statusXml.Autoconnect (this);
 			mainWindow = (Gtk.Window) statusXml.GetWidget (statusW);
 			this.Headline = Headline;
-			StatusCancelButton.Clicked+=new EventHandler(OnCancelButtonClicked);
-			StatusProgressBar.PulseStep=(double)1/MaxCount;
-			StatusProgressBar.Fraction=0.0;
+			if (CloseByRequest)
+				StatusCancelButton.Clicked+=new EventHandler(OnCancelRequestButtonClicked);
+			else
+				StatusCancelButton.Clicked+=new EventHandler(OnCancelButtonClicked);
+			SetProgressStep(MaxCount);
 			if(ShowWindow)
 				Show();
-			
 		}
 				
 		public void Close(){
+			closeRequested=false;
 			mainWindow.Destroy();
 		}
+		
 		public void Show(){
 			mainWindow.ShowAll();
 		}
 		
 		private void OnCancelButtonClicked (object sender, EventArgs b){
-			mainWindow.Destroy();
+			Close();
 		}
+		
+		private void OnCancelRequestButtonClicked(object sender, EventArgs b){
+			closeRequested=true;
+		}
+		
 	
 	}
 }

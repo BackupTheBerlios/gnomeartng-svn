@@ -41,8 +41,6 @@ public class GnomeArtNgApp
 	 [Widget] Gtk.Label ExtInfoImageTypeLabel;
 	
 	//Erweiterte Infos Inhalte
-	//[Widget] Gtk.Frame ExtendedInfosFrame;
-	//[Widget] Gtk.HPaned ExtInfoSplitter;
 	[Widget] Gtk.Button ExtInfoPreviewButton;
 	[Widget] Gtk.Image ExtInfoImage;
 	[Widget] Gtk.Label ExtInfoName;
@@ -81,6 +79,7 @@ public class GnomeArtNgApp
 			stores[i]= new ListStore (typeof(Pixbuf),typeof (string), typeof (string));
 			IconViews[i] = new Gtk.IconView(stores[i]);
 			IconViews[i].SelectionChanged += new System.EventHandler(OnSelChanged);
+			IconViews[i].ItemActivated += new ItemActivatedHandler(OnItemActivated);
 			IconViews[i].PixbufColumn = 0;
 			sWins[i].Add(IconViews[i]);
 			IconViews[i].Show();
@@ -105,7 +104,7 @@ public class GnomeArtNgApp
 	private void OnImageResolutionsBoxChanged(object sender, EventArgs a){
 		((CBackgroundTheme)(man.Theme)).ImageIndex = imageResolutionsBox.Active;
 	}
-		
+	
 	private void OnSwitchPage(object sender, SwitchPageArgs s){
 		int pageNum = ((Gtk.Notebook)sender).Page;
 		switch(pageNum){
@@ -153,7 +152,9 @@ public class GnomeArtNgApp
 	}
 
 	private void OnStartButtonClicked (object sender, System.EventArgs a){
-		
+		man.GetAllThumbs();
+		FillStore(MainNotebook.Page);
+		IconViews[MainNotebook.Page].GrabFocus ();
 	}
 	
 	private void OnSelChanged(object sender,EventArgs e){
@@ -163,7 +164,12 @@ public class GnomeArtNgApp
 		}
 	}
 	
-	
+	//Test zum einfachen reload oder neuladen von einzelnen Thumbs
+	private void OnItemActivated(object sender, ItemActivatedArgs a){
+		man.GetThumb();
+		FillStore(MainNotebook.Page);
+	}
+		
 	private void FillComboboxWithStrings(Gtk.ComboBox box, string[] strings){
 		((Gtk.ListStore)(box.Model)).Clear();
 		for (int i=0;i<strings.Length;i++){
@@ -176,7 +182,7 @@ public class GnomeArtNgApp
 	private void FillExtendedSection(CTheme theme){
 		bool isImage = ((config.ThemeType == CConfiguration.ArtType.atBackground_gnome) | 
 		                (config.ThemeType == CConfiguration.ArtType.atBackground_other));
-		ExtInfoImage.Pixbuf = new Gdk.Pixbuf(theme.LocalThumbnailFile);
+		ExtInfoImage.Pixbuf = theme.ThumbnailPic;
 		ExtInfoName.Text = theme.Name;
 		ExtInfoAuthor.Text = theme.Author;
 		ExtInfoLicense.Text = theme.License;
@@ -194,14 +200,16 @@ public class GnomeArtNgApp
 		ExtInfoResolutionsLabel.Visible = isImage;
 	}
 	
-	//OnITemActivated--Doppelklick vielleicht zum Installieren des selektierten?
+	//OnItemActivated--Doppelklick vielleicht zum Installieren des selektierten?
 
 	void FillStore (int StoreIndex)  {
 		int themeCount = (int)(man.ThemeCount/5);
+		Gdk.Pixbuf pix; 
+		stores[StoreIndex].Clear();
 		for(int i=0; i<themeCount;i++) {
 			CTheme theme = man.GetTheme(i);
-			//Console.WriteLine("Count:"+man.ThemeCount+" "+theme.LocalThumbnailFile);
-            stores[StoreIndex].AppendValues (new Gdk.Pixbuf(theme.LocalThumbnailFile),theme.Name, theme.Author);
+			stores[StoreIndex].AppendValues (theme.ThumbnailPic,theme.Name, theme.Author);
+			
           }
 		if (themeCount>=0)
 			man.ThemeIndex=0;
