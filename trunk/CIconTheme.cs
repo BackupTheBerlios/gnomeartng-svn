@@ -23,6 +23,7 @@ namespace GnomeArtNG
 		private string prevIconTheme="";
 		//Beim Installieren benötigt
 		private string[] Folder;
+		System.Text.StringBuilder ConOutp;
 			
 		override public void Revert(){
 			client = new GConf.Client();
@@ -31,19 +32,20 @@ namespace GnomeArtNG
 		}
 
 		override protected void PreInstallation(CStatusWindow sw){
-		if (!config.TarIsAvailable)
+		if (!installationIsPossible)
 				throw new Exception("Installation is not possible - Tar is missing");
 			string tarParams="";
 			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 			
 			tarParams=config.GetTarParams(DownloadUrl);
-			
+			Console.WriteLine(LocalThemeFile);
 			//Herunterladen
 			if (!File.Exists(LocalThemeFile))
 				DownloadFile(DownloadUrl, LocalThemeFile);
 			
 			//Entpacken
-			System.Text.StringBuilder ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.IconInstallPath);
+			ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.IconInstallPath);
+			Console.WriteLine(ConOutp.ToString());
 			Folder = ConOutp.ToString().Split('/');
 			
 			//Sichern
@@ -61,7 +63,7 @@ namespace GnomeArtNG
 		}
 
 		public CIconTheme(CConfiguration config):base(config)	{
-			
+			installationIsPossible = config.TarIsAvailable;
 		}
 			
 	}

@@ -107,6 +107,9 @@ namespace GnomeArtNG
 		//Theme installieren und Revert verfügbar machen 
 		public virtual void StartInstallation(){
 			CStatusWindow sw=new CStatusWindow(Catalog.GetString(String.Format("Installing \"{0}\"",Name)),0,false,false,true);
+			sw.Mainlabel=Catalog.GetString("<i>Installing</i>\n\nYour selection is beeing downloaded and installed...please be"+
+			                               " patient while the installation procedure proceeds. After everything's done, this"+
+			                               " window will get closed.\n\n Have fun with your new theme, Greetings Tom");
 			PreInstallation(sw);
 			Installation(sw);
 			PostInstallation(sw);
