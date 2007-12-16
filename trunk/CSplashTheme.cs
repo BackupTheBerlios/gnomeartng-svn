@@ -39,7 +39,7 @@ namespace GnomeArtNG
 		
 		override public void Install(){
 			int stepCount=3;
-			CStatusWindow sw=new CStatusWindow(Catalog.GetString(String.Format("Installing \"{0}\"",Name)),stepCount,false,true);
+			CStatusWindow sw=new CStatusWindow(Catalog.GetString(String.Format("Installing \"{0}\"",Name)),stepCount,false,false,true);
 			try {
 				string LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 				string InstallThemeFile=config.SplashInstallPath+Path.GetFileName(DownloadUrl);

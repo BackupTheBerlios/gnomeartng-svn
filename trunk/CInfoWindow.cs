@@ -52,14 +52,20 @@ namespace GnomeArtNG
 			InfoImage.Stock= StockIcon;
 			if(ShowWindow)
 				Show();
-			
 		}
 				
 		public void Close(){
 			mainWindow.Destroy();
 		}
+		
+		public void Invalidate(){
+			while (Gtk.Application.EventsPending ())
+				Gtk.Application.RunIteration ();
+		}
+		
 		public void Show(){
 			mainWindow.ShowAll();
+			Invalidate();
 		}
 		
 		private void OnOkButtonClicked (object sender, EventArgs b){

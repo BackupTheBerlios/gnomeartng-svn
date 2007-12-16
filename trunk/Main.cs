@@ -14,6 +14,9 @@ using System.Threading;
 using System.IO;
 using Mono.Unix;
 
+using System.Web;
+using System.Net;
+
 public class GnomeArtNgApp
 {
 	private CArtManager man;
@@ -35,6 +38,7 @@ public class GnomeArtNgApp
 	[Widget] Gtk.Button RevertButton;	
 	[Widget] Gtk.Table LowerTable;	
 	[Widget] Gtk.Notebook MainNotebook;
+	[Widget] Gtk.Button StartButton;	
 	
 	//Erweiterte Infos Beschriftungen
 	 [Widget] Gtk.Label ExtInfoResolutionsLabel;	
@@ -69,6 +73,7 @@ public class GnomeArtNgApp
 		InstallButton.Clicked  += new EventHandler(OnInstallButtonClicked);
 		RevertButton.Clicked  += new EventHandler(OnRevertButtonClicked);
 		MainNotebook.SwitchPage += new SwitchPageHandler(OnSwitchPage);
+		StartButton.Clicked += new EventHandler(OnStartButtonClicked);
 		
 		//ArtManager erzeugen
 		man = new CArtManager(config);
@@ -152,6 +157,7 @@ public class GnomeArtNgApp
 	}
 
 	private void OnStartButtonClicked (object sender, System.EventArgs a){
+		
 		man.GetAllThumbs();
 		FillStore(MainNotebook.Page);
 		IconViews[MainNotebook.Page].GrabFocus ();
@@ -199,12 +205,9 @@ public class GnomeArtNgApp
 		ExtInfoImageTypeLabel.Visible = isImage;
 		ExtInfoResolutionsLabel.Visible = isImage;
 	}
-	
-	//OnItemActivated--Doppelklick vielleicht zum Installieren des selektierten?
 
 	void FillStore (int StoreIndex)  {
 		int themeCount = (int)(man.ThemeCount/5);
-		Gdk.Pixbuf pix; 
 		stores[StoreIndex].Clear();
 		for(int i=0; i<themeCount;i++) {
 			CTheme theme = man.GetTheme(i);

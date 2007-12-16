@@ -101,9 +101,9 @@ namespace GnomeArtNG
 		private bool DownloadFile(string From, string To){
 	        try {
 				WebClient myClient = new WebClient();
-				Console.WriteLine(Catalog.GetString("Download {0} has been started"),Path.GetFileName(From));
+				Console.WriteLine(Catalog.GetString("Downloading {0}"),Path.GetFileName(From));
 				myClient.DownloadFile(From, To);
-				Console.WriteLine(Catalog.GetString("Download {0} has been finished"),Path.GetFileName(From));
+				Console.WriteLine(Catalog.GetString("Finished {0}"),Path.GetFileName(From));
 				return true;
 			} catch { return false; }
 		}
@@ -117,8 +117,8 @@ namespace GnomeArtNG
 				bool downloadFile=false;
 				if (!ForceReload){
 			        if (File.Exists(localFileName)) {
-			            if (DateTime.Compare(File.GetCreationTime(localFileName), DateTime.Now) > 10) {
-			                Console.WriteLine("Xml file to old - downloading new one");
+			            if ( DateTime.Compare(File.GetCreationTime(localFileName).Date, DateTime.Now.Date) < 0) {
+			                Console.WriteLine("Xml file one day old - downloading new one");
 							downloadFile = true;
 			            }
 			        }
@@ -127,8 +127,18 @@ namespace GnomeArtNG
 			        }
 				} else 
 					downloadFile=true;
-		        if (downloadFile)
+		        if (downloadFile){
+					CStatusWindow sw= new CStatusWindow(Catalog.GetString("Downloading new XML-File"),1,false,true,true);
+					sw.ButtonSensitive=false;
+					sw.ExtInfoLabel=Catalog.GetString("Downloading")+": " + remoteUri;
+					sw.Mainlabel=Catalog.GetString("<i>XML file is beeing downloaded</i>\n\nThis program needs a descriptive "+
+					                               "file that contains information about \n1) where the theme is located,"+
+					                               "\n2) what kind of theme is it, \n3) How often someone downloaded it,"+
+					                               " and so on \n\nSo please be patient while the download progress is going on..");
+					sw.SetProgress(Catalog.GetString("downloading... (no progress available)"));
 					DownloadFile(remoteUri,localFileName);
+					sw.Close();
+				}
 				return true;
 		    }
 		    catch {
@@ -211,7 +221,7 @@ namespace GnomeArtNG
 				
 				// Retrieve all bg from the xml
 				XmlNodeList entries = doc.SelectNodes(config.NodeEntryPath());
-				Console.WriteLine("Number of Entries: "+entries.Count);
+				Console.WriteLine("Number of themes: "+entries.Count);
 				
 				foreach(XmlNode node in entries){
 					
@@ -301,9 +311,8 @@ namespace GnomeArtNG
 		public CTheme GetTheme(int Index){
 			ThemeIndex = Index;
 			ArrayList list=getThemeList();
-			if ((Index<list.Count)&(Index>=0)){
+			if ((Index<list.Count)&(Index>=0))
 				return Theme;
-			}
 			else
 				throw new IndexOutOfRangeException("Illegal index in GetTheme");
 		}	
@@ -314,8 +323,8 @@ namespace GnomeArtNG
 			CTheme theme;
 			
 			int themeCount=list.Count;
-			CStatusWindow w= new CStatusWindow(Catalog.GetString("Reading thumbnails on harddisc"),themeCount,true,true);
-			w.SetButtonSensitive(false);
+			CStatusWindow w= new CStatusWindow(Catalog.GetString("Reading thumbnails on harddisc"),themeCount,true,false,true);
+			w.ButtonSensitive=false;
 			//Thumbs von der Platte lesen
 			
 			for (int i=0;i<(int)(themeCount/5);i++){
@@ -332,7 +341,7 @@ namespace GnomeArtNG
 			int downloadCount=downloadList.Count;
 			if (downloadCount>0){
 				w.Headline=Catalog.GetString("Downloading missing thumbnails");
-				w.SetButtonSensitive(true);
+				w.ButtonSensitive=true;
 				w.SetProgressStep(downloadList.Count);
 				Console.WriteLine("Herunterzuladende Dateien: "+downloadList.Count);
 				for (int i=0;i<downloadList.Count;i++){
@@ -347,37 +356,10 @@ namespace GnomeArtNG
 			}
 			w.Close();
 		}
-/*
-		 			ArrayList list = getThemeList();
-			ArrayList downloadList = new ArrayList();
-			int themeCount=list.Count;
-			CStatusWindow w= new CStatusWindow(Catalog.GetString("<b>Getting thumbnails</b>"),themeCount,true,true);
-			for (int i=0;i<(int)(themeCount/5);i++){
-				if (w.CloseRequested){
-					w.Close();
-					break;
-				}
-				CTheme theme = ((CTheme)list[i]);
-				w.SetProgress((i+1).ToString()+"/"+themeCount.ToString());
-				w.ExtInfoLabel = theme.DownloadUrl;
-				theme.GetThumbnailImage();
-			}
-			w.Close();
 
-		 */		
 		public void GetAllThumbs(CConfiguration.ArtType Type){
 			ArtType=Type;
 			GetAllThumbs();
-		}
-		
-
-		//TEMP
-		public void printCount(){
-			Console.WriteLine("Gdm: "+GdmGreeterThemeList.Count);
-			Console.WriteLine("Splash: "+SplashThemeList.Count);
-			Console.WriteLine("Icon: "+IconThemeList.Count);
-			Console.WriteLine("Background: "+Gnome_BackgroundThemeList.Count);
-			Console.WriteLine("--------------------------------");
 		}
 		
 		private void AddThemeToVectorArray(CTheme Theme){

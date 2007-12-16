@@ -32,6 +32,7 @@ namespace GnomeArtNG
 		[Widget] Gtk.Button StatusCancelButton;
 		[Widget] Gtk.ProgressBar StatusProgressBar;
 		[Widget] Gtk.Label StatusExtInfoLabel;
+		[Widget] Gtk.Expander ExtendedInfoExpander;
 		
 		
 		public string Headline{
@@ -39,6 +40,14 @@ namespace GnomeArtNG
 			set{
 				StatusHeadLabel.Text = "<b>"+value+"</b>";
 				StatusHeadLabel.UseMarkup=true;
+			}
+		}
+		
+		public bool ExpanderLabelVisible{
+			get{ return ExtendedInfoExpander.Expanded;}
+			set{ 
+				ExtendedInfoExpander.Expanded = value;
+				Invalidate();
 			}
 		}
 		
@@ -66,8 +75,13 @@ namespace GnomeArtNG
 			Invalidate();
 		}
 		
-		public void SetButtonSensitive(bool IsSensitive){
-			StatusCancelButton.Sensitive=IsSensitive;
+		public bool ButtonSensitive{
+			get {return StatusCancelButton.Sensitive;}
+			set{StatusCancelButton.Sensitive=value;}
+		}
+		
+		public void Pulse(){
+			StatusProgressBar.Pulse();
 		}
 		
 		public void Invalidate(){
@@ -80,7 +94,7 @@ namespace GnomeArtNG
 			StatusProgressBar.Fraction=0.0;
 		}
 		
-		public CStatusWindow(string Headline,int MaxCount,bool CloseByRequest, bool ShowWindow)	{
+		public CStatusWindow(string Headline,int MaxCount,bool CloseByRequest, bool ExpandExpander, bool ShowWindow)	{
 			string statusW="StatusWindow";
 			Glade.XML statusXml= new Glade.XML (null, "gui.glade", statusW, null);
 			statusXml.Autoconnect (this);
@@ -90,6 +104,7 @@ namespace GnomeArtNG
 				StatusCancelButton.Clicked+=new EventHandler(OnCancelRequestButtonClicked);
 			else
 				StatusCancelButton.Clicked+=new EventHandler(OnCancelButtonClicked);
+			ExpanderLabelVisible = ExpandExpander;
 			SetProgressStep(MaxCount);
 			if(ShowWindow)
 				Show();
