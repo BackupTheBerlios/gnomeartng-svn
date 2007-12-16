@@ -12,8 +12,12 @@ namespace GnomeArtNG
 	
 	public class CGtkTheme: CTheme
 	{
-			
-		override public void Install(){}
+	
+		override protected void PreInstallation(CStatusWindow sw){}
+		override protected void PostInstallation(CStatusWindow sw){}
+		override protected void Installation(CStatusWindow sw){}
+		
+		public void Install(){}
 		override public void Revert(){}
 		public CGtkTheme(CConfiguration config):base(config)
 		{

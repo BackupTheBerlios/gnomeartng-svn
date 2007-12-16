@@ -15,10 +15,14 @@ namespace GnomeArtNG
 	{
 		private GConf.Client client; 
 		private string previousApplicationTheme="";
-		static string GConfApplicationKey ="/desktop/gnome/interface/gtk_theme";
-		override public void Install(){
+		private static string GConfApplicationKey ="/desktop/gnome/interface/gtk_theme";
+		private System.Text.StringBuilder ConOutp;
+			
+		override protected void PreInstallation(CStatusWindow sw){
 			string tarParams="";
-			string LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
+			client = new GConf.Client();
+			
+			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 			string InstallThemeFile=config.ApplicationInstallPath+Path.GetFileName(DownloadUrl);
 
 			tarParams=config.GetTarParams(Path.GetExtension(DownloadUrl));
@@ -28,16 +32,23 @@ namespace GnomeArtNG
 			}
 			//Entpacken
 			Console.WriteLine("Command: tar"+tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
-			System.Text.StringBuilder ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
-			//Installieren
-			client = new GConf.Client();
+			ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
+
+			//Sichern
 			previousApplicationTheme = (string)client.Get(GConfApplicationKey);
+		}
+		
+		override protected void Installation(CStatusWindow sw){
+			//Installieren
 			client.Set(GConfApplicationKey,ConOutp.ToString().Split('/')[0]);
+		}
+
+		override protected void PostInstallation(CStatusWindow sw){
 			//config.Execute("gnome-appearance-properties","");
 			//Revert verfügbar machen
 			revertIsAvailable=true;
-			
 		}
+	
 		override public void Revert(){
 			if (revertIsAvailable){
 				new GConf.Client().Set(GConfApplicationKey,previousApplicationTheme);

@@ -149,7 +149,7 @@ public class GnomeArtNgApp
 	}
 	
 	private void OnInstallButtonClicked (object sender, EventArgs e){
-		man.Theme.Install();
+		man.Theme.StartInstallation();
 	}
 	
 	private void OnRevertButtonClicked (object sender, EventArgs e){

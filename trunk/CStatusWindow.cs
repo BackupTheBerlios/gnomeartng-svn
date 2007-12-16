@@ -90,6 +90,8 @@ namespace GnomeArtNG
 		}
 		
 		public void SetProgressStep(int MaxCount){
+			if (MaxCount==0)
+				MaxCount=1;
 			StatusProgressBar.PulseStep=(double)(1/MaxCount);
 			StatusProgressBar.Fraction=0.0;
 		}
@@ -117,6 +119,7 @@ namespace GnomeArtNG
 		
 		public void Show(){
 			mainWindow.ShowAll();
+			Invalidate();
 		}
 		
 		private void OnCancelButtonClicked (object sender, EventArgs b){

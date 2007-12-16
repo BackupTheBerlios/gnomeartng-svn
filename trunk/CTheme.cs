@@ -7,6 +7,7 @@
 using System;
 using System.Net;
 using System.IO;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
@@ -29,6 +30,20 @@ namespace GnomeArtNG
 		public bool LocalThumbExists=false;
 		public bool LocalPreviewExists=false;
 
+		protected CConfiguration config;
+		
+		protected bool revertIsAvailable=false;
+		protected bool installationIsPossible=true;
+		protected string smallThumbnailUrl="";
+		protected string previewUrl="";
+		protected string localThumbnailFile="";
+		protected string localPreviewFile="";
+		protected int installationSteps=1;
+		public bool RevertIsAvailable{ get{ return revertIsAvailable;} }
+		public bool InstallationIsPossible{ get{ return installationIsPossible;} }
+		
+		private WebClient webclient;
+		
 		public string SmallThumbnailUrl{
 			get{return smallThumbnailUrl;}
 			set{
@@ -62,20 +77,6 @@ namespace GnomeArtNG
 			}
 		}
 		
-		protected CConfiguration config;
-		
-		protected bool revertIsAvailable=false;
-		protected bool installationIsPossible=true;
-		protected string smallThumbnailUrl="";
-		protected string previewUrl="";
-		protected string localThumbnailFile="";
-		protected string localPreviewFile="";
-		
-		public bool RevertIsAvailable{ get{ return revertIsAvailable;} }
-		public bool InstallationIsPossible{ get{ return installationIsPossible;} }
-		
-		private WebClient webclient;
-		
 		//Thumbnail herunterladen 
 		public void GetThumbnailImage(){
 			if (!LocalThumbExists){
@@ -103,11 +104,26 @@ namespace GnomeArtNG
 			webclient.DownloadFile(From,To);
 		}
 		
-		//Theme installieren und refert verfügbar machen 
-		public abstract void Install();
+		//Theme installieren und Revert verfügbar machen 
+		public virtual void StartInstallation(){
+			CStatusWindow sw=new CStatusWindow(Catalog.GetString(String.Format("Installing \"{0}\"",Name)),0,false,false,true);
+			PreInstallation(sw);
+			Installation(sw);
+			PostInstallation(sw);
+			sw.Close();
+		}
+		
 		public abstract void Revert();
 		
-
+		//Temporär 
+		//public virtual void Install(){}
+		
+		//3 Methoden: PreInstallation(), postInstallation() und Installation();
+		//Eine wird vor der Installation ausgeführt, eine nachher und eine zur eigentlichen Installation 
+		protected abstract void PreInstallation(CStatusWindow sw);
+		protected abstract void PostInstallation(CStatusWindow sw);
+		protected abstract void Installation(CStatusWindow sw);
+		
 		public CTheme(CConfiguration config)	{
 			this.config = config;
 			webclient = new WebClient();

@@ -15,7 +15,6 @@ namespace GnomeArtNG
 	public class CGdmTheme: CTheme
 	{
 		
-
 		private string previousTheme="";
 		private string gdmconfig=@"/etc/gdm/gdm.conf";
 		private StringBuilder sb;
@@ -24,12 +23,15 @@ namespace GnomeArtNG
 		private bool gdmConfAvailable=false;
 		private bool customGdmConfAvailable=false;
 		
+		
+		override protected void PreInstallation(CStatusWindow sw){}
+		override protected void PostInstallation(CStatusWindow sw){}
 		/*
 		 * 2 Dateien sind wichtig:
 		 * /etc/gdm/gdm.conf um herauszufinden ob u.u Multiselect gewählt ist
 		 * /etc/gdm/gdm.conf-custom um die gewählten Themes herauszulesen und zu setzen
 		 */
-		override public void Install(){
+		override protected void Installation(CStatusWindow sw){
 			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 			gdmConfAvailable=File.Exists(gdmconfig);
 			customGdmConfAvailable=File.Exists(gdmconfig+"-custom");

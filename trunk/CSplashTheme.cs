@@ -27,7 +27,11 @@ namespace GnomeArtNG
 		private bool splashWasActive=false;
 		//Alter Splashscreen
 		private string prevSplash="";
-			
+		
+		//zum Installieren benötigte Vars
+		private string InstallThemeFile;
+		private static int stepCount=3;
+		
 		override public void Revert(){
 			if (revertIsAvailable){
 				client = new GConf.Client();
@@ -37,43 +41,41 @@ namespace GnomeArtNG
 			}
 		}
 		
-		override public void Install(){
-			int stepCount=3;
-			CStatusWindow sw=new CStatusWindow(Catalog.GetString(String.Format("Installing \"{0}\"",Name)),stepCount,false,false,true);
-			try {
-				string LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
-				string InstallThemeFile=config.SplashInstallPath+Path.GetFileName(DownloadUrl);
-				//Neuer GConfClient
-				client = new GConf.Client();
-				sw.Mainlabel=Catalog.GetString("Saving the previous settings");
-				//Sicherung
-				splashWasActive = (bool)client.Get(GConfShowSplashKey);
-				prevSplash = (string)client.Get(GConfSplashImageKey);
-				sw.SetProgress("1/"+stepCount);
-				
-				sw.Mainlabel=Catalog.GetString("Downloading the file from art.gnome.org");
-				//Herunterladen
-				if (!File.Exists(InstallThemeFile)){
-					DownloadFile(DownloadUrl, LocalThemeFile);
-					File.Copy(LocalThemeFile,InstallThemeFile);
-				}
-				sw.SetProgress("2/"+stepCount);
-				sw.Mainlabel=Catalog.GetString("Installing the theme");
-				//Installieren
-				client.Set(GConfShowSplashKey,true);
-				client.Set(GConfSplashImageKey,InstallThemeFile);
-				sw.Mainlabel=Catalog.GetString("Install finished");
-				sw.SetProgress("3/"+stepCount);
-				//Revert verfügbar machen
-				revertIsAvailable=true;
-				sw.Close();
-			} catch (Exception ex) {
-				revertIsAvailable=false; 
-				sw.Close();
-				throw ex;
-			}
+		override protected void PreInstallation(CStatusWindow sw){
+			sw.SetProgressStep(stepCount);
+			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
+			InstallThemeFile=config.SplashInstallPath+Path.GetFileName(DownloadUrl);
+			//Neuer GConfClient
+			client = new GConf.Client();
+			sw.Mainlabel=Catalog.GetString("Saving the previous settings");
+			//Sicherung
+			splashWasActive = (bool)client.Get(GConfShowSplashKey);
+			prevSplash = (string)client.Get(GConfSplashImageKey);
+			sw.SetProgress("1/"+stepCount);
 			
+			sw.Mainlabel=Catalog.GetString("Downloading the file from art.gnome.org");
+			//Herunterladen
+			if (!File.Exists(InstallThemeFile)){
+				DownloadFile(DownloadUrl, LocalThemeFile);
+				File.Copy(LocalThemeFile,InstallThemeFile);
+			}
+			sw.SetProgress("2/"+stepCount);
+			sw.Mainlabel=Catalog.GetString("Installing the theme");
 		}
+		
+		override protected void PostInstallation(CStatusWindow sw){
+			//Revert verfügbar machen
+			revertIsAvailable=true;
+		}
+		override protected void Installation(CStatusWindow sw){
+			//Installieren
+			client.Set(GConfShowSplashKey,true);
+			client.Set(GConfSplashImageKey,InstallThemeFile);
+			sw.Mainlabel=Catalog.GetString("Install finished");
+			sw.SetProgress("3/"+stepCount);
+		}
+
+		public void Install(){} 
 		
 		public CSplashTheme(CConfiguration config):base(config) {
 

@@ -27,6 +27,9 @@ namespace GnomeArtNG
 		//Diese Liste hat immer nur einen Eintrag..wegen einfacherem Zugriff ist es trotzdem eine Liste
 		private ArrayList SvgResolutionList;
 		
+		//Vars zum Installieren
+		string InstallThemeFile="";
+		
 		//Speichern des aktuell gewählten Index und Liste 
 		private ImageType bgType; 
 		private ArrayList currentList;
@@ -99,16 +102,26 @@ namespace GnomeArtNG
 			return res;		
 		}
 			
-		override public void Install(){
-			//Index und Type vorher wählen lassen GConf client und dann installieren
-			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
-			string InstallThemeFile=config.SplashInstallPath+Path.GetFileName(DownloadUrl);
-			if (!File.Exists(LocalThemeFile)) {
-				DownloadFile(DownloadUrl, LocalThemeFile);
+		override protected void PreInstallation(CStatusWindow sw){
+			LocalThemeFile=config.ThemesPath+Path.GetFileName(Image.URL);
+			InstallThemeFile=config.SplashInstallPath+Path.GetFileName(Image.URL);	
+			
+			//Index und Type wurden vorher schon gwählt
+			if (!File.Exists(InstallThemeFile)) {
+				if (!File.Exists(LocalThemeFile))
+					DownloadFile(Image.URL, LocalThemeFile);
 				File.Copy(LocalThemeFile,InstallThemeFile);
 			}
+		}
+		
+
+		override protected void Installation(CStatusWindow sw){
 			//Installieren
 			config.Execute("gnome-appearance-properties",InstallThemeFile);
+		}
+		
+		override protected void PostInstallation(CStatusWindow sw){
+			//noch nix
 		}
 		
 		override public void Revert(){
