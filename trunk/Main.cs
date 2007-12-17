@@ -24,7 +24,7 @@ public class GnomeArtNgApp
 	
 	private ComboBox imageTypeBox;
 	private ComboBox imageResolutionsBox;
-    private static int ListStoreCount = 8;
+    private static int ListStoreCount = 10;
 	private ListStore[] stores = new ListStore[ListStoreCount];
 	private Gtk.IconView[] IconViews=new Gtk.IconView[ListStoreCount];
 	private Gtk.ScrolledWindow[] sWins = new Gtk.ScrolledWindow[ListStoreCount]; 
@@ -115,12 +115,14 @@ public class GnomeArtNgApp
 		switch(pageNum){
 			case 0: man.ArtType=CConfiguration.ArtType.atBackground_gnome; break;
 			case 1: man.ArtType=CConfiguration.ArtType.atBackground_other; break;
-			case 2: man.ArtType=CConfiguration.ArtType.atApplication; break;
-			case 3: man.ArtType=CConfiguration.ArtType.atWindowDecoration; break;
-			case 4: man.ArtType=CConfiguration.ArtType.atIcon; break;
-			case 5: man.ArtType=CConfiguration.ArtType.atGdmGreeter; break;
-			case 6: man.ArtType=CConfiguration.ArtType.atSplash; break;
-			case 7: man.ArtType=CConfiguration.ArtType.atGtkEngine;	break;
+			case 2: man.ArtType=CConfiguration.ArtType.atBackground_nature; break;
+			case 3: man.ArtType=CConfiguration.ArtType.atBackground_abstract; break;
+			case 4: man.ArtType=CConfiguration.ArtType.atApplication; break;
+			case 5: man.ArtType=CConfiguration.ArtType.atWindowDecoration; break;
+			case 6: man.ArtType=CConfiguration.ArtType.atIcon; break;
+			case 7: man.ArtType=CConfiguration.ArtType.atGdmGreeter; break;
+			case 8: man.ArtType=CConfiguration.ArtType.atSplash; break;
+			case 9: man.ArtType=CConfiguration.ArtType.atGtkEngine;	break;
 		}
 
 		Gtk.TreeIter iter;
@@ -192,7 +194,10 @@ public class GnomeArtNgApp
 		ExtInfoName.Text = theme.Name;
 		ExtInfoAuthor.Text = theme.Author;
 		ExtInfoLicense.Text = theme.License;
-		ExtInfoDescription.Text = theme.Description;
+		if (theme.Description.Trim() != "")
+			ExtInfoDescription.Text = theme.Description;
+		else
+			ExtInfoDescription.Text = Catalog.GetString("No description has been entered by the author");
 		ExtInfoDownloads.Text = theme.DownloadCount.ToString();
 		ExtInfoRating.Text = theme.VoteSum.ToString();
 		if (isImage){

@@ -24,6 +24,8 @@ namespace GnomeArtNG
 		public ArrayList SplashThemeList;
 		public ArrayList Gnome_BackgroundThemeList;
 		public ArrayList Other_BackgroundThemeList;
+		public ArrayList Nature_BackgroundThemeList;
+		public ArrayList Abstract_BackgroundThemeList;
 		public ArrayList GdmGreeterThemeList;
 		public ArrayList GtkThemeList;
 		public ArrayList WindowDecorationThemeList;
@@ -68,7 +70,7 @@ namespace GnomeArtNG
 				currentThemeIndex = value;
 				ArrayList tempList=getThemeList();
 				if ((value<0) || (value>tempList.Count-1))
-					throw new Exception(String.Format("ThemeIndex has to be in range ({0}-{1}",0,tempList.Count));
+					throw new Exception(String.Format("ThemeIndex has to be in range ({0}-{1})",0,tempList.Count));
 				currentTheme=(CTheme)(tempList[currentThemeIndex]);
 			}
 		}
@@ -91,6 +93,8 @@ namespace GnomeArtNG
 			SplashThemeList = new ArrayList();
 			Gnome_BackgroundThemeList=new ArrayList();
 			Other_BackgroundThemeList=new ArrayList();
+			Nature_BackgroundThemeList=new ArrayList();
+			Abstract_BackgroundThemeList=new ArrayList();
 			GdmGreeterThemeList=new ArrayList();
 			GtkThemeList=new ArrayList();
 			ApplicationThemeList=new ArrayList();
@@ -158,6 +162,8 @@ namespace GnomeArtNG
 			switch (config.ThemeType) {
 				case CConfiguration.ArtType.atBackground_gnome:
 				case CConfiguration.ArtType.atBackground_other:
+				case CConfiguration.ArtType.atBackground_nature:
+				case CConfiguration.ArtType.atBackground_abstract:
 					Theme=new CBackgroundTheme(config);break;
 				case CConfiguration.ArtType.atGdmGreeter:
 					Theme=new CGdmTheme(config);break;
@@ -182,6 +188,10 @@ namespace GnomeArtNG
 					return Gnome_BackgroundThemeList;
 				case CConfiguration.ArtType.atBackground_other:
 					return Other_BackgroundThemeList;
+				case CConfiguration.ArtType.atBackground_nature:
+					return Nature_BackgroundThemeList;
+				case CConfiguration.ArtType.atBackground_abstract:
+					return Abstract_BackgroundThemeList;
 				case CConfiguration.ArtType.atGdmGreeter:
 					return GdmGreeterThemeList;
 				case CConfiguration.ArtType.atGtkEngine:
@@ -263,7 +273,8 @@ namespace GnomeArtNG
 								//In der Background-XML ist "Thumbnail"==SmallThumbnailUrl
 								if ((config.ThemeType==CConfiguration.ArtType.atBackground_gnome) | 
 								    (config.ThemeType==CConfiguration.ArtType.atBackground_other) |
-								    (config.ThemeType==CConfiguration.ArtType.atBackground_other)) { 
+								    (config.ThemeType==CConfiguration.ArtType.atBackground_nature) |
+								    (config.ThemeType==CConfiguration.ArtType.atBackground_abstract)) { 
 									Theme.SmallThumbnailUrl=item.InnerText;
 									Theme.PreviewUrl=item.InnerText;;
 								} else
@@ -368,6 +379,10 @@ namespace GnomeArtNG
 					Gnome_BackgroundThemeList.Add((CBackgroundTheme)Theme); break;
 				case CConfiguration.ArtType.atBackground_other:
 					Other_BackgroundThemeList.Add((CBackgroundTheme)Theme); break;
+				case CConfiguration.ArtType.atBackground_nature:
+					Nature_BackgroundThemeList.Add((CBackgroundTheme)Theme); break;
+				case CConfiguration.ArtType.atBackground_abstract:
+					Abstract_BackgroundThemeList.Add((CBackgroundTheme)Theme); break;
 				case CConfiguration.ArtType.atGdmGreeter:
 					GdmGreeterThemeList.Add((CGdmTheme)Theme); break;
 				case CConfiguration.ArtType.atGtkEngine:

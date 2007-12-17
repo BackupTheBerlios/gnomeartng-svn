@@ -9,6 +9,7 @@ using System.IO;
 using System.Collections;
 using System.Net;
 using GConf;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
@@ -106,22 +107,32 @@ namespace GnomeArtNG
 			LocalThemeFile=config.ThemesPath+Path.GetFileName(Image.URL);
 			InstallThemeFile=config.SplashInstallPath+Path.GetFileName(Image.URL);	
 			
+			//TODO:noch die alten einstellungen mit GCONF auslesen und sichern
+			sw.Mainlabel=Catalog.GetString("Saving the previous settings");
+			sw.SetProgress("1/"+installationSteps);
+			
 			//Index und Type wurden vorher schon gwählt
 			if (!File.Exists(InstallThemeFile)) {
-				if (!File.Exists(LocalThemeFile))
+				if (!File.Exists(LocalThemeFile)){
+					sw.Mainlabel=Catalog.GetString("Downloading the theme from art.gnome.org");
 					DownloadFile(Image.URL, LocalThemeFile);
+				}
 				File.Copy(LocalThemeFile,InstallThemeFile);
 			}
+			sw.SetProgress("2/"+installationSteps);
 		}
 		
 
 		override protected void Installation(CStatusWindow sw){
 			//Installieren
+
+			sw.Mainlabel=Catalog.GetString("Installing the theme");
 			config.Execute("gnome-appearance-properties",InstallThemeFile);
 		}
 		
 		override protected void PostInstallation(CStatusWindow sw){
-			//noch nix
+			sw.Mainlabel=Catalog.GetString("Install finished");
+			sw.SetProgress("3/"+installationSteps);
 		}
 		
 		override public void Revert(){
@@ -129,6 +140,7 @@ namespace GnomeArtNG
 		}
 		
 		public CBackgroundTheme(CConfiguration config):base(config) {
+			installationSteps = 3;
 			PngResolutionList = new ArrayList();
 			JpgResolutionList = new ArrayList();
 			SvgResolutionList = new ArrayList();

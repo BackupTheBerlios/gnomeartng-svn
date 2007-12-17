@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-17 00:18+0100\n"
+"POT-Creation-Date: 2007-12-17 11:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,27 +70,27 @@ msgstr ""
 
 #: CArtManager.cs:326
 msgid "Reading thumbnails on harddisc"
-msgstr ""
+msgstr "Lese Voransichten von der Festplatte"
 
 #: CArtManager.cs:343
 msgid "Downloading missing thumbnails"
-msgstr ""
+msgstr "Lade fehlende Voransichten herunter"
 
 #: CSplashTheme.cs:50
 msgid "Saving the previous settings"
-msgstr ""
+msgstr "Speichere vorherige Einstellungen"
 
 #: CSplashTheme.cs:56
-msgid "Downloading the file from art.gnome.org"
-msgstr ""
+msgid "Downloading the theme from art.gnome.org"
+msgstr "Lade das Thema von art.gnome.org herunter"
 
 #: CSplashTheme.cs:63
 msgid "Installing the theme"
-msgstr ""
+msgstr "Installiere das gewählte Thema"
 
 #: CSplashTheme.cs:74
 msgid "Install finished"
-msgstr ""
+msgstr "Installation beendet"
 
 #: CTheme.cs:110
 msgid ""
@@ -102,30 +102,37 @@ msgid ""
 "\n"
 " Have fun with your new theme, Greetings Tom"
 msgstr ""
+"<i>Installiere</i>\n"
+"\n"
+"Ihr gewähltes Thema wird heruntergeladen und installiert...bitte gedulden "
+"sie einen Augenblick. Nachdem die Installation abgeschlossen ist wird sich "
+"dieses Fenster von selbst schließen.\n"
+"\n"
+" Viel Spaß mit Ihrem neuen Thema wünscht Tom"
 
 #: gui.glade:10
 msgid "Gnome-Art-NG"
-msgstr ""
+msgstr "Gnome-Art-NG"
 
 #: gui.glade:27
 msgid "_File"
-msgstr ""
+msgstr "_Datei"
 
 #: gui.glade:37
 msgid "gtk-quit"
-msgstr ""
+msgstr "gtk-quit"
 
 #: gui.glade:50
 msgid "_Help"
-msgstr ""
+msgstr "_Hilfe"
 
 #: gui.glade:60
 msgid "gtk-about"
-msgstr ""
+msgstr "gtk-about"
 
 #: gui.glade:99 gui.glade:144
 msgid "<b>Please choose your favourite background</b>"
-msgstr ""
+msgstr "<b>Bitte wählen Sie den zu installierenden Hintergrund</b>"
 
 #: gui.glade:127
 msgid ""
@@ -140,8 +147,8 @@ msgid ""
 msgstr ""
 
 #: gui.glade:193
-msgid "<b>Bitte wähle einen Hintergrund</b>"
-msgstr ""
+msgid "<b>Please choose an application theme</b>"
+msgstr "<b>Bitte wähle ein Anwendungs-Thema aus</b>"
 
 #: gui.glade:224
 msgid "Application"
@@ -149,7 +156,7 @@ msgstr ""
 
 #: gui.glade:241
 msgid "<b>Please choose a window decoration</b>"
-msgstr ""
+msgstr "<b>Bitte wähle eine Fensterdokoration aus</b>"
 
 #: gui.glade:272
 msgid "WindowDeco"
@@ -157,11 +164,11 @@ msgstr ""
 
 #: gui.glade:289
 msgid "<b>Please choose an icon set</b>"
-msgstr ""
+msgstr "<b>Bitte wähle ein Icon-Thema aus</b>"
 
 #: gui.glade:320
 msgid "Icons"
-msgstr ""
+msgstr "Icons"
 
 #: gui.glade:337
 msgid "<b>Please choose your greeter for GDM</b>"
@@ -169,7 +176,7 @@ msgstr ""
 
 #: gui.glade:368
 msgid "GDM Greeter"
-msgstr ""
+msgstr "GDM Begrüßung"
 
 #: gui.glade:385
 msgid "<b>Please choose a splash screen for the Gnome start</b>"
@@ -177,7 +184,7 @@ msgstr ""
 
 #: gui.glade:416
 msgid "Splash"
-msgstr ""
+msgstr "Splash"
 
 #: gui.glade:433
 msgid "<b>Please choose a gtk-engine</b>"
@@ -185,48 +192,48 @@ msgstr ""
 
 #: gui.glade:464
 msgid "Gtk-Engine"
-msgstr ""
+msgstr "Gtk-Theme"
 
 #: gui.glade:532
 msgid "<b>Name:</b>"
-msgstr ""
+msgstr "<b>Name:</b>"
 
 #: gui.glade:542 gui.glade:571 gui.glade:598 gui.glade:697 gui.glade:723
-#: gui.glade:1335
+#: gui.glade:1335 gui.glade:715 gui.glade:743 gui.glade:1325
 msgid "label"
-msgstr ""
+msgstr "label"
 
 #: gui.glade:558
 msgid "<b>Author:</b>"
-msgstr ""
+msgstr "<b>Author:</b>"
 
 #: gui.glade:585
 msgid "<b>License:</b>"
-msgstr ""
+msgstr "<b>Lizens:</b>"
 
 #: gui.glade:635
 msgid "<b>Description:</b>"
-msgstr ""
+msgstr "<b>Beschreibung:</b>"
 
-#: gui.glade:650
+#: gui.glade:650 Main.cs:198
 msgid "No description has been entered by the author"
-msgstr ""
+msgstr "Der Author des Themas hat beim Hochladen leider keine Beschreibung eingegeben"
 
-#: gui.glade:688
+#: gui.glade:688 gui.glade:756
 msgid "<b>Download count:</b>"
-msgstr ""
+msgstr "<b>Anzahl der Downloads:</b>"
 
-#: gui.glade:710
+#: gui.glade:710 gui.glade:730
 msgid "<b>Rating:</b>"
-msgstr ""
+msgstr "<b>Bewertung:</b>"
 
-#: gui.glade:738
+#: gui.glade:738 gui.glade:702
 msgid "<b>Resolutions:</b>"
-msgstr ""
+msgstr "<b>Auflösungen:</b>"
 
-#: gui.glade:752
+#: gui.glade:752 gui.glade:688
 msgid "<b>Image type:</b>"
-msgstr ""
+msgstr "<b>Bildtyp:</b>"
 
 #: gui.glade:786 gui.glade:1165
 msgid "Installieren"
@@ -279,6 +286,13 @@ msgid ""
 "cache directory on your hard disc. Use the Expander beneath to see what "
 "action is exactly beeing done."
 msgstr ""
+"<i>Deine Themen werden gelesen</i>\n"
+"\n"
+"Bitte warte kurz ab bis alle zu deiner Auswahl passenden Themen gelesen "
+"wurden. Wenn du dieses Programm mehrmals ausführst werden die vorher "
+"heruntergeladenen Themen von der Festplatte gelesen, andernfalls "
+"heruntergeladen. Um genau zu sehen welche Aktion gerade ausgeführt wird "
+"klicke auf den unten sichtbaren Expander."
 
 #: gui.glade:1018
 msgid "<i>ExtInfosLabel</i>"
@@ -286,7 +300,7 @@ msgstr ""
 
 #: gui.glade:1026
 msgid "Extended information about the current action:"
-msgstr ""
+msgstr "Erweiterte Informationen über das gerade gewählte Thema"
 
 #: gui.glade:1076
 msgid "gtk-stop"
@@ -318,7 +332,7 @@ msgid ""
 "Schaltflächen"
 msgstr ""
 
-#: gui.glade:1327
+#: gui.glade:1327 gui.glade:1338
 msgid "button"
 msgstr ""
 
@@ -332,4 +346,4 @@ msgstr ""
 
 #: gui.glade:1445
 msgid "Ok"
-msgstr ""
+msgstr "Ok"

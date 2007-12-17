@@ -30,7 +30,6 @@ namespace GnomeArtNG
 		
 		//zum Installieren benötigte Vars
 		private string InstallThemeFile;
-		private static int stepCount=3;
 		
 		override public void Revert(){
 			if (revertIsAvailable){
@@ -42,7 +41,6 @@ namespace GnomeArtNG
 		}
 		
 		override protected void PreInstallation(CStatusWindow sw){
-			sw.SetProgressStep(stepCount);
 			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 			InstallThemeFile=config.SplashInstallPath+Path.GetFileName(DownloadUrl);
 			//Neuer GConfClient
@@ -51,15 +49,15 @@ namespace GnomeArtNG
 			//Sicherung
 			splashWasActive = (bool)client.Get(GConfShowSplashKey);
 			prevSplash = (string)client.Get(GConfSplashImageKey);
-			sw.SetProgress("1/"+stepCount);
+			sw.SetProgress("1/"+installationSteps);
 			
-			sw.Mainlabel=Catalog.GetString("Downloading the file from art.gnome.org");
+			sw.Mainlabel=Catalog.GetString("Downloading the theme from art.gnome.org");
 			//Herunterladen
 			if (!File.Exists(InstallThemeFile)){
 				DownloadFile(DownloadUrl, LocalThemeFile);
 				File.Copy(LocalThemeFile,InstallThemeFile);
 			}
-			sw.SetProgress("2/"+stepCount);
+			sw.SetProgress("2/"+installationSteps);
 			sw.Mainlabel=Catalog.GetString("Installing the theme");
 		}
 		
@@ -72,13 +70,14 @@ namespace GnomeArtNG
 			client.Set(GConfShowSplashKey,true);
 			client.Set(GConfSplashImageKey,InstallThemeFile);
 			sw.Mainlabel=Catalog.GetString("Install finished");
-			sw.SetProgress("3/"+stepCount);
+			sw.SetProgress("3/"+installationSteps);
 		}
 
 		public void Install(){} 
 		
 		public CSplashTheme(CConfiguration config):base(config) {
-
+			installationSteps=3;
+		
 		}
 		
 	}

@@ -18,6 +18,8 @@ namespace GnomeArtNG
 			atBackground_gnome=10,
 			atBackground_other, //11
 			atBackground_all,//12
+			atBackground_nature,//13
+			atBackground_abstract,//14
 			atApplication=20,
 			atWindowDecoration, //21
 			atIcon, //22
@@ -86,7 +88,8 @@ namespace GnomeArtNG
 			switch(artType){
 				case ArtType.atBackground_all: 
 				case ArtType.atBackground_gnome: 
-				case ArtType.atBackground_other: 
+				case ArtType.atBackground_nature: 
+				case ArtType.atBackground_abstract: 
 				  return Path.Combine("art","background");
 				default:
 				  return Path.Combine("art","theme"); 

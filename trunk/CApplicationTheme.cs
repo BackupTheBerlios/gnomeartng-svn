@@ -6,6 +6,7 @@
 
 using System;
 using System.IO;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
