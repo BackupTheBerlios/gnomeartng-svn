@@ -28,7 +28,24 @@ namespace GnomeArtNG
 		
 		public Gdk.Pixbuf MainImagePixbuf{
 			get{return PreviewMainImage.Pixbuf;}
-			set{PreviewMainImage.Pixbuf = value;}
+			set{
+				double vfac;
+				Gdk.Pixbuf pix=value;
+				if ((pix.Width<=640) & (pix.Height<=480))
+					PreviewMainImage.Pixbuf = pix;
+				else if (pix.Height>pix.Width){
+					//Verkleinerungsfaktor
+					vfac= (double)480/pix.Height;
+					//Console.WriteLine("VFaktor: "+vfac+" Bildbreite: "+pix.Width+" Bildhöhe: "+pix.Height);
+					PreviewMainImage.Pixbuf = pix.ScaleSimple((int)(vfac*pix.Width),480,Gdk.InterpType.Bilinear);
+				} 
+				else {
+					//Verkleinerungsfaktor
+					vfac= (double)640/pix.Width;
+					//Console.WriteLine("VFaktor: "+vfac+" Bildbreite: "+pix.Width+" Bildhöhe: "+pix.Height);
+					PreviewMainImage.Pixbuf = pix.ScaleSimple(640,(int)(vfac*pix.Height),Gdk.InterpType.Bilinear);
+				}
+			}
 		}
 
 		public string Headline{
@@ -36,23 +53,18 @@ namespace GnomeArtNG
 			set{PreviewHeadLabel.Text = value;}
 		}
 		
-		public CPreviewWindow()	{
+		public CPreviewWindow(string Headline,string previewFile,bool Show)	{
 			string prevW="PreviewWindow";
 			Glade.XML previewXml= new Glade.XML (null, "gui.glade", prevW, null);
 			previewXml.Autoconnect (this);
 			mainWindow = (Gtk.Window) previewXml.GetWidget (prevW);
 			PreviewCloseButton.Clicked+=new EventHandler(OnCloseButtonClicked);
-		}
-				
-		public static CPreviewWindow CreateWin(string Headline,string previewFile,bool Show){
-			CPreviewWindow prevObj=new CPreviewWindow(); 
-			prevObj.MainImagePixbuf=new Gdk.Pixbuf(previewFile);
-			prevObj.Headline = Headline;
+			MainImagePixbuf = new Gdk.Pixbuf(previewFile);
+			this.Headline = Headline;
 			if(Show)
-				prevObj.MainWindow.ShowAll();
-			return prevObj;
-			
+				MainWindow.ShowAll();
 		}
+
 	
 		private void OnCloseButtonClicked (object sender, EventArgs b){
 			mainWindow.Destroy();

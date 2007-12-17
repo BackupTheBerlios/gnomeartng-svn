@@ -144,7 +144,7 @@ public class GnomeArtNgApp
 	private void OnPreviewButtonClicked (object sender, EventArgs e){
 		try {
 			man.Theme.GetPreviewImage();
-			CPreviewWindow.CreateWin(Catalog.GetString("Vorschau für \"")+ man.Theme.Name+"\"",man.Theme.LocalPreviewFile,true);
+			new CPreviewWindow(Catalog.GetString("Vorschau für \"")+ man.Theme.Name+"\"",man.Theme.LocalPreviewFile,true);
 		} catch (Exception ex) {
 			new CInfoWindow(Catalog.GetString("<b>Achtung: Das Vorschaubild konnte nicht geladen werden!</b>"),ex.Message,Gtk.Stock.DialogError,true);
 		}
@@ -194,8 +194,10 @@ public class GnomeArtNgApp
 		ExtInfoName.Text = theme.Name;
 		ExtInfoAuthor.Text = theme.Author;
 		ExtInfoLicense.Text = theme.License;
-		if (theme.Description.Trim() != "")
+		if (theme.Description.Trim() != ""){
 			ExtInfoDescription.Text = theme.Description;
+			ExtInfoDescription.UseMarkup=true;
+		}
 		else
 			ExtInfoDescription.Text = Catalog.GetString("No description has been entered by the author");
 		ExtInfoDownloads.Text = theme.DownloadCount.ToString();

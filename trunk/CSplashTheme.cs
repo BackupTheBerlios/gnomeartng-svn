@@ -76,8 +76,8 @@ namespace GnomeArtNG
 		public void Install(){} 
 		
 		public CSplashTheme(CConfiguration config):base(config) {
+			useUrlAsPreview = true;
 			installationSteps=3;
-		
 		}
 		
 	}

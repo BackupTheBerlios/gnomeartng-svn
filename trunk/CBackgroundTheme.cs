@@ -141,6 +141,7 @@ namespace GnomeArtNG
 		
 		public CBackgroundTheme(CConfiguration config):base(config) {
 			installationSteps = 3;
+			useUrlAsPreview = true;
 			PngResolutionList = new ArrayList();
 			JpgResolutionList = new ArrayList();
 			SvgResolutionList = new ArrayList();

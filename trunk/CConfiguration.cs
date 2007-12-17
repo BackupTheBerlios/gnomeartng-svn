@@ -88,6 +88,7 @@ namespace GnomeArtNG
 			switch(artType){
 				case ArtType.atBackground_all: 
 				case ArtType.atBackground_gnome: 
+				case ArtType.atBackground_other: 
 				case ArtType.atBackground_nature: 
 				case ArtType.atBackground_abstract: 
 				  return Path.Combine("art","background");
@@ -95,7 +96,16 @@ namespace GnomeArtNG
 				  return Path.Combine("art","theme"); 
 			}
 		}
-			
+		
+		public bool BackgroundChoosen{
+			get{return 
+				(artType==ArtType.atBackground_gnome) | 
+				(artType==ArtType.atBackground_other) |
+				(artType==ArtType.atBackground_nature) |
+				(artType==ArtType.atBackground_abstract);
+			}
+		}
+		
 		public string XmlFileUrl(){
 			return "http://art.gnome.org/xml.php?art="+((int)artType).ToString();
 		}

@@ -74,7 +74,7 @@ namespace GnomeArtNG
 			StatusProgressBar.Fraction = StatusProgressBar.Fraction+StatusProgressBar.PulseStep;
 			Invalidate();
 		}
-		
+		 
 		public bool ButtonSensitive{
 			get {return StatusCancelButton.Sensitive;}
 			set{StatusCancelButton.Sensitive=value;}
@@ -92,7 +92,7 @@ namespace GnomeArtNG
 		public void SetProgressStep(int MaxCount){
 			if (MaxCount==0)
 				MaxCount=1;
-			StatusProgressBar.PulseStep=(double)(1/MaxCount);
+			StatusProgressBar.PulseStep=1.0/MaxCount;
 			StatusProgressBar.Fraction=0.0;
 		}
 		

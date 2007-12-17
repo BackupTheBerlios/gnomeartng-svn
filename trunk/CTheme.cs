@@ -26,16 +26,18 @@ namespace GnomeArtNG
 		public int DownloadCount=0;
 		public string License="";
 		public string LocalThemeFile="";
-		public string DownloadUrl="";
 		public bool LocalThumbExists=false;
 		public bool LocalPreviewExists=false;
 
 		protected CConfiguration config;
 		
+		//Benutze die Download-Url als Vorschaubild
+		protected bool useUrlAsPreview=false;
 		protected bool revertIsAvailable=false;
 		protected bool installationIsPossible=true;
 		protected string smallThumbnailUrl="";
 		protected string previewUrl="";
+		protected string downloadUrl="";
 		protected string localThumbnailFile="";
 		protected string localPreviewFile="";
 		protected int installationSteps=1;
@@ -74,6 +76,15 @@ namespace GnomeArtNG
 				localPreviewFile=Path.Combine(config.PreviewPath,Path.GetFileName(previewUrl));
 				LocalPreviewExists=File.Exists(localPreviewFile);
 				//Console.WriteLine("LocalPreview: "+localPreviewFile);
+			}
+		}
+		
+		public string DownloadUrl{
+			get{return downloadUrl;}
+			set{
+				downloadUrl=value;
+				if (useUrlAsPreview)
+					PreviewUrl=downloadUrl;
 			}
 		}
 		

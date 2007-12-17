@@ -271,10 +271,7 @@ namespace GnomeArtNG
 								Theme.License=item.InnerText;
 							else if	(item.Name=="thumbnail"){
 								//In der Background-XML ist "Thumbnail"==SmallThumbnailUrl
-								if ((config.ThemeType==CConfiguration.ArtType.atBackground_gnome) | 
-								    (config.ThemeType==CConfiguration.ArtType.atBackground_other) |
-								    (config.ThemeType==CConfiguration.ArtType.atBackground_nature) |
-								    (config.ThemeType==CConfiguration.ArtType.atBackground_abstract)) { 
+								if (config.BackgroundChoosen) { 
 									Theme.SmallThumbnailUrl=item.InnerText;
 									Theme.PreviewUrl=item.InnerText;;
 								} else
@@ -282,8 +279,9 @@ namespace GnomeArtNG
 							}
 							else if (item.Name=="small_thumbnail")
 								Theme.SmallThumbnailUrl=item.InnerText;
-							else if (item.Name=="url")
+							else if (item.Name=="url"){
 								Theme.DownloadUrl=item.InnerText;
+							}
 							else if (item.Name=="background_resolution"){
 								XmlNodeList BackgroundResolutions = item.ChildNodes;
 								CBackgroundImage bgImg=new CBackgroundImage();
