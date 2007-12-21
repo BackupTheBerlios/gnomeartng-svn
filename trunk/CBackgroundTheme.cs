@@ -9,6 +9,7 @@ using System.IO;
 using System.Collections;
 using System.Net;
 using GConf;
+using System.Xml;
 using Mono.Unix;
 
 namespace GnomeArtNG
@@ -29,7 +30,11 @@ namespace GnomeArtNG
 		private ArrayList SvgResolutionList;
 		
 		//Vars zum Installieren
-		string InstallThemeFile="";
+		private string InstallThemeFile="";
+		private GConf.Client client; 
+		// Die zu verändernden Werte in der Gnome Registry
+		private static string GConfBgKey = "/desktop/gnome/background/picture_filename";
+		private string prevBackground="";
 		
 		//Speichern des aktuell gewählten Index und Liste 
 		private ImageType bgType; 
@@ -118,25 +123,61 @@ namespace GnomeArtNG
 					DownloadFile(Image.URL, LocalThemeFile);
 				}
 				File.Copy(LocalThemeFile,InstallThemeFile);
+				sw.SetProgress("2/"+installationSteps);
+
+				///home/.../.gnome2/backgrounds.xml einlesen und Background anhängen...
+				XmlDocument doc = new XmlDocument();
+				doc.Load(config.HomePath+"/.gnome2/backgrounds.xml");
+				XmlNode newElem;
+				XmlElement root = doc.DocumentElement;
+				XmlNode wallpaper = doc.CreateNode(XmlNodeType.Element,"wallpaper","");
+				((XmlElement)wallpaper).SetAttribute("deleted","false");
+				
+				newElem = doc.CreateNode(XmlNodeType.Element, "name", "");  
+				newElem.InnerText = Path.GetFileName(InstallThemeFile);
+				wallpaper.AppendChild(newElem);
+				newElem = doc.CreateNode(XmlNodeType.Element, "filename", "");  
+				newElem.InnerText = InstallThemeFile;
+				wallpaper.AppendChild(newElem);
+				newElem = doc.CreateNode(XmlNodeType.Element, "options", "");  
+				newElem.InnerText = "zoom";
+				wallpaper.AppendChild(newElem);
+				newElem = doc.CreateNode(XmlNodeType.Element, "shade_type", "");  
+				newElem.InnerText = "solid";
+				wallpaper.AppendChild(newElem);
+				newElem = doc.CreateNode(XmlNodeType.Element, "pcolor", "");  
+				newElem.InnerText = "#dadab0b08282";
+				wallpaper.AppendChild(newElem);
+				newElem = doc.CreateNode(XmlNodeType.Element, "scolor", "");  
+				newElem.InnerText = "#dadab0b08282";
+				wallpaper.AppendChild(newElem);
+				root.AppendChild(wallpaper);
+				doc.Save(config.HomePath+"/.gnome2/backgrounds.xml");
 			}
-			sw.SetProgress("2/"+installationSteps);
+			//Sichern
+			client = new GConf.Client();
+			prevBackground=(string)client.Get(GConfBgKey);
+			
 		}
 		
 
 		override protected void Installation(CStatusWindow sw){
 			//Installieren
-
 			sw.Mainlabel=Catalog.GetString("Installing the theme");
-			config.Execute("gnome-appearance-properties",InstallThemeFile);
+			client.Set(GConfBgKey,InstallThemeFile);
 		}
 		
 		override protected void PostInstallation(CStatusWindow sw){
 			sw.Mainlabel=Catalog.GetString("Install finished");
 			sw.SetProgress("3/"+installationSteps);
+			revertIsAvailable=true;
 		}
 		
 		override public void Revert(){
-		
+			if (revertIsAvailable){
+				//XML Eintrag löschen und gconf zurücksetzen
+				client.Set(GConfBgKey,prevBackground);
+			}
 		}
 		
 		public CBackgroundTheme(CConfiguration config):base(config) {
