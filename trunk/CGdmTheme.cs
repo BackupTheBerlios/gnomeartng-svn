@@ -10,7 +10,7 @@ using System.Text;
 
 namespace GnomeArtNG
 {
-	//Ordner /usr/share/gdm/themes/<theme_name>
+	//Systemweiter Ordner: /usr/share/gdm/themes/<theme_name>
 	
 	public class CGdmTheme: CTheme
 	{
@@ -22,13 +22,14 @@ namespace GnomeArtNG
 		private bool randomThemeActive =false;
 		private bool gdmConfAvailable=false;
 		private bool customGdmConfAvailable=false;
+		private CIniWorker iworker;
 		
 		
 		override protected void PreInstallation(CStatusWindow sw){}
 		override protected void PostInstallation(CStatusWindow sw){}
 		/*
 		 * 2 Dateien sind wichtig:
-		 * /etc/gdm/gdm.conf um herauszufinden ob u.u Multiselect gewählt ist
+		 * /etc/gdm/gdm.conf um herauszufinden ob u.U Multiselect gewählt ist
 		 * /etc/gdm/gdm.conf-custom um die gewählten Themes herauszulesen und zu setzen
 		 */
 		override protected void Installation(CStatusWindow sw){
@@ -44,54 +45,58 @@ namespace GnomeArtNG
 				else
 					randomThemeActive=bool.Parse(sb.ToString().Split('=')[1]);
 				
-				if (customGdmConfAvailable){
-					
-					//Entpackparameter
-					tarParams = "tar "+config.GetTarParams(DownloadUrl);
-					
-					//Herunterladen
-					if (!File.Exists(LocalThemeFile))
-						DownloadFile(DownloadUrl, LocalThemeFile);
-					
-					//Entpacken
-					sb = config.Execute("gksu","'"+tarParams+LocalThemeFile+" -C "+config.GdmInstallPath+"'");
-					string[] FolderName=sb.ToString().Split('/');
-					//Console.WriteLine(FolderName[0]);
-
-					//Eintrag " GraphicalTheme=Themename" 
-					if (!randomThemeActive){
-						sb = config.Execute("grep","GraphicalTheme= "+gdmconfig+"-custom");
-						previousTheme=sb.ToString();
-						//Console.WriteLine("PreviousTheme: "+previousTheme);
-						config.Execute("gksu", @"'sed -i 's/"+sb.ToString()+@"/GraphicalTheme="+FolderName[0]+@"/' "+gdmconfig+"-custom'");
-						//GDM Die Änderungen mitteilen
-						config.Execute("gdmflexiserver", "--command=\"UPDATE_CONFIG greeter/GraphicalTheme\"");
-						//Console.WriteLine("Executed command: gksu 'sed -i 's/"+sb.ToString()+"/GraphicalTheme="+FolderName[0]+"/' "+gdmconfig+"-custom'")
-					} else{
-						//Random ist aktiv :/
-						config.Execute("gdmflexiserver", "--command=\"UPDATE_CONFIG greeter/GraphicalThemes\"");	
-					}
-					revertIsAvailable=true;
+				//Falls nicht vorhanden wird sie erzeugt
+				if (!File.Exists(gdmconfig+"-custom")){
+					try{File.Create(gdmconfig+"-custom");}
+					catch {throw new Exception("Gdm.conf-custom couldn't be created, aborting!");}
 				}
+				//Datei einlesen
+				iworker = new CIniWorker(gdmconfig+"-custom");
+				//Entpackparameter
+				tarParams = "tar "+config.GetTarParams(DownloadUrl);
+				//Herunterladen
+				if (!File.Exists(LocalThemeFile))
+					DownloadFile(DownloadUrl, LocalThemeFile);
+				//Entpacken
+				sb = config.Execute("gksu","'"+tarParams+LocalThemeFile+" -C "+config.GdmInstallPath+"'");
+				string[] FolderName=sb.ToString().Split('/');
+				//Console.WriteLine(FolderName[0]);
+
+				//Eintrag "GraphicalTheme=Themename" 
+				if (!randomThemeActive){
+					previousTheme = iworker.getValue("greeter","GraphicalTheme",true);
+					//Console.WriteLine("PreviousTheme: "+previousTheme);
+					iworker.setValue("greeter","GraphicalTheme",FolderName[0],true);
+					//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
+					iworker.Save("/tmp/gdm.conf-custom");
+					//Per gdsudo den Benutzer für diese Aktion zum Superuser werden lassen
+					config.Execute("gksudo","'mv /tmp/gdm.conf-custom /etc/gdm/'");
+				} else{
+
+				}
+
+				//GDM Die Änderungen mitteilen
+				config.Execute("gdmflexiserver", "--command=\"UPDATE_CONFIG greeter/GraphicalTheme\"");
+				revertIsAvailable=true;
+				
 			} else
 				throw new Exception("Installation is not possible! no gdm.conf found\"");
-			
 		}
 
 		override public void Revert(){
 			if (revertIsAvailable){
-				if (customGdmConfAvailable){
-					//Eintrag " GraphicalTheme=Themename" 
-					if (!randomThemeActive){
-						sb = config.Execute("grep","GraphicalTheme= "+gdmconfig+"-custom");
-						Console.WriteLine("PreviousTheme: "+previousTheme);
-						config.Execute("gksu", "sed -i 's/"+sb.ToString()+"/GraphicalTheme="+previousTheme+"/' "+gdmconfig+"-custom");
-					} else{
-						//Random ist aktiv :/
-						
-					}
-					revertIsAvailable=false;
+				//Eintrag " GraphicalTheme=Themename" 
+				if (!randomThemeActive){
+					//IWorker wurde bei der Installation schon erzeugt
+					iworker.setValue("greeter","GraphicalTheme",previousTheme,true);
+					//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
+					iworker.Save("/tmp/gdm.conf-custom");
+					config.Execute("gksudo","'mv /tmp/gdm.conf-custom /etc/gdm/'");
+				} else{
+					//Random ist aktiv :/
 				}
+				config.Execute("gdmflexiserver", "--command=\"UPDATE_CONFIG greeter/GraphicalTheme\"");
+				revertIsAvailable=false;
 			}
 		}
 	

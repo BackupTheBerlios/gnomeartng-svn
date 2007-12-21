@@ -121,10 +121,17 @@ namespace GnomeArtNG
 			sw.Mainlabel=Catalog.GetString("<i>Installing</i>\n\nYour selection is beeing downloaded and installed...please be"+
 			                               " patient while the installation procedure proceeds. After everything's done, this"+
 			                               " window will get closed.\n\n Have fun with your new theme, Greetings Tom");
-			PreInstallation(sw);
-			Installation(sw);
-			PostInstallation(sw);
-			sw.Close();
+			try{
+				PreInstallation(sw);
+				Installation(sw);
+				PostInstallation(sw);
+				sw.Close();
+			} 
+			catch (Exception ex) {
+				sw.Close();
+				CInfoWindow iw = new CInfoWindow(Catalog.GetString("<b>Theme installation failed!</b>"),Catalog.GetString("This message was reported from the installation function:\n\n "),Gtk.Stock.DialogError,true);
+				iw.Description = ex.Message;
+			}
 		}
 		
 		public abstract void Revert();

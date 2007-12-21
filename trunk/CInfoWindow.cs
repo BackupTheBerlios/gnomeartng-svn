@@ -38,7 +38,11 @@ namespace GnomeArtNG
 		
 		public string Description{
 			get{return InfoDescription.Buffer.Text;}
-			set{InfoDescription.Buffer.Text = value;}
+			set{InfoDescription.Buffer.Text = InfoDescription.Buffer.Text+value;}
+		}
+		
+		public void ClearDescription(){
+			InfoDescription.Buffer.Clear();
 		}
 		
 		public CInfoWindow(string Headline,string Description, string StockIcon, bool ShowWindow)	{

@@ -13,7 +13,7 @@ using System.Collections;
 using System.Threading;
 using System.IO;
 using Mono.Unix;
-
+using Pango;
 using System.Web;
 using System.Net;
 
@@ -143,10 +143,16 @@ public class GnomeArtNgApp
 	
 	private void OnPreviewButtonClicked (object sender, EventArgs e){
 		try {
+			Pango.Layout layout = new Pango.Layout(ExtInfoImage.PangoContext);			
+			layout.Wrap = Pango.WrapMode.Word;
+			layout.FontDescription = FontDescription.FromString ("Bitstream Vera Sans Mono 10");
+			layout.SetMarkup ("Hello Pango.Layout");
+			ExtInfoImage.Pixmap.DrawLayout(ExtInfoImage.Style.TextGC(StateType.Normal), 0, 0, layout);
 			man.Theme.GetPreviewImage();
 			new CPreviewWindow(Catalog.GetString("Vorschau für \"")+ man.Theme.Name+"\"",man.Theme.LocalPreviewFile,true);
 		} catch (Exception ex) {
 			new CInfoWindow(Catalog.GetString("<b>Achtung: Das Vorschaubild konnte nicht geladen werden!</b>"),ex.Message,Gtk.Stock.DialogError,true);
+			throw ex;
 		}
 	}
 	
