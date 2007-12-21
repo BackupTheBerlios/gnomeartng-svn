@@ -125,7 +125,8 @@ namespace GnomeArtNG
 				PreInstallation(sw);
 				Installation(sw);
 				PostInstallation(sw);
-				sw.Close();
+				//ProgHint:It's enough to change the caption to the stock item!! No need for image transformations!
+				sw.ButtonCaption = "gtk-ok";
 			} 
 			catch (Exception ex) {
 				sw.Close();

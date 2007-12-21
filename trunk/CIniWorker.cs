@@ -122,6 +122,21 @@ namespace GnomeArtNG
 		}
 
 		/// <summary>
+		/// Creates the in the given Inifile all sections in Sections 
+		/// Sections must be devided by Divider
+		/// </summary>
+		/// <param name="Sections">Sections</param>
+		/// <param name="Divider">Character that divides the sections</param>
+		/// <returns>true if successfull</returns>
+		public bool CreateSections(string Sections, char Divider){
+			string[] tempArr = Sections.Split(Divider);
+			foreach (string caption in tempArr){
+				setValue(caption,"","",true);
+			}
+			return true;
+		}
+		
+		/// <summary>
 		/// Sucht die Zeilennummer (nullbasiert) 
 		/// eines gewünschten Eintrages
 		/// </summary>
@@ -238,7 +253,8 @@ namespace GnomeArtNG
 			if (CaptionStart < 0)
 			{
 				lines.Add("[" + Caption + "]");
-				lines.Add(Entry + "=" + Value);
+				if (Entry !="")
+					lines.Add(Entry + "=" + Value);
 				return true;
 			}
 			int EntryLine = SearchEntryLine(Caption, Entry, CaseSensitive);
@@ -250,15 +266,16 @@ namespace GnomeArtNG
 				// Ende, wenn der nächste Abschnitt beginnt
 				if (line.StartsWith("["))
 				{
-					lines.Insert(i, Entry + "=" + Value);
+					if (Entry !="")
+						lines.Insert(i, Entry + "=" + Value);
 					return true;
+					
 				}
 				// Suche aukommentierte, aber gesuchte Einträge
 				// (evtl. per Parameter bestimmen können?), falls
 				// der Eintrag noch nicht existiert.
 				if (EntryLine<0)
-					if (Regex.IsMatch(line, @"^[ \t]*[" + CommentCharacters + "]"))
-					{
+					if (Regex.IsMatch(line, @"^[ \t]*[" + CommentCharacters + "]"))	{
 						String tmpLine = line.Substring(1).Trim();
 						if (tmpLine.StartsWith(Entry))
 						{
@@ -277,16 +294,19 @@ namespace GnomeArtNG
 						}
 						continue;// Kommentar
 					}
-				if (line.StartsWith(Entry))
-				{
-					lines[i] = Entry + "=" + Value;
+				if (line.StartsWith(Entry))	{
+					if (Entry!="")
+						lines[i] = Entry + "=" + Value;
 					return true;
+					
 				}
 			}
-			if (lastCommentedFound > 0)
-				lines.Insert(lastCommentedFound + 1, Entry + "=" + Value);
-			else
-				lines.Insert(CaptionStart + 1, Entry + "=" + Value);
+			if (Entry!=""){
+				if (lastCommentedFound > 0)
+					lines.Insert(lastCommentedFound + 1, Entry + "=" + Value);
+				else
+					lines.Insert(CaptionStart + 1, Entry + "=" + Value);
+			}
 			return true;
 		}
 

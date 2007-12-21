@@ -43,6 +43,17 @@ namespace GnomeArtNG
 			}
 		}
 		
+		public string ButtonType{
+			set{ ((Gtk.Image)(StatusCancelButton.Image)).Stock = value; }
+		}
+		
+		public string ButtonCaption{
+			set{ StatusCancelButton.Label = value; }
+			get{ return StatusCancelButton.Label;}
+		}
+		
+		
+		
 		public bool ExpanderLabelVisible{
 			get{ return ExtendedInfoExpander.Expanded;}
 			set{ 

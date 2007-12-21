@@ -37,7 +37,7 @@ namespace GnomeArtNG
 			gdmConfAvailable=File.Exists(gdmconfig);
 			customGdmConfAvailable=File.Exists(gdmconfig+"-custom");
 			if (!installationIsPossible) 
-				throw new Exception("Installation is not possible! Please check your environment");
+				throw new Exception("Installation is not possible! Only GDM is supported");
 			if (gdmConfAvailable){
 				sb = config.Execute("grep","GraphicalThemeRand= "+gdmconfig);
 				if (sb.Length<1) 
@@ -47,11 +47,16 @@ namespace GnomeArtNG
 				
 				//Falls nicht vorhanden wird sie erzeugt
 				if (!File.Exists(gdmconfig+"-custom")){
-					try{File.Create(gdmconfig+"-custom");}
+					try{
+						FileStream fs = File.Create("/tmp/gdm.conf-custom");
+						fs.Close();
+						config.Execute("gksudo","'mv /tmp/gdm.conf-custom "+gdmconfig+"-custom'");
+					}
 					catch {throw new Exception("Gdm.conf-custom couldn't be created, aborting!");}
 				}
 				//Datei einlesen
 				iworker = new CIniWorker(gdmconfig+"-custom");
+				iworker.CreateSections("daemon;security;xdmcp;gui;greeter;chooser;debug;servers",';');
 				//Entpackparameter
 				tarParams = "tar "+config.GetTarParams(DownloadUrl);
 				//Herunterladen
@@ -72,7 +77,7 @@ namespace GnomeArtNG
 					//Per gdsudo den Benutzer für diese Aktion zum Superuser werden lassen
 					config.Execute("gksudo","'mv /tmp/gdm.conf-custom /etc/gdm/'");
 				} else{
-
+					//TODO: für Random
 				}
 
 				//GDM Die Änderungen mitteilen
