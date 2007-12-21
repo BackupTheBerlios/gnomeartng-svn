@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-17 11:03+0100\n"
+"POT-Creation-Date: 2007-12-22 00:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,29 +20,29 @@ msgstr ""
 msgid "Vorschau für \""
 msgstr ""
 
-#: Main.cs:147
+#: Main.cs:147 Main.cs:156
 msgid "<b>Achtung: Das Vorschaubild konnte nicht geladen werden!</b>"
 msgstr ""
 
-#: CArtManager.cs:104
+#: CArtManager.cs:104 CArtManager.cs:108
 #, csharp-format
 msgid "Downloading {0}"
 msgstr ""
 
-#: CArtManager.cs:106
+#: CArtManager.cs:106 CArtManager.cs:110
 #, csharp-format
 msgid "Finished {0}"
 msgstr ""
 
-#: CArtManager.cs:131
+#: CArtManager.cs:131 CArtManager.cs:135
 msgid "Downloading new XML-File"
 msgstr ""
 
-#: CArtManager.cs:133
+#: CArtManager.cs:133 CArtManager.cs:137
 msgid "Downloading"
 msgstr ""
 
-#: CArtManager.cs:134
+#: CArtManager.cs:134 CArtManager.cs:138
 msgid ""
 "<i>XML file is beeing downloaded</i>\n"
 "\n"
@@ -64,15 +64,15 @@ msgstr ""
 "Bitte gedulden Sie sich einen Augenblick bis das Herunterladen abgeschlossen "
 "ist.."
 
-#: CArtManager.cs:138
+#: CArtManager.cs:138 CArtManager.cs:142
 msgid "downloading... (no progress available)"
 msgstr ""
 
-#: CArtManager.cs:326
+#: CArtManager.cs:326 CArtManager.cs:335
 msgid "Reading thumbnails on harddisc"
 msgstr "Lese Voransichten von der Festplatte"
 
-#: CArtManager.cs:343
+#: CArtManager.cs:343 CArtManager.cs:352
 msgid "Downloading missing thumbnails"
 msgstr "Lade fehlende Voransichten herunter"
 
@@ -92,7 +92,7 @@ msgstr "Installiere das gewählte Thema"
 msgid "Install finished"
 msgstr "Installation beendet"
 
-#: CTheme.cs:110
+#: CTheme.cs:110 CTheme.cs:121
 msgid ""
 "<i>Installing</i>\n"
 "\n"
@@ -130,108 +130,133 @@ msgstr "_Hilfe"
 msgid "gtk-about"
 msgstr "gtk-about"
 
-#: gui.glade:99 gui.glade:144
+#: gui.glade:99 gui.glade:144 gui.glade:145 gui.glade:195 gui.glade:245
 msgid "<b>Please choose your favourite background</b>"
 msgstr "<b>Bitte wählen Sie den zu installierenden Hintergrund</b>"
 
-#: gui.glade:127
+#: gui.glade:127 gui.glade:128
 msgid ""
 "Gnome\n"
 "Background"
 msgstr ""
+"Gnome\n"
+"Hintergrund"
 
-#: gui.glade:175
+#: gui.glade:175 gui.glade:177
 msgid ""
-"Andere\n"
+"Other\n"
 "Backgrounds"
 msgstr ""
+"Andere\n"
+"Hintergründe"
 
-#: gui.glade:193
+#: gui.glade:193 gui.glade:296
 msgid "<b>Please choose an application theme</b>"
 msgstr "<b>Bitte wähle ein Anwendungs-Thema aus</b>"
 
-#: gui.glade:224
+#: gui.glade:224 gui.glade:328
 msgid "Application"
+msgstr "Anwendung"
+
+#: gui.glade:227
+msgid ""
+"Nature\n"
+"Backgrounds"
 msgstr ""
 
-#: gui.glade:241
+#: gui.glade:241 gui.glade:345
 msgid "<b>Please choose a window decoration</b>"
 msgstr "<b>Bitte wähle eine Fensterdokoration aus</b>"
 
-#: gui.glade:272
-msgid "WindowDeco"
+#: gui.glade:277
+msgid ""
+"Abstract \n"
+"Backgrounds"
 msgstr ""
+"Abstrakte \n"
+"Hintergründe"
 
-#: gui.glade:289
+#: gui.glade:377
+msgid ""
+"Window\n"
+"Decoration"
+msgstr ""
+"Fenster-\n"
+"Dekoration"
+
+#: gui.glade:395
 msgid "<b>Please choose an icon set</b>"
 msgstr "<b>Bitte wähle ein Icon-Thema aus</b>"
 
-#: gui.glade:320
+#: gui.glade:427
 msgid "Icons"
 msgstr "Icons"
 
-#: gui.glade:337
+#: gui.glade:444
 msgid "<b>Please choose your greeter for GDM</b>"
-msgstr ""
+msgstr "<b>Wählen Sie den zu installierenden Begrüßungsbildschirm</b>"
 
-#: gui.glade:368
+#: gui.glade:368 gui.glade:476
 msgid "GDM Greeter"
 msgstr "GDM Begrüßung"
 
-#: gui.glade:385
+#: gui.glade:385 gui.glade:493
 msgid "<b>Please choose a splash screen for the Gnome start</b>"
-msgstr ""
+msgstr "<b>Bitte wählen Sie ein Theme für den Gnome-Start</b>"
 
-#: gui.glade:416
+#: gui.glade:416 gui.glade:525
 msgid "Splash"
 msgstr "Splash"
 
-#: gui.glade:433
+#: gui.glade:433 gui.glade:542
 msgid "<b>Please choose a gtk-engine</b>"
 msgstr ""
 
-#: gui.glade:464
+#: gui.glade:464 gui.glade:574
 msgid "Gtk-Engine"
 msgstr "Gtk-Theme"
 
-#: gui.glade:532
+#: gui.glade:532 gui.glade:642
 msgid "<b>Name:</b>"
 msgstr "<b>Name:</b>"
 
 #: gui.glade:542 gui.glade:571 gui.glade:598 gui.glade:697 gui.glade:723
-#: gui.glade:1335 gui.glade:715 gui.glade:743 gui.glade:1325
+#: gui.glade:1335 gui.glade:715 gui.glade:743 gui.glade:1325 gui.glade:652
+#: gui.glade:681 gui.glade:708 gui.glade:825 gui.glade:853 gui.glade:1441
+#: gui.glade:807 gui.glade:833 gui.glade:1451
 msgid "label"
 msgstr "label"
 
-#: gui.glade:558
+#: gui.glade:558 gui.glade:668
 msgid "<b>Author:</b>"
 msgstr "<b>Author:</b>"
 
-#: gui.glade:585
+#: gui.glade:585 gui.glade:695
 msgid "<b>License:</b>"
 msgstr "<b>Lizens:</b>"
 
-#: gui.glade:635
+#: gui.glade:635 gui.glade:745
 msgid "<b>Description:</b>"
 msgstr "<b>Beschreibung:</b>"
 
-#: gui.glade:650 Main.cs:198
+#: gui.glade:650 Main.cs:198 Main.cs:209 gui.glade:760
 msgid "No description has been entered by the author"
-msgstr "Der Author des Themas hat beim Hochladen leider keine Beschreibung eingegeben"
+msgstr ""
+"Der Author des Themas hat beim Hochladen leider keine Beschreibung eingegeben"
 
-#: gui.glade:688 gui.glade:756
+#: gui.glade:688 gui.glade:756 gui.glade:866 gui.glade:798
 msgid "<b>Download count:</b>"
 msgstr "<b>Anzahl der Downloads:</b>"
 
-#: gui.glade:710 gui.glade:730
+#: gui.glade:710 gui.glade:730 gui.glade:840 gui.glade:820
 msgid "<b>Rating:</b>"
 msgstr "<b>Bewertung:</b>"
 
-#: gui.glade:738 gui.glade:702
+#: gui.glade:738 gui.glade:702 gui.glade:812 gui.glade:848
 msgid "<b>Resolutions:</b>"
 msgstr "<b>Auflösungen:</b>"
 
-#: gui.glade:752 gui.glade:688
+#: gui.glade:752 gui.glade:688 gui.glade:798 gui.glade:862
 msgid "<b>Image type:</b>"
 msgstr "<b>Bildtyp:</b>"
 
@@ -239,7 +264,7 @@ msgstr "<b>Bildtyp:</b>"
 msgid "Installieren"
 msgstr ""
 
-#: gui.glade:796
+#: gui.glade:796 gui.glade:907
 msgid "gtk-undo"
 msgstr ""
 
@@ -247,37 +272,37 @@ msgstr ""
 msgid "StartButton"
 msgstr ""
 
-#: gui.glade:833
+#: gui.glade:833 gui.glade:945
 msgid "<b>Extended theme information</b>"
 msgstr ""
 
-#: gui.glade:856
+#: gui.glade:856 gui.glade:968
 msgid "About Gnome-Art-NG"
 msgstr ""
 
-#: gui.glade:871
+#: gui.glade:871 gui.glade:983
 msgid "<big><b><u>About Gnome-Art-NG</u></b></big>"
 msgstr ""
 
-#: gui.glade:896
+#: gui.glade:896 gui.glade:1008
 msgid ""
 "<b><i>Version:</i></b> 0.2\n"
 "<b><i>Entwickler:</i></b> Thomas Beck\n"
 "<b><i>Grüße gehen an:</i></b> Meine Prinzessin Isi"
 msgstr ""
 
-#: gui.glade:915
+#: gui.glade:915 gui.glade:1027
 msgid ""
 "<b>Gnome-Art-NG</b> wurde in C# geschrieben von Thomas Beck. Falls ihr "
 "Fehler findet dann schreibt mir einfach eine Mail: "
 "<i>software@plasmasolutions.de</i>"
 msgstr ""
 
-#: gui.glade:966
+#: gui.glade:966 gui.glade:1078
 msgid "<big><b>Downloading</b></big>"
 msgstr ""
 
-#: gui.glade:997
+#: gui.glade:997 gui.glade:1109
 msgid ""
 "<i>Your themes are beeing read</i>\n"
 "\n"
@@ -294,15 +319,15 @@ msgstr ""
 "heruntergeladen. Um genau zu sehen welche Aktion gerade ausgeführt wird "
 "klicke auf den unten sichtbaren Expander."
 
-#: gui.glade:1018
+#: gui.glade:1018 gui.glade:1130
 msgid "<i>ExtInfosLabel</i>"
 msgstr ""
 
-#: gui.glade:1026
+#: gui.glade:1026 gui.glade:1138
 msgid "Extended information about the current action:"
 msgstr "Erweiterte Informationen über das gerade gewählte Thema"
 
-#: gui.glade:1076
+#: gui.glade:1076 gui.glade:1188
 msgid "gtk-stop"
 msgstr ""
 
@@ -310,11 +335,11 @@ msgstr ""
 msgid "<big><b>Vorschau für</b></big>"
 msgstr ""
 
-#: gui.glade:1154
+#: gui.glade:1154 gui.glade:1269
 msgid "gtk-close"
 msgstr ""
 
-#: gui.glade:1212
+#: gui.glade:1212 gui.glade:1328
 msgid ""
 "<i>Willkommen zu GNOME-Art-ng.</i>\n"
 "\n"
@@ -325,25 +350,55 @@ msgid ""
 "<i>Viel Spaß wünscht Thomas Beck!</i>"
 msgstr ""
 
-#: gui.glade:1244
+#: gui.glade:1244 gui.glade:1360
 msgid ""
 "Welches Thema möchten sie installieren? \n"
 "Um eine Wahl zu treffen klicken sie bitte auf eine der angezeigten "
 "Schaltflächen"
 msgstr ""
 
-#: gui.glade:1327 gui.glade:1338
+#: gui.glade:1327 gui.glade:1338 gui.glade:1454 gui.glade:1443
 msgid "button"
 msgstr ""
 
-#: gui.glade:1384
+#: gui.glade:1384 gui.glade:1501
 msgid "<b>Achtung, die Aktion ist fehlgeschlagen</b>"
 msgstr ""
 
-#: gui.glade:1426
+#: gui.glade:1426 gui.glade:1543
 msgid "Genaue Beschreibung des Fehlers:"
 msgstr ""
 
-#: gui.glade:1445
+#: gui.glade:1445 gui.glade:1562
 msgid "Ok"
 msgstr "Ok"
+
+#: CPreviewWindow.cs:68
+msgid "Vorschau für Theme \""
+msgstr ""
+
+#: CTheme.cs:133
+msgid "<b>Theme installation failed!</b>"
+msgstr "<b>Die Installation des Themas schlug fehl!</b>"
+
+#: CTheme.cs:133
+msgid ""
+"This message was reported from the installation function:\n"
+"\n"
+" "
+msgstr ""
+"Die Installationsfunktion gab folgende Fehlermeldung zurück:\n"
+"\n"
+" "
+
+#: gui.glade:896 gui.glade:1280
+msgid "gtk-apply"
+msgstr ""
+
+#: gui.glade:921
+msgid "gtk-save"
+msgstr ""
+
+#: gui.glade:1219
+msgid "<b>Vorschau für</b>"
+msgstr ""

@@ -1,29 +1,28 @@
 <?xml version="1.0"?>
 <UserCombinePreferences filename="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/GnomeArtNG.mds">
   <Files>
-    <File filename="./CArtManager.cs" />
-    <File filename="./CTheme.cs" />
-    <File filename="./CIniWorker.cs" />
     <File filename="./CGdmTheme.cs" />
+    <File filename="./CTheme.cs" />
+    <File filename="./CSplashTheme.cs" />
+    <File filename="./Main.cs" />
   </Files>
   <Views>
     <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ProjectPad">
       <TreeView>
         <Node expanded="True">
-          <Node name="GnomeArtNG" expanded="True">
+          <Node name="GnomeArtNG" expanded="True" selected="True">
             <Node name="Resources" expanded="True">
-              <Option id="ShowCodeBehindClasses" value="True" />
+              <Option id="ShowAllFiles" value="True" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="True" />
-              <Option id="ShowAllFiles" value="True" />
+              <Option id="ShowCodeBehindClasses" value="True" />
             </Node>
             <Node name="AssemblyInfo.cs" expanded="False">
-              <Option id="ShowCodeBehindClasses" value="True" />
+              <Option id="ShowAllFiles" value="False" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="False" />
-              <Option id="ShowAllFiles" value="False" />
+              <Option id="ShowCodeBehindClasses" value="True" />
             </Node>
-            <Node name="CGdmTheme.cs" expanded="False" selected="True" />
           </Node>
         </Node>
       </TreeView>

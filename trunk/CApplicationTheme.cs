@@ -27,21 +27,29 @@ namespace GnomeArtNG
 			string InstallThemeFile=config.ApplicationInstallPath+Path.GetFileName(DownloadUrl);
 
 			tarParams=config.GetTarParams(Path.GetExtension(DownloadUrl));
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
 			if (!File.Exists(InstallThemeFile)){
 				//Herunterladen
 				DownloadFile(DownloadUrl, LocalThemeFile);
 			}
+			sw.SetProgress("1/"+installationSteps);
 			//Entpacken
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtExtracting);
 			Console.WriteLine("Command: tar"+tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
 			ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.ApplicationInstallPath);
-
+			sw.SetProgress("2/"+installationSteps);
 			//Sichern
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtSavingForRestore);
 			previousApplicationTheme = (string)client.Get(GConfApplicationKey);
+			sw.SetProgress("3/"+installationSteps);
 		}
 		
 		override protected void Installation(CStatusWindow sw){
 			//Installieren
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstalling);
 			client.Set(GConfApplicationKey,ConOutp.ToString().Split('/')[0]);
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstallDone);
+			sw.SetProgress("4/"+installationSteps);
 		}
 
 		override protected void PostInstallation(CStatusWindow sw){
@@ -57,8 +65,8 @@ namespace GnomeArtNG
 			}
 		}
 		
-		public CApplicationTheme(CConfiguration config):base(config)
-		{
+		public CApplicationTheme(CConfiguration config):base(config) {
+			installationSteps=4;
 		}
 	}
 }

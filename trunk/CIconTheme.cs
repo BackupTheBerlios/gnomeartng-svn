@@ -6,6 +6,7 @@
 
 using System;
 using System.IO;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
@@ -38,32 +39,40 @@ namespace GnomeArtNG
 			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 			
 			tarParams=config.GetTarParams(DownloadUrl);
-			Console.WriteLine(LocalThemeFile);
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
 			//Herunterladen
 			if (!File.Exists(LocalThemeFile))
 				DownloadFile(DownloadUrl, LocalThemeFile);
+			sw.SetProgress("1/"+installationSteps);
 			
 			//Entpacken
 			ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.IconInstallPath);
 			Console.WriteLine(ConOutp.ToString());
 			Folder = ConOutp.ToString().Split('/');
+			sw.SetProgress("2/"+installationSteps);
 			
 			//Sichern
 			client = new GConf.Client();
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtSavingForRestore);
 			prevIconTheme=(string)client.Get(GConfIconThemeKey);
+			sw.SetProgress("3/"+installationSteps);
 		}
 		
 		override protected void Installation(CStatusWindow sw){
 			//Installieren
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstalling);
 			client.Set(GConfIconThemeKey,Folder[0]);
 		}
 		
 		override protected void PostInstallation(CStatusWindow sw){
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstallDone);
+			sw.SetProgress("4/"+installationSteps);
 			revertIsAvailable=true;
 		}
 
 		public CIconTheme(CConfiguration config):base(config)	{
 			installationIsPossible = config.TarIsAvailable;
+			installationSteps=4;
 		}
 			
 	}

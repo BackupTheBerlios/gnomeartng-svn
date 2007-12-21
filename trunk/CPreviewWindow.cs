@@ -9,6 +9,7 @@ using Gtk;
 using Gdk;
 using Glade;
 using GnomeArtNG;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
@@ -17,6 +18,7 @@ namespace GnomeArtNG
 	public class CPreviewWindow
 	{
 		private Gtk.Window mainWindow;
+		private CTheme theme;
 		public Gtk.Window MainWindow {
 			get {return mainWindow;}
 		}
@@ -25,6 +27,7 @@ namespace GnomeArtNG
 		[Widget] Gtk.Image PreviewMainImage;
 		[Widget] Gtk.Label PreviewHeadLabel;
 		[Widget] Gtk.Button PreviewCloseButton;
+		[Widget] Gtk.Button PreviewInstallButton;
 		
 		public Gdk.Pixbuf MainImagePixbuf{
 			get{return PreviewMainImage.Pixbuf;}
@@ -53,14 +56,16 @@ namespace GnomeArtNG
 			set{PreviewHeadLabel.Text = value;}
 		}
 		
-		public CPreviewWindow(string Headline,string previewFile,bool Show)	{
+		public CPreviewWindow(CTheme theme,bool Show)	{
 			string prevW="PreviewWindow";
+			this.theme = theme;
 			Glade.XML previewXml= new Glade.XML (null, "gui.glade", prevW, null);
 			previewXml.Autoconnect (this);
 			mainWindow = (Gtk.Window) previewXml.GetWidget (prevW);
 			PreviewCloseButton.Clicked+=new EventHandler(OnCloseButtonClicked);
-			MainImagePixbuf = new Gdk.Pixbuf(previewFile);
-			this.Headline = Headline;
+			PreviewInstallButton.Clicked+=new EventHandler(OnInstallButtonClicked);
+			MainImagePixbuf = new Gdk.Pixbuf(theme.LocalPreviewFile);
+			Headline = Catalog.GetString("Vorschau für Theme \"")+ theme.Name+"\"";
 			if(Show)
 				MainWindow.ShowAll();
 		}
@@ -69,6 +74,12 @@ namespace GnomeArtNG
 		private void OnCloseButtonClicked (object sender, EventArgs b){
 			mainWindow.Destroy();
 		}
+		
+		private void OnInstallButtonClicked (object sender, EventArgs b){
+			theme.StartInstallation();
+			mainWindow.Destroy();
+		}
+		
 	
 	}
 }

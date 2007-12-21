@@ -45,20 +45,18 @@ namespace GnomeArtNG
 			InstallThemeFile=config.SplashInstallPath+Path.GetFileName(DownloadUrl);
 			//Neuer GConfClient
 			client = new GConf.Client();
-			sw.Mainlabel=Catalog.GetString("Saving the previous settings");
 			//Sicherung
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtSavingForRestore);
 			splashWasActive = (bool)client.Get(GConfShowSplashKey);
 			prevSplash = (string)client.Get(GConfSplashImageKey);
 			sw.SetProgress("1/"+installationSteps);
-			
-			sw.Mainlabel=Catalog.GetString("Downloading the theme from art.gnome.org");
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
 			//Herunterladen
 			if (!File.Exists(InstallThemeFile)){
 				DownloadFile(DownloadUrl, LocalThemeFile);
 				File.Copy(LocalThemeFile,InstallThemeFile);
 			}
 			sw.SetProgress("2/"+installationSteps);
-			sw.Mainlabel=Catalog.GetString("Installing the theme");
 		}
 		
 		override protected void PostInstallation(CStatusWindow sw){
@@ -67,9 +65,10 @@ namespace GnomeArtNG
 		}
 		override protected void Installation(CStatusWindow sw){
 			//Installieren
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstalling);
 			client.Set(GConfShowSplashKey,true);
 			client.Set(GConfSplashImageKey,InstallThemeFile);
-			sw.Mainlabel=Catalog.GetString("Install finished");
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstallDone);
 			sw.SetProgress("3/"+installationSteps);
 		}
 

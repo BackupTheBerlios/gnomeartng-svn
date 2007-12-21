@@ -112,18 +112,18 @@ namespace GnomeArtNG
 			LocalThemeFile=config.ThemesPath+Path.GetFileName(Image.URL);
 			InstallThemeFile=config.SplashInstallPath+Path.GetFileName(Image.URL);	
 			
-			//TODO:noch die alten einstellungen mit GCONF auslesen und sichern
-			sw.Mainlabel=Catalog.GetString("Saving the previous settings");
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtSavingForRestore);
+			//Sichern
+			client = new GConf.Client();
+			prevBackground=(string)client.Get(GConfBgKey);
 			sw.SetProgress("1/"+installationSteps);
 			
 			//Index und Type wurden vorher schon gwählt
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
 			if (!File.Exists(InstallThemeFile)) {
-				if (!File.Exists(LocalThemeFile)){
-					sw.Mainlabel=Catalog.GetString("Downloading the theme from art.gnome.org");
+				if (!File.Exists(LocalThemeFile))
 					DownloadFile(Image.URL, LocalThemeFile);
-				}
 				File.Copy(LocalThemeFile,InstallThemeFile);
-				sw.SetProgress("2/"+installationSteps);
 
 				///home/.../.gnome2/backgrounds.xml einlesen und Background anhängen...
 				XmlDocument doc = new XmlDocument();
@@ -154,21 +154,18 @@ namespace GnomeArtNG
 				root.AppendChild(wallpaper);
 				doc.Save(config.HomePath+"/.gnome2/backgrounds.xml");
 			}
-			//Sichern
-			client = new GConf.Client();
-			prevBackground=(string)client.Get(GConfBgKey);
-			
+			sw.SetProgress("2/"+installationSteps);
 		}
 		
 
 		override protected void Installation(CStatusWindow sw){
 			//Installieren
-			sw.Mainlabel=Catalog.GetString("Installing the theme");
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstalling);
 			client.Set(GConfBgKey,InstallThemeFile);
 		}
 		
 		override protected void PostInstallation(CStatusWindow sw){
-			sw.Mainlabel=Catalog.GetString("Install finished");
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstallDone);
 			sw.SetProgress("3/"+installationSteps);
 			revertIsAvailable=true;
 		}
