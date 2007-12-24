@@ -105,9 +105,9 @@ namespace GnomeArtNG
 		private bool DownloadFile(string From, string To){
 	        try {
 				WebClient myClient = new WebClient();
-				Console.WriteLine(Catalog.GetString("Downloading {0}"),Path.GetFileName(From));
+				Console.WriteLine(Catalog.GetString("Downloading")+ " " + Path.GetFileName(From));
 				myClient.DownloadFile(From, To);
-				Console.WriteLine(Catalog.GetString("Finished {0}"),Path.GetFileName(From));
+				Console.WriteLine(Catalog.GetString("Finished") + " " + Path.GetFileName(From));
 				return true;
 			} catch { return false; }
 		}
@@ -132,11 +132,11 @@ namespace GnomeArtNG
 				} else 
 					downloadFile=true;
 		        if (downloadFile){
-					CStatusWindow sw= new CStatusWindow(Catalog.GetString("Downloading new XML-File"),1,false,true,true);
+					CStatusWindow sw= new CStatusWindow(Catalog.GetString("Downloading new XML file"),1,false,true,true);
 					sw.ButtonSensitive=false;
 					sw.ExtInfoLabel=Catalog.GetString("Downloading")+": " + remoteUri;
 					sw.Mainlabel=Catalog.GetString("<i>XML file is beeing downloaded</i>\n\nThis program needs a descriptive "+
-					                               "file that contains information about \n1) where the theme is located,"+
+					                               "file that contains information about \n\n1) where the theme is located,"+
 					                               "\n2) what kind of theme is it, \n3) How often someone downloaded it,"+
 					                               " and so on \n\nSo please be patient while the download progress is going on..");
 					sw.SetProgress(Catalog.GetString("downloading... (no progress available)"));

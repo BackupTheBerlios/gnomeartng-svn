@@ -143,8 +143,8 @@ public class GnomeArtNgApp
 	
 	private void OnPreviewButtonClicked (object sender, EventArgs e){
 		try {
-			Pango.Layout layout = new Pango.Layout(ExtInfoImage.PangoContext);			
 			/*
+			Pango.Layout layout = new Pango.Layout(ExtInfoImage.PangoContext);			
 			layout.Wrap = Pango.WrapMode.Word;
 			layout.FontDescription = FontDescription.FromString ("Bitstream Vera Sans Mono 10");
 			layout.SetMarkup ("Hello Pango.Layout");
@@ -153,7 +153,7 @@ public class GnomeArtNgApp
 			man.Theme.GetPreviewImage();
 			new CPreviewWindow(man.Theme,true);
 		} catch (Exception ex) {
-			new CInfoWindow(Catalog.GetString("<b>Achtung: Das Vorschaubild konnte nicht geladen werden!</b>"),ex.Message,Gtk.Stock.DialogError,true);
+			new CInfoWindow(Catalog.GetString("Warning: the preview image could not be loaded!"),ex.Message,Gtk.Stock.DialogError,true);
 			throw ex;
 		}
 	}

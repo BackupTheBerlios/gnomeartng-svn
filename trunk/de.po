@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-22 00:08+0100\n"
+"POT-Creation-Date: 2007-12-23 23:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,37 +16,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Main.cs:145
-msgid "Vorschau für \""
-msgstr ""
-
-#: Main.cs:147 Main.cs:156
-msgid "<b>Achtung: Das Vorschaubild konnte nicht geladen werden!</b>"
-msgstr ""
-
-#: CArtManager.cs:104 CArtManager.cs:108
-#, csharp-format
-msgid "Downloading {0}"
-msgstr ""
-
 #: CArtManager.cs:106 CArtManager.cs:110
 #, csharp-format
-msgid "Finished {0}"
-msgstr ""
+msgid "Finished"
+msgstr "Beendet"
 
-#: CArtManager.cs:131 CArtManager.cs:135
-msgid "Downloading new XML-File"
-msgstr ""
+#: CArtManager.cs:135
+msgid "Downloading new XML file"
+msgstr "Lade neue XML-Datei herunter"
 
-#: CArtManager.cs:133 CArtManager.cs:137
+#: CArtManager.cs:137 CArtManager.cs:108
 msgid "Downloading"
-msgstr ""
+msgstr "Am Herunterladen"
 
-#: CArtManager.cs:134 CArtManager.cs:138
+#: CArtManager.cs:138
 msgid ""
 "<i>XML file is beeing downloaded</i>\n"
 "\n"
 "This program needs a descriptive file that contains information about \n"
+"\n"
 "1) where the theme is located,\n"
 "2) what kind of theme is it, \n"
 "3) How often someone downloaded it, and so on \n"
@@ -56,17 +44,19 @@ msgstr ""
 "<i>XML Datei wird heruntergeladen</i>\n"
 "\n"
 "Damit dieses Programm ordnungsgemäß funktioniert braucht es eine Datei, die "
-"Informationen über die zu installierenden Themen enthält. Beispielsweise \n"
+"Informationen über die zu installierenden Themen enthält. Diese "
+"Informationen sind beispielsweise \n"
+"\n"
 "1) Wo das Thema zu finden ist,\n"
-"2) Welche Art von Thema es darstellt, \n"
-"3) Wie oft es schon seit bestehen heruntergeladen worden ist...usw. \n"
+"2) Welche Art von Thema es ist, \n"
+"3) Wie oft es schon seit Bestehen heruntergeladen wurde...usw. \n"
 "\n"
 "Bitte gedulden Sie sich einen Augenblick bis das Herunterladen abgeschlossen "
 "ist.."
 
 #: CArtManager.cs:138 CArtManager.cs:142
 msgid "downloading... (no progress available)"
-msgstr ""
+msgstr "am herunterladen.. (kein Fortschritt verfügbar)"
 
 #: CArtManager.cs:326 CArtManager.cs:335
 msgid "Reading thumbnails on harddisc"
@@ -140,7 +130,7 @@ msgid ""
 "Background"
 msgstr ""
 "Gnome\n"
-"Hintergrund"
+"Hintergründe"
 
 #: gui.glade:175 gui.glade:177
 msgid ""
@@ -152,7 +142,7 @@ msgstr ""
 
 #: gui.glade:193 gui.glade:296
 msgid "<b>Please choose an application theme</b>"
-msgstr "<b>Bitte wähle ein Anwendungs-Thema aus</b>"
+msgstr "<b>Bitte wählen Sie ein Anwendungs-Thema aus</b>"
 
 #: gui.glade:224 gui.glade:328
 msgid "Application"
@@ -207,10 +197,6 @@ msgstr "<b>Bitte wählen Sie ein Theme für den Gnome-Start</b>"
 #: gui.glade:416 gui.glade:525
 msgid "Splash"
 msgstr "Splash"
-
-#: gui.glade:433 gui.glade:542
-msgid "<b>Please choose a gtk-engine</b>"
-msgstr ""
 
 #: gui.glade:464 gui.glade:574
 msgid "Gtk-Engine"
@@ -278,7 +264,7 @@ msgstr ""
 
 #: gui.glade:856 gui.glade:968
 msgid "About Gnome-Art-NG"
-msgstr ""
+msgstr "Über Gnome-Art Next Generation"
 
 #: gui.glade:871 gui.glade:983
 msgid "<big><b><u>About Gnome-Art-NG</u></b></big>"
@@ -300,7 +286,7 @@ msgstr ""
 
 #: gui.glade:966 gui.glade:1078
 msgid "<big><b>Downloading</b></big>"
-msgstr ""
+msgstr "<big><b>Am Herunterladen</b></big>"
 
 #: gui.glade:997 gui.glade:1109
 msgid ""
@@ -311,13 +297,13 @@ msgid ""
 "cache directory on your hard disc. Use the Expander beneath to see what "
 "action is exactly beeing done."
 msgstr ""
-"<i>Deine Themen werden gelesen</i>\n"
+"<i>Die Themen werden gelesen</i>\n"
 "\n"
-"Bitte warte kurz ab bis alle zu deiner Auswahl passenden Themen gelesen "
-"wurden. Wenn du dieses Programm mehrmals ausführst werden die vorher "
+"Bitte warten Sie kurz ab bis alle zu ihrer Auswahl passenden Themen gelesen "
+"wurden. Wenn Sie dieses Programm mehrmals ausführen werden die vorher "
 "heruntergeladenen Themen von der Festplatte gelesen, andernfalls "
 "heruntergeladen. Um genau zu sehen welche Aktion gerade ausgeführt wird "
-"klicke auf den unten sichtbaren Expander."
+"klicken Sie auf den unten sichtbaren Expander."
 
 #: gui.glade:1018 gui.glade:1130
 msgid "<i>ExtInfosLabel</i>"
@@ -325,14 +311,10 @@ msgstr ""
 
 #: gui.glade:1026 gui.glade:1138
 msgid "Extended information about the current action:"
-msgstr "Erweiterte Informationen über das gerade gewählte Thema"
+msgstr "Informationen über die gerade ausgeführte Aktion:"
 
 #: gui.glade:1076 gui.glade:1188
 msgid "gtk-stop"
-msgstr ""
-
-#: gui.glade:1107
-msgid "<big><b>Vorschau für</b></big>"
 msgstr ""
 
 #: gui.glade:1154 gui.glade:1269
@@ -361,13 +343,13 @@ msgstr ""
 msgid "button"
 msgstr ""
 
-#: gui.glade:1384 gui.glade:1501
-msgid "<b>Achtung, die Aktion ist fehlgeschlagen</b>"
-msgstr ""
+#: gui.glade:1501
+msgid "<b>Warning, something has gone wrong!</b>"
+msgstr "<b>Achtung, die Aktion ist fehlgeschlagen!</b>"
 
 #: gui.glade:1426 gui.glade:1543
-msgid "Genaue Beschreibung des Fehlers:"
-msgstr ""
+msgid "Exact information about the error:"
+msgstr "Genaue Beschreibung des Fehlers:"
 
 #: gui.glade:1445 gui.glade:1562
 msgid "Ok"
@@ -377,19 +359,17 @@ msgstr "Ok"
 msgid "Vorschau für Theme \""
 msgstr ""
 
-#: CTheme.cs:133
+#: CTheme.cs:133 CTheme.cs:135
 msgid "<b>Theme installation failed!</b>"
 msgstr "<b>Die Installation des Themas schlug fehl!</b>"
 
-#: CTheme.cs:133
+#: CTheme.cs:133 CTheme.cs:135
 msgid ""
 "This message was reported from the installation function:\n"
 "\n"
-" "
 msgstr ""
 "Die Installationsfunktion gab folgende Fehlermeldung zurück:\n"
 "\n"
-" "
 
 #: gui.glade:896 gui.glade:1280
 msgid "gtk-apply"
@@ -399,6 +379,83 @@ msgstr ""
 msgid "gtk-save"
 msgstr ""
 
+#: gui.glade:542
+msgid "<b>Please choose a GTK theme</b>"
+msgstr "<b>Bitte wählen Sie ein GTK-Theme</b>"
+
+#: Main.cs:156
+msgid "Warning: the preview image could not be loaded!"
+msgstr "Warnung: Das Vorschaubild konnte nicht geladen werden!"
+
 #: gui.glade:1219
-msgid "<b>Vorschau für</b>"
+msgid "<b>Previewing</b>"
+msgstr "<b>Vorschau</b>"
+
+#: CConfiguration.cs:34
+msgid ""
+"<i>Extracting the theme</i>\n"
+"\n"
+"Your theme is downloaded and has to be extracted now. You might be prompted "
+"to enter your user password to legetimate the copying of all extracted files "
+"to the right path."
 msgstr ""
+"<i>Extrahiere das Thema</i>\n"
+"\n"
+"Ihr Thema wurde heruntergeladen und muss nun extrahiert werden. Sie könnten "
+"zur Eingabe ihres Passworts aufgefordert werden, falls das gewählte Thema im "
+"System installiert werden muss. Dies ist beispielsweise bei GDM-Themen der "
+"Fall"
+
+#: CConfiguration.cs:37
+msgid ""
+"<i>Saving your previous settings</i>\n"
+"\n"
+"Your previous settings are now stored to make it possible to revert your "
+"theme installation easily"
+msgstr ""
+"<i>Ihre vorherigen Einstellungen werden gespeichert</i>\n"
+"\n"
+"Ihre vorherigen Einstellungen werden jetzt gespeichert um es ihnen möglich "
+"zu machen ihre Wahl später einfach rückgängig zu machen"
+
+#: CConfiguration.cs:39
+msgid ""
+"<i>Downloading the theme from art.gnome.org</i>\n"
+"\n"
+"Your theme is being downloaded... There is no progress notification in this "
+"version, so all you have to do is wait...the control is coming back, I "
+"promise :)"
+msgstr ""
+"<i>Lade das Thema von art.gnome.org herunter</i>\n"
+"\n"
+"Ihr Thema wird heruntergeladen... Leider ist in dieser Version noch keine "
+"Fortschrittsanzeige vorhanden, daher müssen sie leider warten... die "
+"Kontrolle über dieses Programm kommt zurück, versprochen :)"
+
+#: CConfiguration.cs:42
+msgid ""
+"<i>Installing the theme</i>\n"
+"\n"
+"Your Theme is now being installed. Therefore system files will get changed "
+"and/or your GConf settings are changed. To revert this action and make all "
+"undone simply click on Revert."
+msgstr ""
+"<i>Installiere das Thema</i>\n"
+"\n"
+"Ihr Thema wird nun installiert. Es werden nun Systemdateien verändert und/"
+"oder GConf Einstellungen geändert. Um diese Aktionen rückgängig zu machen "
+"klicken Sie einfach auf Rückgängig."
+
+#: CConfiguration.cs:45
+msgid ""
+"<i>Theme installation is complete</i>\n"
+"\n"
+"Your Theme is now installed. You can now go on with your theme selection or "
+"(if you don't like the results) revert your current selection. Have fun! "
+msgstr ""
+"<i>Ihr Thema wurde installiert</i>\n"
+"\n"
+"Ihr gewähltes Thema wurde installiert. Sie können nun entweder mit ihrer "
+"Themenwahl fortfahren oder (falls Sie ihre Wahl bereuen :)) durch Klick auf "
+"Rückgängig ihre letzte Auswahl rückgängig machen. Viel Spaß weiterhin mit "
+"GnomeArtNg! "

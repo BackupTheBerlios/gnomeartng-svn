@@ -352,7 +352,7 @@ namespace GnomeArtNG
 			List<string> result = new List<string>();
 			for (int i = 0; i < lines.Count; i++)
 			{
-				String line = lines[i];
+				//String line = lines[i];
 				Match mCaption = regCaption.Match(lines[i]);
 				if (mCaption.Success)
 					result.Add(mCaption.Groups["caption"].Value.Trim());

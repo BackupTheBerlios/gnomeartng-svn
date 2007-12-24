@@ -24,16 +24,20 @@ namespace GnomeArtNG
 		
 		//InfoWindow
 		[Widget] Gtk.Label InfoHeadLabel;
-		[Widget] Gtk.Label InfoDescriptionLabel;
+		//[Widget] Gtk.Label InfoDescriptionLabel;
 		[Widget] Gtk.TextView InfoDescription;
 		[Widget] Gtk.Button InfoOkButton;
 		[Widget] Gtk.Image InfoImage;
 		
 		
 		public string Headline{
-			get{return InfoHeadLabel.Text;}
-			set{InfoHeadLabel.Text = value;
-			InfoHeadLabel.UseMarkup=true;}
+			get{
+				return InfoHeadLabel.Text;
+			}
+			set{
+				InfoHeadLabel.Text = "<b>"+value+"</b>";
+				InfoHeadLabel.UseMarkup=true;
+			}
 		}
 		
 		public string Description{

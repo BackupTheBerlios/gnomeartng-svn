@@ -7,6 +7,8 @@
 using System;
 using System.IO;
 using System.Diagnostics;
+using Mono.Unix;
+
 namespace GnomeArtNG
 
 {
@@ -29,20 +31,20 @@ namespace GnomeArtNG
 		}
 		
 		//Text constants for the installation procedures
-		public static string txtExtracting="<i>Extracting the theme</i>\n\n"+
+		public static string txtExtracting=Catalog.GetString("<i>Extracting the theme</i>\n\n"+
 			"Your theme is downloaded and has to be extracted now. You might be prompted to enter your "+
-			"user password to legetimate the copying of all extracted files to the right path.";
-		public static string txtSavingForRestore="<i>Saving your previous settings</i>\n\n"+
-			"Your previous settings are now stored to make it possible to revert your theme installation easily";
-		public static string txtDownloadTheme="<i>Downloading the theme from art.gnome.org</i>\n\n"+
+			"user password to legetimate the copying of all extracted files to the right path.");
+		public static string txtSavingForRestore=Catalog.GetString("<i>Saving your previous settings</i>\n\n"+
+			"Your previous settings are now stored to make it possible to revert your theme installation easily");
+		public static string txtDownloadTheme=Catalog.GetString("<i>Downloading the theme from art.gnome.org</i>\n\n"+
 			"Your theme is being downloaded... There is no progress notification in this version, so all "+
-			"you have to do is wait...the control is coming back, I promise :)";
-		public static string txtInstalling="<i>Installing the theme</i>\n\n"+
+			"you have to do is wait...the control is coming back, I promise :)");
+		public static string txtInstalling=Catalog.GetString("<i>Installing the theme</i>\n\n"+
 			"Your Theme is now being installed. Therefore system files will get changed and/or your "+
-			"GConf settings are changed. To revert this action and make all undone simply click on Revert.";
-		public static string txtInstallDone="<i>Theme installation is complete</i>\n\n"+
+			"GConf settings are changed. To revert this action and make all undone simply click on Revert.");
+		public static string txtInstallDone=Catalog.GetString("<i>Theme installation is complete</i>\n\n"+
 			"Your Theme is now installed. You can now go on with your theme selection or (if you don't like the results) "+
-			"revert your current selection. Have fun! ";
+			"revert your current selection. Have fun! ");
 		
 		//TODO: Möglichkeit die Pfade selbst zu setzen!
 		private string dirSep="";
@@ -77,7 +79,7 @@ namespace GnomeArtNG
 			set { artType = value;} 
 		}
 
-		public string NoThumb{get{return "./linuxfirefox.gif";}}
+		public string NoThumb{get{return "./linuxfirefox.png";}}
 		
 		public string SplashInstallPath{get{return splashInstallPath;}}
 		public string ApplicationInstallPath{get{return applicationInstallPath;}}
