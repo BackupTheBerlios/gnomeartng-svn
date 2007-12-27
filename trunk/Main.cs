@@ -10,7 +10,6 @@ using Gdk;
 using Glade;
 using GnomeArtNG;
 using System.Collections;
-using System.Threading;
 using System.IO;
 using Mono.Unix;
 using Pango;
@@ -142,19 +141,28 @@ public class GnomeArtNgApp
 	}
 	
 	private void OnPreviewButtonClicked (object sender, EventArgs e){
-		try {
-			/*
+		/*
 			Pango.Layout layout = new Pango.Layout(ExtInfoImage.PangoContext);			
 			layout.Wrap = Pango.WrapMode.Word;
 			layout.FontDescription = FontDescription.FromString ("Bitstream Vera Sans Mono 10");
 			layout.SetMarkup ("Hello Pango.Layout");
 			ExtInfoImage.Pixmap.DrawLayout(ExtInfoImage.Style.TextGC(StateType.Normal), 0, 0, layout);
-			 */ 
-			man.Theme.GetPreviewImage();
+		 */ 
+		
+		CStatusWindow sw=new CStatusWindow(Catalog.GetString("Downloading the preview"),1,false,true,true);
+		sw.Mainlabel=Catalog.GetString("<i>Downloading the preview file</i>\n\nYour preview is downloading. After the download has been finished,"+
+		                               " the preview will be rescaled if it's not fitting the preview window. See the lower bar to follow the progress.");
+		sw.ButtonSensitive=false;
+		try{
+			man.Theme.GetPreviewImage(sw.DetailProgressBar);
+			sw.ProgressBar.Text="1/1";
+			sw.Close();
 			new CPreviewWindow(man.Theme,true);
-		} catch (Exception ex) {
+		}
+		catch (Exception ex) {
+			sw.Close();
 			new CInfoWindow(Catalog.GetString("Warning: the preview image could not be loaded!"),ex.Message,Gtk.Stock.DialogError,true);
-			throw ex;
+			
 		}
 	}
 	

@@ -121,8 +121,12 @@ namespace GnomeArtNG
 			//Index und Type wurden vorher schon gwählt
 			sw.Mainlabel=CConfiguration.txtDownloadTheme;
 			if (!File.Exists(InstallThemeFile)) {
-				if (!File.Exists(LocalThemeFile))
-					DownloadFile(Image.URL, LocalThemeFile);
+				if (!File.Exists(LocalThemeFile)){
+					if (!File.Exists(LocalPreviewFile)){
+						DownloadFile(Image.URL, LocalThemeFile,sw.DetailProgressBar);
+					} else 
+						File.Copy(LocalPreviewFile,LocalThemeFile);
+				}
 				File.Copy(LocalThemeFile,InstallThemeFile);
 
 				///home/.../.gnome2/backgrounds.xml einlesen und Background anhängen...
@@ -182,7 +186,7 @@ namespace GnomeArtNG
 			JpgResolutionList = new ArrayList();
 			SvgResolutionList = new ArrayList();
 		}
-
+		
 		//Same as GetResolutions() but sets the ImageType first
 		public string[] GetAvailableResolutions(ImageType type){
 			BgType=type;
@@ -214,16 +218,3 @@ namespace GnomeArtNG
 
 	}
 }
-		/*
-			string localPath=Path.GetFileName(SmallThumbnailUrl);
-			string remotePath=ThumbnailURL;
-			// Die Anforderung erstellen.
-			WebRequest requestPic = WebRequest.Create(remotePath);
-			requestPic.Timeout=1000*600;
-	        // Die Antworten abrufen.
-	        WebResponse responsePic = requestPic.GetResponse();
-	        // Den Antwort-Stream lesen.
-	        Image downloadedImage = Image.FromStream(responsePic.GetResponseStream());
-			downloadedImage.Save(localPath);
-			responsePic.Close();
-*/

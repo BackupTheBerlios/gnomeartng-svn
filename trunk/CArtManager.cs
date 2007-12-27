@@ -10,6 +10,7 @@ using System.Net;
 using System.IO;
 using System.Collections;
 using Mono.Unix;
+using System.Threading;
 
 namespace GnomeArtNG
 {
@@ -102,7 +103,7 @@ namespace GnomeArtNG
 			IconThemeList = new ArrayList();
 		}
 		
-		private bool DownloadFile(string From, string To){
+		/*private bool DownloadFile(string From, string To){
 	        try {
 				WebClient myClient = new WebClient();
 				Console.WriteLine(Catalog.GetString("Downloading")+ " " + Path.GetFileName(From));
@@ -110,44 +111,49 @@ namespace GnomeArtNG
 				Console.WriteLine(Catalog.GetString("Finished") + " " + Path.GetFileName(From));
 				return true;
 			} catch { return false; }
-		}
+		}*/
 		
 		//Die für die jeweilige Option richtige XMLDatei herunterladen wenn sie veraltet ist
-		private bool getXMLFile(bool ForceReload){
-			try
-		    {
-				string remoteUri = config.XmlFileUrl();
-				string localFileName = config.ArtFilePath();
-				bool downloadFile=false;
-				if (!ForceReload){
-			        if (File.Exists(localFileName)) {
-			            if ( DateTime.Compare(File.GetCreationTime(localFileName).Date, DateTime.Now.Date) < 0) {
-			                Console.WriteLine("Xml file one day old - downloading new one");
-							downloadFile = true;
-			            }
-			        }
-			        else {
-			            downloadFile=true;
-			        }
-				} else 
-					downloadFile=true;
-		        if (downloadFile){
-					CStatusWindow sw= new CStatusWindow(Catalog.GetString("Downloading new XML file"),1,false,true,true);
-					sw.ButtonSensitive=false;
-					sw.ExtInfoLabel=Catalog.GetString("Downloading")+": " + remoteUri;
-					sw.Mainlabel=Catalog.GetString("<i>XML file is beeing downloaded</i>\n\nThis program needs a descriptive "+
-					                               "file that contains information about \n\n1) where the theme is located,"+
-					                               "\n2) what kind of theme is it, \n3) How often someone downloaded it,"+
-					                               " and so on \n\nSo please be patient while the download progress is going on..");
-					sw.SetProgress(Catalog.GetString("downloading... (no progress available)"));
-					DownloadFile(remoteUri,localFileName);
-					sw.Close();
+		private void getXMLFile(bool ForceReload){
+			//TODO:Bisher Zwischenlösung: Da ich die statische DownloadFile-Methode im CTheme untergebracht habe
+			//benutze ich CTHeme zum Download...auslagern..bloß wohin, CConfiguration? ...aber dann auch umbenennen
+			string remoteUri = config.XmlFileUrl();
+			string localFileName = config.ArtFilePath();
+			bool downloadFile=false;
+			if (!ForceReload){
+		        if (File.Exists(localFileName)) {
+		            if ( DateTime.Compare(File.GetCreationTime(localFileName).Date, DateTime.Now.Date) < 0) {
+		                Console.WriteLine("Xml file one day old - downloading new one");
+						downloadFile = true;
+		            }
+		        }
+		        else {
+		            downloadFile=true;
+		        }
+			} else 
+				downloadFile=true;
+	        
+		
+			if (downloadFile){
+				CStatusWindow sw= new CStatusWindow(Catalog.GetString("Downloading new XML file"),1,false,true,true);
+				sw.ButtonSensitive=false;
+				sw.ExtInfoLabel=Catalog.GetString("Downloading")+": " + remoteUri;
+				sw.Mainlabel=Catalog.GetString("<i>XML file is beeing downloaded</i>\n\nThis program needs a descriptive "+
+				                               "file that contains information about \n\n1) where the theme is located,"+
+				                               "\n2) what kind of theme is it, \n3) How often someone downloaded it,"+
+				                               " and so on \n\nSo please be patient while the download progress is going on..");
+				sw.SetProgress(Catalog.GetString("downloading... (no progress available)"));
+				sw.Invalidate();
+				try	{
+					CTheme.DownloadFile(remoteUri,localFileName,sw.DetailProgressBar);
 				}
-				return true;
+				catch (Exception ex) {
+					sw.Close();
+					new CInfoWindow(Catalog.GetString("Warning: Could not download xml file!"),ex.Message,Gtk.Stock.DialogError,true);
+				}
+				sw.Close();
 		    }
-		    catch {
-		        return false;
-		    }
+
 		}
 	    			
 		private int GetIntFromXML(string s){
@@ -352,7 +358,10 @@ namespace GnomeArtNG
 				w.Headline=Catalog.GetString("Downloading missing thumbnails");
 				w.ButtonSensitive=true;
 				w.SetProgressStep(downloadList.Count);
-				Console.WriteLine("Herunterzuladende Dateien: "+downloadList.Count);
+				Console.WriteLine("FileCount: "+downloadList.Count);
+				
+				//Thread[] ta = new Thread[downloadCount];
+				
 				for (int i=0;i<downloadList.Count;i++){
 					if (w.CloseRequested){
 						break;
@@ -360,10 +369,25 @@ namespace GnomeArtNG
 					theme = ((CTheme)downloadList[i]);
 					w.SetProgress((i+1).ToString()+"/"+downloadCount.ToString());
 					w.ExtInfoLabel = Path.GetFileName(theme.SmallThumbnailUrl);
+					/*Threading
+					ta[i] = new Thread(new ThreadStart(theme.GetThumbnailImage));
+					ta[i].Start(); // Threads werden gestartet
+					*/
 					theme.GetThumbnailImage();
 				}
+				/* Threading
+				bool done=false;
+				while (!done){
+					done=true;
+					for (int k=0;k<downloadCount;k++){
+						if (ta[k].ThreadState != ThreadState.Stopped)
+							done=false;
+					}
+							
+				}
+				*/
+				w.Close();
 			}
-			w.Close();
 		}
 
 		public void GetAllThumbs(CConfiguration.ArtType Type){

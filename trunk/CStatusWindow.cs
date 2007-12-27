@@ -31,9 +31,17 @@ namespace GnomeArtNG
 		[Widget] Gtk.Label StatusMainLabel;
 		[Widget] Gtk.Button StatusCancelButton;
 		[Widget] Gtk.ProgressBar StatusProgressBar;
+		[Widget] Gtk.ProgressBar StatusDetailProgressBar;
 		[Widget] Gtk.Label StatusExtInfoLabel;
 		[Widget] Gtk.Expander ExtendedInfoExpander;
 		
+		public Gtk.ProgressBar ProgressBar{
+			get{return StatusProgressBar;}
+		}
+		
+		public Gtk.ProgressBar DetailProgressBar{
+			get{return StatusDetailProgressBar;}
+		}
 		
 		public string Headline{
 			get{return StatusHeadLabel.Text;}
@@ -80,12 +88,17 @@ namespace GnomeArtNG
 		}
 		
 		public void SetProgress(string Text){
-			//SetFraction, PulseStep, SetPulse, SetText
 			StatusProgressBar.Text=Text;
 			StatusProgressBar.Fraction = StatusProgressBar.Fraction+StatusProgressBar.PulseStep;
 			Invalidate();
 		}
 		 
+		public void SetDetailProgress(string Text){
+			StatusDetailProgressBar.Text=Text;
+			StatusDetailProgressBar.Fraction = StatusDetailProgressBar.Fraction+StatusDetailProgressBar.PulseStep;
+			Invalidate();
+		}
+		
 		public bool ButtonSensitive{
 			get {return StatusCancelButton.Sensitive;}
 			set{StatusCancelButton.Sensitive=value;}
@@ -105,6 +118,13 @@ namespace GnomeArtNG
 				MaxCount=1;
 			StatusProgressBar.PulseStep=1.0/MaxCount;
 			StatusProgressBar.Fraction=0.0;
+		}
+		
+		public void SetDetailProgressStep(int MaxCount){
+			if (MaxCount==0)
+				MaxCount=1;
+			StatusDetailProgressBar.PulseStep=1.0/MaxCount;
+			StatusDetailProgressBar.Fraction=0.0;
 		}
 		
 		public CStatusWindow(string Headline,int MaxCount,bool CloseByRequest, bool ExpandExpander, bool ShowWindow)	{

@@ -53,7 +53,7 @@ namespace GnomeArtNG
 			sw.Mainlabel=CConfiguration.txtDownloadTheme;
 			//Herunterladen
 			if (!File.Exists(InstallThemeFile)){
-				DownloadFile(DownloadUrl, LocalThemeFile);
+				DownloadFile(DownloadUrl, LocalThemeFile,sw.DetailProgressBar);
 				File.Copy(LocalThemeFile,InstallThemeFile);
 			}
 			sw.SetProgress("2/"+installationSteps);

@@ -30,7 +30,7 @@ namespace GnomeArtNG
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
 			if (!File.Exists(InstallThemeFile)){
 				//Herunterladen
-				DownloadFile(DownloadUrl, LocalThemeFile);
+				DownloadFile(DownloadUrl, LocalThemeFile,sw.DetailProgressBar);
 			}
 			sw.SetProgress("1/"+installationSteps);
 			//Entpacken
