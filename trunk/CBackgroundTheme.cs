@@ -130,6 +130,16 @@ namespace GnomeArtNG
 				File.Copy(LocalThemeFile,InstallThemeFile);
 
 				///home/.../.gnome2/backgrounds.xml einlesen und Background anhängen...
+				//Just a hack...TODO:paste in XMLDoc
+				if (!File.Exists(config.HomePath+"/.gnome2/backgrounds.xml")){
+					StreamWriter locFile = new StreamWriter(config.HomePath+"/.gnome2/backgrounds.xml");
+					locFile.WriteLine("<?xml version=\"1.0\"?>");
+					locFile.WriteLine("<!DOCTYPE wallpapers SYSTEM \"gnome-wp-list.dtd\"[]>");
+					locFile.WriteLine("  <wallpapers>");
+					locFile.WriteLine("  </wallpapers>");
+					locFile.Close();
+				}
+					
 				XmlDocument doc = new XmlDocument();
 				doc.Load(config.HomePath+"/.gnome2/backgrounds.xml");
 				XmlNode newElem;

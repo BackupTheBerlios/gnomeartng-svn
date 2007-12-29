@@ -39,7 +39,6 @@
     <File name="./Makefile.am" subtype="Code" buildaction="EmbedAsResource" />
     <File name="./Makefile.include" subtype="Code" buildaction="EmbedAsResource" />
     <File name="./configure.ac" subtype="Code" buildaction="EmbedAsResource" />
-    <File name="./Makefile.in" subtype="Code" buildaction="EmbedAsResource" />
     <File name="./GnomeArtNG.make" subtype="Code" buildaction="EmbedAsResource" />
   </Contents>
   <References>

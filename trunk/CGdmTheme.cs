@@ -47,7 +47,7 @@ namespace GnomeArtNG
 				try{
 					FileStream fs = File.Create("/tmp/gdm.conf-custom");
 					fs.Close();
-					config.Execute("gksudo","'mv /tmp/gdm.conf-custom "+gdmconfcustom);
+					config.Execute(config.SudoCommand,"'mv /tmp/gdm.conf-custom "+gdmconfcustom);
 				}
 				catch {throw new Exception("Gdm.conf-custom couldn't be created, aborting!");}
 			}
@@ -64,7 +64,7 @@ namespace GnomeArtNG
 			sw.SetProgress("2/"+installationSteps);
 			//Entpacken
 			sw.Mainlabel = CConfiguration.txtExtracting;
-			sb = config.Execute("gksu","'"+tarParams+LocalThemeFile+" -C "+config.GdmInstallPath+"'");
+			sb = config.Execute(config.SudoCommand,"'"+tarParams+LocalThemeFile+" -C "+config.GdmInstallPath+"'");
 			FolderName=sb.ToString().Split('/');
 			//Console.WriteLine(FolderName[0]);
 			sw.SetProgress("3/"+installationSteps);
@@ -86,7 +86,7 @@ namespace GnomeArtNG
 				//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
 				iworker.Save("/tmp/gdm.conf-custom");
 				//Per gksudo den Benutzer für diese Aktion zum Superuser werden lassen
-				config.Execute("gksudo","'mv /tmp/gdm.conf-custom /etc/gdm/'");
+				config.Execute(config.SudoCommand,"'mv /tmp/gdm.conf-custom /etc/gdm/'");
 			} else{
 				//TODO: für Random
 			}
@@ -106,7 +106,7 @@ namespace GnomeArtNG
 					iworker.setValue("greeter","GraphicalTheme",previousTheme,true);
 					//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
 					iworker.Save("/tmp/gdm.conf-custom");
-					config.Execute("gksudo","'mv /tmp/gdm.conf-custom /etc/gdm/'");
+					config.Execute(config.SudoCommand,"'mv /tmp/gdm.conf-custom /etc/gdm/'");
 				} else{
 					//Random ist aktiv :/
 				}

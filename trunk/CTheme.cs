@@ -140,7 +140,6 @@ namespace GnomeArtNG
 					// It will store the current number of bytes we retrieved from the server
 					int bytesSize = 0;
 					if (bar!=null){
-						Console.WriteLine("Bar is not null");
 						if (fileSize>0){
 							bar.Text = Catalog.GetString("Initialize download");
 							bar.PulseStep=1.0/(fileSize/downBuffer.Length);
@@ -165,7 +164,6 @@ namespace GnomeArtNG
 						strLocal.Write(downBuffer, 0, bytesSize);
 
 						if (bar!=null) {
-							Console.WriteLine("Bar is not null");
 							currentSize = strLocal.Length;
 							if (fileSize>0){
 							    if (currentSize>0){

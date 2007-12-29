@@ -386,8 +386,8 @@ namespace GnomeArtNG
 							
 				}
 				*/
-				w.Close();
 			}
+			w.Close();
 		}
 
 		public void GetAllThumbs(CConfiguration.ArtType Type){

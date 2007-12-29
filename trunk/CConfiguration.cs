@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using Mono.Unix;
+using GnomeArtNG;
 
 namespace GnomeArtNG
 
@@ -28,6 +29,13 @@ namespace GnomeArtNG
 			atGdmGreeter=30,
 			atSplash, //31
 			atGtkEngine //32
+		}
+		
+		public enum DistriType:int{
+			dtUbuntu,
+			dtKubuntu,
+			dtSuse,
+			dtFedora
 		}
 		
 		//Text constants for the installation procedures
@@ -66,6 +74,8 @@ namespace GnomeArtNG
 		private bool tarIsAvailable=false;
 		private bool grepIsAvailable=false;
 		private bool sedIsAvailable=false;
+		private DistriType distribution = DistriType.dtUbuntu; 
+		private string sudoCommand="gksudo";
 		private ArtType artType;
 		
 		//Anschauen.Durcheinander mit getset und Funktionen dafür
@@ -74,6 +84,7 @@ namespace GnomeArtNG
 		public string ThemesPath { get{ return settingsPath+dirSep+themesDir+dirSep+((int)(artType)).ToString()+dirSep;} }
 		public string PreviewPath { get{ return settingsPath+dirSep+previewDir+dirSep+((int)(artType)).ToString()+dirSep;} }
 		public string HomePath { get { return homePath;} }
+		public string SudoCommand { get { return sudoCommand;} }
 		public ArtType ThemeType { 
 			get { return artType;} 
 			set { artType = value;} 
@@ -124,6 +135,40 @@ namespace GnomeArtNG
 			}
 		}
 		
+		private void setDistributionDependendSettings(){
+			getDistribution();
+			switch (distribution) {
+			 case DistriType.dtKubuntu: 
+				sudoCommand="kdesu"; break; 
+			 case DistriType.dtUbuntu: 
+				sudoCommand="gksudo"; break;
+			 case DistriType.dtSuse:
+				sudoCommand="gnomesu"; break;
+				
+			 default: throw new Exception("Unknown distribution...aborting!!");
+			 } 
+		}
+		
+		private void getDistribution(){
+			string issueFile="/etc/issue";
+			if (!File.Exists(issueFile))
+				throw new Exception("Could not get /etc/issue...aborting!!");
+			StreamReader myFile = new StreamReader(issueFile, System.Text.Encoding.Default);
+            string sContent = myFile.ReadToEnd();
+            myFile.Close();
+
+			//Ubuntu
+			if (sContent.IndexOf("Kubuntu",StringComparison.CurrentCulture)!=-1)
+				distribution=DistriType.dtKubuntu;
+			if (sContent.IndexOf("Ubuntu",StringComparison.CurrentCulture)!=-1)
+				distribution=DistriType.dtUbuntu;
+			if (sContent.Contains("suse"))
+				distribution=DistriType.dtSuse;
+
+			Console.WriteLine(distribution);
+
+		}
+		
 		public string XmlFileUrl(){
 			return "http://art.gnome.org/xml.php?art="+((int)artType).ToString();
 		}
@@ -144,6 +189,7 @@ namespace GnomeArtNG
 			tarIsAvailable = TestIfProgIsInstalled("tar","--version","gnu tar");
 			grepIsAvailable = TestIfProgIsInstalled("grep","--version","gnu grep");
 			sedIsAvailable = TestIfProgIsInstalled("sed","--version","gnu sed");
+			setDistributionDependendSettings();
 			CreateDirectories();
 		}
 		
