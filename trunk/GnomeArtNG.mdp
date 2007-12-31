@@ -35,11 +35,6 @@
     <File name="./CStatusWindow.cs" subtype="Code" buildaction="Compile" />
     <File name="./CInfoWindow.cs" subtype="Code" buildaction="Compile" />
     <File name="./CIniWorker.cs" subtype="Code" buildaction="Compile" />
-    <File name="./autogen.sh" subtype="Code" buildaction="EmbedAsResource" />
-    <File name="./Makefile.am" subtype="Code" buildaction="EmbedAsResource" />
-    <File name="./Makefile.include" subtype="Code" buildaction="EmbedAsResource" />
-    <File name="./configure.ac" subtype="Code" buildaction="EmbedAsResource" />
-    <File name="./GnomeArtNG.make" subtype="Code" buildaction="EmbedAsResource" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="gtk-sharp, Version=2.8.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />

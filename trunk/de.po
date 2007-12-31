@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-23 23:53+0100\n"
+"POT-Creation-Date: 2007-12-30 22:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 msgid "Finished"
 msgstr "Beendet"
 
-#: CArtManager.cs:135
+#: CArtManager.cs:135 CArtManager.cs:138
 msgid "Downloading new XML file"
 msgstr "Lade neue XML-Datei herunter"
 
-#: CArtManager.cs:137 CArtManager.cs:108
+#: CArtManager.cs:137 CArtManager.cs:108 CArtManager.cs:140
 msgid "Downloading"
 msgstr "Am Herunterladen"
 
-#: CArtManager.cs:138
+#: CArtManager.cs:138 CArtManager.cs:141
 msgid ""
 "<i>XML file is beeing downloaded</i>\n"
 "\n"
@@ -54,15 +54,15 @@ msgstr ""
 "Bitte gedulden Sie sich einen Augenblick bis das Herunterladen abgeschlossen "
 "ist.."
 
-#: CArtManager.cs:138 CArtManager.cs:142
+#: CArtManager.cs:138 CArtManager.cs:142 CArtManager.cs:145 CTheme.cs:148
 msgid "downloading... (no progress available)"
 msgstr "am herunterladen.. (kein Fortschritt verfügbar)"
 
-#: CArtManager.cs:326 CArtManager.cs:335
+#: CArtManager.cs:326 CArtManager.cs:335 CArtManager.cs:341
 msgid "Reading thumbnails on harddisc"
 msgstr "Lese Voransichten von der Festplatte"
 
-#: CArtManager.cs:343 CArtManager.cs:352
+#: CArtManager.cs:343 CArtManager.cs:352 CArtManager.cs:358
 msgid "Downloading missing thumbnails"
 msgstr "Lade fehlende Voransichten herunter"
 
@@ -82,7 +82,7 @@ msgstr "Installiere das gewählte Thema"
 msgid "Install finished"
 msgstr "Installation beendet"
 
-#: CTheme.cs:110 CTheme.cs:121
+#: CTheme.cs:110 CTheme.cs:121 CTheme.cs:192
 msgid ""
 "<i>Installing</i>\n"
 "\n"
@@ -209,7 +209,8 @@ msgstr "<b>Name:</b>"
 #: gui.glade:542 gui.glade:571 gui.glade:598 gui.glade:697 gui.glade:723
 #: gui.glade:1335 gui.glade:715 gui.glade:743 gui.glade:1325 gui.glade:652
 #: gui.glade:681 gui.glade:708 gui.glade:825 gui.glade:853 gui.glade:1441
-#: gui.glade:807 gui.glade:833 gui.glade:1451
+#: gui.glade:807 gui.glade:833 gui.glade:1451 gui.glade:806 gui.glade:832
+#: gui.glade:1464 gui.glade:824 gui.glade:852
 msgid "label"
 msgstr "label"
 
@@ -225,24 +226,28 @@ msgstr "<b>Lizens:</b>"
 msgid "<b>Description:</b>"
 msgstr "<b>Beschreibung:</b>"
 
-#: gui.glade:650 Main.cs:198 Main.cs:209 gui.glade:760
+#: gui.glade:650 Main.cs:198 Main.cs:209 gui.glade:760 Main.cs:217
 msgid "No description has been entered by the author"
 msgstr ""
 "Der Author des Themas hat beim Hochladen leider keine Beschreibung eingegeben"
 
-#: gui.glade:688 gui.glade:756 gui.glade:866 gui.glade:798
+#: gui.glade:688 gui.glade:756 gui.glade:866 gui.glade:798 gui.glade:797
+#: gui.glade:865
 msgid "<b>Download count:</b>"
 msgstr "<b>Anzahl der Downloads:</b>"
 
-#: gui.glade:710 gui.glade:730 gui.glade:840 gui.glade:820
+#: gui.glade:710 gui.glade:730 gui.glade:840 gui.glade:820 gui.glade:819
+#: gui.glade:839
 msgid "<b>Rating:</b>"
 msgstr "<b>Bewertung:</b>"
 
-#: gui.glade:738 gui.glade:702 gui.glade:812 gui.glade:848
+#: gui.glade:738 gui.glade:702 gui.glade:812 gui.glade:848 gui.glade:847
+#: gui.glade:811
 msgid "<b>Resolutions:</b>"
 msgstr "<b>Auflösungen:</b>"
 
-#: gui.glade:752 gui.glade:688 gui.glade:798 gui.glade:862
+#: gui.glade:752 gui.glade:688 gui.glade:798 gui.glade:862 gui.glade:861
+#: gui.glade:797
 msgid "<b>Image type:</b>"
 msgstr "<b>Bildtyp:</b>"
 
@@ -250,7 +255,7 @@ msgstr "<b>Bildtyp:</b>"
 msgid "Installieren"
 msgstr ""
 
-#: gui.glade:796 gui.glade:907
+#: gui.glade:796 gui.glade:907 gui.glade:906
 msgid "gtk-undo"
 msgstr ""
 
@@ -258,37 +263,37 @@ msgstr ""
 msgid "StartButton"
 msgstr ""
 
-#: gui.glade:833 gui.glade:945
+#: gui.glade:833 gui.glade:945 gui.glade:944
 msgid "<b>Extended theme information</b>"
-msgstr ""
+msgstr "<b>Erweiterte Informationen</b>"
 
-#: gui.glade:856 gui.glade:968
+#: gui.glade:856 gui.glade:968 gui.glade:967
 msgid "About Gnome-Art-NG"
 msgstr "Über Gnome-Art Next Generation"
 
-#: gui.glade:871 gui.glade:983
+#: gui.glade:871 gui.glade:983 gui.glade:982
 msgid "<big><b><u>About Gnome-Art-NG</u></b></big>"
-msgstr ""
+msgstr "<big><b><u>Über Gnome-Art-NG</u></b></big>"
 
-#: gui.glade:896 gui.glade:1008
+#: gui.glade:896 gui.glade:1008 gui.glade:1007
 msgid ""
 "<b><i>Version:</i></b> 0.2\n"
 "<b><i>Entwickler:</i></b> Thomas Beck\n"
 "<b><i>Grüße gehen an:</i></b> Meine Prinzessin Isi"
 msgstr ""
 
-#: gui.glade:915 gui.glade:1027
+#: gui.glade:915 gui.glade:1027 gui.glade:1026
 msgid ""
 "<b>Gnome-Art-NG</b> wurde in C# geschrieben von Thomas Beck. Falls ihr "
 "Fehler findet dann schreibt mir einfach eine Mail: "
 "<i>software@plasmasolutions.de</i>"
 msgstr ""
 
-#: gui.glade:966 gui.glade:1078
+#: gui.glade:966 gui.glade:1078 gui.glade:1077
 msgid "<big><b>Downloading</b></big>"
 msgstr "<big><b>Am Herunterladen</b></big>"
 
-#: gui.glade:997 gui.glade:1109
+#: gui.glade:997 gui.glade:1109 gui.glade:1108
 msgid ""
 "<i>Your themes are beeing read</i>\n"
 "\n"
@@ -305,23 +310,23 @@ msgstr ""
 "heruntergeladen. Um genau zu sehen welche Aktion gerade ausgeführt wird "
 "klicken Sie auf den unten sichtbaren Expander."
 
-#: gui.glade:1018 gui.glade:1130
+#: gui.glade:1018 gui.glade:1130 gui.glade:1129
 msgid "<i>ExtInfosLabel</i>"
 msgstr ""
 
-#: gui.glade:1026 gui.glade:1138
+#: gui.glade:1026 gui.glade:1138 gui.glade:1137
 msgid "Extended information about the current action:"
 msgstr "Informationen über die gerade ausgeführte Aktion:"
 
-#: gui.glade:1076 gui.glade:1188
+#: gui.glade:1076 gui.glade:1188 gui.glade:1201
 msgid "gtk-stop"
 msgstr ""
 
-#: gui.glade:1154 gui.glade:1269
+#: gui.glade:1154 gui.glade:1269 gui.glade:1282 gui.glade:1377
 msgid "gtk-close"
 msgstr ""
 
-#: gui.glade:1212 gui.glade:1328
+#: gui.glade:1212 gui.glade:1328 gui.glade:1341 gui.glade:1340
 msgid ""
 "<i>Willkommen zu GNOME-Art-ng.</i>\n"
 "\n"
@@ -332,38 +337,31 @@ msgid ""
 "<i>Viel Spaß wünscht Thomas Beck!</i>"
 msgstr ""
 
-#: gui.glade:1244 gui.glade:1360
-msgid ""
-"Welches Thema möchten sie installieren? \n"
-"Um eine Wahl zu treffen klicken sie bitte auf eine der angezeigten "
-"Schaltflächen"
-msgstr ""
-
-#: gui.glade:1327 gui.glade:1338 gui.glade:1454 gui.glade:1443
+#: gui.glade:1327 gui.glade:1338 gui.glade:1454 gui.glade:1443 gui.glade:1456
 msgid "button"
 msgstr ""
 
-#: gui.glade:1501
+#: gui.glade:1501 gui.glade:1514 gui.glade:1426
 msgid "<b>Warning, something has gone wrong!</b>"
 msgstr "<b>Achtung, die Aktion ist fehlgeschlagen!</b>"
 
-#: gui.glade:1426 gui.glade:1543
+#: gui.glade:1426 gui.glade:1543 gui.glade:1556 gui.glade:1468
 msgid "Exact information about the error:"
 msgstr "Genaue Beschreibung des Fehlers:"
 
-#: gui.glade:1445 gui.glade:1562
+#: gui.glade:1445 gui.glade:1562 gui.glade:1575 gui.glade:1487
 msgid "Ok"
 msgstr "Ok"
 
 #: CPreviewWindow.cs:68
-msgid "Vorschau für Theme \""
-msgstr ""
+msgid "Previewing \""
+msgstr "Vorschau \""
 
-#: CTheme.cs:133 CTheme.cs:135
+#: CTheme.cs:133 CTheme.cs:135 CTheme.cs:206
 msgid "<b>Theme installation failed!</b>"
 msgstr "<b>Die Installation des Themas schlug fehl!</b>"
 
-#: CTheme.cs:133 CTheme.cs:135
+#: CTheme.cs:206
 msgid ""
 "This message was reported from the installation function:\n"
 "\n"
@@ -371,11 +369,11 @@ msgstr ""
 "Die Installationsfunktion gab folgende Fehlermeldung zurück:\n"
 "\n"
 
-#: gui.glade:896 gui.glade:1280
+#: gui.glade:896 gui.glade:1280 gui.glade:895 gui.glade:1293
 msgid "gtk-apply"
 msgstr ""
 
-#: gui.glade:921
+#: gui.glade:921 gui.glade:920
 msgid "gtk-save"
 msgstr ""
 
@@ -387,11 +385,11 @@ msgstr "<b>Bitte wählen Sie ein GTK-Theme</b>"
 msgid "Warning: the preview image could not be loaded!"
 msgstr "Warnung: Das Vorschaubild konnte nicht geladen werden!"
 
-#: gui.glade:1219
+#: gui.glade:1219 gui.glade:1232
 msgid "<b>Previewing</b>"
 msgstr "<b>Vorschau</b>"
 
-#: CConfiguration.cs:34
+#: CConfiguration.cs:34 CConfiguration.cs:42
 msgid ""
 "<i>Extracting the theme</i>\n"
 "\n"
@@ -406,7 +404,7 @@ msgstr ""
 "System installiert werden muss. Dies ist beispielsweise bei GDM-Themen der "
 "Fall"
 
-#: CConfiguration.cs:37
+#: CConfiguration.cs:37 CConfiguration.cs:45
 msgid ""
 "<i>Saving your previous settings</i>\n"
 "\n"
@@ -418,21 +416,19 @@ msgstr ""
 "Ihre vorherigen Einstellungen werden jetzt gespeichert um es ihnen möglich "
 "zu machen ihre Wahl später einfach rückgängig zu machen"
 
-#: CConfiguration.cs:39
+#: CConfiguration.cs:39 CConfiguration.cs:47
 msgid ""
 "<i>Downloading the theme from art.gnome.org</i>\n"
 "\n"
-"Your theme is being downloaded... There is no progress notification in this "
-"version, so all you have to do is wait...the control is coming back, I "
-"promise :)"
+"Your theme is being downloaded...please be patient while the download is "
+"progressing"
 msgstr ""
 "<i>Lade das Thema von art.gnome.org herunter</i>\n"
 "\n"
-"Ihr Thema wird heruntergeladen... Leider ist in dieser Version noch keine "
-"Fortschrittsanzeige vorhanden, daher müssen sie leider warten... die "
-"Kontrolle über dieses Programm kommt zurück, versprochen :)"
+"Ihr Thema wird heruntergeladen...bitte seien Sie geduldig während der "
+"Download fortschreitet."
 
-#: CConfiguration.cs:42
+#: CConfiguration.cs:42 CConfiguration.cs:50 CConfiguration.cs:49
 msgid ""
 "<i>Installing the theme</i>\n"
 "\n"
@@ -446,7 +442,7 @@ msgstr ""
 "oder GConf Einstellungen geändert. Um diese Aktionen rückgängig zu machen "
 "klicken Sie einfach auf Rückgängig."
 
-#: CConfiguration.cs:45
+#: CConfiguration.cs:45 CConfiguration.cs:53 CConfiguration.cs:52
 msgid ""
 "<i>Theme installation is complete</i>\n"
 "\n"
@@ -459,3 +455,42 @@ msgstr ""
 "Themenwahl fortfahren oder (falls Sie ihre Wahl bereuen :)) durch Klick auf "
 "Rückgängig ihre letzte Auswahl rückgängig machen. Viel Spaß weiterhin mit "
 "GnomeArtNg! "
+
+#: Main.cs:152
+msgid "Downloading the preview file"
+msgstr "Lade die Vorschaudatei herunter"
+
+#: Main.cs:153
+msgid "Connected to art.gnome.org"
+msgstr "Verbunden mit art.gnome.org"
+
+#: Main.cs:154
+msgid ""
+"<i>Downloading the preview file</i>\n"
+"\n"
+"Your preview is beeing downloaded. After the download has been finished, the "
+"preview will be rescaled if it's not fitting the preview window. See the "
+"lower bar to follow the progress."
+msgstr ""
+"<i>Lade die Vorschaudatei herunter</i>\n"
+"\n"
+"Ihre Vorschau wird jetzt heruntergeladen. Nachdem das Herunterladen "
+"abgeschlossen ist wird die Vorschau noch skaliert falls es nicht in das "
+"Vorschaufenster passt. Um den Download-Fortschritt der Datei zu verfolgen "
+"schauen Sie auf den unteren Balken."
+
+#: Main.cs:164
+msgid "Error: the preview image could not be loaded!"
+msgstr "Fehler: Das Vorschaubild konnte nicht geladen werden"
+
+#: CArtManager.cs:152
+msgid "Warning: Could not download xml file!"
+msgstr "Warnung: Konnte die XML-Datei nicht herunterladen"
+
+#: CTheme.cs:138
+msgid "bytes"
+msgstr "Bytes"
+
+#: CTheme.cs:144
+msgid "Initialize download"
+msgstr "Starte Download"

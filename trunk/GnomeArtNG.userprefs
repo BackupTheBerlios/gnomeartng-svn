@@ -3,7 +3,6 @@
   <Files>
     <File filename="Welcome" />
     <File filename="./Main.cs" />
-    <File filename="./CConfiguration.cs" />
     <File filename="./CGdmTheme.cs" />
   </Files>
   <Views>
@@ -12,16 +11,16 @@
         <Node expanded="True">
           <Node name="GnomeArtNG" expanded="True">
             <Node name="Resources" expanded="True">
-              <Option id="ShowCodeBehindClasses" value="True" />
+              <Option id="ShowAllFiles" value="True" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="True" />
-              <Option id="ShowAllFiles" value="True" />
+              <Option id="ShowCodeBehindClasses" value="True" />
             </Node>
             <Node name="AssemblyInfo.cs" expanded="False">
-              <Option id="ShowCodeBehindClasses" value="True" />
+              <Option id="ShowAllFiles" value="False" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="False" />
-              <Option id="ShowAllFiles" value="False" />
+              <Option id="ShowCodeBehindClasses" value="True" />
             </Node>
             <Node name="CGdmTheme.cs" expanded="False" selected="True" />
           </Node>

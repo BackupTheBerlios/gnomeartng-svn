@@ -88,9 +88,9 @@ namespace GnomeArtNG
 		}
 		
 		//Thumbnail herunterladen 
-		public void GetThumbnailImage(){
+		public void GetThumbnailImage(Gtk.ProgressBar bar){
 			if (!LocalThumbExists){
-				DownloadFile(SmallThumbnailUrl,localThumbnailFile,null);
+				DownloadFile(SmallThumbnailUrl,localThumbnailFile,bar);
 				LocalThumbExists=true;
 			}
 		}

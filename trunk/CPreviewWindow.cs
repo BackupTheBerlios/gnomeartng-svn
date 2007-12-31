@@ -65,7 +65,7 @@ namespace GnomeArtNG
 			PreviewCloseButton.Clicked+=new EventHandler(OnCloseButtonClicked);
 			PreviewInstallButton.Clicked+=new EventHandler(OnInstallButtonClicked);
 			MainImagePixbuf = new Gdk.Pixbuf(theme.LocalPreviewFile);
-			Headline = Catalog.GetString("Vorschau für Theme \"")+ theme.Name+"\"";
+			Headline = Catalog.GetString("Previewing \"")+ theme.Name+"\"";
 			if(Show)
 				MainWindow.ShowAll();
 		}

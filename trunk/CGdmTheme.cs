@@ -14,10 +14,10 @@ namespace GnomeArtNG
 	
 	public class CGdmTheme: CTheme
 	{
-		
 		private string previousTheme="";
-		private string gdmconf=@"/etc/gdm/gdm.conf";
-		private string gdmconfcustom=@"/etc/gdm/gdm.conf-custom";
+		private string gdmconf="";
+		private string gdmconfcustom="";
+		private string gdmconfcustomtemp="";
 		private StringBuilder sb;
 		private string tarParams="";
 		private bool randomThemeActive =false;
@@ -37,17 +37,19 @@ namespace GnomeArtNG
 			
 			//TODO: grep ersetzen durch IniWorker
 			sb = config.Execute("grep","GraphicalThemeRand= "+gdmconf);
-			if (sb.Length<1) 
-				throw new Exception("Installation is not possible! grep returned no GraphicalThemeRand-Entry\"");
+			if (sb.Length<1){ 
+				Console.WriteLine("Warning:grep returned no GraphicalThemeRand-Entry\"");
+				randomThemeActive=false;
+			}
 			else
 				randomThemeActive=bool.Parse(sb.ToString().Split('=')[1]);
 			
 			//Falls nicht vorhanden wird sie erzeugt
 			if (!gdmConfCustomAvailable){
 				try{
-					FileStream fs = File.Create("/tmp/gdm.conf-custom");
+					FileStream fs = File.Create(gdmconfcustomtemp);
 					fs.Close();
-					config.Execute(config.SudoCommand,"'mv /tmp/gdm.conf-custom "+gdmconfcustom);
+					config.Execute(config.SudoCommand,"'mv "+gdmconfcustomtemp+" "+gdmconfcustom);
 				}
 				catch {throw new Exception("Gdm.conf-custom couldn't be created, aborting!");}
 			}
@@ -86,7 +88,7 @@ namespace GnomeArtNG
 				//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
 				iworker.Save("/tmp/gdm.conf-custom");
 				//Per gksudo den Benutzer für diese Aktion zum Superuser werden lassen
-				config.Execute(config.SudoCommand,"'mv /tmp/gdm.conf-custom /etc/gdm/'");
+				config.Execute(config.SudoCommand,"'mv "+gdmconfcustomtemp+" /etc/gdm/'");
 			} else{
 				//TODO: für Random
 			}
@@ -105,8 +107,8 @@ namespace GnomeArtNG
 					//IWorker wurde bei der Installation schon erzeugt
 					iworker.setValue("greeter","GraphicalTheme",previousTheme,true);
 					//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
-					iworker.Save("/tmp/gdm.conf-custom");
-					config.Execute(config.SudoCommand,"'mv /tmp/gdm.conf-custom /etc/gdm/'");
+					iworker.Save(gdmconfcustomtemp);
+					config.Execute(config.SudoCommand,"'mv "+gdmconfcustomtemp+" /etc/gdm/'");
 				} else{
 					//Random ist aktiv :/
 				}
@@ -119,6 +121,9 @@ namespace GnomeArtNG
 		public CGdmTheme(CConfiguration config):base(config) {
 			installationIsPossible=config.GrepIsAvailable && config.TarIsAvailable && config.SedIsAvailable;
 			installationSteps=4;
+			gdmconf=config.GdmPath+config.GdmFile;
+			gdmconfcustom=config.GdmPath+config.GdmCustomFile;
+			gdmconfcustomtemp="/tmp/"+config.GdmCustomFile;
 		}
 
 	}

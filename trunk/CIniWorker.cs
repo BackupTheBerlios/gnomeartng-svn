@@ -3,7 +3,6 @@
 //
 // To change standard headers go to Edit->Preferences->Coding->Standard Headers
 
-// This class is from "www.dotnet-snippets.de" and customized to my needs  
 
 using System;
 using System.IO;

@@ -54,7 +54,7 @@ namespace GnomeArtNG
 		public void GetThumb(){
 			try{
 				ArrayList list = getThemeList();
-				((CTheme)list[currentThemeIndex]).GetThumbnailImage();
+				((CTheme)list[currentThemeIndex]).GetThumbnailImage(null);
 			} catch {
 				//TODO:Fehlerbehandlung!
 			}
@@ -349,7 +349,7 @@ namespace GnomeArtNG
 				if (!theme.LocalThumbExists)
 					downloadList.Add(theme);
 				else 
-					theme.GetThumbnailImage();
+					theme.GetThumbnailImage(w.DetailProgressBar);
 			}
 			
 			//Thumbs herunterladen
@@ -373,7 +373,7 @@ namespace GnomeArtNG
 					ta[i] = new Thread(new ThreadStart(theme.GetThumbnailImage));
 					ta[i].Start(); // Threads werden gestartet
 					*/
-					theme.GetThumbnailImage();
+					theme.GetThumbnailImage(w.DetailProgressBar);
 				}
 				/* Threading
 				bool done=false;

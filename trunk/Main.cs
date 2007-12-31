@@ -149,19 +149,19 @@ public class GnomeArtNgApp
 			ExtInfoImage.Pixmap.DrawLayout(ExtInfoImage.Style.TextGC(StateType.Normal), 0, 0, layout);
 		 */ 
 		
-		CStatusWindow sw=new CStatusWindow(Catalog.GetString("Downloading the preview"),1,false,true,true);
-		sw.Mainlabel=Catalog.GetString("<i>Downloading the preview file</i>\n\nYour preview is downloading. After the download has been finished,"+
+		CStatusWindow sw=new CStatusWindow(Catalog.GetString("Downloading the preview file"),1,false,true,true);
+		sw.SetProgress("1/1 - " +Catalog.GetString("Connected to art.gnome.org"));
+		sw.Mainlabel=Catalog.GetString("<i>Downloading the preview file</i>\n\nYour preview is beeing downloaded. After the download has been finished,"+
 		                               " the preview will be rescaled if it's not fitting the preview window. See the lower bar to follow the progress.");
 		sw.ButtonSensitive=false;
 		try{
 			man.Theme.GetPreviewImage(sw.DetailProgressBar);
-			sw.ProgressBar.Text="1/1";
 			sw.Close();
 			new CPreviewWindow(man.Theme,true);
 		}
 		catch (Exception ex) {
 			sw.Close();
-			new CInfoWindow(Catalog.GetString("Warning: the preview image could not be loaded!"),ex.Message,Gtk.Stock.DialogError,true);
+			new CInfoWindow(Catalog.GetString("Error: the preview image could not be loaded!"),ex.Message,Gtk.Stock.DialogError,true);
 			
 		}
 	}

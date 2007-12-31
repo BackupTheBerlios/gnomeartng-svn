@@ -13,8 +13,6 @@ using GnomeArtNG;
 namespace GnomeArtNG
 
 {
-	
-	
 	public class CConfiguration
 	{
 		public enum ArtType:int{
@@ -45,8 +43,7 @@ namespace GnomeArtNG
 		public static string txtSavingForRestore=Catalog.GetString("<i>Saving your previous settings</i>\n\n"+
 			"Your previous settings are now stored to make it possible to revert your theme installation easily");
 		public static string txtDownloadTheme=Catalog.GetString("<i>Downloading the theme from art.gnome.org</i>\n\n"+
-			"Your theme is being downloaded... There is no progress notification in this version, so all "+
-			"you have to do is wait...the control is coming back, I promise :)");
+			"Your theme is being downloaded...please be patient while the download is progressing");
 		public static string txtInstalling=Catalog.GetString("<i>Installing the theme</i>\n\n"+
 			"Your Theme is now being installed. Therefore system files will get changed and/or your "+
 			"GConf settings are changed. To revert this action and make all undone simply click on Revert.");
@@ -70,6 +67,10 @@ namespace GnomeArtNG
 		private string iconInstallPath="";
 		private string iconDir=".icons";
 		private string gdmInstallPath="/usr/share/gdm/themes/";
+		private string gdmFile="";
+		private string gdmCustomFile="";
+		private string gdmPath="";
+		
 		
 		private bool tarIsAvailable=false;
 		private bool grepIsAvailable=false;
@@ -90,7 +91,7 @@ namespace GnomeArtNG
 			set { artType = value;} 
 		}
 
-		public string NoThumb{get{return "./linuxfirefox.png";}}
+		public string NoThumb{get{return "/usr/share/pixmaps/apple-red.png";}}
 		
 		public string SplashInstallPath{get{return splashInstallPath;}}
 		public string ApplicationInstallPath{get{return applicationInstallPath;}}
@@ -101,6 +102,9 @@ namespace GnomeArtNG
 		public bool GrepIsAvailable { get { return grepIsAvailable;} }
 		public bool SedIsAvailable { get { return sedIsAvailable;} }
 		
+		public string GdmFile{ get{return gdmFile;} }
+		public string GdmCustomFile{ get{return gdmCustomFile;} }
+		public string GdmPath{ get{return gdmPath;} }
 		
 		public string ArtFilePath(){
 			return Path.Combine(settingsPath,"gnomeArt"+((int)artType).ToString()+".xml");
@@ -139,14 +143,23 @@ namespace GnomeArtNG
 			getDistribution();
 			switch (distribution) {
 			 case DistriType.dtKubuntu: 
-				sudoCommand="kdesu"; break; 
+				sudoCommand="kdesu";
+				gdmFile="gdm.conf";
+				gdmCustomFile="gdm.conf-custom";
+				break; 
 			 case DistriType.dtUbuntu: 
-				sudoCommand="gksudo"; break;
+				sudoCommand="gksudo"; 
+				gdmFile="gdm.conf";
+				gdmCustomFile="gdm.conf-custom";
+				break;
 			 case DistriType.dtSuse:
-				sudoCommand="gnomesu"; break;
-				
+				sudoCommand="gnomesu"; 
+				gdmFile="custom.conf";
+				gdmCustomFile="custom.conf";
+				break;
 			 default: throw new Exception("Unknown distribution...aborting!!");
-			 } 
+			 }
+			gdmPath="/etc/gdm/";
 		}
 		
 		private void getDistribution(){
@@ -155,18 +168,19 @@ namespace GnomeArtNG
 				throw new Exception("Could not get /etc/issue...aborting!!");
 			StreamReader myFile = new StreamReader(issueFile, System.Text.Encoding.Default);
             string sContent = myFile.ReadToEnd();
+			sContent=sContent.ToLower();
             myFile.Close();
-
+			Console.WriteLine("Content: "+sContent);
+			
 			//Ubuntu
-			if (sContent.IndexOf("Kubuntu",StringComparison.CurrentCulture)!=-1)
+			if (sContent.IndexOf("kubuntu",StringComparison.CurrentCulture)>-1)
 				distribution=DistriType.dtKubuntu;
-			if (sContent.IndexOf("Ubuntu",StringComparison.CurrentCulture)!=-1)
+			if (sContent.IndexOf("ubuntu",StringComparison.CurrentCulture)>-1)
 				distribution=DistriType.dtUbuntu;
 			if (sContent.Contains("suse"))
 				distribution=DistriType.dtSuse;
 
 			Console.WriteLine(distribution);
-
 		}
 		
 		public string XmlFileUrl(){
