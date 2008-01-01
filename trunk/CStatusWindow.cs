@@ -12,11 +12,8 @@ using GnomeArtNG;
 
 namespace GnomeArtNG
 {
-	
-	
 	public class CStatusWindow
 	{
-		
 		private Gtk.Window mainWindow;
 		private bool closeRequested;
 		public Gtk.Window MainWindow {

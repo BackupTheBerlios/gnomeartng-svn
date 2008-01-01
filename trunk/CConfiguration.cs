@@ -70,6 +70,7 @@ namespace GnomeArtNG
 		private string gdmFile="";
 		private string gdmCustomFile="";
 		private string gdmPath="";
+		private bool neverStartedBefore=false;
 		
 		
 		private bool tarIsAvailable=false;
@@ -77,6 +78,7 @@ namespace GnomeArtNG
 		private bool sedIsAvailable=false;
 		private DistriType distribution = DistriType.dtUbuntu; 
 		private string sudoCommand="gksudo";
+		private string attribPrep="";
 		private ArtType artType;
 		
 		//Anschauen.Durcheinander mit getset und Funktionen dafür
@@ -86,6 +88,7 @@ namespace GnomeArtNG
 		public string PreviewPath { get{ return settingsPath+dirSep+previewDir+dirSep+((int)(artType)).ToString()+dirSep;} }
 		public string HomePath { get { return homePath;} }
 		public string SudoCommand { get { return sudoCommand;} }
+		public string AttribPrep {get {return attribPrep;}}
 		public ArtType ThemeType { 
 			get { return artType;} 
 			set { artType = value;} 
@@ -101,6 +104,7 @@ namespace GnomeArtNG
 		public bool TarIsAvailable { get { return tarIsAvailable;} }
 		public bool GrepIsAvailable { get { return grepIsAvailable;} }
 		public bool SedIsAvailable { get { return sedIsAvailable;} }
+		public bool NeverStartedBefore{get{return neverStartedBefore;}}
 		
 		public string GdmFile{ get{return gdmFile;} }
 		public string GdmCustomFile{ get{return gdmCustomFile;} }
@@ -141,21 +145,21 @@ namespace GnomeArtNG
 		
 		private void setDistributionDependendSettings(){
 			getDistribution();
+			gdmFile="gdm.conf";
+			gdmCustomFile="gdm.conf-custom";
+			attribPrep="";
 			switch (distribution) {
 			 case DistriType.dtKubuntu: 
 				sudoCommand="kdesu";
-				gdmFile="gdm.conf";
-				gdmCustomFile="gdm.conf-custom";
 				break; 
 			 case DistriType.dtUbuntu: 
 				sudoCommand="gksudo"; 
-				gdmFile="gdm.conf";
-				gdmCustomFile="gdm.conf-custom";
 				break;
 			 case DistriType.dtSuse:
 				sudoCommand="gnomesu"; 
 				gdmFile="custom.conf";
 				gdmCustomFile="custom.conf";
+				attribPrep="--command=";
 				break;
 			 default: throw new Exception("Unknown distribution...aborting!!");
 			 }
@@ -170,7 +174,6 @@ namespace GnomeArtNG
             string sContent = myFile.ReadToEnd();
 			sContent=sContent.ToLower();
             myFile.Close();
-			Console.WriteLine("Content: "+sContent);
 			
 			//Ubuntu
 			if (sContent.IndexOf("kubuntu",StringComparison.CurrentCulture)>-1)
@@ -209,8 +212,9 @@ namespace GnomeArtNG
 		
 		public System.Text.StringBuilder Execute(string FileName, string Arguments){
 			ProcessStartInfo psi = new ProcessStartInfo();
-			psi.Arguments = Arguments;
+			psi.Arguments = attribPrep+Arguments;
 			psi.FileName = FileName;
+			Console.WriteLine(psi.FileName+psi.Arguments);
 			psi.RedirectStandardOutput = true;
 			psi.UseShellExecute = false;
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -218,7 +222,17 @@ namespace GnomeArtNG
 			while (proc.StandardOutput.Peek() != -1) 
 				sb.Append(proc.StandardOutput.ReadLine());
 			return sb;
+		}
 		
+		public System.Text.StringBuilder Execute(string FileName, string Arguments, bool ForceCommandPrep){
+			System.Text.StringBuilder ts;
+			string ts1;
+			ts1=attribPrep;
+			if (ForceCommandPrep)
+				attribPrep="--command=";
+			ts=Execute(FileName,Arguments);
+			attribPrep=ts1;
+			return ts;
 		}
 		
 		private bool TestIfProgIsInstalled(string programName, string arguments, string lookFor) {
@@ -238,6 +252,7 @@ namespace GnomeArtNG
 				if (!Directory.Exists(settingsPath)){
 					Directory.CreateDirectory(settingsPath);
 					Console.WriteLine("Configuration folder created: "+settingsPath);
+					neverStartedBefore=true;
 				}
 				
 				// Vorschauverzeichnis
@@ -246,6 +261,7 @@ namespace GnomeArtNG
 					foreach (ArtType art in Enum.GetValues(enumType))
 						Directory.CreateDirectory(settingsPath+dirSep+thumbsDir+dirSep+((int)art).ToString());
 					Console.WriteLine("Thumb folder created: "+thumbsPath);
+					neverStartedBefore=true;
 				}
 				
 				//Previewverzeichnis
@@ -262,6 +278,7 @@ namespace GnomeArtNG
 					foreach (ArtType art in Enum.GetValues(enumType))
 						Directory.CreateDirectory(settingsPath+dirSep+themesDir+dirSep+((int)art).ToString());
 					Console.WriteLine("Themes folder created: "+themesPath);
+					neverStartedBefore=true;
 				}
 				return true;
 			} catch { return false; }

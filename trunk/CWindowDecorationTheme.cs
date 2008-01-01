@@ -9,16 +9,20 @@ using System;
 namespace GnomeArtNG
 {
 	
-	
+	//TODO: Noch zu implementieren! 
 	public class CWindowDecorationTheme:CTheme
 	{
 		override protected void PreInstallation(CStatusWindow sw){}
 		override protected void PostInstallation(CStatusWindow sw){}
 		override protected void Installation(CStatusWindow sw){}
+				
+		public void Install(){
+			throw new Exception(Catalog.GetString("Not yet implemented!!"));
+		}
+		override public void Revert(){
+			throw new Exception(Catalog.GetString("Not yet implemented!!"));
+		}
 		
-		public void Install(){}
-		
-		override public void Revert(){}
 		public CWindowDecorationTheme(CConfiguration config):base(config)
 		{
 		}

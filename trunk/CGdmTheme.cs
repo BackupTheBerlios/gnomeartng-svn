@@ -7,6 +7,7 @@
 using System;
 using System.IO;
 using System.Text;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
@@ -31,9 +32,9 @@ namespace GnomeArtNG
 			gdmConfAvailable=File.Exists(gdmconf);
 			gdmConfCustomAvailable=File.Exists(gdmconfcustom);
 			if (!gdmConfAvailable)
-				throw new Exception("Installation is not possible! No gdm.conf available");
+				throw new Exception(Catalog.GetString("Installation is not possible!")+"-"+Catalog.GetString(String.Format("No {0} available",gdmconf)));
 			if (!installationIsPossible) 
-				throw new Exception("Installation is not possible! Only GDM is supported");
+				throw new Exception(Catalog.GetString("Installation is not possible!")+"-"+Catalog.GetString("Only GDM is supported"));
 			
 			//TODO: grep ersetzen durch IniWorker
 			sb = config.Execute("grep","GraphicalThemeRand= "+gdmconf);
@@ -49,7 +50,7 @@ namespace GnomeArtNG
 				try{
 					FileStream fs = File.Create(gdmconfcustomtemp);
 					fs.Close();
-					config.Execute(config.SudoCommand,"'mv "+gdmconfcustomtemp+" "+gdmconfcustom);
+					config.Execute(config.SudoCommand,"\"mv "+gdmconfcustomtemp+" "+gdmconfcustom+"\"");
 				}
 				catch {throw new Exception("Gdm.conf-custom couldn't be created, aborting!");}
 			}
@@ -58,7 +59,7 @@ namespace GnomeArtNG
 			iworker = new CIniWorker(gdmconfcustom);
 			iworker.CreateSections("daemon;security;xdmcp;gui;greeter;chooser;debug;servers",';');
 			//Entpackparameter
-			tarParams = "tar "+config.GetTarParams(DownloadUrl);
+			tarParams = @"tar "+config.GetTarParams(DownloadUrl);
 			//Herunterladen
 			sw.Mainlabel=CConfiguration.txtDownloadTheme;
 			if (!File.Exists(LocalThemeFile))
@@ -66,8 +67,10 @@ namespace GnomeArtNG
 			sw.SetProgress("2/"+installationSteps);
 			//Entpacken
 			sw.Mainlabel = CConfiguration.txtExtracting;
-			sb = config.Execute(config.SudoCommand,"'"+tarParams+LocalThemeFile+" -C "+config.GdmInstallPath+"'");
+			sb = config.Execute(config.SudoCommand,"\""+@tarParams+@LocalThemeFile+" -C "+@config.GdmInstallPath+"\"");
 			FolderName=sb.ToString().Split('/');
+			if (FolderName[0]=="")
+				throw new Exception(Catalog.GetString("Couldn't get any usefull information from the tar-command...aborting"));
 			//Console.WriteLine(FolderName[0]);
 			sw.SetProgress("3/"+installationSteps);
 		}
@@ -86,14 +89,14 @@ namespace GnomeArtNG
 				//Console.WriteLine("PreviousTheme: "+previousTheme);
 				iworker.setValue("greeter","GraphicalTheme",FolderName[0],true);
 				//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
-				iworker.Save("/tmp/gdm.conf-custom");
+				iworker.Save(gdmconfcustomtemp);
 				//Per gksudo den Benutzer für diese Aktion zum Superuser werden lassen
-				config.Execute(config.SudoCommand,"'mv "+gdmconfcustomtemp+" /etc/gdm/'");
+				config.Execute(config.SudoCommand,"\"mv "+gdmconfcustomtemp+" /etc/gdm/\"");
 			} else{
 				//TODO: für Random
 			}
 			//GDM die Änderungen mitteilen
-			config.Execute("gdmflexiserver", "--command=\"UPDATE_CONFIG greeter/GraphicalTheme\"");
+			config.Execute("gdmflexiserver", "\"UPDATE_CONFIG greeter/GraphicalTheme\"",true);
 		}
 		
 		override protected void PostInstallation(CStatusWindow sw){
@@ -108,7 +111,7 @@ namespace GnomeArtNG
 					iworker.setValue("greeter","GraphicalTheme",previousTheme,true);
 					//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
 					iworker.Save(gdmconfcustomtemp);
-					config.Execute(config.SudoCommand,"'mv "+gdmconfcustomtemp+" /etc/gdm/'");
+					config.Execute(config.SudoCommand,"\"mv "+gdmconfcustomtemp+" /etc/gdm/\"");
 				} else{
 					//Random ist aktiv :/
 				}

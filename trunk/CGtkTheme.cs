@@ -9,7 +9,7 @@ using System;
 namespace GnomeArtNG
 {
 	
-	
+	//TODO: Noch zu implementieren! 
 	public class CGtkTheme: CTheme
 	{
 	
@@ -17,10 +17,16 @@ namespace GnomeArtNG
 		override protected void PostInstallation(CStatusWindow sw){}
 		override protected void Installation(CStatusWindow sw){}
 		
-		public void Install(){}
-		override public void Revert(){}
+		public void Install(){
+			throw new Exception(Catalog.GetString("Not yet implemented!!"));
+		}
+		override public void Revert(){
+			throw new Exception(Catalog.GetString("Not yet implemented!!"));
+		}
+		
 		public CGtkTheme(CConfiguration config):base(config)
 		{
+			
 		}
 	}
 }

@@ -32,6 +32,10 @@ public class GnomeArtNgApp
 
 	//Die Iconviews mit den einzelnen Voransichten werden dynamisch erzeugt 
 	
+	//Menüs
+	[Widget] Gtk.ImageMenuItem QuitMenuItem;
+	[Widget] Gtk.ImageMenuItem InfoMenuItem;
+
 	//Buttons
 	[Widget] Gtk.Button InstallButton;	
 	[Widget] Gtk.Button RevertButton;	
@@ -63,6 +67,9 @@ public class GnomeArtNgApp
 		//Mehrsprachigkeit initialisieren
 		Catalog.Init("i18n","./locale");
 		config=new CConfiguration();
+		//GreeterWindow!
+		//if (config.NeverStartedBefore)
+		//	;
 		//Glade laden
 		Glade.XML gxml = new Glade.XML (null, "gui.glade", "MainWindow", null);
 		gxml.Autoconnect (this);
@@ -73,6 +80,8 @@ public class GnomeArtNgApp
 		RevertButton.Clicked  += new EventHandler(OnRevertButtonClicked);
 		MainNotebook.SwitchPage += new SwitchPageHandler(OnSwitchPage);
 		StartButton.Clicked += new EventHandler(OnStartButtonClicked);
+		QuitMenuItem.Activated += new EventHandler(OnQuitItemSelected);
+		//InfoMenuItem;
 		
 		//ArtManager erzeugen
 		man = new CArtManager(config);
@@ -101,6 +110,10 @@ public class GnomeArtNgApp
 		Application.Run ();
 	}
 
+	private void OnQuitItemSelected(object sender, EventArgs a){
+		Application.Quit();
+	}
+	
 	private void OnImageTypeBoxChanged(object sender, EventArgs a){
 		FillComboboxWithStrings(imageResolutionsBox, ((CBackgroundTheme)(man.Theme)).GetAvailableResolutions());
 	}
