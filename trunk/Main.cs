@@ -23,7 +23,8 @@ public class GnomeArtNgApp
 	
 	private ComboBox imageTypeBox;
 	private ComboBox imageResolutionsBox;
-    private static int ListStoreCount = 10;
+    private ComboBox imageStyleBox;
+	private static int ListStoreCount = 10;
 	private ListStore[] stores = new ListStore[ListStoreCount];
 	private Gtk.IconView[] IconViews=new Gtk.IconView[ListStoreCount];
 	private Gtk.ScrolledWindow[] sWins = new Gtk.ScrolledWindow[ListStoreCount]; 
@@ -44,9 +45,10 @@ public class GnomeArtNgApp
 	[Widget] Gtk.Button StartButton;	
 	
 	//Erweiterte Infos Beschriftungen
-	 [Widget] Gtk.Label ExtInfoResolutionsLabel;	
-	 [Widget] Gtk.Label ExtInfoImageTypeLabel;
-	
+	[Widget] Gtk.Label ExtInfoResolutionsLabel;	
+	[Widget] Gtk.Label ExtInfoImageTypeLabel;
+	[Widget] Gtk.Label ExtInfoImageStyleLabel;
+
 	//Erweiterte Infos Inhalte
 	[Widget] Gtk.Button ExtInfoPreviewButton;
 	[Widget] Gtk.Image ExtInfoImage;
@@ -103,8 +105,20 @@ public class GnomeArtNgApp
 		imageTypeBox.Changed += new EventHandler(OnImageTypeBoxChanged);
 		imageResolutionsBox = ComboBox.NewText();
 		imageResolutionsBox.Changed += new EventHandler(OnImageResolutionsBoxChanged);
+		imageStyleBox = ComboBox.NewText();
+
+		//Verschiedene Styles hinzufügen
+		imageStyleBox.AppendText(Catalog.GetString("Centered"));
+		imageStyleBox.AppendText(Catalog.GetString("Filled"));
+		imageStyleBox.AppendText(Catalog.GetString("Scaled"));
+		imageStyleBox.AppendText(Catalog.GetString("Zoomed"));
+		imageStyleBox.AppendText(Catalog.GetString("Tiled"));
+		imageStyleBox.Active=0;
+		imageStyleBox.Changed += new EventHandler(OnImageStyleBoxChanged);
+		
 		LowerTable.Attach(imageTypeBox,1,2,2,3);
 		LowerTable.Attach(imageResolutionsBox,1,2,3,4);
+		LowerTable.Attach(imageStyleBox,1,2,4,5);
 		
 		OnSwitchPage(MainNotebook,new SwitchPageArgs());
 		Application.Run ();
@@ -116,6 +130,10 @@ public class GnomeArtNgApp
 	
 	private void OnImageTypeBoxChanged(object sender, EventArgs a){
 		FillComboboxWithStrings(imageResolutionsBox, ((CBackgroundTheme)(man.Theme)).GetAvailableResolutions());
+	}
+	
+	private void OnImageStyleBoxChanged(object sender, EventArgs a){
+		((CBackgroundTheme)(man.Theme)).ImgStyle = (CBackgroundTheme.ImageStyle)imageStyleBox.Active;
 	}
 	
 	private void OnImageResolutionsBoxChanged(object sender, EventArgs a){
@@ -237,12 +255,14 @@ public class GnomeArtNgApp
 		}
 		imageTypeBox.Visible=isImage;
 		imageResolutionsBox.Visible = isImage;
+		imageStyleBox.Visible = isImage;
 		ExtInfoImageTypeLabel.Visible = isImage;
 		ExtInfoResolutionsLabel.Visible = isImage;
+		ExtInfoImageStyleLabel.Visible = isImage;
 	}
 
 	void FillStore (int StoreIndex)  {
-		int themeCount = (int)(man.ThemeCount/5);
+		int themeCount = (int)(man.ThemeCount);
 		stores[StoreIndex].Clear();
 		for(int i=0; i<themeCount;i++) {
 			CTheme theme = man.GetTheme(i);

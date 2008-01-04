@@ -5,6 +5,7 @@
 //
 
 using System;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {

@@ -23,6 +23,15 @@ namespace GnomeArtNG
 			itSvg
 		}
 		
+		//Reihenfolge muss mit GetStyles übereinstimmen
+		public enum ImageStyle:int{
+			isCenter,
+			isFill,
+			isScale,
+			isZoom,
+			isTile
+		}
+		
 		//Listen mit den Hintergrundbildern
 		private ArrayList PngResolutionList;
 		private ArrayList JpgResolutionList;
@@ -34,9 +43,14 @@ namespace GnomeArtNG
 		private GConf.Client client; 
 		// Die zu verändernden Werte in der Gnome Registry
 		private static string GConfBgKey = "/desktop/gnome/background/picture_filename";
+		private static string GConfISKey = "/desktop/gnome/background/picture_options";
 		private string prevBackground="";
+		private string prevStyle="";
 		
 		//Speichern des aktuell gewählten Index und Liste 
+		private ImageStyle currentStyle; 
+		private string currentStyleString;
+		
 		private ImageType bgType; 
 		private ArrayList currentList;
 		private int currentIndex;
@@ -45,6 +59,27 @@ namespace GnomeArtNG
 		public int ImageIndex{
 			get {return currentIndex;}
 			set {currentIndex = value;}
+		}
+		
+		public ImageStyle ImgStyle{
+			get{return currentStyle;}
+			set{
+				currentStyle=value;
+				switch (currentStyle) {
+				case ImageStyle.isCenter:
+					currentStyleString = "centered"; break;
+				case ImageStyle.isFill:
+					currentStyleString = "stretched"; break;
+				case ImageStyle.isScale:
+					currentStyleString = "scaled"; break;
+				case ImageStyle.isZoom:
+					currentStyleString = "zoom"; break;
+				case ImageStyle.isTile:
+					currentStyleString = "wallpaper"; break;
+				default: 
+					currentStyleString = "zoom"; break;
+				}
+			}
 		}
 		
 		//Png,Jpg...welchen Typ hat das Bild?
@@ -109,41 +144,61 @@ namespace GnomeArtNG
 		}
 			
 		override protected void PreInstallation(CStatusWindow sw){
-			LocalThemeFile=config.ThemesPath+Path.GetFileName(Image.URL);
-			InstallThemeFile=config.SplashInstallPath+Path.GetFileName(Image.URL);	
+			LocalThemeFile = config.ThemesPath+Path.GetFileName(Image.URL);
+			InstallThemeFile = config.SplashInstallPath+Path.GetFileName(Image.URL);	
+			//Set the localPreviewFile to the downloaded file to fasten the preview
+			localPreviewFile = LocalThemeFile;
+			
+			Console.WriteLine(LocalPreviewFile);
 			
 			sw.Mainlabel=CConfiguration.txtSavingForRestore;
 			//Sichern
 			client = new GConf.Client();
 			prevBackground=(string)client.Get(GConfBgKey);
+			prevStyle = (string)client.Get(GConfISKey);
 			sw.SetProgress("1/"+installationSteps);
 			
 			//Index und Type wurden vorher schon gwählt
 			sw.Mainlabel=CConfiguration.txtDownloadTheme;
-			if (!File.Exists(InstallThemeFile)) {
-				if (!File.Exists(LocalThemeFile)){
-					if (!File.Exists(LocalPreviewFile)){
-						DownloadFile(Image.URL, LocalThemeFile,sw.DetailProgressBar);
-					} else 
-						File.Copy(LocalPreviewFile,LocalThemeFile);
-				}
-				File.Copy(LocalThemeFile,InstallThemeFile);
 
-				///home/.../.gnome2/backgrounds.xml einlesen und Background anhängen...
-				//Just a hack...TODO:paste in XMLDoc
-				if (!File.Exists(config.HomePath+"/.gnome2/backgrounds.xml")){
-					StreamWriter locFile = new StreamWriter(config.HomePath+"/.gnome2/backgrounds.xml");
-					locFile.WriteLine("<?xml version=\"1.0\"?>");
-					locFile.WriteLine("<!DOCTYPE wallpapers SYSTEM \"gnome-wp-list.dtd\"[]>");
-					locFile.WriteLine("  <wallpapers>");
-					locFile.WriteLine("  </wallpapers>");
-					locFile.Close();
+			if (!File.Exists(LocalThemeFile)) {
+				if (!File.Exists(LocalPreviewFile)) {
+					DownloadFile(Image.URL, LocalThemeFile,sw.DetailProgressBar);
+				} else 
+					File.Copy(LocalPreviewFile,LocalThemeFile);
+			}
+			try{File.Copy(LocalThemeFile,InstallThemeFile);} catch{}
+
+			///home/.../.gnome2/backgrounds.xml einlesen und Background anhängen...
+			//Just a hack...TODO:paste in XMLDoc
+			if (!File.Exists(config.HomePath+"/.gnome2/backgrounds.xml")){
+				StreamWriter locFile = new StreamWriter(config.HomePath+"/.gnome2/backgrounds.xml");
+				locFile.WriteLine("<?xml version=\"1.0\"?>");
+				locFile.WriteLine("<!DOCTYPE wallpapers SYSTEM \"gnome-wp-list.dtd\"[]>");
+				locFile.WriteLine("  <wallpapers>");
+				locFile.WriteLine("  </wallpapers>");
+				locFile.Close();
+			}
+				
+			XmlDocument doc = new XmlDocument();
+			doc.Load(config.HomePath+"/.gnome2/backgrounds.xml");
+			
+			//Nach schon vorhandenem Eintrag in Backgrounds suchen
+			XmlNode foundNode = doc.SelectSingleNode("wallpapers/wallpaper[filename='"+InstallThemeFile+"']");
+			if (foundNode != null){
+				XmlNodeList list = foundNode.ChildNodes;
+				Console.WriteLine("Counr:"+list.Count);
+				foreach (XmlNode node in list){
+					if (node.Name=="options"){
+						Console.WriteLine(node.InnerText);
+						node.InnerText=currentStyleString;
+						break;
+					}
 				}
 					
-				XmlDocument doc = new XmlDocument();
-				doc.Load(config.HomePath+"/.gnome2/backgrounds.xml");
+			}
+			else {
 				XmlNode newElem;
-				XmlElement root = doc.DocumentElement;
 				XmlNode wallpaper = doc.CreateNode(XmlNodeType.Element,"wallpaper","");
 				((XmlElement)wallpaper).SetAttribute("deleted","false");
 				
@@ -154,7 +209,7 @@ namespace GnomeArtNG
 				newElem.InnerText = InstallThemeFile;
 				wallpaper.AppendChild(newElem);
 				newElem = doc.CreateNode(XmlNodeType.Element, "options", "");  
-				newElem.InnerText = "zoom";
+				newElem.InnerText = currentStyleString;
 				wallpaper.AppendChild(newElem);
 				newElem = doc.CreateNode(XmlNodeType.Element, "shade_type", "");  
 				newElem.InnerText = "solid";
@@ -165,17 +220,17 @@ namespace GnomeArtNG
 				newElem = doc.CreateNode(XmlNodeType.Element, "scolor", "");  
 				newElem.InnerText = "#dadab0b08282";
 				wallpaper.AppendChild(newElem);
-				root.AppendChild(wallpaper);
-				doc.Save(config.HomePath+"/.gnome2/backgrounds.xml");
+				doc.DocumentElement.AppendChild(wallpaper);
 			}
+			doc.Save(config.HomePath+"/.gnome2/backgrounds.xml");
 			sw.SetProgress("2/"+installationSteps);
 		}
 		
-
 		override protected void Installation(CStatusWindow sw){
 			//Installieren
 			sw.Mainlabel=CConfiguration.txtInstalling;
 			client.Set(GConfBgKey,InstallThemeFile);
+			client.Set(GConfISKey,currentStyleString);
 		}
 		
 		override protected void PostInstallation(CStatusWindow sw){
@@ -184,13 +239,15 @@ namespace GnomeArtNG
 		
 		override public void Revert(){
 			if (revertIsAvailable){
-				//XML Eintrag löschen und gconf zurücksetzen
+				//TODO:XML Eintrag löschen und gconf zurücksetzen
 				client.Set(GConfBgKey,prevBackground);
+				client.Set(GConfISKey,prevStyle);
 			}
 		}
 		
 		public CBackgroundTheme(CConfiguration config):base(config) {
 			installationSteps = 3;
+			ImgStyle = (ImageStyle)0;
 			useUrlAsPreview = true;
 			PngResolutionList = new ArrayList();
 			JpgResolutionList = new ArrayList();

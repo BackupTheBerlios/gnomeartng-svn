@@ -342,7 +342,7 @@ namespace GnomeArtNG
 			w.ButtonSensitive=false;
 			//Thumbs von der Platte lesen
 			
-			for (int i=0;i<(int)(themeCount/5);i++){
+			for (int i=0;i<(int)(themeCount);i++){
 				theme = ((CTheme)list[i]);
 				w.SetProgress((i+1).ToString()+"/"+themeCount.ToString());
 				w.ExtInfoLabel = theme.SmallThumbnailUrl;
@@ -373,7 +373,9 @@ namespace GnomeArtNG
 					ta[i] = new Thread(new ThreadStart(theme.GetThumbnailImage));
 					ta[i].Start(); // Threads werden gestartet
 					*/
-					theme.GetThumbnailImage(w.DetailProgressBar);
+					try{
+						theme.GetThumbnailImage(w.DetailProgressBar);
+					} catch {}
 				}
 				/* Threading
 				bool done=false;

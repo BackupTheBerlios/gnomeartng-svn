@@ -9,6 +9,7 @@ using System.IO;
 using System.Diagnostics;
 using Mono.Unix;
 using GnomeArtNG;
+using System.Collections;
 
 namespace GnomeArtNG
 
@@ -120,7 +121,7 @@ namespace GnomeArtNG
 			else
 				return "-vxjf ";
 		}
-		 
+		
 		public string NodeEntryPath(){
 			switch(artType){
 				case ArtType.atBackground_all: 
@@ -214,7 +215,7 @@ namespace GnomeArtNG
 			ProcessStartInfo psi = new ProcessStartInfo();
 			psi.Arguments = attribPrep+Arguments;
 			psi.FileName = FileName;
-			Console.WriteLine(psi.FileName+psi.Arguments);
+			//Console.WriteLine(psi.FileName+psi.Arguments);
 			psi.RedirectStandardOutput = true;
 			psi.UseShellExecute = false;
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
