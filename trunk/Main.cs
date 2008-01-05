@@ -83,7 +83,8 @@ public class GnomeArtNgApp
 		MainNotebook.SwitchPage += new SwitchPageHandler(OnSwitchPage);
 		StartButton.Clicked += new EventHandler(OnStartButtonClicked);
 		QuitMenuItem.Activated += new EventHandler(OnQuitItemSelected);
-		//InfoMenuItem;
+		InfoMenuItem.Activated += new EventHandler(OnInfoItemSelected);
+		
 		
 		//ArtManager erzeugen
 		man = new CArtManager(config);
@@ -102,9 +103,7 @@ public class GnomeArtNgApp
 		
 		//ComboBoxen anlegen
 		imageTypeBox = ComboBox.NewText();
-		imageTypeBox.Changed += new EventHandler(OnImageTypeBoxChanged);
 		imageResolutionsBox = ComboBox.NewText();
-		imageResolutionsBox.Changed += new EventHandler(OnImageResolutionsBoxChanged);
 		imageStyleBox = ComboBox.NewText();
 
 		//Verschiedene Styles hinzufügen
@@ -127,9 +126,16 @@ public class GnomeArtNgApp
 	private void OnQuitItemSelected(object sender, EventArgs a){
 		Application.Quit();
 	}
+
+	private void OnInfoItemSelected(object sender, EventArgs a){
+		new CAboutWindow(CConfiguration.Version,true);
+	}
 	
 	private void OnImageTypeBoxChanged(object sender, EventArgs a){
-		FillComboboxWithStrings(imageResolutionsBox, ((CBackgroundTheme)(man.Theme)).GetAvailableResolutions());
+		CBackgroundTheme bgTheme = (CBackgroundTheme)(man.Theme);
+		bgTheme.BgType = bgTheme.GetImageTypeFromString(imageTypeBox.ActiveText);
+		FillComboboxWithStrings(imageResolutionsBox, bgTheme.GetAvailableResolutions());
+		//Console.WriteLine(imageTypeBox.ActiveText);
 	}
 	
 	private void OnImageStyleBoxChanged(object sender, EventArgs a){
@@ -250,8 +256,12 @@ public class GnomeArtNgApp
 		ExtInfoRating.Text = theme.VoteSum.ToString();
 		if (isImage){
 			CBackgroundTheme bgt =(CBackgroundTheme)theme;
+			imageTypeBox.Changed -= (EventHandler)OnImageTypeBoxChanged;
+			imageResolutionsBox.Changed -= (EventHandler)OnImageResolutionsBoxChanged;
 			FillComboboxWithStrings(imageTypeBox, bgt.GetAvailableTypes());
 			FillComboboxWithStrings(imageResolutionsBox, bgt.GetAvailableResolutions(bgt.GetImageTypeFromString(imageTypeBox.ActiveText)));
+			imageTypeBox.Changed += new EventHandler(OnImageTypeBoxChanged);
+			imageResolutionsBox.Changed += new EventHandler(OnImageResolutionsBoxChanged);
 		}
 		imageTypeBox.Visible=isImage;
 		imageResolutionsBox.Visible = isImage;

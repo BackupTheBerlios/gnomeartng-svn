@@ -187,7 +187,7 @@ namespace GnomeArtNG
 			XmlNode foundNode = doc.SelectSingleNode("wallpapers/wallpaper[filename='"+InstallThemeFile+"']");
 			if (foundNode != null){
 				XmlNodeList list = foundNode.ChildNodes;
-				Console.WriteLine("Counr:"+list.Count);
+				//Console.WriteLine("Count:"+list.Count);
 				foreach (XmlNode node in list){
 					if (node.Name=="options"){
 						Console.WriteLine(node.InnerText);
@@ -264,7 +264,7 @@ namespace GnomeArtNG
 		public string[] GetAvailableResolutions(){
 			string[] Resolutions=new string[currentList.Count];
 			if (bgType==ImageType.itSvg)
-				Resolutions[0]="SVG is resolution-independend";
+				Resolutions[0]=Catalog.GetString("resolution-independend");
 			else for(int i=0;i<currentList.Count;i++){
 				CBackgroundImage bgImg=(CBackgroundImage)(currentList[i]);
 				Resolutions[i]=bgImg.xResolution +"x"+ bgImg.yResolution;

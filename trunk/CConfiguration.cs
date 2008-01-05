@@ -16,6 +16,7 @@ namespace GnomeArtNG
 {
 	public class CConfiguration
 	{
+		public static string Version = "0.4.2";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11
