@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 <UserCombinePreferences filename="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/GnomeArtNG.mds">
   <Files>
+    <File filename="Welcome" />
     <File filename="./Main.cs" />
     <File filename="./CBackgroundTheme.cs" />
     <File filename="./CArtManager.cs" />
+    <File filename="./CGdmTheme.cs" />
+    <File filename="./CGtkTheme.cs" />
+    <File filename="./CInfoWindow.cs" />
+    <File filename="./CStatusWindow.cs" />
+    <File filename="./CWindowDecorationTheme.cs" />
     <File filename="./CConfiguration.cs" />
   </Files>
   <Views>
@@ -11,20 +17,19 @@
       <TreeView>
         <Node expanded="True">
           <Node name="GnomeArtNG" expanded="True">
-            <Node name="References" expanded="True" />
             <Node name="Resources" expanded="True">
-              <Option id="ShowAllFiles" value="True" />
+              <Option id="ShowCodeBehindClasses" value="True" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="True" />
-              <Option id="ShowCodeBehindClasses" value="True" />
+              <Option id="ShowAllFiles" value="True" />
             </Node>
             <Node name="AssemblyInfo.cs" expanded="False">
-              <Option id="ShowAllFiles" value="False" />
+              <Option id="ShowCodeBehindClasses" value="True" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="False" />
-              <Option id="ShowCodeBehindClasses" value="True" />
+              <Option id="ShowAllFiles" value="False" />
             </Node>
-            <Node name="CBackgroundTheme.cs" expanded="False" selected="True" />
+            <Node name="CWindowDecorationTheme.cs" expanded="False" selected="True" />
           </Node>
           <Node name="Packages" expanded="True" />
         </Node>
@@ -39,7 +44,7 @@
   <Properties>
     <Properties>
       <Property key="ActiveConfiguration" value="Release" />
-      <Property key="ActiveWindow" value="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CBackgroundTheme.cs" />
+      <Property key="ActiveWindow" value="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CWindowDecorationTheme.cs" />
     </Properties>
   </Properties>
 </UserCombinePreferences>

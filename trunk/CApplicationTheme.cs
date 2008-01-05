@@ -49,11 +49,9 @@ namespace GnomeArtNG
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstalling);
 			client.Set(GConfApplicationKey,ConOutp.ToString().Split('/')[0]);
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstallDone);
-			sw.SetProgress("4/"+installationSteps);
 		}
 
 		override protected void PostInstallation(CStatusWindow sw){
-			//config.Execute("gnome-appearance-properties","");
 			//Revert verfügbar machen
 			revertIsAvailable=true;
 		}

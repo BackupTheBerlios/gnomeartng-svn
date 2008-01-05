@@ -15,7 +15,6 @@ namespace GnomeArtNG
 	
 	abstract public class CTheme
 	{
-		//TODO:Alles Properties
 		public string Author="";
 		public string Description="";
 		public string Name="";
@@ -27,8 +26,6 @@ namespace GnomeArtNG
 		public int DownloadCount=0;
 		public string License="";
 		public string LocalThemeFile="";
-		public bool LocalThumbExists=false;
-		public bool LocalPreviewExists=false;
 
 		protected CConfiguration config;
 		
@@ -36,21 +33,26 @@ namespace GnomeArtNG
 		protected bool useUrlAsPreview=false;
 		protected bool revertIsAvailable=false;
 		protected bool installationIsPossible=true;
+		protected bool localThumbExists=false;
+		protected bool localPreviewExists=false;
 		protected string smallThumbnailUrl="";
 		protected string previewUrl="";
 		protected string downloadUrl="";
 		protected string localThumbnailFile="";
 		protected string localPreviewFile="";
 		protected int installationSteps=1;
+
 		public bool RevertIsAvailable{ get{ return revertIsAvailable;} }
 		public bool InstallationIsPossible{ get{ return installationIsPossible;} }
+		public bool LocalThumbExists{get{return localThumbExists;}}
+		public bool LocalPreviewExists{get{return localPreviewExists;}}
 		
 		public string SmallThumbnailUrl{
 			get{return smallThumbnailUrl;}
 			set{
 				smallThumbnailUrl=value;
 				localThumbnailFile=Path.Combine(config.ThumbsPath,Path.GetFileName(smallThumbnailUrl));
-				LocalThumbExists=File.Exists(localThumbnailFile);
+				localThumbExists=File.Exists(localThumbnailFile);
 				//Console.WriteLine("LocalThumb: "+localThumbnailFile);
 			}
 		}
@@ -58,7 +60,7 @@ namespace GnomeArtNG
 		public string LocalPreviewFile{get{return localPreviewFile;}}
 		public string LocalThumbnailFile{
 			get{
-				if(LocalThumbExists) 
+				if(localThumbExists) 
 					return localThumbnailFile;
 				else
 					return config.NoThumb;
@@ -73,7 +75,7 @@ namespace GnomeArtNG
 			set{
 				previewUrl=value;
 				localPreviewFile=Path.Combine(config.PreviewPath,Path.GetFileName(previewUrl));
-				LocalPreviewExists=File.Exists(localPreviewFile);
+				localPreviewExists=File.Exists(localPreviewFile);
 				//Console.WriteLine("LocalPreview: "+localPreviewFile);
 			}
 		}
@@ -89,21 +91,21 @@ namespace GnomeArtNG
 		
 		//Thumbnail herunterladen 
 		public void GetThumbnailImage(Gtk.ProgressBar bar){
-			if (!LocalThumbExists){
+			if (!localThumbExists){
 				DownloadFile(SmallThumbnailUrl,localThumbnailFile,bar);
-				LocalThumbExists=true;
+				localThumbExists=true;
 			}
 		}
 		
 		public void GetPreviewImage(Gtk.ProgressBar bar){
 			try{
-				if (!LocalPreviewExists){
+				if (!localPreviewExists){
 					DownloadFile(PreviewUrl,LocalPreviewFile,bar);
-					LocalPreviewExists=true;
+					localPreviewExists=true;
 				}
 			} catch (Exception ex) {
 				Console.WriteLine("Exception occured in GetPreviewImage");
-				LocalPreviewExists=false;
+				localPreviewExists=false;
 				throw ex;
 			}
 			

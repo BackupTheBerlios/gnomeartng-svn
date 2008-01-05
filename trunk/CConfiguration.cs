@@ -16,7 +16,7 @@ namespace GnomeArtNG
 {
 	public class CConfiguration
 	{
-		public static string Version = "0.4.2";
+		public static string Version = "0.4.3";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11
@@ -66,6 +66,7 @@ namespace GnomeArtNG
 		private string splashInstallDir=".gnome";
 		private string splashInstallPath="";
 		private string applicationInstallPath="";
+		private string decorationInstallPath="";
 		private string iconInstallPath="";
 		private string iconDir=".icons";
 		private string gdmInstallPath="/usr/share/gdm/themes/";
@@ -100,6 +101,7 @@ namespace GnomeArtNG
 		
 		public string SplashInstallPath{get{return splashInstallPath;}}
 		public string ApplicationInstallPath{get{return applicationInstallPath;}}
+		public string DecorationInstallPath{get{return decorationInstallPath;}}
 		public string IconInstallPath{get{return iconInstallPath;}}
 		public string GdmInstallPath{get{return gdmInstallPath;}}
 		
@@ -204,6 +206,7 @@ namespace GnomeArtNG
 			settingsPath = Path.Combine(homePath,".gnome2"+dirSep+"gnome-art-ng");
 			splashInstallPath = homePath+dirSep+splashInstallDir+dirSep;
 			applicationInstallPath = homePath+dirSep+"."+themesDir+dirSep;
+			decorationInstallPath = homePath+dirSep+"."+themesDir+dirSep;
 			iconInstallPath = homePath+dirSep+iconDir+dirSep;
 			tarIsAvailable = TestIfProgIsInstalled("tar","--version","gnu tar");
 			grepIsAvailable = TestIfProgIsInstalled("grep","--version","gnu grep");

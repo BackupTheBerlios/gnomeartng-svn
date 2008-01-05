@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-05 09:42+0100\n"
+"POT-Creation-Date: 2008-01-05 23:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,6 +55,7 @@ msgstr ""
 "ist.."
 
 #: CArtManager.cs:138 CArtManager.cs:142 CArtManager.cs:145 CTheme.cs:148
+#: CTheme.cs:150
 msgid "downloading... (no progress available)"
 msgstr "am herunterladen.. (kein Fortschritt verfügbar)"
 
@@ -82,7 +83,7 @@ msgstr "Installiere das gewählte Thema"
 msgid "Install finished"
 msgstr "Installation beendet"
 
-#: CTheme.cs:110 CTheme.cs:121 CTheme.cs:192
+#: CTheme.cs:110 CTheme.cs:121 CTheme.cs:192 CTheme.cs:194
 msgid ""
 "<i>Installing</i>\n"
 "\n"
@@ -104,27 +105,28 @@ msgstr ""
 msgid "Gnome-Art-NG"
 msgstr "Gnome-Art-NG"
 
-#: gui.glade:27
+#: gui.glade:27 gui.glade:28
 msgid "_File"
 msgstr "_Datei"
 
-#: gui.glade:37
+#: gui.glade:37 gui.glade:38
 msgid "gtk-quit"
 msgstr "gtk-quit"
 
-#: gui.glade:50
+#: gui.glade:50 gui.glade:51
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: gui.glade:60
+#: gui.glade:60 gui.glade:61
 msgid "gtk-about"
 msgstr "gtk-about"
 
 #: gui.glade:99 gui.glade:144 gui.glade:145 gui.glade:195 gui.glade:245
+#: gui.glade:100 gui.glade:146 gui.glade:196 gui.glade:246
 msgid "<b>Please choose your favourite background</b>"
 msgstr "<b>Bitte wählen Sie den zu installierenden Hintergrund</b>"
 
-#: gui.glade:127 gui.glade:128
+#: gui.glade:127 gui.glade:128 gui.glade:129
 msgid ""
 "Gnome\n"
 "Background"
@@ -132,7 +134,7 @@ msgstr ""
 "Gnome\n"
 "Hintergründe"
 
-#: gui.glade:175 gui.glade:177
+#: gui.glade:175 gui.glade:177 gui.glade:178
 msgid ""
 "Other\n"
 "Backgrounds"
@@ -140,25 +142,25 @@ msgstr ""
 "Andere\n"
 "Hintergründe"
 
-#: gui.glade:193 gui.glade:296
+#: gui.glade:193 gui.glade:296 gui.glade:297
 msgid "<b>Please choose an application theme</b>"
 msgstr "<b>Bitte wählen Sie ein Anwendungs-Thema aus</b>"
 
-#: gui.glade:224 gui.glade:328
+#: gui.glade:224 gui.glade:328 gui.glade:329
 msgid "Application"
 msgstr "Anwendung"
 
-#: gui.glade:227
+#: gui.glade:227 gui.glade:228
 msgid ""
 "Nature\n"
 "Backgrounds"
-msgstr ""
+msgstr "NatürlicheHintergründe"
 
-#: gui.glade:241 gui.glade:345
+#: gui.glade:241 gui.glade:345 gui.glade:346
 msgid "<b>Please choose a window decoration</b>"
 msgstr "<b>Bitte wähle eine Fensterdokoration aus</b>"
 
-#: gui.glade:277
+#: gui.glade:277 gui.glade:278
 msgid ""
 "Abstract \n"
 "Backgrounds"
@@ -166,7 +168,7 @@ msgstr ""
 "Abstrakte \n"
 "Hintergründe"
 
-#: gui.glade:377
+#: gui.glade:377 gui.glade:378
 msgid ""
 "Window\n"
 "Decoration"
@@ -174,35 +176,35 @@ msgstr ""
 "Fenster-\n"
 "Dekoration"
 
-#: gui.glade:395
+#: gui.glade:395 gui.glade:396
 msgid "<b>Please choose an icon set</b>"
 msgstr "<b>Bitte wähle ein Icon-Thema aus</b>"
 
-#: gui.glade:427
+#: gui.glade:427 gui.glade:428
 msgid "Icons"
 msgstr "Icons"
 
-#: gui.glade:444
+#: gui.glade:444 gui.glade:445
 msgid "<b>Please choose your greeter for GDM</b>"
 msgstr "<b>Wählen Sie den zu installierenden Begrüßungsbildschirm</b>"
 
-#: gui.glade:368 gui.glade:476
+#: gui.glade:368 gui.glade:476 gui.glade:477
 msgid "GDM Greeter"
 msgstr "GDM Begrüßung"
 
-#: gui.glade:385 gui.glade:493
+#: gui.glade:385 gui.glade:493 gui.glade:494
 msgid "<b>Please choose a splash screen for the Gnome start</b>"
 msgstr "<b>Bitte wählen Sie ein Theme für den Gnome-Start</b>"
 
-#: gui.glade:416 gui.glade:525
+#: gui.glade:416 gui.glade:525 gui.glade:526
 msgid "Splash"
 msgstr "Splash"
 
-#: gui.glade:464 gui.glade:574
+#: gui.glade:464 gui.glade:574 gui.glade:575
 msgid "Gtk-Engine"
-msgstr "Gtk-Theme"
+msgstr "Gtk-Engine"
 
-#: gui.glade:532 gui.glade:642
+#: gui.glade:532 gui.glade:642 gui.glade:643
 msgid "<b>Name:</b>"
 msgstr "<b>Name:</b>"
 
@@ -212,46 +214,51 @@ msgstr "<b>Name:</b>"
 #: gui.glade:807 gui.glade:833 gui.glade:1451 gui.glade:806 gui.glade:832
 #: gui.glade:1464 gui.glade:824 gui.glade:852 gui.glade:855 gui.glade:883
 #: gui.glade:814 gui.glade:840 gui.glade:827 gui.glade:1106 gui.glade:1107
-#: gui.glade:850 gui.glade:1119 gui.glade:1109
+#: gui.glade:850 gui.glade:1119 gui.glade:1109 gui.glade:653 gui.glade:682
+#: gui.glade:709 gui.glade:828 gui.glade:856 gui.glade:1110 gui.glade:1111
 msgid "label"
 msgstr "label"
 
 #: gui.glade:558 gui.glade:668 gui.glade:1135 gui.glade:1136 gui.glade:1089
-#: gui.glade:1138
+#: gui.glade:1138 gui.glade:669 gui.glade:1139 gui.glade:1140
 msgid "<b>Author:</b>"
 msgstr "<b>Author:</b>"
 
-#: gui.glade:585 gui.glade:695
+#: gui.glade:585 gui.glade:695 gui.glade:696
 msgid "<b>License:</b>"
 msgstr "<b>Lizens:</b>"
 
-#: gui.glade:635 gui.glade:745
+#: gui.glade:635 gui.glade:745 gui.glade:746
 msgid "<b>Description:</b>"
 msgstr "<b>Beschreibung:</b>"
 
 #: gui.glade:650 Main.cs:198 Main.cs:209 gui.glade:760 Main.cs:217 Main.cs:230
-#: Main.cs:248 Main.cs:255 Main.cs:254
+#: Main.cs:248 Main.cs:255 Main.cs:254 gui.glade:761
 msgid "No description has been entered by the author"
 msgstr ""
 "Der Author des Themas hat beim Hochladen leider keine Beschreibung eingegeben"
 
 #: gui.glade:688 gui.glade:756 gui.glade:866 gui.glade:798 gui.glade:797
 #: gui.glade:865 gui.glade:896 gui.glade:805 gui.glade:868 gui.glade:815
+#: gui.glade:869
 msgid "<b>Download count:</b>"
 msgstr "<b>Anzahl der Downloads:</b>"
 
 #: gui.glade:710 gui.glade:730 gui.glade:840 gui.glade:820 gui.glade:819
 #: gui.glade:839 gui.glade:870 gui.glade:827 gui.glade:842 gui.glade:837
+#: gui.glade:843
 msgid "<b>Rating:</b>"
 msgstr "<b>Bewertung:</b>"
 
 #: gui.glade:738 gui.glade:702 gui.glade:812 gui.glade:848 gui.glade:847
 #: gui.glade:811 gui.glade:842 gui.glade:855 gui.glade:814 gui.glade:864
+#: gui.glade:815
 msgid "<b>Resolution:</b>"
 msgstr "<b>Auflösung:</b>"
 
 #: gui.glade:752 gui.glade:688 gui.glade:798 gui.glade:862 gui.glade:861
 #: gui.glade:797 gui.glade:828 gui.glade:869 gui.glade:801 gui.glade:877
+#: gui.glade:802
 msgid "<b>Image type:</b>"
 msgstr "<b>Bildtyp:</b>"
 
@@ -260,6 +267,7 @@ msgid "Installieren"
 msgstr ""
 
 #: gui.glade:796 gui.glade:907 gui.glade:906 gui.glade:937 gui.glade:922
+#: gui.glade:923
 msgid "gtk-undo"
 msgstr ""
 
@@ -268,10 +276,12 @@ msgid "StartButton"
 msgstr ""
 
 #: gui.glade:833 gui.glade:945 gui.glade:944 gui.glade:970 gui.glade:955
+#: gui.glade:956
 msgid "<b>Extended theme information</b>"
 msgstr "<b>Erweiterte Informationen</b>"
 
 #: gui.glade:856 gui.glade:968 gui.glade:967 gui.glade:993 gui.glade:978
+#: gui.glade:979
 msgid "About Gnome-Art-NG"
 msgstr "Über Gnome-Art Next Generation"
 
@@ -294,12 +304,12 @@ msgid ""
 msgstr ""
 
 #: gui.glade:966 gui.glade:1078 gui.glade:1077 gui.glade:1103 gui.glade:1238
-#: gui.glade:1240 gui.glade:1242
+#: gui.glade:1240 gui.glade:1242 gui.glade:1245 gui.glade:1246
 msgid "<big><b>Downloading</b></big>"
 msgstr "<big><b>Am Herunterladen</b></big>"
 
 #: gui.glade:997 gui.glade:1109 gui.glade:1108 gui.glade:1134 gui.glade:1269
-#: gui.glade:1271 gui.glade:1273
+#: gui.glade:1271 gui.glade:1273 gui.glade:1276 gui.glade:1277
 msgid ""
 "<i>Your themes are beeing read</i>\n"
 "\n"
@@ -317,28 +327,30 @@ msgstr ""
 "klicken Sie auf den unten sichtbaren Expander."
 
 #: gui.glade:1018 gui.glade:1130 gui.glade:1129 gui.glade:1155 gui.glade:1290
-#: gui.glade:1292 gui.glade:1294
+#: gui.glade:1292 gui.glade:1294 gui.glade:1297 gui.glade:1298
 msgid "<i>ExtInfosLabel</i>"
 msgstr ""
 
 #: gui.glade:1026 gui.glade:1138 gui.glade:1137 gui.glade:1163 gui.glade:1298
-#: gui.glade:1300 gui.glade:1302
+#: gui.glade:1300 gui.glade:1302 gui.glade:1305 gui.glade:1306
 msgid "Extended information about the current action:"
 msgstr "Informationen über die gerade ausgeführte Aktion:"
 
 #: gui.glade:1076 gui.glade:1188 gui.glade:1201 gui.glade:1227 gui.glade:1362
-#: gui.glade:1364 gui.glade:1366
+#: gui.glade:1364 gui.glade:1366 gui.glade:1369 gui.glade:1370
 msgid "gtk-stop"
 msgstr ""
 
 #: gui.glade:1154 gui.glade:1269 gui.glade:1282 gui.glade:1377 gui.glade:1308
 #: gui.glade:1403 gui.glade:1183 gui.glade:1443 gui.glade:1538 gui.glade:1185
 #: gui.glade:1445 gui.glade:1540 gui.glade:1187 gui.glade:1447 gui.glade:1542
+#: gui.glade:1188 gui.glade:1450 gui.glade:1546 gui.glade:1189 gui.glade:1451
+#: gui.glade:1547
 msgid "gtk-close"
 msgstr ""
 
 #: gui.glade:1212 gui.glade:1328 gui.glade:1341 gui.glade:1340 gui.glade:1366
-#: gui.glade:1501 gui.glade:1503 gui.glade:1505
+#: gui.glade:1501 gui.glade:1503 gui.glade:1505 gui.glade:1509 gui.glade:1510
 msgid ""
 "<i>Willkommen zu GNOME-Art-ng.</i>\n"
 "\n"
@@ -354,17 +366,17 @@ msgid "button"
 msgstr ""
 
 #: gui.glade:1501 gui.glade:1514 gui.glade:1426 gui.glade:1452 gui.glade:1587
-#: gui.glade:1589 gui.glade:1591
+#: gui.glade:1589 gui.glade:1591 gui.glade:1595 gui.glade:1596
 msgid "<b>Warning, something has gone wrong!</b>"
 msgstr "<b>Achtung, die Aktion ist fehlgeschlagen!</b>"
 
 #: gui.glade:1426 gui.glade:1543 gui.glade:1556 gui.glade:1468 gui.glade:1494
-#: gui.glade:1629 gui.glade:1631 gui.glade:1633
+#: gui.glade:1629 gui.glade:1631 gui.glade:1633 gui.glade:1637 gui.glade:1638
 msgid "Exact information about the error:"
 msgstr "Genaue Beschreibung des Fehlers:"
 
 #: gui.glade:1445 gui.glade:1562 gui.glade:1575 gui.glade:1487 gui.glade:1513
-#: gui.glade:1648 gui.glade:1650 gui.glade:1652
+#: gui.glade:1648 gui.glade:1650 gui.glade:1652 gui.glade:1656 gui.glade:1657
 msgid "Ok"
 msgstr "Ok"
 
@@ -372,11 +384,11 @@ msgstr "Ok"
 msgid "Previewing \""
 msgstr "Vorschau \""
 
-#: CTheme.cs:133 CTheme.cs:135 CTheme.cs:206 CTheme.cs:207
+#: CTheme.cs:133 CTheme.cs:135 CTheme.cs:206 CTheme.cs:207 CTheme.cs:209
 msgid "<b>Theme installation failed!</b>"
 msgstr "<b>Die Installation des Themas schlug fehl!</b>"
 
-#: CTheme.cs:206 CTheme.cs:207
+#: CTheme.cs:206 CTheme.cs:207 CTheme.cs:209
 msgid ""
 "This message was reported from the installation function:\n"
 "\n"
@@ -386,6 +398,7 @@ msgstr ""
 
 #: gui.glade:896 gui.glade:1280 gui.glade:895 gui.glade:1293 gui.glade:922
 #: gui.glade:1319 gui.glade:907 gui.glade:1454 gui.glade:1456 gui.glade:1458
+#: gui.glade:908 gui.glade:1461 gui.glade:1462
 msgid "gtk-apply"
 msgstr ""
 
@@ -393,7 +406,7 @@ msgstr ""
 msgid "gtk-save"
 msgstr ""
 
-#: gui.glade:542
+#: gui.glade:542 gui.glade:543
 msgid "<b>Please choose a GTK theme</b>"
 msgstr "<b>Bitte wählen Sie ein GTK-Theme</b>"
 
@@ -402,7 +415,7 @@ msgid "Warning: the preview image could not be loaded!"
 msgstr "Warnung: Das Vorschaubild konnte nicht geladen werden!"
 
 #: gui.glade:1219 gui.glade:1232 gui.glade:1258 gui.glade:1393 gui.glade:1395
-#: gui.glade:1397
+#: gui.glade:1397 gui.glade:1400 gui.glade:1401
 msgid "<b>Previewing</b>"
 msgstr "<b>Vorschau</b>"
 
@@ -509,11 +522,11 @@ msgstr "Fehler: Das Vorschaubild konnte nicht geladen werden"
 msgid "Warning: Could not download xml file!"
 msgstr "Warnung: Konnte die XML-Datei nicht herunterladen"
 
-#: CTheme.cs:138
+#: CTheme.cs:138 CTheme.cs:140
 msgid "bytes"
 msgstr "Bytes"
 
-#: CTheme.cs:144
+#: CTheme.cs:144 CTheme.cs:146
 msgid "Initialize download"
 msgstr "Starte Download"
 
@@ -531,15 +544,15 @@ msgstr ""
 "Konnte keine sinnvollen Informationen vom tar-Kommando erhalten...breche ab!"
 
 #: CGtkTheme.cs:22 CGtkTheme.cs:25 CWindowDecorationTheme.cs:21
-#: CWindowDecorationTheme.cs:24
+#: CWindowDecorationTheme.cs:24 CGtkTheme.cs:20 CGtkTheme.cs:24
 msgid "Not yet implemented!!"
 msgstr "Noch nicht implementiert"
 
-#: gui.glade:814 gui.glade:883 gui.glade:877 gui.glade:801
+#: gui.glade:814 gui.glade:883 gui.glade:877 gui.glade:801 gui.glade:878
 msgid "<b>Style:</b>"
 msgstr "<b>Stil:</b>"
 
-#: gui.glade:952 gui.glade:937
+#: gui.glade:952 gui.glade:937 gui.glade:938
 msgid "gtk-refresh"
 msgstr ""
 
@@ -563,11 +576,11 @@ msgstr "Gezoomt"
 msgid "Tiled"
 msgstr "Gekachelt"
 
-#: gui.glade:993
+#: gui.glade:993 gui.glade:994
 msgid "<b>About Gnome-Art Next Generation</b>"
 msgstr "<b>Über Gnome-Art Next Generation</b>"
 
-#: gui.glade:1030
+#: gui.glade:1030 gui.glade:1031
 msgid ""
 "If you encounter any problems please go to \n"
 "\n"
@@ -578,38 +591,42 @@ msgid ""
 "\n"
 "Greetings, Tom (software@plasmasolutions.de)"
 msgstr ""
-"Falls Sie Fehler finden gehen sie am Besten zu\n"
+"Falls Sie Fehler finden gehen Sie am Besten auf\n"
 "\n"
 "<i><b>http://gnomeartng.berlios.de</b></i>\n"
 "\n"
 "und starten einen Fehlerreport oder eine Hilfeanfrage. Um meine Arbeit zu "
-"unterstützen, können Sieunter dieser Adresse auch gerne spenden !\n"
+"unterstützen, können Sie unter dieser Adresse auch gerne spenden !\n"
 "\n"
 "Grüße, Tom (software@plasmasolutions.de)"
 
-#: gui.glade:1074 gui.glade:1075 gui.glade:1146
+#: gui.glade:1074 gui.glade:1075 gui.glade:1146 gui.glade:1076
 msgid ""
 "<i>My wife and my love Isabelle,\n"
 "My family: Maria, Gerd and my brother Daniel\n"
-"All of my friends: Especially Fedi, Michael and Kirsten, \n"
+"All of my friends: Especially Fedi, Michael and Kirsten,\n"
 "the Engels and the Klees, Sina and the Rosches\n"
-"All of you people out there</i>"
+"and last but not least: Guillem and Teresa\n"
+"All I've forgotten now</i>"
 msgstr ""
 "<i>Meine Frau und Liebe meines Lebens Isabelle, \n"
 "Meine Familie: Maria, Gerd und meinen Bruder Daniel\n"
-"Alle meine Freunde: besonders Fedi, Michael und Kirsten \n"
+"Alle meine Freunde: Besonders Fedi, Michael und Kirsten \n"
 "Die Engels und die Klees, Sina und die Rosches\n"
-"Euch alle</i>"
+"Und zu guter Letzt: Guillem und TeresaAlle die ich hier vergessen habe</i>"
 
-#: gui.glade:1091 gui.glade:1092 gui.glade:1131 gui.glade:1094
+#: gui.glade:1091 gui.glade:1092 gui.glade:1131 gui.glade:1094 gui.glade:1095
+#: gui.glade:1096
 msgid "<i>Thomas Beck</i>"
 msgstr ""
 
-#: gui.glade:1120 gui.glade:1121 gui.glade:1105 gui.glade:1123
+#: gui.glade:1120 gui.glade:1121 gui.glade:1105 gui.glade:1123 gui.glade:1124
+#: gui.glade:1125
 msgid "<b>Greetings to:</b>"
 msgstr "<b>Ich grüße:</b>"
 
-#: gui.glade:1150 gui.glade:1151 gui.glade:1076 gui.glade:1153
+#: gui.glade:1150 gui.glade:1151 gui.glade:1076 gui.glade:1153 gui.glade:1154
+#: gui.glade:1155
 msgid "<b>Version:</b>"
 msgstr ""
 

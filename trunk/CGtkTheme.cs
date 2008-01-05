@@ -16,11 +16,10 @@ namespace GnomeArtNG
 	
 		override protected void PreInstallation(CStatusWindow sw){}
 		override protected void PostInstallation(CStatusWindow sw){}
-		override protected void Installation(CStatusWindow sw){}
-		
-		public void Install(){
+		override protected void Installation(CStatusWindow sw){
 			throw new Exception(Catalog.GetString("Not yet implemented!!"));
 		}
+		
 		override public void Revert(){
 			throw new Exception(Catalog.GetString("Not yet implemented!!"));
 		}

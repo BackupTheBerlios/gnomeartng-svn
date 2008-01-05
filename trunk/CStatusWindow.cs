@@ -16,6 +16,7 @@ namespace GnomeArtNG
 	{
 		private Gtk.Window mainWindow;
 		private bool closeRequested;
+		private bool closeByRequest;
 		public Gtk.Window MainWindow {
 			get {return mainWindow;}
 		}
@@ -126,14 +127,17 @@ namespace GnomeArtNG
 		
 		public CStatusWindow(string Headline,int MaxCount,bool CloseByRequest, bool ExpandExpander, bool ShowWindow)	{
 			string statusW="StatusWindow";
+			closeByRequest = CloseByRequest;
 			Glade.XML statusXml= new Glade.XML (null, "gui.glade", statusW, null);
 			statusXml.Autoconnect (this);
 			mainWindow = (Gtk.Window) statusXml.GetWidget (statusW);
+			//ToDO: mainWindow.TransientFor=
 			this.Headline = Headline;
 			if (CloseByRequest)
 				StatusCancelButton.Clicked+=new EventHandler(OnCancelRequestButtonClicked);
-			else
+			else 
 				StatusCancelButton.Clicked+=new EventHandler(OnCancelButtonClicked);
+			mainWindow.DeleteEvent += new Gtk.DeleteEventHandler(OnDeleteWindowEvent);
 			ExpanderLabelVisible = ExpandExpander;
 			SetProgressStep(MaxCount);
 			if(ShowWindow)
@@ -148,6 +152,13 @@ namespace GnomeArtNG
 		public void Show(){
 			mainWindow.ShowAll();
 			Invalidate();
+		}
+		
+		private void OnDeleteWindowEvent(object sender, Gtk.DeleteEventArgs d){
+			if (closeByRequest)
+				closeRequested = true;
+			else 
+				Close();
 		}
 		
 		private void OnCancelButtonClicked (object sender, EventArgs b){
