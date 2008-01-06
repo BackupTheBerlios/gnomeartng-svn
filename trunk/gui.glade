@@ -77,7 +77,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="position">614</property>
+            <property name="position">620</property>
             <property name="position_set">True</property>
             <child>
               <widget class="GtkNotebook" id="MainNotebook">
@@ -588,7 +588,7 @@ Decoration</property>
             </child>
             <child>
               <widget class="GtkFrame" id="ExtendedInfosFrame">
-                <property name="width_request">286</property>
+                <property name="width_request">280</property>
                 <property name="visible">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label_xalign">0</property>
@@ -821,7 +821,7 @@ Decoration</property>
                               <widget class="GtkLabel" id="ExtInfoDownloads">
                                 <property name="visible">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="xalign">0.10000000149011612</property>
+                                <property name="xalign">0</property>
                                 <property name="label" translatable="yes">label</property>
                               </widget>
                               <packing>
@@ -847,7 +847,7 @@ Decoration</property>
                               <widget class="GtkLabel" id="ExtInfoRating">
                                 <property name="visible">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="xalign">0.10000000149011612</property>
+                                <property name="xalign">0</property>
                                 <property name="label" translatable="yes">label</property>
                               </widget>
                               <packing>

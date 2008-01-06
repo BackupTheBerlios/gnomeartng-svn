@@ -1,16 +1,12 @@
 <?xml version="1.0"?>
 <UserCombinePreferences filename="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/GnomeArtNG.mds">
   <Files>
-    <File filename="Welcome" />
     <File filename="./Main.cs" />
-    <File filename="./CBackgroundTheme.cs" />
-    <File filename="./CArtManager.cs" />
-    <File filename="./CGdmTheme.cs" />
-    <File filename="./CGtkTheme.cs" />
-    <File filename="./CInfoWindow.cs" />
-    <File filename="./CStatusWindow.cs" />
-    <File filename="./CWindowDecorationTheme.cs" />
     <File filename="./CConfiguration.cs" />
+    <File filename="./CStatusWindow.cs" />
+    <File filename="./CIconTheme.cs" />
+    <File filename="./CGdmTheme.cs" />
+    <File filename="./CTheme.cs" />
   </Files>
   <Views>
     <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ProjectPad">
@@ -29,7 +25,7 @@
               <Option id="ShowCodeBehindFiles" value="False" />
               <Option id="ShowAllFiles" value="False" />
             </Node>
-            <Node name="CWindowDecorationTheme.cs" expanded="False" selected="True" />
+            <Node name="CTheme.cs" expanded="False" selected="True" />
           </Node>
           <Node name="Packages" expanded="True" />
         </Node>
@@ -44,7 +40,7 @@
   <Properties>
     <Properties>
       <Property key="ActiveConfiguration" value="Release" />
-      <Property key="ActiveWindow" value="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CWindowDecorationTheme.cs" />
+      <Property key="ActiveWindow" value="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CTheme.cs" />
     </Properties>
   </Properties>
 </UserCombinePreferences>

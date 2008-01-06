@@ -242,6 +242,7 @@ public class GnomeArtNgApp
 	
 	private void FillExtendedSection(CTheme theme){
 		bool isImage = config.BackgroundChoosen;
+		string themeRating = theme.VoteSum.ToString();
 		ExtInfoImage.Pixbuf = theme.ThumbnailPic;
 		ExtInfoName.Text = theme.Name;
 		ExtInfoAuthor.Text = theme.Author;
@@ -253,7 +254,11 @@ public class GnomeArtNgApp
 		else
 			ExtInfoDescription.Text = Catalog.GetString("No description has been entered by the author");
 		ExtInfoDownloads.Text = theme.DownloadCount.ToString();
-		ExtInfoRating.Text = theme.VoteSum.ToString();
+		
+		if (themeRating=="0")
+			themeRating=Catalog.GetString("not rated");
+			
+		ExtInfoRating.Text = themeRating;
 		if (isImage){
 			CBackgroundTheme bgt =(CBackgroundTheme)theme;
 			imageTypeBox.Changed -= (EventHandler)OnImageTypeBoxChanged;

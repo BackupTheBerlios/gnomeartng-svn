@@ -145,7 +145,7 @@ namespace GnomeArtNG
 				sw.SetProgress(Catalog.GetString("downloading... (no progress available)"));
 				sw.Invalidate();
 				try	{
-					CTheme.DownloadFile(remoteUri,localFileName,sw.DetailProgressBar);
+					(new CFileDownloader()).DownloadFile(remoteUri,localFileName,sw.DetailProgressBar);
 				}
 				catch (Exception ex) {
 					sw.Close();
@@ -279,7 +279,7 @@ namespace GnomeArtNG
 								//In der Background-XML ist "Thumbnail"==SmallThumbnailUrl
 								if (config.BackgroundChoosen) { 
 									Theme.SmallThumbnailUrl=item.InnerText;
-									Theme.PreviewUrl=item.InnerText;;
+									Theme.PreviewUrl=item.InnerText;
 								} else
 									Theme.PreviewUrl=item.InnerText;
 							}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-06 02:51+0100\n"
+"POT-Creation-Date: 2008-01-06 18:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,7 +245,7 @@ msgstr ""
 #: gui.glade:865 gui.glade:896 gui.glade:805 gui.glade:868 gui.glade:815
 #: gui.glade:869 gui.glade:816
 msgid "<b>Download count:</b>"
-msgstr "<b>Anzahl der Downloads:</b>"
+msgstr "<b>Downloads:</b>"
 
 #: gui.glade:710 gui.glade:730 gui.glade:840 gui.glade:820 gui.glade:819
 #: gui.glade:839 gui.glade:870 gui.glade:827 gui.glade:842 gui.glade:837
@@ -624,3 +624,7 @@ msgstr ""
 #: gui.glade:1297
 msgid "<i>ExtInfosLabel</i>"
 msgstr ""
+
+#: Main.cs:259
+msgid "not rated"
+msgstr "nicht bewertet"
