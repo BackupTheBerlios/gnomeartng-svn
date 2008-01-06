@@ -16,7 +16,7 @@ namespace GnomeArtNG
 {
 	public class CConfiguration
 	{
-		public static string Version = "0.4.3";
+		public static string Version = "0.4.4";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11
@@ -217,7 +217,7 @@ namespace GnomeArtNG
 		
 		public System.Text.StringBuilder Execute(string FileName, string Arguments){
 			ProcessStartInfo psi = new ProcessStartInfo();
-			psi.Arguments = attribPrep+Arguments;
+			psi.Arguments = Arguments;
 			psi.FileName = FileName;
 			//Console.WriteLine(psi.FileName+psi.Arguments);
 			psi.RedirectStandardOutput = true;
@@ -229,15 +229,8 @@ namespace GnomeArtNG
 			return sb;
 		}
 		
-		public System.Text.StringBuilder Execute(string FileName, string Arguments, bool ForceCommandPrep){
-			System.Text.StringBuilder ts;
-			string ts1;
-			ts1=attribPrep;
-			if (ForceCommandPrep)
-				attribPrep="--command=";
-			ts=Execute(FileName,Arguments);
-			attribPrep=ts1;
-			return ts;
+		public System.Text.StringBuilder ExecuteSu(string Arguments){
+			return Execute(sudoCommand,attribPrep+"\""+Arguments+"\"");
 		}
 		
 		private bool TestIfProgIsInstalled(string programName, string arguments, string lookFor) {
@@ -247,8 +240,7 @@ namespace GnomeArtNG
 		
 		public bool CreateDirectories(){
 			//Im Homeverzeichnis unter .gnome2 einen Ordner gnome-art-ng anlegen
-			//Des weiteren :
-			//Ein Verzeichnis für jeden ArtType mit den VZ: thumbs/XX/... und themes/XX/
+			//Und: Ein Verzeichnis für jeden ArtType mit den VZ: thumbs/XX/... und themes/XX/
 			//Somit kann später geprüft werden, ob u.U das Theme schon heruntergeladen wurde. 
 			try{
 				string dirSep=Path.DirectorySeparatorChar.ToString();

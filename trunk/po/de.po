@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-05 23:46+0100\n"
+"POT-Creation-Date: 2008-01-06 02:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,7 +154,9 @@ msgstr "Anwendung"
 msgid ""
 "Nature\n"
 "Backgrounds"
-msgstr "NatürlicheHintergründe"
+msgstr ""
+"Natürliche\n"
+"Hintergründe"
 
 #: gui.glade:241 gui.glade:345 gui.glade:346
 msgid "<b>Please choose a window decoration</b>"
@@ -216,11 +218,12 @@ msgstr "<b>Name:</b>"
 #: gui.glade:814 gui.glade:840 gui.glade:827 gui.glade:1106 gui.glade:1107
 #: gui.glade:850 gui.glade:1119 gui.glade:1109 gui.glade:653 gui.glade:682
 #: gui.glade:709 gui.glade:828 gui.glade:856 gui.glade:1110 gui.glade:1111
+#: gui.glade:851 gui.glade:1120
 msgid "label"
 msgstr "label"
 
 #: gui.glade:558 gui.glade:668 gui.glade:1135 gui.glade:1136 gui.glade:1089
-#: gui.glade:1138 gui.glade:669 gui.glade:1139 gui.glade:1140
+#: gui.glade:1138 gui.glade:669 gui.glade:1139 gui.glade:1140 gui.glade:1090
 msgid "<b>Author:</b>"
 msgstr "<b>Author:</b>"
 
@@ -240,25 +243,25 @@ msgstr ""
 
 #: gui.glade:688 gui.glade:756 gui.glade:866 gui.glade:798 gui.glade:797
 #: gui.glade:865 gui.glade:896 gui.glade:805 gui.glade:868 gui.glade:815
-#: gui.glade:869
+#: gui.glade:869 gui.glade:816
 msgid "<b>Download count:</b>"
 msgstr "<b>Anzahl der Downloads:</b>"
 
 #: gui.glade:710 gui.glade:730 gui.glade:840 gui.glade:820 gui.glade:819
 #: gui.glade:839 gui.glade:870 gui.glade:827 gui.glade:842 gui.glade:837
-#: gui.glade:843
+#: gui.glade:843 gui.glade:838
 msgid "<b>Rating:</b>"
 msgstr "<b>Bewertung:</b>"
 
 #: gui.glade:738 gui.glade:702 gui.glade:812 gui.glade:848 gui.glade:847
 #: gui.glade:811 gui.glade:842 gui.glade:855 gui.glade:814 gui.glade:864
-#: gui.glade:815
+#: gui.glade:815 gui.glade:865
 msgid "<b>Resolution:</b>"
 msgstr "<b>Auflösung:</b>"
 
 #: gui.glade:752 gui.glade:688 gui.glade:798 gui.glade:862 gui.glade:861
 #: gui.glade:797 gui.glade:828 gui.glade:869 gui.glade:801 gui.glade:877
-#: gui.glade:802
+#: gui.glade:802 gui.glade:878
 msgid "<b>Image type:</b>"
 msgstr "<b>Bildtyp:</b>"
 
@@ -279,22 +282,6 @@ msgstr ""
 #: gui.glade:956
 msgid "<b>Extended theme information</b>"
 msgstr "<b>Erweiterte Informationen</b>"
-
-#: gui.glade:856 gui.glade:968 gui.glade:967 gui.glade:993 gui.glade:978
-#: gui.glade:979
-msgid "About Gnome-Art-NG"
-msgstr "Über Gnome-Art Next Generation"
-
-#: gui.glade:871 gui.glade:983 gui.glade:982 gui.glade:1008
-msgid "<big><b><u>About Gnome-Art-NG</u></b></big>"
-msgstr "<big><b><u>Über Gnome-Art-NG</u></b></big>"
-
-#: gui.glade:896 gui.glade:1008 gui.glade:1007 gui.glade:1033
-msgid ""
-"<b><i>Version:</i></b> 0.2\n"
-"<b><i>Entwickler:</i></b> Thomas Beck\n"
-"<b><i>Grüße gehen an:</i></b> Meine Prinzessin Isi"
-msgstr ""
 
 #: gui.glade:915 gui.glade:1027 gui.glade:1026 gui.glade:1052
 msgid ""
@@ -325,11 +312,6 @@ msgstr ""
 "heruntergeladenen Themen von der Festplatte gelesen, andernfalls "
 "heruntergeladen. Um genau zu sehen welche Aktion gerade ausgeführt wird "
 "klicken Sie auf den unten sichtbaren Expander."
-
-#: gui.glade:1018 gui.glade:1130 gui.glade:1129 gui.glade:1155 gui.glade:1290
-#: gui.glade:1292 gui.glade:1294 gui.glade:1297 gui.glade:1298
-msgid "<i>ExtInfosLabel</i>"
-msgstr ""
 
 #: gui.glade:1026 gui.glade:1138 gui.glade:1137 gui.glade:1163 gui.glade:1298
 #: gui.glade:1300 gui.glade:1302 gui.glade:1305 gui.glade:1306
@@ -549,6 +531,7 @@ msgid "Not yet implemented!!"
 msgstr "Noch nicht implementiert"
 
 #: gui.glade:814 gui.glade:883 gui.glade:877 gui.glade:801 gui.glade:878
+#: gui.glade:802
 msgid "<b>Style:</b>"
 msgstr "<b>Stil:</b>"
 
@@ -600,7 +583,7 @@ msgstr ""
 "\n"
 "Grüße, Tom (software@plasmasolutions.de)"
 
-#: gui.glade:1074 gui.glade:1075 gui.glade:1146 gui.glade:1076
+#: gui.glade:1074 gui.glade:1075 gui.glade:1146 gui.glade:1076 gui.glade:1147
 msgid ""
 "<i>My wife and my love Isabelle,\n"
 "My family: Maria, Gerd and my brother Daniel\n"
@@ -616,20 +599,28 @@ msgstr ""
 "Und zu guter Letzt: Guillem und TeresaAlle die ich hier vergessen habe</i>"
 
 #: gui.glade:1091 gui.glade:1092 gui.glade:1131 gui.glade:1094 gui.glade:1095
-#: gui.glade:1096
+#: gui.glade:1096 gui.glade:1132
 msgid "<i>Thomas Beck</i>"
-msgstr ""
+msgstr "<i>Thomas Beck</i>"
 
 #: gui.glade:1120 gui.glade:1121 gui.glade:1105 gui.glade:1123 gui.glade:1124
-#: gui.glade:1125
+#: gui.glade:1125 gui.glade:1106
 msgid "<b>Greetings to:</b>"
 msgstr "<b>Ich grüße:</b>"
 
 #: gui.glade:1150 gui.glade:1151 gui.glade:1076 gui.glade:1153 gui.glade:1154
-#: gui.glade:1155
+#: gui.glade:1155 gui.glade:1077
 msgid "<b>Version:</b>"
-msgstr ""
+msgstr "<b>Version:</b>"
 
 #: CBackgroundTheme.cs:267
 msgid "resolution-independend"
 msgstr "Auflösungsunabhängig"
+
+#: gui.glade:979
+msgid "About Gnome-Art-NG"
+msgstr ""
+
+#: gui.glade:1297
+msgid "<i>ExtInfosLabel</i>"
+msgstr ""

@@ -66,7 +66,6 @@ namespace GnomeArtNG
 		
 		override protected void PostInstallation(CStatusWindow sw){
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtInstallDone);
-			sw.SetProgress("4/"+installationSteps);
 			revertIsAvailable=true;
 		}
 

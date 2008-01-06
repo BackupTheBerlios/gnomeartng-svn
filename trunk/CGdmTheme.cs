@@ -50,7 +50,7 @@ namespace GnomeArtNG
 				try{
 					FileStream fs = File.Create(gdmconfcustomtemp);
 					fs.Close();
-					config.Execute(config.SudoCommand,"\"mv "+gdmconfcustomtemp+" "+gdmconfcustom+"\"");
+					config.ExecuteSu("mv "+gdmconfcustomtemp+" "+gdmconfcustom);
 				}
 				catch {throw new Exception("Gdm.conf-custom couldn't be created, aborting!");}
 			}
@@ -67,7 +67,7 @@ namespace GnomeArtNG
 			sw.SetProgress("2/"+installationSteps);
 			//Entpacken
 			sw.Mainlabel = CConfiguration.txtExtracting;
-			sb = config.Execute(config.SudoCommand,"\""+@tarParams+@LocalThemeFile+" -C "+@config.GdmInstallPath+"\"");
+			sb = config.ExecuteSu(@tarParams+@LocalThemeFile+" -C "+@config.GdmInstallPath);
 			FolderName=sb.ToString().Split('/');
 			if (FolderName[0]=="")
 				throw new Exception(Catalog.GetString("Couldn't get any usefull information from the tar-command...aborting"));
@@ -91,12 +91,12 @@ namespace GnomeArtNG
 				//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
 				iworker.Save(gdmconfcustomtemp);
 				//Per gksudo den Benutzer für diese Aktion zum Superuser werden lassen
-				config.Execute(config.SudoCommand,"\"mv "+gdmconfcustomtemp+" /etc/gdm/\"");
+				config.ExecuteSu("mv "+gdmconfcustomtemp+" /etc/gdm/");
 			} else{
 				//TODO: für Random
 			}
 			//GDM die Änderungen mitteilen
-			config.Execute("gdmflexiserver", "\"UPDATE_CONFIG greeter/GraphicalTheme\"",true);
+			config.Execute("gdmflexiserver", "--command=\"UPDATE_CONFIG greeter/GraphicalTheme\"");
 		}
 		
 		override protected void PostInstallation(CStatusWindow sw){
@@ -111,7 +111,7 @@ namespace GnomeArtNG
 					iworker.setValue("greeter","GraphicalTheme",previousTheme,true);
 					//Kopieren an einen Ort an dem Schreibberechtigung vorhanden ist 
 					iworker.Save(gdmconfcustomtemp);
-					config.Execute(config.SudoCommand,"\"mv "+gdmconfcustomtemp+" /etc/gdm/\"");
+					config.ExecuteSu("mv "+gdmconfcustomtemp+" /etc/gdm/");
 				} else{
 					//Random ist aktiv :/
 				}
