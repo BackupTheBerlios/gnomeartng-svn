@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-06 18:26+0100\n"
+"POT-Creation-Date: 2008-01-29 21:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 "ist.."
 
 #: CArtManager.cs:138 CArtManager.cs:142 CArtManager.cs:145 CTheme.cs:148
-#: CTheme.cs:150
+#: CTheme.cs:150 CFileDownloader.cs:76
 msgid "downloading... (no progress available)"
 msgstr "am herunterladen.. (kein Fortschritt verfügbar)"
 
@@ -83,7 +83,7 @@ msgstr "Installiere das gewählte Thema"
 msgid "Install finished"
 msgstr "Installation beendet"
 
-#: CTheme.cs:110 CTheme.cs:121 CTheme.cs:192 CTheme.cs:194
+#: CTheme.cs:110 CTheme.cs:121 CTheme.cs:192 CTheme.cs:194 CTheme.cs:122
 msgid ""
 "<i>Installing</i>\n"
 "\n"
@@ -327,7 +327,7 @@ msgstr ""
 #: gui.glade:1403 gui.glade:1183 gui.glade:1443 gui.glade:1538 gui.glade:1185
 #: gui.glade:1445 gui.glade:1540 gui.glade:1187 gui.glade:1447 gui.glade:1542
 #: gui.glade:1188 gui.glade:1450 gui.glade:1546 gui.glade:1189 gui.glade:1451
-#: gui.glade:1547
+#: gui.glade:1547 gui.glade:1657
 msgid "gtk-close"
 msgstr ""
 
@@ -348,17 +348,19 @@ msgid "button"
 msgstr ""
 
 #: gui.glade:1501 gui.glade:1514 gui.glade:1426 gui.glade:1452 gui.glade:1587
-#: gui.glade:1589 gui.glade:1591 gui.glade:1595 gui.glade:1596
+#: gui.glade:1589 gui.glade:1591 gui.glade:1595 gui.glade:1596 gui.glade:1706
 msgid "<b>Warning, something has gone wrong!</b>"
 msgstr "<b>Achtung, die Aktion ist fehlgeschlagen!</b>"
 
 #: gui.glade:1426 gui.glade:1543 gui.glade:1556 gui.glade:1468 gui.glade:1494
 #: gui.glade:1629 gui.glade:1631 gui.glade:1633 gui.glade:1637 gui.glade:1638
+#: gui.glade:1748
 msgid "Exact information about the error:"
 msgstr "Genaue Beschreibung des Fehlers:"
 
 #: gui.glade:1445 gui.glade:1562 gui.glade:1575 gui.glade:1487 gui.glade:1513
 #: gui.glade:1648 gui.glade:1650 gui.glade:1652 gui.glade:1656 gui.glade:1657
+#: gui.glade:1767
 msgid "Ok"
 msgstr "Ok"
 
@@ -367,10 +369,11 @@ msgid "Previewing \""
 msgstr "Vorschau \""
 
 #: CTheme.cs:133 CTheme.cs:135 CTheme.cs:206 CTheme.cs:207 CTheme.cs:209
+#: CTheme.cs:137
 msgid "<b>Theme installation failed!</b>"
 msgstr "<b>Die Installation des Themas schlug fehl!</b>"
 
-#: CTheme.cs:206 CTheme.cs:207 CTheme.cs:209
+#: CTheme.cs:206 CTheme.cs:207 CTheme.cs:209 CTheme.cs:137
 msgid ""
 "This message was reported from the installation function:\n"
 "\n"
@@ -504,11 +507,11 @@ msgstr "Fehler: Das Vorschaubild konnte nicht geladen werden"
 msgid "Warning: Could not download xml file!"
 msgstr "Warnung: Konnte die XML-Datei nicht herunterladen"
 
-#: CTheme.cs:138 CTheme.cs:140
+#: CTheme.cs:138 CTheme.cs:140 CFileDownloader.cs:66
 msgid "bytes"
 msgstr "Bytes"
 
-#: CTheme.cs:144 CTheme.cs:146
+#: CTheme.cs:144 CTheme.cs:146 CFileDownloader.cs:72
 msgid "Initialize download"
 msgstr "Starte Download"
 
@@ -596,7 +599,8 @@ msgstr ""
 "Meine Familie: Maria, Gerd und meinen Bruder Daniel\n"
 "Alle meine Freunde: Besonders Fedi, Michael und Kirsten \n"
 "Die Engels und die Klees, Sina und die Rosches\n"
-"Und zu guter Letzt: Guillem und TeresaAlle die ich hier vergessen habe</i>"
+"Und zu guter Letzt: Guillem und Teresa\n"
+" --- Alle die ich hier vergessen habe ---</i>"
 
 #: gui.glade:1091 gui.glade:1092 gui.glade:1131 gui.glade:1094 gui.glade:1095
 #: gui.glade:1096 gui.glade:1132
@@ -628,3 +632,34 @@ msgstr ""
 #: Main.cs:259
 msgid "not rated"
 msgstr "nicht bewertet"
+
+#: gui.glade:1509
+msgid ""
+"<i>Willkommen zu GNOME-Art-ng.</i>\n"
+"\n"
+"Dieses Programm ist dafür gedacht, den Umgang mit den verschiedenen Themes "
+"die unter Linux verfügbar sind zu erleichtern und gleichzeitig für die Seite "
+"art.gnome.org ein passendes Frontend zur Verfügung zu stellen. \n"
+"\n"
+"Wählen Sie nun, welche Voransichten jetzt sofort heruntergeladen werden "
+"sollen"
+msgstr ""
+
+#: gui.glade:1545
+msgid ""
+"Gnome Backgrounds (contains all the background with an gnome relationship)"
+msgstr ""
+
+#: gui.glade:1555
+msgid ""
+"Other Backgrounds (contains all Backgrounds that don't fit into an special "
+"category)"
+msgstr ""
+
+#: gui.glade:1568
+msgid "Nature Backgrounds"
+msgstr ""
+
+#: gui.glade:1581 gui.glade:1594 gui.glade:1607 gui.glade:1620 gui.glade:1633
+msgid "Hallo Hallod ajsldkföjaöldjklö asjkasdjöla gklsaödfjö safjölasf d"
+msgstr ""
