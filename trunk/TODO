@@ -1,0 +1,17 @@
+Entwicklung von Version 0.x - 1.0:
+- Welcome-Assistent
+- Optionen: Wohin werden die Themes heruntergeladen?
+- Knopf: Themendatei herunterladen
+- CDownloader soweit fertigstellen, dass Verbindungen gehalten und mehrere Dateien nacheinander heruntergeladen werden können
+- Übersetzung in Französisch, Russisch, Saarländisch, Spanisch, Italienisch
+- Entfernen der Gtk-Engines (Ersetzen durch apt-get,yum??)
+- Installation der Themen durch Drag and Drop und eventueller Frage, welches Thema gewählt wurde...
+-> Erstellung eines Debian-Paketes (Anschauen: GnomeDo)
+
+Entwicklung von Version 1.0 - 2.0:
+- Integration von Gnome-Look.org (Hintergründe)
+... Integration weiterer Themen
+
+
+Entwicklung von Version 2.0 - 3.0:
+- Themenpacks integrieren: Alle Themen können ausgewählt und als Pack verpackt werden.-> Einfache Weitergabe des Packs
