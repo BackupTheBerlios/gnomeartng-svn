@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-<UserCombinePreferences filename="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/GnomeArtNG.mds">
+<UserCombinePreferences filename="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/GnomeArtNG.mds">
   <Files>
-    <File filename="Welcome" />
     <File filename="./Main.cs" />
     <File filename="./CConfiguration.cs" />
     <File filename="./CStatusWindow.cs" />
@@ -17,18 +16,18 @@
         <Node expanded="True">
           <Node name="GnomeArtNG" expanded="True">
             <Node name="Resources" expanded="True">
-              <Option id="ShowAllFiles" value="True" />
+              <Option id="ShowCodeBehindClasses" value="True" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="True" />
-              <Option id="ShowCodeBehindClasses" value="True" />
+              <Option id="ShowAllFiles" value="True" />
             </Node>
             <Node name="AssemblyInfo.cs" expanded="False">
-              <Option id="ShowAllFiles" value="False" />
+              <Option id="ShowCodeBehindClasses" value="True" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="False" />
-              <Option id="ShowCodeBehindClasses" value="True" />
+              <Option id="ShowAllFiles" value="False" />
             </Node>
-            <Node name="CFileDownloader.cs" expanded="False" selected="True" />
+            <Node name="Main.cs" expanded="False" selected="True" />
           </Node>
           <Node name="Packages" expanded="True" />
         </Node>
@@ -43,7 +42,7 @@
   <Properties>
     <Properties>
       <Property key="ActiveConfiguration" value="Release" />
-      <Property key="ActiveWindow" value="/home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CFileDownloader.cs" />
+      <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/Main.cs" />
     </Properties>
   </Properties>
 </UserCombinePreferences>
