@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-29 21:56+0100\n"
+"POT-Creation-Date: 2008-01-29 23:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,7 +218,7 @@ msgstr "<b>Name:</b>"
 #: gui.glade:814 gui.glade:840 gui.glade:827 gui.glade:1106 gui.glade:1107
 #: gui.glade:850 gui.glade:1119 gui.glade:1109 gui.glade:653 gui.glade:682
 #: gui.glade:709 gui.glade:828 gui.glade:856 gui.glade:1110 gui.glade:1111
-#: gui.glade:851 gui.glade:1120
+#: gui.glade:851 gui.glade:1120 gui.glade:1706 gui.glade:1717
 msgid "label"
 msgstr "label"
 
@@ -327,7 +327,7 @@ msgstr ""
 #: gui.glade:1403 gui.glade:1183 gui.glade:1443 gui.glade:1538 gui.glade:1185
 #: gui.glade:1445 gui.glade:1540 gui.glade:1187 gui.glade:1447 gui.glade:1542
 #: gui.glade:1188 gui.glade:1450 gui.glade:1546 gui.glade:1189 gui.glade:1451
-#: gui.glade:1547 gui.glade:1657
+#: gui.glade:1547 gui.glade:1657 gui.glade:1757
 msgid "gtk-close"
 msgstr ""
 
@@ -349,18 +349,19 @@ msgstr ""
 
 #: gui.glade:1501 gui.glade:1514 gui.glade:1426 gui.glade:1452 gui.glade:1587
 #: gui.glade:1589 gui.glade:1591 gui.glade:1595 gui.glade:1596 gui.glade:1706
+#: gui.glade:1806
 msgid "<b>Warning, something has gone wrong!</b>"
 msgstr "<b>Achtung, die Aktion ist fehlgeschlagen!</b>"
 
 #: gui.glade:1426 gui.glade:1543 gui.glade:1556 gui.glade:1468 gui.glade:1494
 #: gui.glade:1629 gui.glade:1631 gui.glade:1633 gui.glade:1637 gui.glade:1638
-#: gui.glade:1748
+#: gui.glade:1748 gui.glade:1848
 msgid "Exact information about the error:"
 msgstr "Genaue Beschreibung des Fehlers:"
 
 #: gui.glade:1445 gui.glade:1562 gui.glade:1575 gui.glade:1487 gui.glade:1513
 #: gui.glade:1648 gui.glade:1650 gui.glade:1652 gui.glade:1656 gui.glade:1657
-#: gui.glade:1767
+#: gui.glade:1767 gui.glade:1867
 msgid "Ok"
 msgstr "Ok"
 
@@ -662,4 +663,21 @@ msgstr ""
 
 #: gui.glade:1581 gui.glade:1594 gui.glade:1607 gui.glade:1620 gui.glade:1633
 msgid "Hallo Hallod ajsldkföjaöldjklö asjkasdjöla gklsaödfjö safjölasf d"
+msgstr ""
+
+#: gui.glade:1662
+msgid "<i>Bitte legen Sie hier Optionen fest...</i>"
+msgstr ""
+
+#: gui.glade:1684
+msgid ""
+"Jeden Tag\n"
+"Jeden zweiten Tag\n"
+"Jeden dritten Tag\n"
+"Einmal pro Woche\n"
+"Nie"
+msgstr ""
+
+#: gui.glade:1730
+msgid "In welchen Intervallen soll nach neuen Themen gesucht werden?"
 msgstr ""

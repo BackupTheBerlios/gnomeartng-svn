@@ -1,11 +1,15 @@
 Entwicklung von Version 0.x - 1.0:
+- Bessere Fehlerbehandlung bei Abbruch der Verbindung
 - Welcome-Assistent
 - Optionen: Wohin werden die Themes heruntergeladen?
-- Knopf: Themendatei herunterladen
-- CDownloader soweit fertigstellen, dass Verbindungen gehalten und mehrere Dateien nacheinander heruntergeladen werden können
-- Übersetzung in Französisch, Russisch, Saarländisch, Spanisch, Italienisch
-- Entfernen der Gtk-Engines (Ersetzen durch apt-get,yum??)
+- Knopf: Themendatei nur herunterladen
+- CDownloader soweit fertigstellen, dass Verbindungen gehalten und mehrere Dateien nacheinander schneller heruntergeladen werden können
+- Sortierung der Themen nach Downloadanzahl, Bildergröße, Dateityp...
+- Suchen nach bestimmten Themes (Nach Name)
+- Entfernen der Gtk-Engines (Ersetzen durch apt-get,yum oder wirklich kompilieren ??)
 - Installation der Themen durch Drag and Drop und eventueller Frage, welches Thema gewählt wurde...
+- Automatisch auf Updates prüfen per Menüpunkt und Updatedatei auf dem Server
+- Übersetzung in Französisch, Russisch, Spanisch, Italienisch (Saarländisch :)
 -> Erstellung eines Debian-Paketes (Anschauen: GnomeDo)
 
 Entwicklung von Version 1.0 - 2.0:
@@ -14,4 +18,5 @@ Entwicklung von Version 1.0 - 2.0:
 
 
 Entwicklung von Version 2.0 - 3.0:
+- Integration von KDE-Look.org
 - Themenpacks integrieren: Alle Themen können ausgewählt und als Pack verpackt werden.-> Einfache Weitergabe des Packs
