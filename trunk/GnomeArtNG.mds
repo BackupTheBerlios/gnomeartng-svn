@@ -2,11 +2,9 @@
   <Configurations active="Release">
     <Configuration name="Debug" ctype="CombineConfiguration">
       <Entry build="True" name="GnomeArtNG" configuration="Debug" />
-      <Entry build="True" name="Packages" configuration="" />
     </Configuration>
     <Configuration name="Release" ctype="CombineConfiguration">
       <Entry build="True" name="GnomeArtNG" configuration="Release" />
-      <Entry build="True" name="Packages" configuration="" />
     </Configuration>
   </Configurations>
   <StartMode startupentry="GnomeArtNG" single="True">
@@ -15,6 +13,5 @@
   </StartMode>
   <Entries>
     <Entry filename="./GnomeArtNG.mdp" />
-    <Entry filename="./Packages.mdse" />
   </Entries>
 </Combine>

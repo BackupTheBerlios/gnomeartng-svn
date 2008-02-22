@@ -67,7 +67,15 @@ namespace GnomeArtNG
 			}
 		}
 		public Gdk.Pixbuf ThumbnailPic{
-			get{return new Gdk.Pixbuf(LocalThumbnailFile);}
+			get{
+				Gdk.Pixbuf pic;
+				try{
+					pic = new Gdk.Pixbuf(LocalThumbnailFile);
+				} catch{
+					pic = new Gdk.Pixbuf(config.NoThumb);
+				}
+				return pic;
+			}
 		}
 		
 		public string PreviewUrl{

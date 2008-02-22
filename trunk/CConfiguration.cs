@@ -1,8 +1,14 @@
-// /home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CConfiguration.cs created with MonoDevelop
-// User: neo at 23:13 25.11.2007
-//
-// To change standard headers go to Edit->Preferences->Coding->Standard Headers
-//
+/*
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+*/
+
 
 using System;
 using System.IO;
@@ -16,7 +22,7 @@ namespace GnomeArtNG
 {
 	public class CConfiguration
 	{
-		public static string Version = "0.4.4";
+		public static string Version = "0.4.5";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11
