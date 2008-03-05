@@ -1,1 +1,5 @@
-Please execute "./compile" to compile this project
+Running GNOME-Art Next Gen:
+
+Please execute "sh runGnomeArtNG.sh" or "mono GnomeArtNg.exe" to run this project
+
+Official Webpage: gnomeartng.berlios.de

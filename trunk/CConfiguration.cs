@@ -63,9 +63,9 @@ namespace GnomeArtNG
 		private string dirSep="";
 		private string homePath="";
 		private string settingsPath="";
-		private string thumbsPath="";
+		//private string thumbsPath="";
 		private string thumbsDir="thumbs";
-		private string themesPath="";
+		//private string themesPath="";
 		private string themesDir="themes";
 		private string previewPath="";
 		private string previewDir="preview";
@@ -247,7 +247,6 @@ namespace GnomeArtNG
 		public bool CreateDirectories(){
 			//Im Homeverzeichnis unter .gnome2 einen Ordner gnome-art-ng anlegen
 			//Und: Ein Verzeichnis für jeden ArtType mit den VZ: thumbs/XX/... und themes/XX/
-			//Somit kann später geprüft werden, ob u.U das Theme schon heruntergeladen wurde. 
 			try{
 				string dirSep=Path.DirectorySeparatorChar.ToString();
 				Type enumType = typeof(ArtType);
@@ -261,10 +260,14 @@ namespace GnomeArtNG
 				// Vorschauverzeichnis
 				if (!Directory.Exists(settingsPath+dirSep+thumbsDir)){
 					Directory.CreateDirectory(settingsPath+dirSep+thumbsDir);
-					foreach (ArtType art in Enum.GetValues(enumType))
-						Directory.CreateDirectory(settingsPath+dirSep+thumbsDir+dirSep+((int)art).ToString());
-					Console.WriteLine("Thumb folder created: "+thumbsPath);
+					Console.WriteLine("Thumb folder created: "+settingsPath+dirSep+thumbsDir);
 					neverStartedBefore=true;
+				}
+				foreach (ArtType art in Enum.GetValues(enumType)){
+					if (!Directory.Exists(settingsPath+dirSep+thumbsDir+dirSep+((int)art).ToString())){
+						Directory.CreateDirectory(settingsPath+dirSep+thumbsDir+dirSep+((int)art).ToString());
+						Console.WriteLine("Sub-Thumb folder created: "+((int)art).ToString());
+					}
 				}
 				
 				//Previewverzeichnis
@@ -280,7 +283,7 @@ namespace GnomeArtNG
 					Directory.CreateDirectory(settingsPath+dirSep+themesDir);
 					foreach (ArtType art in Enum.GetValues(enumType))
 						Directory.CreateDirectory(settingsPath+dirSep+themesDir+dirSep+((int)art).ToString());
-					Console.WriteLine("Themes folder created: "+themesPath);
+					Console.WriteLine("Themes folder created: "+settingsPath+dirSep+themesDir);
 					neverStartedBefore=true;
 				}
 				return true;

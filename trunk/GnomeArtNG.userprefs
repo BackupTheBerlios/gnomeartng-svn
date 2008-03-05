@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <UserCombinePreferences filename="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/GnomeArtNG.mds">
   <Files>
+    <File filename="Welcome" />
     <File filename="./Main.cs" />
     <File filename="./CConfiguration.cs" />
     <File filename="./CStatusWindow.cs" />
-    <File filename="./CIconTheme.cs" />
-    <File filename="./CGdmTheme.cs" />
-    <File filename="./CTheme.cs" />
-    <File filename="./CFileDownloader.cs" />
+    <File filename="./CWindowDecorationTheme.cs" />
     <File filename="./CArtManager.cs" />
   </Files>
   <Views>
@@ -27,9 +25,8 @@
               <Option id="ShowCodeBehindFiles" value="False" />
               <Option id="ShowAllFiles" value="False" />
             </Node>
-            <Node name="Main.cs" expanded="False" selected="True" />
+            <Node name="CConfiguration.cs" expanded="False" selected="True" />
           </Node>
-          <Node name="Packages" expanded="True" />
         </Node>
       </TreeView>
     </ViewMemento>
@@ -42,7 +39,7 @@
   <Properties>
     <Properties>
       <Property key="ActiveConfiguration" value="Release" />
-      <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/Main.cs" />
+      <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/CConfiguration.cs" />
     </Properties>
   </Properties>
 </UserCombinePreferences>

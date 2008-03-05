@@ -1,5 +1,6 @@
 Entwicklung von Version 0.x - 1.0:
 - Bessere Fehlerbehandlung bei Abbruch der Verbindung
+- Testen ob Hardy komplett funktioniert
 - Optionsfenster einführen mit Aktualisierungsintervall
 - Welcome-Assistent
 - Optionen: Wohin werden die Themes heruntergeladen?

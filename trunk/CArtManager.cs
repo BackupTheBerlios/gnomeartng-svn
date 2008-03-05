@@ -1,8 +1,15 @@
-// /home/neo/Projects/GnomeArtNG/GnomeArtNG/CArtManager.cs created with MonoDevelop
-// User: neo at 11:49 24.11.2007
-//
-// To change standard headers go to Edit->Preferences->Coding->Standard Headers
-//
+/*
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+Thomas Beck at 11:49 24.11.2007
+*/
 
 using System;
 using System.Xml;
@@ -375,7 +382,9 @@ namespace GnomeArtNG
 					*/
 					try{
 						theme.GetThumbnailImage(w.DetailProgressBar);
-					} catch {}
+					} catch (Exception ex){
+						Console.WriteLine("Error while downloading file: "+ex.Message);
+					}
 				}
 				/* Threading
 				bool done=false;

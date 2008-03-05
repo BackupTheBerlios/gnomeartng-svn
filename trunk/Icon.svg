@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   inkscape:export-filename="/home/neo/Desktop/gnomeartng/usr/share/pixmaps/gnomeartng.png"
+   inkscape:export-xdpi="9.8444777"
+   inkscape:export-ydpi="9.8444777"
+   sodipodi:docbase="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk"
+   sodipodi:docname="Icon.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="114.89667"
+     inkscape:cy="126.98081"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="922"
+     inkscape:window-height="621"
+     inkscape:window-x="369"
+     inkscape:window-y="151"
+     width="256px"
+     height="256px" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="fill:#4e9a06;fill-rule:evenodd;stroke:#d3d7cf;stroke-width:7.64469004;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2160"
+       sodipodi:sides="20"
+       sodipodi:cx="168.57143"
+       sodipodi:cy="443.79074"
+       sodipodi:r1="282.91486"
+       sodipodi:r2="321.82602"
+       sodipodi:arg1="0.66370038"
+       sodipodi:arg2="1.0437842"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 391.42857,618.07645 L 330.43483,721.94937 L 326.66392,678.41295 L 236.55693,758.35386 L 246.42407,715.78299 L 136.02413,763.96672 L 158.56346,726.52853 L 38.677287,738.23853 L 71.682507,709.59773 L -45.954612,683.68773 L -5.7142869,666.64788 L -109.58721,605.65414 L -66.050781,601.88323 L -145.9917,511.77624 L -103.42082,521.64338 L -151.60456,411.24344 L -114.16636,433.78278 L -125.87636,313.8966 L -97.235558,346.90182 L -71.325563,229.2647 L -54.285716,269.50503 L 6.7080226,165.63211 L 10.478936,209.16853 L 100.58593,129.22762 L 90.718783,171.7985 L 201.11872,123.61476 L 178.57939,161.05295 L 298.46557,149.34295 L 265.46035,177.98376 L 383.09746,203.89375 L 342.85714,220.9336 L 446.73006,281.92734 L 403.19363,285.69825 L 483.13455,375.80524 L 440.56367,365.9381 L 488.74741,476.33804 L 451.30921,453.7987 L 463.01921,573.68488 L 434.37841,540.67966 L 408.46842,658.31678 L 391.42857,618.07645 z "
+       transform="matrix(0.365425,0,0,0.365425,65.325781,-33.395302)"
+       inkscape:export-xdpi="9.8444777"
+       inkscape:export-ydpi="9.8444777"
+       inkscape:export-filename="/home/neo/Desktop/gnomeartng/usr/share/pixmaps/gnomeartng.png" />
+    <text
+       xml:space="preserve"
+       style="font-size:26.58779716px;font-style:normal;font-weight:normal;fill:#eeeeec;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="-135.73143"
+       y="115.68732"
+       id="text4103"
+       transform="matrix(0.3432419,-0.939247,0.939247,0.3432419,0,0)"><tspan
+         sodipodi:role="line"
+         x="-135.73143"
+         y="115.68732"
+         id="tspan5076">Gnome</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:108.34682465px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#eeeeec;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:BBodoni-Regular"
+       x="69.795158"
+       y="163.4845"
+       id="text5084"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5086"
+         x="69.795158"
+         y="163.4845">Art</tspan></text>
+  </g>
+</svg>

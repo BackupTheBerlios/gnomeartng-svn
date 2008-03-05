@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-29 23:24+0100\n"
+"POT-Creation-Date: 2008-02-22 20:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,6 +84,7 @@ msgid "Install finished"
 msgstr "Installation beendet"
 
 #: CTheme.cs:110 CTheme.cs:121 CTheme.cs:192 CTheme.cs:194 CTheme.cs:122
+#: CTheme.cs:130
 msgid ""
 "<i>Installing</i>\n"
 "\n"
@@ -236,7 +237,7 @@ msgid "<b>Description:</b>"
 msgstr "<b>Beschreibung:</b>"
 
 #: gui.glade:650 Main.cs:198 Main.cs:209 gui.glade:760 Main.cs:217 Main.cs:230
-#: Main.cs:248 Main.cs:255 Main.cs:254 gui.glade:761
+#: Main.cs:248 Main.cs:255 Main.cs:254 gui.glade:761 Main.cs:260
 msgid "No description has been entered by the author"
 msgstr ""
 "Der Author des Themas hat beim Hochladen leider keine Beschreibung eingegeben"
@@ -370,11 +371,11 @@ msgid "Previewing \""
 msgstr "Vorschau \""
 
 #: CTheme.cs:133 CTheme.cs:135 CTheme.cs:206 CTheme.cs:207 CTheme.cs:209
-#: CTheme.cs:137
+#: CTheme.cs:137 CTheme.cs:145
 msgid "<b>Theme installation failed!</b>"
 msgstr "<b>Die Installation des Themas schlug fehl!</b>"
 
-#: CTheme.cs:206 CTheme.cs:207 CTheme.cs:209 CTheme.cs:137
+#: CTheme.cs:206 CTheme.cs:207 CTheme.cs:209 CTheme.cs:137 CTheme.cs:145
 msgid ""
 "This message was reported from the installation function:\n"
 "\n"
@@ -406,7 +407,7 @@ msgid "<b>Previewing</b>"
 msgstr "<b>Vorschau</b>"
 
 #: CConfiguration.cs:34 CConfiguration.cs:42 CConfiguration.cs:40
-#: CConfiguration.cs:41
+#: CConfiguration.cs:41 CConfiguration.cs:48
 msgid ""
 "<i>Extracting the theme</i>\n"
 "\n"
@@ -422,7 +423,7 @@ msgstr ""
 "Fall"
 
 #: CConfiguration.cs:37 CConfiguration.cs:45 CConfiguration.cs:43
-#: CConfiguration.cs:44
+#: CConfiguration.cs:44 CConfiguration.cs:51
 msgid ""
 "<i>Saving your previous settings</i>\n"
 "\n"
@@ -435,7 +436,7 @@ msgstr ""
 "zu machen ihre Wahl später einfach rückgängig zu machen"
 
 #: CConfiguration.cs:39 CConfiguration.cs:47 CConfiguration.cs:45
-#: CConfiguration.cs:46
+#: CConfiguration.cs:46 CConfiguration.cs:53
 msgid ""
 "<i>Downloading the theme from art.gnome.org</i>\n"
 "\n"
@@ -448,7 +449,7 @@ msgstr ""
 "Download fortschreitet."
 
 #: CConfiguration.cs:42 CConfiguration.cs:50 CConfiguration.cs:49
-#: CConfiguration.cs:47 CConfiguration.cs:48
+#: CConfiguration.cs:47 CConfiguration.cs:48 CConfiguration.cs:55
 msgid ""
 "<i>Installing the theme</i>\n"
 "\n"
@@ -463,7 +464,7 @@ msgstr ""
 "klicken Sie einfach auf Rückgängig."
 
 #: CConfiguration.cs:45 CConfiguration.cs:53 CConfiguration.cs:52
-#: CConfiguration.cs:50 CConfiguration.cs:51
+#: CConfiguration.cs:50 CConfiguration.cs:51 CConfiguration.cs:58
 msgid ""
 "<i>Theme installation is complete</i>\n"
 "\n"
@@ -477,15 +478,15 @@ msgstr ""
 "Rückgängig ihre letzte Auswahl rückgängig machen. Viel Spaß weiterhin mit "
 "GnomeArtNg! "
 
-#: Main.cs:152 Main.cs:165 Main.cs:183 Main.cs:190 Main.cs:189
+#: Main.cs:152 Main.cs:165 Main.cs:183 Main.cs:190 Main.cs:189 Main.cs:194
 msgid "Downloading the preview file"
 msgstr "Lade die Vorschaudatei herunter"
 
-#: Main.cs:153 Main.cs:166 Main.cs:184 Main.cs:191 Main.cs:190
+#: Main.cs:153 Main.cs:166 Main.cs:184 Main.cs:191 Main.cs:190 Main.cs:195
 msgid "Connected to art.gnome.org"
 msgstr "Verbunden mit art.gnome.org"
 
-#: Main.cs:154 Main.cs:167 Main.cs:185 Main.cs:192 Main.cs:191
+#: Main.cs:154 Main.cs:167 Main.cs:185 Main.cs:192 Main.cs:191 Main.cs:196
 msgid ""
 "<i>Downloading the preview file</i>\n"
 "\n"
@@ -500,7 +501,7 @@ msgstr ""
 "Vorschaufenster passt. Um den Download-Fortschritt der Datei zu verfolgen "
 "schauen Sie auf den unteren Balken."
 
-#: Main.cs:164 Main.cs:177 Main.cs:195 Main.cs:202 Main.cs:201
+#: Main.cs:164 Main.cs:177 Main.cs:195 Main.cs:202 Main.cs:201 Main.cs:206
 msgid "Error: the preview image could not be loaded!"
 msgstr "Fehler: Das Vorschaubild konnte nicht geladen werden"
 
@@ -543,23 +544,23 @@ msgstr "<b>Stil:</b>"
 msgid "gtk-refresh"
 msgstr ""
 
-#: Main.cs:111 Main.cs:112 Main.cs:110
+#: Main.cs:111 Main.cs:112 Main.cs:110 Main.cs:115
 msgid "Centered"
 msgstr "Zentriert"
 
-#: Main.cs:112 Main.cs:113 Main.cs:111
+#: Main.cs:112 Main.cs:113 Main.cs:111 Main.cs:116
 msgid "Filled"
 msgstr "Gefüllt"
 
-#: Main.cs:113 Main.cs:114 Main.cs:112
+#: Main.cs:113 Main.cs:114 Main.cs:112 Main.cs:117
 msgid "Scaled"
 msgstr "Skaliert"
 
-#: Main.cs:114 Main.cs:115 Main.cs:113
+#: Main.cs:114 Main.cs:115 Main.cs:113 Main.cs:118
 msgid "Zoomed"
 msgstr "Gezoomt"
 
-#: Main.cs:115 Main.cs:116 Main.cs:114
+#: Main.cs:115 Main.cs:116 Main.cs:114 Main.cs:119
 msgid "Tiled"
 msgstr "Gekachelt"
 
@@ -630,7 +631,7 @@ msgstr ""
 msgid "<i>ExtInfosLabel</i>"
 msgstr ""
 
-#: Main.cs:259
+#: Main.cs:259 Main.cs:264
 msgid "not rated"
 msgstr "nicht bewertet"
 

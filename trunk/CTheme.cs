@@ -1,8 +1,13 @@
-// /home/neo/Projects/GnomeArtNG/GnomeArtNG/CTheme.cs created with MonoDevelop
-// User: neo at 11:30 24.11.2007
-//
-// To change standard headers go to Edit->Preferences->Coding->Standard Headers
-//
+/*
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+*/
 
 using System;
 using System.Net;
@@ -149,7 +154,7 @@ namespace GnomeArtNG
 		
 		public abstract void Revert();
 		
-		//3 Methoden: PreInstallation(), postInstallation() und Installation();
+		//3 Methoden: PreInstallation(), PostInstallation() und Installation();
 		//Eine wird vor der Installation ausgeführt, eine nachher und eine zur eigentlichen Installation 
 		protected abstract void PreInstallation(CStatusWindow sw);
 		protected abstract void PostInstallation(CStatusWindow sw);
