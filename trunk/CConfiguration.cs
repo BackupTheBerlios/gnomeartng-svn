@@ -67,7 +67,7 @@ namespace GnomeArtNG
 		private string thumbsDir="thumbs";
 		//private string themesPath="";
 		private string themesDir="themes";
-		private string previewPath="";
+		//private string previewPath="";
 		private string previewDir="preview";
 		private string splashInstallDir=".gnome";
 		private string splashInstallPath="";
@@ -218,7 +218,7 @@ namespace GnomeArtNG
 			grepIsAvailable = TestIfProgIsInstalled("grep","--version","gnu grep");
 			sedIsAvailable = TestIfProgIsInstalled("sed","--version","gnu sed");
 			setDistributionDependendSettings();
-			CreateDirectories();
+			CreateDownloadDirectories();
 		}
 		
 		public System.Text.StringBuilder Execute(string FileName, string Arguments){
@@ -243,53 +243,47 @@ namespace GnomeArtNG
 			lookFor=lookFor.ToLower();
 			return (Execute(programName,arguments)).ToString().ToLower().Contains(lookFor);
 		}
+
+		private void CreateDownloadFilesystem(string directoryName){
+			string dirToCreate = "";
+			Type enumType = typeof(ArtType);
+			
+			dirToCreate = settingsPath+dirSep+directoryName;
+			if (!Directory.Exists(dirToCreate)){
+				Directory.CreateDirectory(dirToCreate);
+				Console.WriteLine("Folder created: "+dirToCreate);
+				neverStartedBefore = true;
+			}
+			foreach (ArtType art in Enum.GetValues(enumType)){
+				dirToCreate = settingsPath+dirSep+directoryName+dirSep+((int)art).ToString(); 
+				if (!Directory.Exists(dirToCreate)){
+					Directory.CreateDirectory(dirToCreate);
+				Console.WriteLine("Folder created: "+ dirToCreate);
+				}
+			}
+		}
 		
-		public bool CreateDirectories(){
+		public bool CreateDownloadDirectories(){
 			//Im Homeverzeichnis unter .gnome2 einen Ordner gnome-art-ng anlegen
 			//Und: Ein Verzeichnis für jeden ArtType mit den VZ: thumbs/XX/... und themes/XX/
 			try{
-				string dirSep=Path.DirectorySeparatorChar.ToString();
-				Type enumType = typeof(ArtType);
-				// Settings-Verzeichnis erzeugen
+			
+				// Create settings structure
 				if (!Directory.Exists(settingsPath)){
 					Directory.CreateDirectory(settingsPath);
 					Console.WriteLine("Configuration folder created: "+settingsPath);
 					neverStartedBefore=true;
 				}
 				
-				// Vorschauverzeichnis
-				if (!Directory.Exists(settingsPath+dirSep+thumbsDir)){
-					Directory.CreateDirectory(settingsPath+dirSep+thumbsDir);
-					Console.WriteLine("Thumb folder created: "+settingsPath+dirSep+thumbsDir);
-					neverStartedBefore=true;
-				}
-				foreach (ArtType art in Enum.GetValues(enumType)){
-					if (!Directory.Exists(settingsPath+dirSep+thumbsDir+dirSep+((int)art).ToString())){
-						Directory.CreateDirectory(settingsPath+dirSep+thumbsDir+dirSep+((int)art).ToString());
-						Console.WriteLine("Sub-Thumb folder created: "+((int)art).ToString());
-					}
-				}
+				// create preview folders
+				CreateDownloadFilesystem(previewDir);
+				// create thumb folders
+				CreateDownloadFilesystem(thumbsDir);
+				// create themes folders
+				CreateDownloadFilesystem(themesDir);
 				
-				//Previewverzeichnis
-				if (!Directory.Exists(settingsPath+dirSep+previewDir)){
-					Directory.CreateDirectory(settingsPath+dirSep+previewDir);
-					foreach (ArtType art in Enum.GetValues(enumType))
-						Directory.CreateDirectory(settingsPath+dirSep+previewDir+dirSep+((int)art).ToString());
-					Console.WriteLine("Preview folder created: "+previewPath);
-				}
-				
-				// Themeverzeichnis
-				if (!Directory.Exists(settingsPath+dirSep+themesDir)){
-					Directory.CreateDirectory(settingsPath+dirSep+themesDir);
-					foreach (ArtType art in Enum.GetValues(enumType))
-						Directory.CreateDirectory(settingsPath+dirSep+themesDir+dirSep+((int)art).ToString());
-					Console.WriteLine("Themes folder created: "+settingsPath+dirSep+themesDir);
-					neverStartedBefore=true;
-				}
 				return true;
 			} catch { return false; }
-			
 		}
-		
 	}
 }

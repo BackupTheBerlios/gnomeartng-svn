@@ -1,0 +1,978 @@
+# Brazilian Portuguese translation of gnomeartng.
+# This file is distributed under the same license as the gnomeartng package.
+# Copyright (C) 2008 Free Software Foundation, Inc.
+# Amadeu A. Barbosa Júnior <amadeu@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnomeartng\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-01-29 23:24+0100\n"
+"PO-Revision-Date: 2008-03-05 12:14-0300\n"
+"Last-Translator: Amadeu A. Barbosa Jr <amadeu@gmail.coom>\n"
+"Language-Team: Amadeu A. Barbosa Júnior <amadeu@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+
+#: CArtManager.cs:106
+#: CArtManager.cs:110
+#, csharp-format
+msgid "Finished"
+msgstr "Pronto"
+
+#: CArtManager.cs:135
+#: CArtManager.cs:138
+msgid "Downloading new XML file"
+msgstr "Descarregando o novo arquivo XML"
+
+#: CArtManager.cs:137
+#: CArtManager.cs:108
+#: CArtManager.cs:140
+msgid "Downloading"
+msgstr "Descarregando"
+
+#: CArtManager.cs:138
+#: CArtManager.cs:141
+msgid ""
+"<i>XML file is beeing downloaded</i>\n"
+"\n"
+"This program needs a descriptive file that contains information about \n"
+"\n"
+"1) where the theme is located,\n"
+"2) what kind of theme is it, \n"
+"3) How often someone downloaded it, and so on \n"
+"\n"
+"So please be patient while the download progress is going on.."
+msgstr ""
+"<i>O arquivo XML está sendo obtido</i>\n"
+"\n"
+"Este programa necessita de um arquivo de descrição contendo as informações a cerca de \n"
+"\n"
+"1) onde o tema está localizado,\n"
+"2) qual o tipo do tema, \n"
+"3) com qual frequência de descargas, e assim por diante \n"
+"\n"
+"Então por favor, seja paciente enquanto tal arquivo é obtido..."
+
+#: CArtManager.cs:138
+#: CArtManager.cs:142
+#: CArtManager.cs:145
+#: CTheme.cs:148
+#: CTheme.cs:150
+#: CFileDownloader.cs:76
+msgid "downloading... (no progress available)"
+msgstr "descarregando... (nenhum progresso disponível)"
+
+#: CArtManager.cs:326
+#: CArtManager.cs:335
+#: CArtManager.cs:341
+msgid "Reading thumbnails on harddisc"
+msgstr "Lendo miniaturas em disco"
+
+#: CArtManager.cs:343
+#: CArtManager.cs:352
+#: CArtManager.cs:358
+msgid "Downloading missing thumbnails"
+msgstr "Descarregando as miniaturas ausentes"
+
+#: CSplashTheme.cs:50
+msgid "Saving the previous settings"
+msgstr "Salvando as configurações anteriores"
+
+#: CSplashTheme.cs:56
+msgid "Downloading the theme from art.gnome.org"
+msgstr "Descarregando o tema do art.gnome.org"
+
+#: CSplashTheme.cs:63
+msgid "Installing the theme"
+msgstr "Instalando o tema"
+
+#: CSplashTheme.cs:74
+msgid "Install finished"
+msgstr "Instalação completa"
+
+#: CTheme.cs:110
+#: CTheme.cs:121
+#: CTheme.cs:192
+#: CTheme.cs:194
+#: CTheme.cs:122
+msgid ""
+"<i>Installing</i>\n"
+"\n"
+"Your selection is beeing downloaded and installed...please be patient while the installation procedure proceeds. After everything's done, this window will get closed.\n"
+"\n"
+" Have fun with your new theme, Greetings Tom"
+msgstr ""
+"<i>Instalando</i>\n"
+"\n"
+"Sua seleção está sendo descarregada e será instalada... por favor seja paciente enquanto o procedimento é executado. Ao final deste esta janela será fechada.\n"
+"\n"
+" Divirta-se com seu novo tema"
+
+#: gui.glade:10
+msgid "Gnome-Art-NG"
+msgstr "Gnome-Art-NG"
+
+#: gui.glade:27
+#: gui.glade:28
+msgid "_File"
+msgstr "_Arquivo"
+
+#: gui.glade:37
+#: gui.glade:38
+msgid "gtk-quit"
+msgstr "gtk-quit"
+
+#: gui.glade:50
+#: gui.glade:51
+msgid "_Help"
+msgstr "Aj_uda"
+
+#: gui.glade:60
+#: gui.glade:61
+msgid "gtk-about"
+msgstr "gtk-about"
+
+#: gui.glade:99
+#: gui.glade:144
+#: gui.glade:145
+#: gui.glade:195
+#: gui.glade:245
+#: gui.glade:100
+#: gui.glade:146
+#: gui.glade:196
+#: gui.glade:246
+msgid "<b>Please choose your favourite background</b>"
+msgstr "<b>Por favor escolha seu papel de parede favortio</b>"
+
+#: gui.glade:127
+#: gui.glade:128
+#: gui.glade:129
+msgid ""
+"Gnome\n"
+"Background"
+msgstr ""
+"Papel de Parede\n"
+"do Gnome"
+
+#: gui.glade:175
+#: gui.glade:177
+#: gui.glade:178
+msgid ""
+"Other\n"
+"Backgrounds"
+msgstr ""
+"Outros\n"
+"Papéis de Parede"
+
+#: gui.glade:193
+#: gui.glade:296
+#: gui.glade:297
+msgid "<b>Please choose an application theme</b>"
+msgstr "<b>Por favor escolha um tema de aplicações</b>"
+
+#: gui.glade:224
+#: gui.glade:328
+#: gui.glade:329
+msgid "Application"
+msgstr "Aplicação"
+
+#: gui.glade:227
+#: gui.glade:228
+msgid ""
+"Nature\n"
+"Backgrounds"
+msgstr ""
+"Papel de Parede da\n"
+"Natureza"
+
+#: gui.glade:241
+#: gui.glade:345
+#: gui.glade:346
+msgid "<b>Please choose a window decoration</b>"
+msgstr "<b>Por favor escolha uma decoração de janelas</b>"
+
+#: gui.glade:277
+#: gui.glade:278
+msgid ""
+"Abstract \n"
+"Backgrounds"
+msgstr ""
+"Papéis de Parede\n"
+"Abstratos"
+
+#: gui.glade:377
+#: gui.glade:378
+msgid ""
+"Window\n"
+"Decoration"
+msgstr ""
+"Decoração\n"
+"de Janelas"
+
+#: gui.glade:395
+#: gui.glade:396
+msgid "<b>Please choose an icon set</b>"
+msgstr "<b>Por favor escolha um tema de ícones</b>"
+
+#: gui.glade:427
+#: gui.glade:428
+msgid "Icons"
+msgstr "Ícones"
+
+#: gui.glade:444
+#: gui.glade:445
+msgid "<b>Please choose your greeter for GDM</b>"
+msgstr "<b>Por favor escolha o tema de início de sessão do GDM</b>"
+
+#: gui.glade:368
+#: gui.glade:476
+#: gui.glade:477
+msgid "GDM Greeter"
+msgstr "Início de Sessão"
+
+#: gui.glade:385
+#: gui.glade:493
+#: gui.glade:494
+msgid "<b>Please choose a splash screen for the Gnome start</b>"
+msgstr "<b>Por favor escolha uma tela de abertura para o Gnome</b>"
+
+#: gui.glade:416
+#: gui.glade:525
+#: gui.glade:526
+msgid "Splash"
+msgstr "Tela de Abertura"
+
+#: gui.glade:464
+#: gui.glade:574
+#: gui.glade:575
+msgid "Gtk-Engine"
+msgstr "Controles de Janelas"
+
+#: gui.glade:532
+#: gui.glade:642
+#: gui.glade:643
+msgid "<b>Name:</b>"
+msgstr "<b>Nome:</b>"
+
+#: gui.glade:542
+#: gui.glade:571
+#: gui.glade:598
+#: gui.glade:697
+#: gui.glade:723
+#: gui.glade:1335
+#: gui.glade:715
+#: gui.glade:743
+#: gui.glade:1325
+#: gui.glade:652
+#: gui.glade:681
+#: gui.glade:708
+#: gui.glade:825
+#: gui.glade:853
+#: gui.glade:1441
+#: gui.glade:807
+#: gui.glade:833
+#: gui.glade:1451
+#: gui.glade:806
+#: gui.glade:832
+#: gui.glade:1464
+#: gui.glade:824
+#: gui.glade:852
+#: gui.glade:855
+#: gui.glade:883
+#: gui.glade:814
+#: gui.glade:840
+#: gui.glade:827
+#: gui.glade:1106
+#: gui.glade:1107
+#: gui.glade:850
+#: gui.glade:1119
+#: gui.glade:1109
+#: gui.glade:653
+#: gui.glade:682
+#: gui.glade:709
+#: gui.glade:828
+#: gui.glade:856
+#: gui.glade:1110
+#: gui.glade:1111
+#: gui.glade:851
+#: gui.glade:1120
+#: gui.glade:1706
+#: gui.glade:1717
+msgid "label"
+msgstr "label"
+
+#: gui.glade:558
+#: gui.glade:668
+#: gui.glade:1135
+#: gui.glade:1136
+#: gui.glade:1089
+#: gui.glade:1138
+#: gui.glade:669
+#: gui.glade:1139
+#: gui.glade:1140
+#: gui.glade:1090
+msgid "<b>Author:</b>"
+msgstr "<b>Autor:</b>"
+
+#: gui.glade:585
+#: gui.glade:695
+#: gui.glade:696
+msgid "<b>License:</b>"
+msgstr "<b>Licença:</b>"
+
+#: gui.glade:635
+#: gui.glade:745
+#: gui.glade:746
+msgid "<b>Description:</b>"
+msgstr "<b>Descrição:</b>"
+
+#: gui.glade:650
+#: Main.cs:198
+#: Main.cs:209
+#: gui.glade:760
+#: Main.cs:217
+#: Main.cs:230
+#: Main.cs:248
+#: Main.cs:255
+#: Main.cs:254
+#: gui.glade:761
+msgid "No description has been entered by the author"
+msgstr "Nenhum descrição foi inserida pelo autor"
+
+#: gui.glade:688
+#: gui.glade:756
+#: gui.glade:866
+#: gui.glade:798
+#: gui.glade:797
+#: gui.glade:865
+#: gui.glade:896
+#: gui.glade:805
+#: gui.glade:868
+#: gui.glade:815
+#: gui.glade:869
+#: gui.glade:816
+msgid "<b>Download count:</b>"
+msgstr "<b>Quantidade de descargas:</b>"
+
+#: gui.glade:710
+#: gui.glade:730
+#: gui.glade:840
+#: gui.glade:820
+#: gui.glade:819
+#: gui.glade:839
+#: gui.glade:870
+#: gui.glade:827
+#: gui.glade:842
+#: gui.glade:837
+#: gui.glade:843
+#: gui.glade:838
+msgid "<b>Rating:</b>"
+msgstr "<b>Popularidade:</b>"
+
+#: gui.glade:738
+#: gui.glade:702
+#: gui.glade:812
+#: gui.glade:848
+#: gui.glade:847
+#: gui.glade:811
+#: gui.glade:842
+#: gui.glade:855
+#: gui.glade:814
+#: gui.glade:864
+#: gui.glade:815
+#: gui.glade:865
+msgid "<b>Resolution:</b>"
+msgstr "<b>Resolução:</b>"
+
+#: gui.glade:752
+#: gui.glade:688
+#: gui.glade:798
+#: gui.glade:862
+#: gui.glade:861
+#: gui.glade:797
+#: gui.glade:828
+#: gui.glade:869
+#: gui.glade:801
+#: gui.glade:877
+#: gui.glade:802
+#: gui.glade:878
+msgid "<b>Image type:</b>"
+msgstr "<b>Tipo da Imagem:</b>"
+
+#: gui.glade:786
+#: gui.glade:1165
+msgid "Installieren"
+msgstr "Instalar"
+
+#: gui.glade:796
+#: gui.glade:907
+#: gui.glade:906
+#: gui.glade:937
+#: gui.glade:922
+#: gui.glade:923
+msgid "gtk-undo"
+msgstr "gtk-undo"
+
+#: gui.glade:810
+msgid "StartButton"
+msgstr ""
+
+#: gui.glade:833
+#: gui.glade:945
+#: gui.glade:944
+#: gui.glade:970
+#: gui.glade:955
+#: gui.glade:956
+msgid "<b>Extended theme information</b>"
+msgstr "<b>Informações adicionais do tema</b>"
+
+#: gui.glade:915
+#: gui.glade:1027
+#: gui.glade:1026
+#: gui.glade:1052
+msgid "<b>Gnome-Art-NG</b> wurde in C# geschrieben von Thomas Beck. Falls ihr Fehler findet dann schreibt mir einfach eine Mail: <i>software@plasmasolutions.de</i>"
+msgstr ""
+
+#: gui.glade:966
+#: gui.glade:1078
+#: gui.glade:1077
+#: gui.glade:1103
+#: gui.glade:1238
+#: gui.glade:1240
+#: gui.glade:1242
+#: gui.glade:1245
+#: gui.glade:1246
+msgid "<big><b>Downloading</b></big>"
+msgstr "<big><b>Descarregando</b></big>"
+
+#: gui.glade:997
+#: gui.glade:1109
+#: gui.glade:1108
+#: gui.glade:1134
+#: gui.glade:1269
+#: gui.glade:1271
+#: gui.glade:1273
+#: gui.glade:1276
+#: gui.glade:1277
+msgid ""
+"<i>Your themes are beeing read</i>\n"
+"\n"
+"Please be patient while all themes that fit your selection are beeing read. When you've done this procedure previously, all themes will be read from a cache directory on your hard disc. Use the Expander beneath to see what action is exactly beeing done."
+msgstr ""
+"<i>Seus temas estão sendo lidos</i>\n"
+"\n"
+"Por favor seja paciente enquanto todos os temas relacionados a sua escolha sejam lidos. Caso você já tenha realizado esta operação anteriormente, então os temas estarão sendo lidos de um cache em disco para diminuir a espera. Use o botão de expansão abaixo para ver mais detalhes."
+
+#: gui.glade:1026
+#: gui.glade:1138
+#: gui.glade:1137
+#: gui.glade:1163
+#: gui.glade:1298
+#: gui.glade:1300
+#: gui.glade:1302
+#: gui.glade:1305
+#: gui.glade:1306
+msgid "Extended information about the current action:"
+msgstr "Informações adicionais sobre a operação atual:"
+
+#: gui.glade:1076
+#: gui.glade:1188
+#: gui.glade:1201
+#: gui.glade:1227
+#: gui.glade:1362
+#: gui.glade:1364
+#: gui.glade:1366
+#: gui.glade:1369
+#: gui.glade:1370
+msgid "gtk-stop"
+msgstr "gtk-stop"
+
+#: gui.glade:1154
+#: gui.glade:1269
+#: gui.glade:1282
+#: gui.glade:1377
+#: gui.glade:1308
+#: gui.glade:1403
+#: gui.glade:1183
+#: gui.glade:1443
+#: gui.glade:1538
+#: gui.glade:1185
+#: gui.glade:1445
+#: gui.glade:1540
+#: gui.glade:1187
+#: gui.glade:1447
+#: gui.glade:1542
+#: gui.glade:1188
+#: gui.glade:1450
+#: gui.glade:1546
+#: gui.glade:1189
+#: gui.glade:1451
+#: gui.glade:1547
+#: gui.glade:1657
+#: gui.glade:1757
+msgid "gtk-close"
+msgstr "gtk-close"
+
+#: gui.glade:1212
+#: gui.glade:1328
+#: gui.glade:1341
+#: gui.glade:1340
+#: gui.glade:1366
+#: gui.glade:1501
+#: gui.glade:1503
+#: gui.glade:1505
+#: gui.glade:1509
+#: gui.glade:1510
+msgid ""
+"<i>Willkommen zu GNOME-Art-ng.</i>\n"
+"\n"
+"Dieses Programm ist dafür gedacht, den Umgang mit den verschiedenen Themes die unter Linux verfügbar sind zu erleichtern und gleichzeitig für die Seite art.gnome.org ein passendes Frontend zur Verfügung zu stellen. \n"
+"\n"
+"<i>Viel Spaß wünscht Thomas Beck!</i>"
+msgstr ""
+
+#: gui.glade:1327
+#: gui.glade:1338
+#: gui.glade:1454
+#: gui.glade:1443
+#: gui.glade:1456
+msgid "button"
+msgstr ""
+
+#: gui.glade:1501
+#: gui.glade:1514
+#: gui.glade:1426
+#: gui.glade:1452
+#: gui.glade:1587
+#: gui.glade:1589
+#: gui.glade:1591
+#: gui.glade:1595
+#: gui.glade:1596
+#: gui.glade:1706
+#: gui.glade:1806
+msgid "<b>Warning, something has gone wrong!</b>"
+msgstr "<b>Aviso, algo aconteceu de errado!</b>"
+
+#: gui.glade:1426
+#: gui.glade:1543
+#: gui.glade:1556
+#: gui.glade:1468
+#: gui.glade:1494
+#: gui.glade:1629
+#: gui.glade:1631
+#: gui.glade:1633
+#: gui.glade:1637
+#: gui.glade:1638
+#: gui.glade:1748
+#: gui.glade:1848
+msgid "Exact information about the error:"
+msgstr "Informações sobre o erro:"
+
+#: gui.glade:1445
+#: gui.glade:1562
+#: gui.glade:1575
+#: gui.glade:1487
+#: gui.glade:1513
+#: gui.glade:1648
+#: gui.glade:1650
+#: gui.glade:1652
+#: gui.glade:1656
+#: gui.glade:1657
+#: gui.glade:1767
+#: gui.glade:1867
+msgid "Ok"
+msgstr "OK"
+
+#: CPreviewWindow.cs:68
+msgid "Previewing \""
+msgstr "Previsualizando \""
+
+#: CTheme.cs:133
+#: CTheme.cs:135
+#: CTheme.cs:206
+#: CTheme.cs:207
+#: CTheme.cs:209
+#: CTheme.cs:137
+msgid "<b>Theme installation failed!</b>"
+msgstr "<b>Falha na instalação do tema!</b>"
+
+#: CTheme.cs:206
+#: CTheme.cs:207
+#: CTheme.cs:209
+#: CTheme.cs:137
+msgid ""
+"This message was reported from the installation function:\n"
+"\n"
+msgstr ""
+"Esta mensagem foi gerada pelo instalador:\n"
+"\n"
+
+#: gui.glade:896
+#: gui.glade:1280
+#: gui.glade:895
+#: gui.glade:1293
+#: gui.glade:922
+#: gui.glade:1319
+#: gui.glade:907
+#: gui.glade:1454
+#: gui.glade:1456
+#: gui.glade:1458
+#: gui.glade:908
+#: gui.glade:1461
+#: gui.glade:1462
+msgid "gtk-apply"
+msgstr "gtk-apply"
+
+#: gui.glade:921
+#: gui.glade:920
+msgid "gtk-save"
+msgstr "gtk-save"
+
+#: gui.glade:542
+#: gui.glade:543
+msgid "<b>Please choose a GTK theme</b>"
+msgstr "<b>Por favor escolha um tema para os controles GTK</b>"
+
+#: Main.cs:156
+msgid "Warning: the preview image could not be loaded!"
+msgstr "Aviso: a imagem de previsualização não pode ser carregada!"
+
+#: gui.glade:1219
+#: gui.glade:1232
+#: gui.glade:1258
+#: gui.glade:1393
+#: gui.glade:1395
+#: gui.glade:1397
+#: gui.glade:1400
+#: gui.glade:1401
+msgid "<b>Previewing</b>"
+msgstr "<b>Previsualizando</b>"
+
+#: CConfiguration.cs:34
+#: CConfiguration.cs:42
+#: CConfiguration.cs:40
+#: CConfiguration.cs:41
+msgid ""
+"<i>Extracting the theme</i>\n"
+"\n"
+"Your theme is downloaded and has to be extracted now. You might be prompted to enter your user password to legetimate the copying of all extracted files to the right path."
+msgstr ""
+"<i>Extração do tema</i>\n"
+"\n"
+"Seu tema foi descarregado e será extraído agora. Você deverá informar a senha apropriada para permitir a cópia de todos os arquivos para os locais corretos."
+
+#: CConfiguration.cs:37
+#: CConfiguration.cs:45
+#: CConfiguration.cs:43
+#: CConfiguration.cs:44
+msgid ""
+"<i>Saving your previous settings</i>\n"
+"\n"
+"Your previous settings are now stored to make it possible to revert your theme installation easily"
+msgstr ""
+"<i>Salvando as configurações anteriores</i>\n"
+"\n"
+"Sua configurações anteriores foram salvas para tornar possível reverter sua instalação de tema facilmente."
+
+#: CConfiguration.cs:39
+#: CConfiguration.cs:47
+#: CConfiguration.cs:45
+#: CConfiguration.cs:46
+msgid ""
+"<i>Downloading the theme from art.gnome.org</i>\n"
+"\n"
+"Your theme is being downloaded...please be patient while the download is progressing"
+msgstr ""
+"<i>Descarregando o tema do art.gnome.org</i>\n"
+"\n"
+"Seu tema está sendo descarregado... por favor seja paciente durante o progresso da descarga."
+
+#: CConfiguration.cs:42
+#: CConfiguration.cs:50
+#: CConfiguration.cs:49
+#: CConfiguration.cs:47
+#: CConfiguration.cs:48
+msgid ""
+"<i>Installing the theme</i>\n"
+"\n"
+"Your Theme is now being installed. Therefore system files will get changed and/or your GConf settings are changed. To revert this action and make all undone simply click on Revert."
+msgstr ""
+"<i>Instalando o tema</i>\n"
+"\n"
+"Seu tema está sendo instalado. Alguns arquivos de sistemas e/ou configurações do GConf serão alterados. Para reverter esta ação basta clicar no botão Reverter."
+
+#: CConfiguration.cs:45
+#: CConfiguration.cs:53
+#: CConfiguration.cs:52
+#: CConfiguration.cs:50
+#: CConfiguration.cs:51
+msgid ""
+"<i>Theme installation is complete</i>\n"
+"\n"
+"Your Theme is now installed. You can now go on with your theme selection or (if you don't like the results) revert your current selection. Have fun! "
+msgstr ""
+"<i>A instalação do tema está completa</i>\n"
+"\n"
+"Seu tema foi instalado com sucesso. Você agora pode usar seu tema preferido ou (caso não goste dele) pode reverter para o tema atual. Divirta-se!"
+
+#: Main.cs:152
+#: Main.cs:165
+#: Main.cs:183
+#: Main.cs:190
+#: Main.cs:189
+msgid "Downloading the preview file"
+msgstr "Descarregando o arquivo de previsualização"
+
+#: Main.cs:153
+#: Main.cs:166
+#: Main.cs:184
+#: Main.cs:191
+#: Main.cs:190
+msgid "Connected to art.gnome.org"
+msgstr "Conectado a art.gnome.org"
+
+#: Main.cs:154
+#: Main.cs:167
+#: Main.cs:185
+#: Main.cs:192
+#: Main.cs:191
+msgid ""
+"<i>Downloading the preview file</i>\n"
+"\n"
+"Your preview is beeing downloaded. After the download has been finished, the preview will be rescaled if it's not fitting the preview window. See the lower bar to follow the progress."
+msgstr ""
+"<i>Descarregando o arquivo de previsualização</i>\n"
+"\n"
+"A previsualização está sendo obtida. Depois que a descarga estiver completa, a imagem de previsualização será escalonada ao tamanho da janela. Aguarde a descarga se completar."
+
+#: Main.cs:164
+#: Main.cs:177
+#: Main.cs:195
+#: Main.cs:202
+#: Main.cs:201
+msgid "Error: the preview image could not be loaded!"
+msgstr "Erro: A imagem de previsualização não pode ser carregada!"
+
+#: CArtManager.cs:152
+msgid "Warning: Could not download xml file!"
+msgstr "Aviso: Não foi possível descarregar o arquivo XML!"
+
+#: CTheme.cs:138
+#: CTheme.cs:140
+#: CFileDownloader.cs:66
+msgid "bytes"
+msgstr "Bytes"
+
+#: CTheme.cs:144
+#: CTheme.cs:146
+#: CFileDownloader.cs:72
+msgid "Initialize download"
+msgstr "Iniciar descarga"
+
+#: CGdmTheme.cs:35
+#: CGdmTheme.cs:37
+msgid "Installation is not possible!"
+msgstr "Não é possível instalar!"
+
+#: CGdmTheme.cs:37
+msgid "Only GDM is supported"
+msgstr "Só há suporte ao GDM"
+
+#: CGdmTheme.cs:73
+msgid "Couldn't get any usefull information from the tar-command...aborting"
+msgstr "Não foi possível obter qualquer informação útil da extração...abortando."
+
+#: CGtkTheme.cs:22
+#: CGtkTheme.cs:25
+#: CWindowDecorationTheme.cs:21
+#: CWindowDecorationTheme.cs:24
+#: CGtkTheme.cs:20
+#: CGtkTheme.cs:24
+msgid "Not yet implemented!!"
+msgstr "Não implementado ainda!!"
+
+#: gui.glade:814
+#: gui.glade:883
+#: gui.glade:877
+#: gui.glade:801
+#: gui.glade:878
+#: gui.glade:802
+msgid "<b>Style:</b>"
+msgstr "<b>Estilo:</b>"
+
+#: gui.glade:952
+#: gui.glade:937
+#: gui.glade:938
+msgid "gtk-refresh"
+msgstr "gtk-refresh"
+
+#: Main.cs:111
+#: Main.cs:112
+#: Main.cs:110
+msgid "Centered"
+msgstr "Centralizado"
+
+#: Main.cs:112
+#: Main.cs:113
+#: Main.cs:111
+msgid "Filled"
+msgstr "Toda a tela"
+
+#: Main.cs:113
+#: Main.cs:114
+#: Main.cs:112
+msgid "Scaled"
+msgstr "Dimensionado"
+
+#: Main.cs:114
+#: Main.cs:115
+#: Main.cs:113
+msgid "Zoomed"
+msgstr "Ampliado"
+
+#: Main.cs:115
+#: Main.cs:116
+#: Main.cs:114
+msgid "Tiled"
+msgstr "Lado a lado"
+
+#: gui.glade:993
+#: gui.glade:994
+msgid "<b>About Gnome-Art Next Generation</b>"
+msgstr "<b>Sobre Gnome-Art Next Generation</b>"
+
+#: gui.glade:1030
+#: gui.glade:1031
+msgid ""
+"If you encounter any problems please go to \n"
+"\n"
+"<i><b>http://gnomeartng.berlios.de</b></i>\n"
+"\n"
+"and launch a bug-report or a help request. To support my work, you are welcome to make a donation, thank you !\n"
+"\n"
+"Greetings, Tom (software@plasmasolutions.de)"
+msgstr ""
+"Se você encontrou qualquer problema por favor visite\n"
+"\n"
+"<i><b>http://gnomeartng.berlios.de</b></i>\n"
+"\n"
+"e crie um relatório de erro ou uma solicitação de ajuda. Caso queira apoiar meu trabalho, doações são bem-vindas, obrigado !\n"
+"\n"
+"Saudações, Tom (software@plasmasolutions.de)"
+
+#: gui.glade:1074
+#: gui.glade:1075
+#: gui.glade:1146
+#: gui.glade:1076
+#: gui.glade:1147
+msgid ""
+"<i>My wife and my love Isabelle,\n"
+"My family: Maria, Gerd and my brother Daniel\n"
+"All of my friends: Especially Fedi, Michael and Kirsten,\n"
+"the Engels and the Klees, Sina and the Rosches\n"
+"and last but not least: Guillem and Teresa\n"
+"All I've forgotten now</i>"
+msgstr ""
+"<i>Minha esposa e meu amor: Isabelle, \n"
+"Minha famíliae: Maria, Gerd e meu irmão Daniel\n"
+"A todos meus amigos: Especialmente Fedi, Michael e Kirsten,\n"
+"Engels e Klees, Sina e Rosches\n"
+"e por último mas não menos importante: Guillem e Teresa\n"
+"A todos que eu não lembrei agora</i>"
+
+#: gui.glade:1091
+#: gui.glade:1092
+#: gui.glade:1131
+#: gui.glade:1094
+#: gui.glade:1095
+#: gui.glade:1096
+#: gui.glade:1132
+msgid "<i>Thomas Beck</i>"
+msgstr "<i>Thomas Beck</i>"
+
+#: gui.glade:1120
+#: gui.glade:1121
+#: gui.glade:1105
+#: gui.glade:1123
+#: gui.glade:1124
+#: gui.glade:1125
+#: gui.glade:1106
+msgid "<b>Greetings to:</b>"
+msgstr "<b>Saudações a:</b>"
+
+#: gui.glade:1150
+#: gui.glade:1151
+#: gui.glade:1076
+#: gui.glade:1153
+#: gui.glade:1154
+#: gui.glade:1155
+#: gui.glade:1077
+msgid "<b>Version:</b>"
+msgstr "<b>Versão:</b>"
+
+#: CBackgroundTheme.cs:267
+msgid "resolution-independend"
+msgstr "independente de resolução"
+
+#: gui.glade:979
+msgid "About Gnome-Art-NG"
+msgstr "Sobre Gnome-Art-NG"
+
+#: gui.glade:1297
+msgid "<i>ExtInfosLabel</i>"
+msgstr ""
+
+#: Main.cs:259
+msgid "not rated"
+msgstr "não informada"
+
+#: gui.glade:1509
+msgid ""
+"<i>Willkommen zu GNOME-Art-ng.</i>\n"
+"\n"
+"Dieses Programm ist dafür gedacht, den Umgang mit den verschiedenen Themes die unter Linux verfügbar sind zu erleichtern und gleichzeitig für die Seite art.gnome.org ein passendes Frontend zur Verfügung zu stellen. \n"
+"\n"
+"Wählen Sie nun, welche Voransichten jetzt sofort heruntergeladen werden sollen"
+msgstr ""
+
+#: gui.glade:1545
+msgid "Gnome Backgrounds (contains all the background with an gnome relationship)"
+msgstr "Papéis de Parede do Gnome (contém todas imagens relacionadas ao Gnome)"
+
+#: gui.glade:1555
+msgid "Other Backgrounds (contains all Backgrounds that don't fit into an special category)"
+msgstr "Outros Papéis de Parede (contém todas imagens que não pertecem a uma categoria especial)"
+
+#: gui.glade:1568
+msgid "Nature Backgrounds"
+msgstr "Papéis de Parede da Natureza"
+
+#: gui.glade:1581
+#: gui.glade:1594
+#: gui.glade:1607
+#: gui.glade:1620
+#: gui.glade:1633
+msgid "Hallo Hallod ajsldkföjaöldjklö asjkasdjöla gklsaödfjö safjölasf d"
+msgstr ""
+
+#: gui.glade:1662
+msgid "<i>Bitte legen Sie hier Optionen fest...</i>"
+msgstr ""
+
+#: gui.glade:1684
+msgid ""
+"Jeden Tag\n"
+"Jeden zweiten Tag\n"
+"Jeden dritten Tag\n"
+"Einmal pro Woche\n"
+"Nie"
+msgstr ""
+
+#: gui.glade:1730
+msgid "In welchen Intervallen soll nach neuen Themen gesucht werden?"
+msgstr ""
+

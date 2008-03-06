@@ -1,20 +1,21 @@
 Entwicklung von Version 0.x - 1.0:
 - Bessere Fehlerbehandlung bei Abbruch der Verbindung
 - Testen ob Hardy komplett funktioniert
+- Anzeige beim Download von Bytes zu Kbytes ändern...
 - Optionsfenster einführen mit Aktualisierungsintervall
-- Welcome-Assistent
 - Optionen: Wohin werden die Themes heruntergeladen?
+- Welcome-Assistent
 - Knopf: Themendatei nur herunterladen
 - CDownloader soweit fertigstellen, dass Verbindungen gehalten und mehrere Dateien nacheinander schneller heruntergeladen werden können
 - Sortierung der Themen nach Downloadanzahl, Bildergröße, Dateityp...
 - Suchen nach bestimmten Themes (Nach Name)
 - Entfernen der Gtk-Engines (Ersetzen durch apt-get,yum oder wirklich kompilieren ??)
-- Installation der Themen durch Drag and Drop und eventueller Frage, welches Thema gewählt wurde...
 - Automatisch auf Updates prüfen per Menüpunkt und Updatedatei auf dem Server
-- Übersetzung in Französisch, Russisch, Spanisch, Italienisch (Saarländisch :)
+- Übersetzung in Französisch, Russisch, Spanisch, Italienisch, Brasilianisch (Saarländisch :)
 -> Erstellung eines Debian-Paketes (Anschauen: GnomeDo)
 
 Entwicklung von Version 1.0 - 2.0:
+- Installation der Themen durch Drag and Drop und eventueller Frage, welches Thema gewählt wurde...
 - Trennung von CTheme und den dazugehörigen Attributen
 - Integration von Gnome-Look.org (Hintergründe)
 ... Integration weiterer Themen

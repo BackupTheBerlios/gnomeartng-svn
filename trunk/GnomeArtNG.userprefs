@@ -3,17 +3,13 @@
   <Files>
     <File filename="Welcome" />
     <File filename="./Main.cs" />
-    <File filename="./CConfiguration.cs" />
-    <File filename="./CStatusWindow.cs" />
-    <File filename="./CWindowDecorationTheme.cs" />
-    <File filename="./CArtManager.cs" />
   </Files>
   <Views>
     <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ProjectPad">
       <TreeView>
         <Node expanded="True">
           <Node name="GnomeArtNG" expanded="True">
-            <Node name="Resources" expanded="True">
+            <Node name="Resources" expanded="False">
               <Option id="ShowCodeBehindClasses" value="True" />
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowCodeBehindFiles" value="True" />
@@ -25,21 +21,25 @@
               <Option id="ShowCodeBehindFiles" value="False" />
               <Option id="ShowAllFiles" value="False" />
             </Node>
-            <Node name="CConfiguration.cs" expanded="False" selected="True" />
+            <Node name="Main.cs" expanded="False" selected="True" />
           </Node>
         </Node>
       </TreeView>
     </ViewMemento>
     <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ClassPad">
       <TreeView>
-        <Node expanded="True" />
+        <Node expanded="True" selected="True">
+          <Node name="GnomeArtNG" expanded="True">
+            <Node name="GnomeArtNG" expanded="True" />
+          </Node>
+        </Node>
       </TreeView>
     </ViewMemento>
   </Views>
   <Properties>
     <Properties>
       <Property key="ActiveConfiguration" value="Release" />
-      <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/CConfiguration.cs" />
+      <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/Main.cs" />
     </Properties>
   </Properties>
 </UserCombinePreferences>

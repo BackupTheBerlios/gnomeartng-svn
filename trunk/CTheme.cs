@@ -121,10 +121,8 @@ namespace GnomeArtNG
 				localPreviewExists=false;
 				throw ex;
 			}
-			
 		}
 		
-
 		protected void DownloadFile(string From, string To, Gtk.ProgressBar bar){
 			new CFileDownloader().DownloadFile(From, To, bar);
 		}			

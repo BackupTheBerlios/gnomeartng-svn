@@ -1,8 +1,16 @@
-// /home/neo/Projects/Monodevelop-Projects/GnomeArtNG/CFileDownloader.cs created with MonoDevelop
-// User: neo at 17:53 27.11.2007
-//
-// To change standard headers go to Edit->Preferences->Coding->Standard Headers
-//
+/*
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+Thomas Beck at 17:53 27.11.2007
+*/
+
 using System;
 using System.Net;
 using System.IO;
@@ -23,7 +31,7 @@ namespace GnomeArtNG
 			
 		}
 		
-		public void StartMassDownloading(){
+		public void StartMassDownloading(string Address){
 			massDownloadingActive=true;
 			//Setze einen Request ab für art.gnome.org mit KeepAlive
 		}
@@ -84,18 +92,17 @@ namespace GnomeArtNG
 					strResponse = wcDownload.OpenRead(From);
 					// Create a new file stream where we will be saving the data (local drive)
 					strLocal = new FileStream(To, FileMode.Create, FileAccess.Write, FileShare.None);
-					
 					// Loop through the buffer until the buffer is empty
 					while ((bytesSize = strResponse.Read(downBuffer, 0, downBuffer.Length)) > 0)
 					{
 						// Write the data from the buffer to the local hard drive
 						strLocal.Write(downBuffer, 0, bytesSize);
-
 						if (bar!=null) {
 							currentSize = strLocal.Length;
 							if (fileSize>0){
 							    if (currentSize>0){
-									bar.Text=currentSize+byteString+" / "+fileSize+" "+byteString;
+									//bar.Text = currentSize+" "+byteString+" / "+fileSize+" "+byteString;
+									bar.Text = (int)(currentSize/1024)+" k"+byteString+" / "+(int)(fileSize/1024)+" k"+byteString;
 									bar.Fraction = (double)currentSize/fileSize;
 								}
 							} else { 

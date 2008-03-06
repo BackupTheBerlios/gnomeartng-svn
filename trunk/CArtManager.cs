@@ -122,8 +122,6 @@ namespace GnomeArtNG
 		
 		//Die für die jeweilige Option richtige XMLDatei herunterladen wenn sie veraltet ist
 		private void getXMLFile(bool ForceReload){
-			//TODO:Bisher Zwischenlösung: Da ich die statische DownloadFile-Methode im CTheme untergebracht habe
-			//benutze ich CTHeme zum Download...auslagern..bloß wohin, CConfiguration? ...aber dann auch umbenennen
 			string remoteUri = config.XmlFileUrl();
 			string localFileName = config.ArtFilePath();
 			bool downloadFile=false;

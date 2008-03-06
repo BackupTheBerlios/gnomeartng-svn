@@ -8,7 +8,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-Created by Thomas Beck at 00:05 03.12.2007
+Thomas Beck at 00:05 03.12.2007
 */
 
 using System;
