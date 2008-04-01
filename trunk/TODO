@@ -1,6 +1,7 @@
 Entwicklung von Version 0.x - 1.0:
 - Bessere Fehlerbehandlung bei Abbruch der Verbindung
 - Testen ob Hardy komplett funktioniert
+- Umbruch in Textfeldern in den Griff bekommen
 - Anzeige beim Download von Bytes zu Kbytes ändern...
 - Optionsfenster einführen mit Aktualisierungsintervall
 - Optionen: Wohin werden die Themes heruntergeladen?
