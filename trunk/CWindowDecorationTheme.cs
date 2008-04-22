@@ -25,14 +25,12 @@ namespace GnomeArtNG
 		override protected void PreInstallation(CStatusWindow sw){
 			string tarParams="";
 			client = new GConf.Client();
-			
-			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
+
 			tarParams=config.GetTarParams(Path.GetExtension(DownloadUrl));
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
-			if (!File.Exists(LocalThemeFile)){
-				//Herunterladen
-				DownloadFile(DownloadUrl, LocalThemeFile,sw.DetailProgressBar);
-			}
+	
+			if (!File.Exists(LocalThemeFile))
+				GetThemeFile(sw);
 			sw.SetProgress("1/"+installationSteps);
 			//Entpacken
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtExtracting);

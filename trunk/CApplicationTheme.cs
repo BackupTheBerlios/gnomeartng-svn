@@ -35,10 +35,9 @@ namespace GnomeArtNG
 
 			tarParams=config.GetTarParams(Path.GetExtension(DownloadUrl));
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
-			if (!File.Exists(InstallThemeFile)){
-				//Herunterladen
-				DownloadFile(DownloadUrl, LocalThemeFile,sw.DetailProgressBar);
-			}
+			//Herunterladen			
+			if (!File.Exists(InstallThemeFile))
+				GetThemeFile(sw);
 			sw.SetProgress("1/"+installationSteps);
 			//Entpacken
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtExtracting);

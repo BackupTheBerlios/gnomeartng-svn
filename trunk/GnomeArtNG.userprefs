@@ -1,45 +1,28 @@
-<?xml version="1.0"?>
-<UserCombinePreferences filename="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/GnomeArtNG.mds">
+﻿<UserCombinePreferences version="1.0" filename="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/GnomeArtNG.mds">
   <Files>
-    <File filename="Welcome" />
-    <File filename="./Main.cs" />
+    <File name="CTheme.cs" line="4" column="55" />
+    <File name="Main.cs" line="85" column="2" />
+    <File name="CConfiguration.cs" line="99" column="27" />
+    <File name="CSettingsWindow.cs" line="76" column="63" />
+    <File name="CAboutWindow.cs" line="4" column="55" />
   </Files>
   <Views>
-    <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ProjectPad">
-      <TreeView>
-        <Node expanded="True">
-          <Node name="GnomeArtNG" expanded="True">
-            <Node name="Resources" expanded="False">
-              <Option id="ShowCodeBehindClasses" value="True" />
-              <Option id="ShowVersionControlOverlays" value="True" />
-              <Option id="ShowCodeBehindFiles" value="True" />
-              <Option id="ShowAllFiles" value="True" />
-            </Node>
-            <Node name="AssemblyInfo.cs" expanded="False">
-              <Option id="ShowCodeBehindClasses" value="True" />
-              <Option id="ShowVersionControlOverlays" value="True" />
-              <Option id="ShowCodeBehindFiles" value="False" />
-              <Option id="ShowAllFiles" value="False" />
-            </Node>
-            <Node name="Main.cs" expanded="False" selected="True" />
-          </Node>
+    <ViewMemento id="ProjectPad">
+      <Node expanded="True">
+        <Node name="GnomeArtNG" expanded="True">
+          <Node name="Main.cs" selected="True" />
         </Node>
-      </TreeView>
+      </Node>
     </ViewMemento>
-    <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ClassPad">
-      <TreeView>
-        <Node expanded="True" selected="True">
-          <Node name="GnomeArtNG" expanded="True">
-            <Node name="GnomeArtNG" expanded="True" />
-          </Node>
-        </Node>
-      </TreeView>
+    <ViewMemento id="ClassPad">
+      <Node expanded="True" />
+    </ViewMemento>
+    <ViewMemento id="MonoDevelop.NUnit.TestPad">
+      <Node />
     </ViewMemento>
   </Views>
   <Properties>
-    <Properties>
-      <Property key="ActiveConfiguration" value="Release" />
-      <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/Main.cs" />
-    </Properties>
+    <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/Main.cs" />
+    <Property key="ActiveConfiguration" value="Release" />
   </Properties>
 </UserCombinePreferences>

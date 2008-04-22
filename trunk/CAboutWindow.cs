@@ -1,7 +1,7 @@
 /*
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; version 2 of the License.
+the Free Software Foundation; version 3 of the License.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -43,7 +43,13 @@ namespace GnomeArtNG
 			mainWindow = (Gtk.Window) aboutXml.GetWidget (aboutW);
 			AboutVersion.Text=Version;
 			AboutCloseButton.Clicked+=new EventHandler(OnAboutCloseButtonClicked);
-			AboutImage.Pixbuf = new Gdk.Pixbuf("./gnome.png");
+			try{
+				AboutImage.Pixbuf = new Gdk.Pixbuf("./gnome.png");
+			} 
+			catch { 
+				AboutImage.Pixbuf = new Gdk.Pixbuf("/usr/share/pixmaps/apple-red.png");
+				Console.Out.WriteLine("Missing the GnomeArtNG about image!! Using fallbackimage!");
+			}
 			if(ShowWindow)
 				mainWindow.ShowAll();
 		}

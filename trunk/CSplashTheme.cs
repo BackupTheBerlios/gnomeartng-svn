@@ -48,7 +48,6 @@ namespace GnomeArtNG
 		}
 		
 		override protected void PreInstallation(CStatusWindow sw){
-			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 			InstallThemeFile=config.SplashInstallPath+Path.GetFileName(DownloadUrl);
 			//Neuer GConfClient
 			client = new GConf.Client();
@@ -60,7 +59,7 @@ namespace GnomeArtNG
 			sw.Mainlabel=CConfiguration.txtDownloadTheme;
 			//Herunterladen
 			if (!File.Exists(InstallThemeFile)){
-				DownloadFile(DownloadUrl, LocalThemeFile,sw.DetailProgressBar);
+				GetThemeFile(sw);
 				File.Copy(LocalThemeFile,InstallThemeFile);
 			}
 			sw.SetProgress("2/"+installationSteps);

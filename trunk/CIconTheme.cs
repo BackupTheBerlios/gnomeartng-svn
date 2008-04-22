@@ -39,16 +39,13 @@ namespace GnomeArtNG
 		}
 
 		override protected void PreInstallation(CStatusWindow sw){
-		if (!installationIsPossible)
+			if (!installationIsPossible)
 				throw new Exception("Installation is not possible - Tar is missing");
 			string tarParams="";
-			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 			
 			tarParams=config.GetTarParams(DownloadUrl);
-			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
 			//Herunterladen
-			if (!File.Exists(LocalThemeFile))
-				DownloadFile(DownloadUrl, LocalThemeFile,sw.DetailProgressBar);
+			GetThemeFile(sw);
 			sw.SetProgress("1/"+installationSteps);
 			
 			//Entpacken

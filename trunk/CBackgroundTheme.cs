@@ -129,7 +129,7 @@ namespace GnomeArtNG
 	
 		public void addImage(CBackgroundImage image){
 			if (currentList==null)
-					throw new Exception("You have to set the BgType first!!!");
+				throw new Exception("You have to set the BgType first!!!");
 			currentList.Add(image);
 		}
 		
@@ -151,7 +151,6 @@ namespace GnomeArtNG
 		}
 			
 		override protected void PreInstallation(CStatusWindow sw){
-			LocalThemeFile = config.ThemesPath+Path.GetFileName(Image.URL);
 			InstallThemeFile = config.SplashInstallPath+Path.GetFileName(Image.URL);	
 			//Set the localPreviewFile to the downloaded file to fasten the preview
 			localPreviewFile = LocalThemeFile;
@@ -170,9 +169,11 @@ namespace GnomeArtNG
 
 			if (!File.Exists(LocalThemeFile)) {
 				if (!File.Exists(LocalPreviewFile)) {
-					DownloadFile(Image.URL, LocalThemeFile,sw.DetailProgressBar);
-				} else 
+					GetThemeFile(sw);
+				} else {
 					File.Copy(LocalPreviewFile,LocalThemeFile);
+					Console.Out.WriteLine(LocalPreviewFile + " --- " + LocalThemeFile);
+				}
 			}
 			try{File.Copy(LocalThemeFile,InstallThemeFile);} catch{}
 

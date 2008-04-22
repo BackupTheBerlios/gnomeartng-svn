@@ -1,7 +1,7 @@
 /*
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; version 2 of the License.
+the Free Software Foundation; version 3 of the License.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,7 +22,7 @@ namespace GnomeArtNG
 {
 	public class CConfiguration
 	{
-		public static string Version = "0.4.5";
+		public static string Version = "0.5.0";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11
@@ -42,6 +42,13 @@ namespace GnomeArtNG
 			dtKubuntu,
 			dtSuse,
 			dtFedora
+		}
+
+		public enum XmlRefreshInterval:int{
+			xriNever=0,
+			xriEveryDay,
+			xriEvery2Days,
+			xriEvery4Days
 		}
 		
 		//Text constants for the installation procedures
@@ -79,6 +86,7 @@ namespace GnomeArtNG
 		private string gdmFile="";
 		private string gdmCustomFile="";
 		private string gdmPath="";
+		private string themesDownloadPath ="";
 		private bool neverStartedBefore=false;
 		
 		
@@ -91,6 +99,7 @@ namespace GnomeArtNG
 		private ArtType artType;
 		
 		//Anschauen.Durcheinander mit getset und Funktionen dafür
+		public string DirectorySeperator {get {return dirSep;}}
 		public string ProgramSettingsPath { get{ return settingsPath;} }
 		public string ThumbsPath { get{ return settingsPath+dirSep+thumbsDir+dirSep+((int)(artType)).ToString()+dirSep;} }
 		public string ThemesPath { get{ return settingsPath+dirSep+themesDir+dirSep+((int)(artType)).ToString()+dirSep;} }
@@ -98,13 +107,20 @@ namespace GnomeArtNG
 		public string HomePath { get { return homePath;} }
 		public string SudoCommand { get { return sudoCommand;} }
 		public string AttribPrep {get {return attribPrep;}}
+
+		//Returns and sets the path that will be used to download themes to the hd 
+		//(with "Slash" or "Backslash")
+		public string ThemesDownloadPath{
+			get{ return themesDownloadPath; }
+			set{ Console.Out.WriteLine(Path.GetDirectoryName(value));themesDownloadPath=Path.GetDirectoryName(value); }
+		}
+		
 		public ArtType ThemeType { 
 			get { return artType;} 
 			set { artType = value;} 
 		}
-
 		public string NoThumb{get{return "/usr/share/pixmaps/apple-red.png";}}
-		
+
 		public string SplashInstallPath{get{return splashInstallPath;}}
 		public string ApplicationInstallPath{get{return applicationInstallPath;}}
 		public string DecorationInstallPath{get{return decorationInstallPath;}}
@@ -274,6 +290,12 @@ namespace GnomeArtNG
 					Console.WriteLine("Configuration folder created: "+settingsPath);
 					neverStartedBefore=true;
 				}
+				//Create .gnome directory if not existant
+				if (!Directory.Exists(settingsPath)){
+					Directory.CreateDirectory(settingsPath+".gnome");
+					Console.WriteLine("Configuration folder created: "+homePath+".gnome");
+					neverStartedBefore=true;					
+				} 
 				
 				// create preview folders
 				CreateDownloadFilesystem(previewDir);

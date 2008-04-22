@@ -1,7 +1,7 @@
 /*
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; version 2 of the License.
+the Free Software Foundation; version 3 of the License.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -41,19 +41,22 @@ public class GnomeArtNgApp
 	//Menüs
 	[Widget] Gtk.ImageMenuItem QuitMenuItem;
 	[Widget] Gtk.ImageMenuItem InfoMenuItem;
+	[Widget] Gtk.ImageMenuItem PreferencesMenuItem;
 
 	//Buttons
 	[Widget] Gtk.Button InstallButton;	
-	[Widget] Gtk.Button RevertButton;	
+	[Widget] Gtk.Button RevertButton;
+	[Widget] Gtk.Button RefreshButton;	
+	[Widget] Gtk.Button SaveButton;
+	
 	[Widget] Gtk.Table LowerTable;	
 	[Widget] Gtk.Notebook MainNotebook;
-	[Widget] Gtk.Button StartButton;	
 	
 	//Erweiterte Infos Beschriftungen
 	[Widget] Gtk.Label ExtInfoResolutionsLabel;	
 	[Widget] Gtk.Label ExtInfoImageTypeLabel;
 	[Widget] Gtk.Label ExtInfoImageStyleLabel;
-
+	
 	//Erweiterte Infos Inhalte
 	[Widget] Gtk.Button ExtInfoPreviewButton;
 	[Widget] Gtk.Image ExtInfoImage;
@@ -81,14 +84,17 @@ public class GnomeArtNgApp
 		Glade.XML gxml = new Glade.XML (null, "gui.glade", "MainWindow", null);
 		gxml.Autoconnect (this);
 		
-		//Events verbinden
+		//Connect the events
 		ExtInfoPreviewButton.Clicked += new EventHandler(OnPreviewButtonClicked);
 		InstallButton.Clicked  += new EventHandler(OnInstallButtonClicked);
 		RevertButton.Clicked  += new EventHandler(OnRevertButtonClicked);
+		RefreshButton.Clicked += new EventHandler(OnRefreshButtonClicked);
+		SaveButton.Clicked  += new EventHandler(OnSaveButtonClicked);
 		MainNotebook.SwitchPage += new SwitchPageHandler(OnSwitchPage);
-		StartButton.Clicked += new EventHandler(OnStartButtonClicked);
+		//Menuitems
 		QuitMenuItem.Activated += new EventHandler(OnQuitItemSelected);
 		InfoMenuItem.Activated += new EventHandler(OnInfoItemSelected);
+		PreferencesMenuItem.Activated += new EventHandler(OnPreferencesItemSelected);
 		
 		
 		//ArtManager erzeugen
@@ -134,6 +140,10 @@ public class GnomeArtNgApp
 
 	private void OnInfoItemSelected(object sender, EventArgs a){
 		new CAboutWindow(CConfiguration.Version,true);
+	}
+
+	private void OnPreferencesItemSelected(object sender, EventArgs a){
+		new CSettingsWindow(config,true);
 	}
 	
 	private void OnImageTypeBoxChanged(object sender, EventArgs a){
@@ -182,6 +192,20 @@ public class GnomeArtNgApp
 		a.RetVal = true;
 	}
 	
+	private void OnSaveButtonClicked(object sender, EventArgs e){
+		CStatusWindow sw=new CStatusWindow(Catalog.GetString("Downloading the theme"),1,false,true,true);
+		sw.ButtonSensitive=false;
+		try{
+			man.Theme.GetThemeFile(sw,config.ThemesDownloadPath);
+			sw.Close();
+		}
+		catch (Exception ex) {
+			sw.Close();
+			new CInfoWindow(Catalog.GetString("Error: Download failed!"),ex.Message,Gtk.Stock.DialogError,true);
+			
+		}
+	}
+	
 	private void OnPreviewButtonClicked (object sender, EventArgs e){
 		/*
 			Pango.Layout layout = new Pango.Layout(ExtInfoImage.PangoContext);			
@@ -216,8 +240,7 @@ public class GnomeArtNgApp
 		man.Theme.Revert();
 	}
 
-	private void OnStartButtonClicked (object sender, System.EventArgs a){
-		
+	private void OnRefreshButtonClicked (object sender, System.EventArgs a){
 		man.GetAllThumbs();
 		FillStore(MainNotebook.Page);
 		IconViews[MainNotebook.Page].GrabFocus ();

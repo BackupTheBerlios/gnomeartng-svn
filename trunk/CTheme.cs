@@ -1,7 +1,7 @@
 /*
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; version 2 of the License.
+the Free Software Foundation; version 3 of the License.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -97,6 +97,7 @@ namespace GnomeArtNG
 			get{return downloadUrl;}
 			set{
 				downloadUrl=value;
+				LocalThemeFile=config.ThemesPath+Path.GetFileName(downloadUrl);
 				if (useUrlAsPreview)
 					PreviewUrl=downloadUrl;
 			}
@@ -109,6 +110,37 @@ namespace GnomeArtNG
 				localThumbExists=true;
 			}
 		}
+		
+		
+		public void GetThemeFile(CStatusWindow sw){
+			GetThemeFile(sw,null);
+		}
+	
+		public void GetThemeFile(string downloadTo){
+			GetThemeFile(null,downloadTo);
+		}
+		
+		//Downloads the selected theme if non-existant on the hd
+		public void GetThemeFile(CStatusWindow sw, string downloadTo){
+			Gtk.ProgressBar bar=null;
+			//Set the user hint if a status window is available
+			if (sw!=null){
+				bar=sw.DetailProgressBar;
+				sw.Mainlabel=CConfiguration.txtDownloadTheme;
+			}
+			//user choosen download location available?
+			if (downloadTo=="" || downloadTo==null)
+				downloadTo = LocalThemeFile;
+			else
+				downloadTo = Path.GetDirectoryName(downloadTo)+config.DirectorySeperator+Path.GetFileName(LocalThemeFile);
+
+			//Finally - download the theme
+			if (this is CBackgroundTheme)
+				DownloadFile((this as CBackgroundTheme).Image.URL, downloadTo, sw.DetailProgressBar);
+			else
+				DownloadFile(DownloadUrl, downloadTo, bar);
+		}
+		
 		
 		public void GetPreviewImage(Gtk.ProgressBar bar){
 			try{
@@ -160,6 +192,7 @@ namespace GnomeArtNG
 		
 		public CTheme(CConfiguration config)	{
 			this.config = config;
+			
 		}
 	}
 }

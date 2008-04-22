@@ -35,7 +35,6 @@ namespace GnomeArtNG
 		private string[] FolderName;		
 		
 		override protected void PreInstallation(CStatusWindow sw){
-			LocalThemeFile=config.ThemesPath+Path.GetFileName(DownloadUrl);
 			gdmConfAvailable=File.Exists(gdmconf);
 			gdmConfCustomAvailable=File.Exists(gdmconfcustom);
 			if (!gdmConfAvailable)
@@ -68,9 +67,7 @@ namespace GnomeArtNG
 			//Entpackparameter
 			tarParams = @"tar "+config.GetTarParams(DownloadUrl);
 			//Herunterladen
-			sw.Mainlabel=CConfiguration.txtDownloadTheme;
-			if (!File.Exists(LocalThemeFile))
-				DownloadFile(DownloadUrl, LocalThemeFile,sw.DetailProgressBar);
+			GetThemeFile(sw);
 			sw.SetProgress("2/"+installationSteps);
 			//Entpacken
 			sw.Mainlabel = CConfiguration.txtExtracting;
