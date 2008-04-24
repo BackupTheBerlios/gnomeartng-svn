@@ -330,12 +330,23 @@ namespace GnomeArtNG
 
 		public CTheme GetTheme(int Index){
 			ThemeIndex = Index;
-			ArrayList list=getThemeList();
-			if ((Index<list.Count)&(Index>=0))
+			if ((Index<getThemeList().Count)&(Index>=0))
 				return Theme;
 			else
 				throw new IndexOutOfRangeException("Illegal index in GetTheme");
 		}	
+
+		public CTheme GetTheme(string themeName){
+			ArrayList themeList = getThemeList();
+			CTheme theme = null;
+			for (int i=0; i<themeList.Count;i++){
+				theme = (CTheme)(themeList[i]);
+				if (theme.Name == themeName){ 
+					return GetTheme(i);
+				}
+			}
+			return null;
+		}
 		
 		public void GetAllThumbs(){
 			ArrayList list = getThemeList();

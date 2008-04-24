@@ -23,6 +23,7 @@ using System.Net;
 
 public class GnomeArtNgApp
 {
+	private Gtk.Window mainWindow;
 	private CArtManager man;
 	private CConfiguration config;
 	
@@ -73,6 +74,7 @@ public class GnomeArtNgApp
 	}
 
 	public GnomeArtNgApp (string[] args) {
+		//TODO:IconList in Create		
 		Application.Init();
 		//Mehrsprachigkeit initialisieren
 		Catalog.Init("i18n","./locale");
@@ -81,8 +83,17 @@ public class GnomeArtNgApp
 		//if (config.NeverStartedBefore)
 		//	;
 		//Glade laden
-		Glade.XML gxml = new Glade.XML (null, "gui.glade", "MainWindow", null);
+		string mainW = "MainWindow";
+		Glade.XML gxml = new Glade.XML (null, "gui.glade", mainW, null);
+		mainWindow = (Gtk.Window) gxml.GetWidget (mainW);
+		
 		gxml.Autoconnect (this);
+		//mainWindow.Icon = new Gdk.Pixbuf("../gnome.png");
+
+		if (config.LoadProgramSettings()) {
+			mainWindow.Move(config.Window.X, config.Window.Y);
+			mainWindow.Resize(config.Window.Width, config.Window.Height);
+		}
 		
 		//Connect the events
 		ExtInfoPreviewButton.Clicked += new EventHandler(OnPreviewButtonClicked);
@@ -96,7 +107,6 @@ public class GnomeArtNgApp
 		InfoMenuItem.Activated += new EventHandler(OnInfoItemSelected);
 		PreferencesMenuItem.Activated += new EventHandler(OnPreferencesItemSelected);
 		
-		
 		//ArtManager erzeugen
 		man = new CArtManager(config);
 
@@ -108,6 +118,7 @@ public class GnomeArtNgApp
 			IconViews[i].SelectionChanged += new System.EventHandler(OnSelChanged);
 			IconViews[i].ItemActivated += new ItemActivatedHandler(OnItemActivated);
 			IconViews[i].PixbufColumn = 0;
+			
 			sWins[i].Add(IconViews[i]);
 			IconViews[i].Show();
 		}
@@ -186,8 +197,16 @@ public class GnomeArtNgApp
 		}
 		FillExtendedSection(man.Theme);
 	}
-	
+	private void SaveAllProgramSettings(){
+		CConfiguration.WindowAttrStruct window;
+		mainWindow.GetSize(out(window.Width), out(window.Height));		
+		mainWindow.GetPosition(out(window.X), out(window.Y));
+		config.Window = window;
+		config.SaveProgramSettings();
+	}
+
 	private void OnWindowDeleteEvent (object sender, DeleteEventArgs a) {
+		SaveAllProgramSettings();
 		Application.Quit ();
 		a.RetVal = true;
 	}
@@ -275,10 +294,8 @@ public class GnomeArtNgApp
 		ExtInfoName.Text = theme.Name;
 		ExtInfoAuthor.Text = theme.Author;
 		ExtInfoLicense.Text = theme.License;
-		if (theme.Description.Trim() != ""){
+		if (theme.Description.Trim() != "")
 			ExtInfoDescription.Text = theme.Description;
-			ExtInfoDescription.UseMarkup=true;
-		}
 		else
 			ExtInfoDescription.Text = Catalog.GetString("No description has been entered by the author");
 		ExtInfoDownloads.Text = theme.DownloadCount.ToString();

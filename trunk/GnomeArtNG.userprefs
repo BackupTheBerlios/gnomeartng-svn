@@ -1,15 +1,16 @@
-﻿<UserCombinePreferences version="1.0" filename="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/GnomeArtNG.mds">
+﻿<UserCombinePreferences version="1.0" filename="/home/neo/Projekte/GnomeArtNG/trunk/GnomeArtNG.mds">
   <Files>
-    <File name="CTheme.cs" line="4" column="55" />
-    <File name="Main.cs" line="85" column="2" />
-    <File name="CConfiguration.cs" line="99" column="27" />
-    <File name="CSettingsWindow.cs" line="76" column="63" />
-    <File name="CAboutWindow.cs" line="4" column="55" />
+    <File name="CTheme.cs" line="114" column="3" />
+    <File name="Main.cs" line="121" column="1" />
+    <File name="CConfiguration.cs" line="16" column="1" />
+    <File name="CSettingsWindow.cs" line="14" column="1" />
+    <File name="CArtManager.cs" line="345" column="25" />
   </Files>
   <Views>
     <ViewMemento id="ProjectPad">
       <Node expanded="True">
         <Node name="GnomeArtNG" expanded="True">
+          <Node name="Resources" expanded="True" />
           <Node name="Main.cs" selected="True" />
         </Node>
       </Node>
@@ -22,7 +23,7 @@
     </ViewMemento>
   </Views>
   <Properties>
-    <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/Main.cs" />
+    <Property key="ActiveWindow" value="/home/neo/Projekte/GnomeArtNG/trunk/Main.cs" />
     <Property key="ActiveConfiguration" value="Release" />
   </Properties>
 </UserCombinePreferences>

@@ -17,6 +17,7 @@ using Gtk;
 using Gdk;
 using Glade;
 using GnomeArtNG;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
@@ -32,13 +33,12 @@ namespace GnomeArtNG
 		/*[Widget] Gtk.Label SettingsHeadLabel;
 		[Widget] Gtk.Label SettingsMainLabel;
 		[Widget] Gtk.Button SettingsCancelButton;
-		[Widget] Gtk.ProgressBar SettingsProgressBar;
-		[Widget] Gtk.ProgressBar SettingsDetailProgressBar;
 		[Widget] Gtk.Label SettingsExtInfoLabel;
 		[Widget] Gtk.Expander ExtendedInfoExpander;
 		*/
 		[Widget] Gtk.Button SettingsOkButton;
 		[Widget] Gtk.Button SettingsCancelButton;
+		[Widget] Gtk.ComboBox SettingsXmlCb;
 		[Widget] Gtk.FileChooser SettingsLocationFc;		
 		
 		public void Invalidate(){
@@ -52,9 +52,11 @@ namespace GnomeArtNG
 			Glade.XML settingsXml= new Glade.XML (null, "gui.glade", settingsW, null);
 			settingsXml.Autoconnect (this);
 			mainWindow = (Gtk.Window) settingsXml.GetWidget (settingsW);
+			mainWindow.Title = Catalog.GetString("Settings");
+			SettingsXmlCb.Active = (int)config.XmlRefresh;
+			SettingsLocationFc.SetCurrentFolder(config.ThemesDownloadPath);
 			SettingsCancelButton.Clicked+=new EventHandler(OnCancelButtonClicked);
 			SettingsOkButton.Clicked+=new EventHandler(OnOkButtonClicked);
-			SettingsLocationFc.CurrentFolderChanged+=new EventHandler(OnCurrentFolderChanged);
 			if(ShowWindow) Show();
 		}
 				
@@ -74,11 +76,8 @@ namespace GnomeArtNG
 		//Apply all settings (eventually refresh critical things)
 		private void OnOkButtonClicked (object sender, EventArgs a){
 			config.ThemesDownloadPath=SettingsLocationFc.CurrentFolder;
+			config.XmlRefresh = (CConfiguration.XmlRefreshInterval)SettingsXmlCb.Active;
 			Close();
-		}
-		//Set the themeDownloadPath to the user-choosen path
-		private void OnCurrentFolderChanged(object sender, EventArgs a){
-			Console.Out.WriteLine("choosen");
 		}
 	}
 }

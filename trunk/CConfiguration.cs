@@ -48,7 +48,15 @@ namespace GnomeArtNG
 			xriNever=0,
 			xriEveryDay,
 			xriEvery2Days,
-			xriEvery4Days
+			xriEvery4Days,
+			xriEveryWeek
+		}
+
+		public struct WindowAttrStruct {
+			public int Height;
+			public int Width;
+			public int X;
+			public int Y;
 		}
 		
 		//Text constants for the installation procedures
@@ -67,10 +75,10 @@ namespace GnomeArtNG
 			"revert your current selection. Have fun! ");
 		
 		//TODO: Möglichkeit die Pfade selbst zu setzen!
+		
 		private string dirSep="";
 		private string homePath="";
 		private string settingsPath="";
-		//private string thumbsPath="";
 		private string thumbsDir="thumbs";
 		//private string themesPath="";
 		private string themesDir="themes";
@@ -88,15 +96,16 @@ namespace GnomeArtNG
 		private string gdmPath="";
 		private string themesDownloadPath ="";
 		private bool neverStartedBefore=false;
-		
+		private static string GnomeArtNgGConfPath ="/apps/gnomeartng/";		
 		
 		private bool tarIsAvailable=false;
 		private bool grepIsAvailable=false;
 		private bool sedIsAvailable=false;
-		private DistriType distribution = DistriType.dtUbuntu; 
-		private string sudoCommand="gksudo";
+		private DistriType distribution = DistriType.dtUbuntu;
+		private static string sudoCommand="gksudo";
 		private string attribPrep="";
 		private ArtType artType;
+		private WindowAttrStruct windowAttributes;
 		
 		//Anschauen.Durcheinander mit getset und Funktionen dafür
 		public string DirectorySeperator {get {return dirSep;}}
@@ -107,20 +116,31 @@ namespace GnomeArtNG
 		public string HomePath { get { return homePath;} }
 		public string SudoCommand { get { return sudoCommand;} }
 		public string AttribPrep {get {return attribPrep;}}
-
+		public GConf.Client GConfClient;
+		public XmlRefreshInterval XmlRefresh = XmlRefreshInterval.xriEveryDay;
+		
 		//Returns and sets the path that will be used to download themes to the hd 
-		//(with "Slash" or "Backslash")
+		//(with "Slash" & "Backslash")
 		public string ThemesDownloadPath{
 			get{ return themesDownloadPath; }
-			set{ Console.Out.WriteLine(Path.GetDirectoryName(value));themesDownloadPath=Path.GetDirectoryName(value); }
+			set{ 
+				Console.Out.WriteLine(Path.GetFullPath(value));
+				themesDownloadPath=Path.GetFullPath(value); 
+			}
+		}
+		public WindowAttrStruct Window{
+			get{return windowAttributes;} 
+			set{windowAttributes=value;}
 		}
 		
 		public ArtType ThemeType { 
 			get { return artType;} 
 			set { artType = value;} 
 		}
+		
+		
 		public string NoThumb{get{return "/usr/share/pixmaps/apple-red.png";}}
-
+		
 		public string SplashInstallPath{get{return splashInstallPath;}}
 		public string ApplicationInstallPath{get{return applicationInstallPath;}}
 		public string DecorationInstallPath{get{return decorationInstallPath;}}
@@ -166,6 +186,37 @@ namespace GnomeArtNG
 				(artType==ArtType.atBackground_other) |
 				(artType==ArtType.atBackground_nature) |
 				(artType==ArtType.atBackground_abstract);
+			}
+		}
+		
+		//loads all initial program settings (width, height, paths, etc...)
+		public bool LoadProgramSettings(){
+			try {
+				windowAttributes.X = (int)GConfClient.Get(GnomeArtNgGConfPath+"xPosition");
+				windowAttributes.Y = (int)GConfClient.Get(GnomeArtNgGConfPath+"yPosition");
+				windowAttributes.Width = (int)GConfClient.Get(GnomeArtNgGConfPath+"width");
+				windowAttributes.Height = (int)GConfClient.Get(GnomeArtNgGConfPath+"height");
+				
+				themesDownloadPath = (string)GConfClient.Get(GnomeArtNgGConfPath+"themesDownloadPath");
+				XmlRefresh = (XmlRefreshInterval)GConfClient.Get(GnomeArtNgGConfPath+"xmlRefresh");
+				return true;
+			} catch (GConf.NoSuchKeyException e){
+				SaveProgramSettings();
+				return false;
+			}
+		}
+
+		//All program relevant settings will be saved here
+		public void SaveProgramSettings(){
+			try{
+				GConfClient.Set(GnomeArtNgGConfPath+"xPosition",windowAttributes.X);
+				GConfClient.Set(GnomeArtNgGConfPath+"yPosition",windowAttributes.Y);
+				GConfClient.Set(GnomeArtNgGConfPath+"width",windowAttributes.Width);
+				GConfClient.Set(GnomeArtNgGConfPath+"height",windowAttributes.Height);	
+				GConfClient.Set(GnomeArtNgGConfPath+"themesDownloadPath",themesDownloadPath);
+				GConfClient.Set(GnomeArtNgGConfPath+"xmlRefresh",(int)XmlRefresh);
+			} catch{
+				Console.Out.WriteLine(Catalog.GetString("Error:")+Catalog.GetString("Program settings couldn't be saved:"));
 			}
 		}
 		
@@ -222,6 +273,7 @@ namespace GnomeArtNG
 		}
 		
 		public CConfiguration(ArtType type)	{
+			GConfClient = new GConf.Client();
 			artType=type;
 			dirSep=Path.DirectorySeparatorChar.ToString();
 			homePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -241,7 +293,7 @@ namespace GnomeArtNG
 			ProcessStartInfo psi = new ProcessStartInfo();
 			psi.Arguments = Arguments;
 			psi.FileName = FileName;
-			//Console.WriteLine(psi.FileName+psi.Arguments);
+			//Console.WriteLine(psi.FileName+psi. Arguments);
 			psi.RedirectStandardOutput = true;
 			psi.UseShellExecute = false;
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -260,7 +312,7 @@ namespace GnomeArtNG
 			return (Execute(programName,arguments)).ToString().ToLower().Contains(lookFor);
 		}
 
-		private void CreateDownloadFilesystem(string directoryName){
+		private void CreateDownloadFilesysStructure(string directoryName){
 			string dirToCreate = "";
 			Type enumType = typeof(ArtType);
 			
@@ -298,11 +350,11 @@ namespace GnomeArtNG
 				} 
 				
 				// create preview folders
-				CreateDownloadFilesystem(previewDir);
+				CreateDownloadFilesysStructure(previewDir);
 				// create thumb folders
-				CreateDownloadFilesystem(thumbsDir);
+				CreateDownloadFilesysStructure(thumbsDir);
 				// create themes folders
-				CreateDownloadFilesystem(themesDir);
+				CreateDownloadFilesysStructure(themesDir);
 				
 				return true;
 			} catch { return false; }
