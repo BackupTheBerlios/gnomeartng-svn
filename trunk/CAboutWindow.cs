@@ -31,7 +31,6 @@ namespace GnomeArtNG
 		}
 		
 		//AboutWindow
-		//[Widget] Gtk.Label AboutHeadLabel;
 		[Widget] Gtk.Label AboutVersion;
 		[Widget] Gtk.Button AboutCloseButton;
 		[Widget] Gtk.Image AboutImage;

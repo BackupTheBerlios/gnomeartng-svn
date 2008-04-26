@@ -62,6 +62,7 @@ namespace GnomeArtNG
 			try	{
 				// Create a request to the file we are downloading
 				webRequest = (HttpWebRequest)WebRequest.Create(From);
+				webRequest.Timeout = 3000; 
 				webRequest.KeepAlive=holdConnection;
 				// Set default authentication for retrieving the file
 				webRequest.Credentials = CredentialCache.DefaultCredentials;

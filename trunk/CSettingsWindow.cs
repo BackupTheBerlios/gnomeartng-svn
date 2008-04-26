@@ -18,6 +18,7 @@ using Gdk;
 using Glade;
 using GnomeArtNG;
 using Mono.Unix;
+using System.IO;
 
 namespace GnomeArtNG
 {
@@ -53,10 +54,11 @@ namespace GnomeArtNG
 			settingsXml.Autoconnect (this);
 			mainWindow = (Gtk.Window) settingsXml.GetWidget (settingsW);
 			mainWindow.Title = Catalog.GetString("Settings");
-			SettingsXmlCb.Active = (int)config.XmlRefresh;
+			SettingsXmlCb.Active = config.XmlRefreshInterval;
 			SettingsLocationFc.SetCurrentFolder(config.ThemesDownloadPath);
 			SettingsCancelButton.Clicked+=new EventHandler(OnCancelButtonClicked);
 			SettingsOkButton.Clicked+=new EventHandler(OnOkButtonClicked);
+			config.GConfClient.AddNotify(CConfiguration.GnomeArtNgGConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);
 			if(ShowWindow) Show();
 		}
 				
@@ -70,14 +72,29 @@ namespace GnomeArtNG
 		}
 		
 		private void OnCancelButtonClicked (object sender, EventArgs a){
+			config.GConfClient.RemoveNotify(CConfiguration.GnomeArtNgGConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);
 			Close();
 		}
 
 		//Apply all settings (eventually refresh critical things)
 		private void OnOkButtonClicked (object sender, EventArgs a){
 			config.ThemesDownloadPath=SettingsLocationFc.CurrentFolder;
-			config.XmlRefresh = (CConfiguration.XmlRefreshInterval)SettingsXmlCb.Active;
-			Close();
+			config.XmlRefreshInterval = SettingsXmlCb.Active;
+			OnCancelButtonClicked(sender,a);
 		}
+
+		private void OnThemesPathChangedEventHandler(object sender, GConf.NotifyEventArgs a){
+			string path = (string)config.GConfClient.Get(CConfiguration.GnomeArtNgGConfPath+"themesDownloadPath");
+			if (Directory.Exists(path))
+			    SettingsLocationFc.SetCurrentFolder(path);
+			else {
+				new CInfoWindow(Catalog.GetString("Error"),Catalog.GetString("The download location has been changed manually! "+
+				                                                             "Normally, this is no problem at all! But if you change "+
+				                                                             "the location to a place that doesn't exists then it will "+
+				                                                             "be a problem!\n\n So this is a \"Location couldn't be "+
+				                                                             "found\" message. Please correct the download location!"),Gtk.Stock.DialogError,true);
+			}
+		}
+		
 	}
 }

@@ -132,8 +132,8 @@ namespace GnomeArtNG
 			if (downloadTo=="" || downloadTo==null)
 				downloadTo = LocalThemeFile;
 			else
-				downloadTo = Path.GetDirectoryName(downloadTo)+config.DirectorySeperator+Path.GetFileName(LocalThemeFile);
-
+				downloadTo = Path.GetFullPath(downloadTo)+config.DirectorySeperator+Path.GetFileName(LocalThemeFile);
+			Console.Out.WriteLine("Downloading theme to : "+ downloadTo);
 			//Finally - download the theme
 			if (this is CBackgroundTheme)
 				DownloadFile((this as CBackgroundTheme).Image.URL, downloadTo, sw.DetailProgressBar);

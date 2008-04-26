@@ -9,6 +9,13 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
 
+/*
+ * Thoughts: 
+ * ProgramSettings in an other class!
+ * Load/Save methods for the settings, register the different settings in the constructor phase!
+ * Own class with string constants for the different languages ?
+ * 
+ * */
 
 using System;
 using System.IO;
@@ -44,14 +51,6 @@ namespace GnomeArtNG
 			dtFedora
 		}
 
-		public enum XmlRefreshInterval:int{
-			xriNever=0,
-			xriEveryDay,
-			xriEvery2Days,
-			xriEvery4Days,
-			xriEveryWeek
-		}
-
 		public struct WindowAttrStruct {
 			public int Height;
 			public int Width;
@@ -59,7 +58,7 @@ namespace GnomeArtNG
 			public int Y;
 		}
 		
-		//Text constants for the installation procedures
+		//Texts for the installation procedures
 		public static string txtExtracting=Catalog.GetString("<i>Extracting the theme</i>\n\n"+
 			"Your theme is downloaded and has to be extracted now. You might be prompted to enter your "+
 			"user password to legetimate the copying of all extracted files to the right path.");
@@ -73,8 +72,7 @@ namespace GnomeArtNG
 		public static string txtInstallDone=Catalog.GetString("<i>Theme installation is complete</i>\n\n"+
 			"Your Theme is now installed. You can now go on with your theme selection or (if you don't like the results) "+
 			"revert your current selection. Have fun! ");
-		
-		//TODO: Möglichkeit die Pfade selbst zu setzen!
+		public static string GnomeArtNgGConfPath ="/apps/gnome-art-ng/";
 		
 		private string dirSep="";
 		private string homePath="";
@@ -95,8 +93,7 @@ namespace GnomeArtNG
 		private string gdmCustomFile="";
 		private string gdmPath="";
 		private string themesDownloadPath ="";
-		private bool neverStartedBefore=false;
-		private static string GnomeArtNgGConfPath ="/apps/gnomeartng/";		
+		private bool neverStartedBefore=false;		
 		
 		private bool tarIsAvailable=false;
 		private bool grepIsAvailable=false;
@@ -117,7 +114,8 @@ namespace GnomeArtNG
 		public string SudoCommand { get { return sudoCommand;} }
 		public string AttribPrep {get {return attribPrep;}}
 		public GConf.Client GConfClient;
-		public XmlRefreshInterval XmlRefresh = XmlRefreshInterval.xriEveryDay;
+		// interval in which a new xml file will be downloaded (in days)
+		public int XmlRefreshInterval = 1;
 		
 		//Returns and sets the path that will be used to download themes to the hd 
 		//(with "Slash" & "Backslash")
@@ -198,9 +196,10 @@ namespace GnomeArtNG
 				windowAttributes.Height = (int)GConfClient.Get(GnomeArtNgGConfPath+"height");
 				
 				themesDownloadPath = (string)GConfClient.Get(GnomeArtNgGConfPath+"themesDownloadPath");
-				XmlRefresh = (XmlRefreshInterval)GConfClient.Get(GnomeArtNgGConfPath+"xmlRefresh");
+				XmlRefreshInterval = (int)GConfClient.Get(GnomeArtNgGConfPath+"xmlRefreshInterval");
 				return true;
-			} catch (GConf.NoSuchKeyException e){
+			} catch {
+				Console.Out.WriteLine("First time accessing the gconf settings...writing new settings!");
 				SaveProgramSettings();
 				return false;
 			}
@@ -214,9 +213,9 @@ namespace GnomeArtNG
 				GConfClient.Set(GnomeArtNgGConfPath+"width",windowAttributes.Width);
 				GConfClient.Set(GnomeArtNgGConfPath+"height",windowAttributes.Height);	
 				GConfClient.Set(GnomeArtNgGConfPath+"themesDownloadPath",themesDownloadPath);
-				GConfClient.Set(GnomeArtNgGConfPath+"xmlRefresh",(int)XmlRefresh);
+				GConfClient.Set(GnomeArtNgGConfPath+"xmlRefreshInterval",XmlRefreshInterval); 
 			} catch{
-				Console.Out.WriteLine(Catalog.GetString("Error:")+Catalog.GetString("Program settings couldn't be saved:"));
+				Console.Out.WriteLine(Catalog.GetString("Error")+":"+Catalog.GetString("Program settings couldn't be saved"));
 			}
 		}
 		

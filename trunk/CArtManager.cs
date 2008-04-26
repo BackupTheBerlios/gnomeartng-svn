@@ -24,8 +24,7 @@ namespace GnomeArtNG
 	
 	public class CArtManager
 	{	
-		//Aktuell gewählter Theme-Typ steckt in config.ThemeType
-		
+		//Program configuration and helper consts/functions
 		private CConfiguration config;
 
 		//Themelisten
@@ -40,14 +39,13 @@ namespace GnomeArtNG
 		public ArrayList ApplicationThemeList;
 		public ArrayList IconThemeList;
 
-		//Aktuelles Theme
+		//The current choosen theme
 		private CTheme currentTheme;
-		//Aktueller zum Theme passender Index in der ThemeListe
+		//Current theme index that corresponds to the currentTheme
 		private int currentThemeIndex;
 			
-		/*Sobald der Typ geändert wird, wird die Interne Variable currentType gesetzt,
-		  die XML-Datei heruntergeladen (falls sie alt ist), die Datei geparsed und die 
-		  ArrayListen gefüllt
+		/*Immediately after setting the type, the internal var currentType will be set,
+		  the XML-file be downloaded (if too old), the file be parsed and the array lists be filled 
 		 */ 
 		public CConfiguration.ArtType ArtType {
 			get{ return config.ThemeType; }
@@ -63,7 +61,8 @@ namespace GnomeArtNG
 				ArrayList list = getThemeList();
 				((CTheme)list[currentThemeIndex]).GetThumbnailImage(null);
 			} catch {
-				//TODO:Fehlerbehandlung!
+				//Evtl merken dass ein Datei nicht heruntergeladen werden kann, neu laden der XML->neuer Versuch!
+				//TODO:ErrorHandling!
 			}
 		}
 		
@@ -109,26 +108,20 @@ namespace GnomeArtNG
 			WindowDecorationThemeList=new ArrayList();
 			IconThemeList = new ArrayList();
 		}
-		
-		/*private bool DownloadFile(string From, string To){
-	        try {
-				WebClient myClient = new WebClient();
-				Console.WriteLine(Catalog.GetString("Downloading")+ " " + Path.GetFileName(From));
-				myClient.DownloadFile(From, To);
-				Console.WriteLine(Catalog.GetString("Finished") + " " + Path.GetFileName(From));
-				return true;
-			} catch { return false; }
-		}*/
-		
+				
 		//Die für die jeweilige Option richtige XMLDatei herunterladen wenn sie veraltet ist
 		private void getXMLFile(bool ForceReload){
+			DateTime localFileDate;
+			int daysBetween=0;
 			string remoteUri = config.XmlFileUrl();
 			string localFileName = config.ArtFilePath();
 			bool downloadFile=false;
 			if (!ForceReload){
 		        if (File.Exists(localFileName)) {
-		            if ( DateTime.Compare(File.GetCreationTime(localFileName).Date, DateTime.Now.Date) < 0) {
-		                Console.WriteLine("Xml file one day old - downloading new one");
+					localFileDate = File.GetCreationTime(localFileName).Date;
+					daysBetween = DateTime.Now.Date.Subtract(localFileDate).Days;
+		            if ( daysBetween >= config.XmlRefreshInterval) {
+		                Console.WriteLine("Xml file too old ({0} day(s) since last download - downloading new one",daysBetween);
 						downloadFile = true;
 		            }
 		        }

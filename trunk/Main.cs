@@ -213,6 +213,7 @@ public class GnomeArtNgApp
 	
 	private void OnSaveButtonClicked(object sender, EventArgs e){
 		CStatusWindow sw=new CStatusWindow(Catalog.GetString("Downloading the theme"),1,false,true,true);
+		sw.ExtInfoLabel = Catalog.GetString("Download location")+": "+config.ThemesDownloadPath;
 		sw.ButtonSensitive=false;
 		try{
 			man.Theme.GetThemeFile(sw,config.ThemesDownloadPath);
