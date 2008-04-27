@@ -1,4 +1,13 @@
 #/bin/sh
-xgettext --from-code=UTF-8 Main.cs CApplicationTheme.cs CArtManager.cs CBackgroundTheme.cs CConfiguration.cs CFileDownloader.cs CGdmTheme.cs CGtkTheme.cs CIconTheme.cs CPreviewWindow.cs CSplashTheme.cs CStatusWindow.cs CTheme.cs CWindowDecorationTheme.cs gui.glade -jo ./po/de.po
-#Texte Compilieren
-msgfmt ./po/de.po -o locale/de/LC_MESSAGES/i18n.mo
+
+#English-German
+xgettext --from-code=UTF-8 *.cs gui.glade --no-location -o ./po/de_new.po
+#English-Bulgarian
+xgettext --from-code=UTF-8 *.cs gui.glade --no-location -o ./po/bg_new.po
+#English-Portugese
+xgettext --from-code=UTF-8 *.cs gui.glade --no-location -o ./po/pt_new.po
+
+#Compile the texts
+#msgfmt ./po/de.po -o locale/de/LC_MESSAGES/i18n.mo
+#msgfmt ./po/bg.po -o locale/bg/LC_MESSAGES/i18n.mo
+#msgfmt ./po/pt.po -o locale/pt/LC_MESSAGES/i18n.mo

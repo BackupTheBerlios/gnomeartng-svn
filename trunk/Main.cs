@@ -221,7 +221,7 @@ public class GnomeArtNgApp
 		}
 		catch (Exception ex) {
 			sw.Close();
-			new CInfoWindow(Catalog.GetString("Error: Download failed!"),ex.Message,Gtk.Stock.DialogError,true);
+			new CInfoWindow(Catalog.GetString("Error")+":"+Catalog.GetString("Download failed!"),ex.Message,Gtk.Stock.DialogError,true);
 			
 		}
 	}

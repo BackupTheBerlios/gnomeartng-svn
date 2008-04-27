@@ -16,25 +16,12 @@ msgstr ""
 "X-Poedit-Language: Bulgarian\n"
 "X-Poedit-Country: BULGARIA\n"
 
-#: CArtManager.cs:106
-#: CArtManager.cs:110
-#, csharp-format
-msgid "Finished"
-msgstr "Завършено"
-
-#: CArtManager.cs:135
-#: CArtManager.cs:138
 msgid "Downloading new XML file"
 msgstr "Изтегляне на нов XML файл"
 
-#: CArtManager.cs:137
-#: CArtManager.cs:108
-#: CArtManager.cs:140
 msgid "Downloading"
 msgstr "Изтегляне"
 
-#: CArtManager.cs:138
-#: CArtManager.cs:141
 msgid ""
 "<i>XML file is beeing downloaded</i>\n"
 "\n"
@@ -56,604 +43,21 @@ msgstr ""
 "\n"
 "Бъдете търпеливи докато продължава изтеглянето..."
 
-#: CArtManager.cs:138
-#: CArtManager.cs:142
-#: CArtManager.cs:145
-#: CTheme.cs:148
-#: CTheme.cs:150
-#: CFileDownloader.cs:76
 msgid "downloading... (no progress available)"
 msgstr "изтегляне.. (няма прогрес)"
 
-#: CArtManager.cs:326
-#: CArtManager.cs:335
-#: CArtManager.cs:341
+msgid "Warning: Could not download xml file!"
+msgstr "Внимание: XML файлът не може да бъде изтеглен!"
+
 msgid "Reading thumbnails on harddisc"
 msgstr "Четене на умалените изображения от твърдия диск"
 
-#: CArtManager.cs:343
-#: CArtManager.cs:352
-#: CArtManager.cs:358
 msgid "Downloading missing thumbnails"
 msgstr "Изтегляне на липсващите умалени изображения"
 
-#: CSplashTheme.cs:50
-msgid "Saving the previous settings"
-msgstr "Запазване на предишните настройки"
+msgid "resolution-independend"
+msgstr "За всички разделителни способности"
 
-#: CSplashTheme.cs:56
-msgid "Downloading the theme from art.gnome.org"
-msgstr "Изтегляне на темата от art.gnome.org"
-
-#: CSplashTheme.cs:63
-msgid "Installing the theme"
-msgstr "Инсталиране на темата"
-
-#: CSplashTheme.cs:74
-msgid "Install finished"
-msgstr "Инсталирането завърши"
-
-#: CTheme.cs:110
-#: CTheme.cs:121
-#: CTheme.cs:192
-#: CTheme.cs:194
-#: CTheme.cs:122
-msgid ""
-"<i>Installing</i>\n"
-"\n"
-"Your selection is beeing downloaded and installed...please be patient while the installation procedure proceeds. After everything's done, this window will get closed.\n"
-"\n"
-" Have fun with your new theme, Greetings Tom"
-msgstr ""
-"<i>Инсталиране</i>\n"
-"\n"
-"Изборът ви се сваля и инсталира... Моля проявете търпение докато трае инсталирането. Когато всичко завърши, този прозорец ще се затвори.\n"
-"\n"
-"Забавлявайте се с новата си тема, поздрави Том."
-
-#: gui.glade:10
-msgid "Gnome-Art-NG"
-msgstr "Gnome-Art-NG"
-
-#: gui.glade:27
-#: gui.glade:28
-msgid "_File"
-msgstr "Файл"
-
-#: gui.glade:37
-#: gui.glade:38
-msgid "gtk-quit"
-msgstr "gtk-quit"
-
-#: gui.glade:50
-#: gui.glade:51
-msgid "_Help"
-msgstr "Помощ"
-
-#: gui.glade:60
-#: gui.glade:61
-msgid "gtk-about"
-msgstr "gtk-about"
-
-#: gui.glade:99
-#: gui.glade:144
-#: gui.glade:145
-#: gui.glade:195
-#: gui.glade:245
-#: gui.glade:100
-#: gui.glade:146
-#: gui.glade:196
-#: gui.glade:246
-msgid "<b>Please choose your favourite background</b>"
-msgstr "<b>Моля изберете любимия си тапет</b>"
-
-#: gui.glade:127
-#: gui.glade:128
-#: gui.glade:129
-msgid ""
-"Gnome\n"
-"Background"
-msgstr ""
-"Gnome\n"
-"Тапети"
-
-#: gui.glade:175
-#: gui.glade:177
-#: gui.glade:178
-msgid ""
-"Other\n"
-"Backgrounds"
-msgstr ""
-"Други\n"
-"Тапети"
-
-#: gui.glade:193
-#: gui.glade:296
-#: gui.glade:297
-msgid "<b>Please choose an application theme</b>"
-msgstr "<b>Моля изберете тема за бутоните и декорациите</b>"
-
-#: gui.glade:224
-#: gui.glade:328
-#: gui.glade:329
-msgid "Application"
-msgstr "Бутони и декорации"
-
-#: gui.glade:227
-#: gui.glade:228
-msgid ""
-"Nature\n"
-"Backgrounds"
-msgstr ""
-"Природни\n"
-"Тапети"
-
-#: gui.glade:241
-#: gui.glade:345
-#: gui.glade:346
-msgid "<b>Please choose a window decoration</b>"
-msgstr "<b>Моля изберете рамка на прозорците</b>"
-
-#: gui.glade:277
-#: gui.glade:278
-msgid ""
-"Abstract \n"
-"Backgrounds"
-msgstr ""
-"Абстрактни \n"
-"Тапети"
-
-#: gui.glade:377
-#: gui.glade:378
-msgid ""
-"Window\n"
-"Decoration"
-msgstr ""
-"Рамка на\n"
-"Прозорците"
-
-#: gui.glade:395
-#: gui.glade:396
-msgid "<b>Please choose an icon set</b>"
-msgstr "<b>Моля изберете тема за иконите</b>"
-
-#: gui.glade:427
-#: gui.glade:428
-msgid "Icons"
-msgstr "Икони"
-
-#: gui.glade:444
-#: gui.glade:445
-msgid "<b>Please choose your greeter for GDM</b>"
-msgstr "<b>Моля изберете тема за екрана за идентификация </b>"
-
-#: gui.glade:368
-#: gui.glade:476
-#: gui.glade:477
-msgid "GDM Greeter"
-msgstr "Екран за идентификация"
-
-#: gui.glade:385
-#: gui.glade:493
-#: gui.glade:494
-msgid "<b>Please choose a splash screen for the Gnome start</b>"
-msgstr "<b>Моля изберете предварителен екран за стартирането на Gnome</b>"
-
-#: gui.glade:416
-#: gui.glade:525
-#: gui.glade:526
-msgid "Splash"
-msgstr "Предварителни екрани"
-
-#: gui.glade:464
-#: gui.glade:574
-#: gui.glade:575
-msgid "Gtk-Engine"
-msgstr "Gtk-Engine"
-
-#: gui.glade:532
-#: gui.glade:642
-#: gui.glade:643
-msgid "<b>Name:</b>"
-msgstr "<b>Име:</b>"
-
-#: gui.glade:542
-#: gui.glade:571
-#: gui.glade:598
-#: gui.glade:697
-#: gui.glade:723
-#: gui.glade:1335
-#: gui.glade:715
-#: gui.glade:743
-#: gui.glade:1325
-#: gui.glade:652
-#: gui.glade:681
-#: gui.glade:708
-#: gui.glade:825
-#: gui.glade:853
-#: gui.glade:1441
-#: gui.glade:807
-#: gui.glade:833
-#: gui.glade:1451
-#: gui.glade:806
-#: gui.glade:832
-#: gui.glade:1464
-#: gui.glade:824
-#: gui.glade:852
-#: gui.glade:855
-#: gui.glade:883
-#: gui.glade:814
-#: gui.glade:840
-#: gui.glade:827
-#: gui.glade:1106
-#: gui.glade:1107
-#: gui.glade:850
-#: gui.glade:1119
-#: gui.glade:1109
-#: gui.glade:653
-#: gui.glade:682
-#: gui.glade:709
-#: gui.glade:828
-#: gui.glade:856
-#: gui.glade:1110
-#: gui.glade:1111
-#: gui.glade:851
-#: gui.glade:1120
-msgid "label"
-msgstr "етикет"
-
-#: gui.glade:558
-#: gui.glade:668
-#: gui.glade:1135
-#: gui.glade:1136
-#: gui.glade:1089
-#: gui.glade:1138
-#: gui.glade:669
-#: gui.glade:1139
-#: gui.glade:1140
-#: gui.glade:1090
-msgid "<b>Author:</b>"
-msgstr "<b>Автор:</b>"
-
-#: gui.glade:585
-#: gui.glade:695
-#: gui.glade:696
-msgid "<b>License:</b>"
-msgstr "<b>Лиценз:</b>"
-
-#: gui.glade:635
-#: gui.glade:745
-#: gui.glade:746
-msgid "<b>Description:</b>"
-msgstr "<b>Описание:</b>"
-
-#: gui.glade:650
-#: Main.cs:198
-#: Main.cs:209
-#: gui.glade:760
-#: Main.cs:217
-#: Main.cs:230
-#: Main.cs:248
-#: Main.cs:255
-#: Main.cs:254
-#: gui.glade:761
-msgid "No description has been entered by the author"
-msgstr "Няма въведено описание от автора"
-
-#: gui.glade:688
-#: gui.glade:756
-#: gui.glade:866
-#: gui.glade:798
-#: gui.glade:797
-#: gui.glade:865
-#: gui.glade:896
-#: gui.glade:805
-#: gui.glade:868
-#: gui.glade:815
-#: gui.glade:869
-#: gui.glade:816
-msgid "<b>Download count:</b>"
-msgstr "<b>Изтегляния:</b>"
-
-#: gui.glade:710
-#: gui.glade:730
-#: gui.glade:840
-#: gui.glade:820
-#: gui.glade:819
-#: gui.glade:839
-#: gui.glade:870
-#: gui.glade:827
-#: gui.glade:842
-#: gui.glade:837
-#: gui.glade:843
-#: gui.glade:838
-msgid "<b>Rating:</b>"
-msgstr "<b>Оценка:</b>"
-
-#: gui.glade:738
-#: gui.glade:702
-#: gui.glade:812
-#: gui.glade:848
-#: gui.glade:847
-#: gui.glade:811
-#: gui.glade:842
-#: gui.glade:855
-#: gui.glade:814
-#: gui.glade:864
-#: gui.glade:815
-#: gui.glade:865
-msgid "<b>Resolution:</b>"
-msgstr "<b>Разделителна способност:</b>"
-
-#: gui.glade:752
-#: gui.glade:688
-#: gui.glade:798
-#: gui.glade:862
-#: gui.glade:861
-#: gui.glade:797
-#: gui.glade:828
-#: gui.glade:869
-#: gui.glade:801
-#: gui.glade:877
-#: gui.glade:802
-#: gui.glade:878
-msgid "<b>Image type:</b>"
-msgstr "<b>Вид изображение:</b>"
-
-#: gui.glade:786
-#: gui.glade:1165
-msgid "Installieren"
-msgstr "Инсталиране"
-
-#: gui.glade:796
-#: gui.glade:907
-#: gui.glade:906
-#: gui.glade:937
-#: gui.glade:922
-#: gui.glade:923
-msgid "gtk-undo"
-msgstr ""
-
-#: gui.glade:810
-msgid "StartButton"
-msgstr ""
-
-#: gui.glade:833
-#: gui.glade:945
-#: gui.glade:944
-#: gui.glade:970
-#: gui.glade:955
-#: gui.glade:956
-msgid "<b>Extended theme information</b>"
-msgstr "<b>Допълнителна информация</b>"
-
-#: gui.glade:915
-#: gui.glade:1027
-#: gui.glade:1026
-#: gui.glade:1052
-msgid "<b>Gnome-Art-NG</b> wurde in C# geschrieben von Thomas Beck. Falls ihr Fehler findet dann schreibt mir einfach eine Mail: <i>software@plasmasolutions.de</i>"
-msgstr "<b>Gnome-Art-NG</b> беше написана на C# от Thomas Beck. Ако откриете грешки, изпратете ми писмо на: <i>software@plasmasolutions.de</i>"
-
-#: gui.glade:966
-#: gui.glade:1078
-#: gui.glade:1077
-#: gui.glade:1103
-#: gui.glade:1238
-#: gui.glade:1240
-#: gui.glade:1242
-#: gui.glade:1245
-#: gui.glade:1246
-msgid "<big><b>Downloading</b></big>"
-msgstr "<big><b>Изтегляне</b></big>"
-
-#: gui.glade:997
-#: gui.glade:1109
-#: gui.glade:1108
-#: gui.glade:1134
-#: gui.glade:1269
-#: gui.glade:1271
-#: gui.glade:1273
-#: gui.glade:1276
-#: gui.glade:1277
-msgid ""
-"<i>Your themes are beeing read</i>\n"
-"\n"
-"Please be patient while all themes that fit your selection are beeing read. When you've done this procedure previously, all themes will be read from a cache directory on your hard disc. Use the Expander beneath to see what action is exactly beeing done."
-msgstr ""
-"<i>Темите ви се четат</i>\n"
-"\n"
-"Моля проявете търпение докато всички избрани от вас теми се четат. Когато сте извършвали тази процедура преди, всички теми ще бъдат прочетени от кеш папката на твърдия диск. Използвайте стрелката по-долу за да видите какво точно е извършено."
-
-#: gui.glade:1026
-#: gui.glade:1138
-#: gui.glade:1137
-#: gui.glade:1163
-#: gui.glade:1298
-#: gui.glade:1300
-#: gui.glade:1302
-#: gui.glade:1305
-#: gui.glade:1306
-msgid "Extended information about the current action:"
-msgstr "Допълнителна информация за текущото действие:"
-
-#: gui.glade:1076
-#: gui.glade:1188
-#: gui.glade:1201
-#: gui.glade:1227
-#: gui.glade:1362
-#: gui.glade:1364
-#: gui.glade:1366
-#: gui.glade:1369
-#: gui.glade:1370
-msgid "gtk-stop"
-msgstr ""
-
-#: gui.glade:1154
-#: gui.glade:1269
-#: gui.glade:1282
-#: gui.glade:1377
-#: gui.glade:1308
-#: gui.glade:1403
-#: gui.glade:1183
-#: gui.glade:1443
-#: gui.glade:1538
-#: gui.glade:1185
-#: gui.glade:1445
-#: gui.glade:1540
-#: gui.glade:1187
-#: gui.glade:1447
-#: gui.glade:1542
-#: gui.glade:1188
-#: gui.glade:1450
-#: gui.glade:1546
-#: gui.glade:1189
-#: gui.glade:1451
-#: gui.glade:1547
-#: gui.glade:1657
-msgid "gtk-close"
-msgstr ""
-
-#: gui.glade:1212
-#: gui.glade:1328
-#: gui.glade:1341
-#: gui.glade:1340
-#: gui.glade:1366
-#: gui.glade:1501
-#: gui.glade:1503
-#: gui.glade:1505
-#: gui.glade:1509
-#: gui.glade:1510
-msgid ""
-"<i>Willkommen zu GNOME-Art-ng.</i>\n"
-"\n"
-"Dieses Programm ist dafür gedacht, den Umgang mit den verschiedenen Themes die unter Linux verfügbar sind zu erleichtern und gleichzeitig für die Seite art.gnome.org ein passendes Frontend zur Verfügung zu stellen. \n"
-"\n"
-"<i>Viel Spaß wünscht Thomas Beck!</i>"
-msgstr ""
-"<i>Добре дошли в GNOME-Art-ng.</i>\n"
-"\n"
-"Тази програма е създадена да направи работата с различните Линукс теми по-лесна, като предложи подходящ панел за работа с art.gnome.org \n"
-"\n"
-"<i>Приятно използване, Thomas Beck!</i>"
-
-#: gui.glade:1327
-#: gui.glade:1338
-#: gui.glade:1454
-#: gui.glade:1443
-#: gui.glade:1456
-msgid "button"
-msgstr ""
-
-#: gui.glade:1501
-#: gui.glade:1514
-#: gui.glade:1426
-#: gui.glade:1452
-#: gui.glade:1587
-#: gui.glade:1589
-#: gui.glade:1591
-#: gui.glade:1595
-#: gui.glade:1596
-#: gui.glade:1706
-msgid "<b>Warning, something has gone wrong!</b>"
-msgstr "<b>Внимание, нещо се обърка!</b>"
-
-#: gui.glade:1426
-#: gui.glade:1543
-#: gui.glade:1556
-#: gui.glade:1468
-#: gui.glade:1494
-#: gui.glade:1629
-#: gui.glade:1631
-#: gui.glade:1633
-#: gui.glade:1637
-#: gui.glade:1638
-#: gui.glade:1748
-msgid "Exact information about the error:"
-msgstr "Точна информация за грешката:"
-
-#: gui.glade:1445
-#: gui.glade:1562
-#: gui.glade:1575
-#: gui.glade:1487
-#: gui.glade:1513
-#: gui.glade:1648
-#: gui.glade:1650
-#: gui.glade:1652
-#: gui.glade:1656
-#: gui.glade:1657
-#: gui.glade:1767
-msgid "Ok"
-msgstr "Добре"
-
-#: CPreviewWindow.cs:68
-msgid "Previewing \""
-msgstr "Предварителен преглед \""
-
-#: CTheme.cs:133
-#: CTheme.cs:135
-#: CTheme.cs:206
-#: CTheme.cs:207
-#: CTheme.cs:209
-#: CTheme.cs:137
-msgid "<b>Theme installation failed!</b>"
-msgstr "<b>Инсталацията на темата се провали!</b>"
-
-#: CTheme.cs:206
-#: CTheme.cs:207
-#: CTheme.cs:209
-#: CTheme.cs:137
-msgid ""
-"This message was reported from the installation function:\n"
-"\n"
-msgstr ""
-"Съобщението беше дадено от инсталационната функция:\n"
-"\n"
-
-#: gui.glade:896
-#: gui.glade:1280
-#: gui.glade:895
-#: gui.glade:1293
-#: gui.glade:922
-#: gui.glade:1319
-#: gui.glade:907
-#: gui.glade:1454
-#: gui.glade:1456
-#: gui.glade:1458
-#: gui.glade:908
-#: gui.glade:1461
-#: gui.glade:1462
-msgid "gtk-apply"
-msgstr ""
-
-#: gui.glade:921
-#: gui.glade:920
-msgid "gtk-save"
-msgstr ""
-
-#: gui.glade:542
-#: gui.glade:543
-msgid "<b>Please choose a GTK theme</b>"
-msgstr "<b>Моля изберете GTK тема</b>"
-
-#: Main.cs:156
-msgid "Warning: the preview image could not be loaded!"
-msgstr "Внимание: Изображението за предварителен преглед не може да бъде заредено!"
-
-#: gui.glade:1219
-#: gui.glade:1232
-#: gui.glade:1258
-#: gui.glade:1393
-#: gui.glade:1395
-#: gui.glade:1397
-#: gui.glade:1400
-#: gui.glade:1401
-msgid "<b>Previewing</b>"
-msgstr "<b>Предварителен преглед</b>"
-
-#: CConfiguration.cs:34
-#: CConfiguration.cs:42
-#: CConfiguration.cs:40
-#: CConfiguration.cs:41
 msgid ""
 "<i>Extracting the theme</i>\n"
 "\n"
@@ -663,10 +67,6 @@ msgstr ""
 "\n"
 "Темата ви е изтеглена и трябва да се извлече. Може да бъдете запитани за потребителската си парола за да позволите копирането на извлечените файлове на подходящото място."
 
-#: CConfiguration.cs:37
-#: CConfiguration.cs:45
-#: CConfiguration.cs:43
-#: CConfiguration.cs:44
 msgid ""
 "<i>Saving your previous settings</i>\n"
 "\n"
@@ -676,10 +76,6 @@ msgstr ""
 "\n"
 "Предишните ви настройки са запазени за да може лесно да върнете назад инсталацията на вашата тема"
 
-#: CConfiguration.cs:39
-#: CConfiguration.cs:47
-#: CConfiguration.cs:45
-#: CConfiguration.cs:46
 msgid ""
 "<i>Downloading the theme from art.gnome.org</i>\n"
 "\n"
@@ -689,11 +85,6 @@ msgstr ""
 "\n"
 "Темата се изтегля... Моля проявете търпение докато продължава изтеглянето"
 
-#: CConfiguration.cs:42
-#: CConfiguration.cs:50
-#: CConfiguration.cs:49
-#: CConfiguration.cs:47
-#: CConfiguration.cs:48
 msgid ""
 "<i>Installing the theme</i>\n"
 "\n"
@@ -703,11 +94,6 @@ msgstr ""
 "\n"
 "Темата ви се инсталира. Ще бъдат променени системни файлове и/или GConf настройки. За да върнете това действие, натиснете Връщане."
 
-#: CConfiguration.cs:45
-#: CConfiguration.cs:53
-#: CConfiguration.cs:52
-#: CConfiguration.cs:50
-#: CConfiguration.cs:51
 msgid ""
 "<i>Theme installation is complete</i>\n"
 "\n"
@@ -717,27 +103,101 @@ msgstr ""
 "\n"
 "Темата ви е инсталирана. Може да продължите с избора на теми или (ако не харесвате резултата) да върнете текущия си избор. Забавлявайте се!"
 
-#: Main.cs:152
-#: Main.cs:165
-#: Main.cs:183
-#: Main.cs:190
-#: Main.cs:189
+msgid "Error"
+msgstr "Грешка"
+
+msgid "Program settings couldn't be saved"
+msgstr ""
+
+msgid "bytes"
+msgstr "байтове"
+
+msgid "Initialize download"
+msgstr "Стартиране на изтеглянето"
+
+msgid "Installation is not possible!"
+msgstr "Инсталирането е невъзможно!"
+
+msgid "Only GDM is supported"
+msgstr "Поддържа се само GDM"
+
+msgid "Couldn't get any usefull information from the tar-command...aborting"
+msgstr "Не може да се получи смислена информация от tar командата... прекратяване!"
+
+msgid "Not yet implemented!!"
+msgstr "Все още не поддържа!"
+
+msgid "Previewing \""
+msgstr "Предварителен преглед \""
+
+msgid "Settings"
+msgstr ""
+
+msgid ""
+"The download location has been changed manually! Normally, this is no "
+"problem at all! But if you change the location to a place that doesn't "
+"exists then it will be a problem!\n"
+"\n"
+" So this is a \"Location couldn't be found\" message. Please correct the "
+"download location!"
+msgstr ""
+""
+
+msgid ""
+"<i>Installing</i>\n"
+"\n"
+"Your selection is beeing downloaded and installed...please be patient while "
+"the installation procedure proceeds. After everything's done, this window "
+"will get closed.\n"
+"\n"
+" Have fun with your new theme, Greetings Tom"
+msgstr ""
+"<i>Инсталиране</i>\n"
+"\n"
+"Изборът ви се сваля и инсталира... Моля проявете търпение докато трае инсталирането. Когато всичко завърши, този прозорец ще се затвори.\n"
+"\n"
+"Забавлявайте се с новата си тема, поздрави Том."
+
+msgid "<b>Theme installation failed!</b>"
+msgstr "<b>Инсталацията на темата се провали!</b>"
+
+msgid ""
+"This message was reported from the installation function:\n"
+"\n"
+msgstr ""
+"Съобщението беше дадено от инсталационната функция:\n"
+"\n"
+
+msgid "Centered"
+msgstr "В центъра на екрана"
+
+msgid "Filled"
+msgstr "Разпъване по екрана"
+
+msgid "Scaled"
+msgstr "Увеличаване в екрана"
+
+msgid "Zoomed"
+msgstr "Дисплеят да е вътре"
+
+msgid "Tiled"
+msgstr "На плочки"
+
+msgid "Downloading the theme"
+msgstr "Изтегляне на темата"
+
+msgid "Download location"
+msgstr ""
+
+msgid "Download failed!"
+msgstr ""
+
 msgid "Downloading the preview file"
 msgstr "Изтегляне на файла за предварителен преглед"
 
-#: Main.cs:153
-#: Main.cs:166
-#: Main.cs:184
-#: Main.cs:191
-#: Main.cs:190
 msgid "Connected to art.gnome.org"
 msgstr "Осъществено свързване с art.gnome.org"
 
-#: Main.cs:154
-#: Main.cs:167
-#: Main.cs:185
-#: Main.cs:192
-#: Main.cs:191
 msgid ""
 "<i>Downloading the preview file</i>\n"
 "\n"
@@ -747,104 +207,140 @@ msgstr ""
 "\n"
 "Файлът за предварителен преглед се изтегля. След като изтеглянето приключи, изображението ще бъде оразмерено, ако не се вмества в прозореца за предварителен преглед. За да следите процеса, погледнете лентата по-долу."
 
-#: Main.cs:164
-#: Main.cs:177
-#: Main.cs:195
-#: Main.cs:202
-#: Main.cs:201
 msgid "Error: the preview image could not be loaded!"
 msgstr "Грешка: Изображението за предварителен преглед не може да бъде заредено!"
 
-#: CArtManager.cs:152
-msgid "Warning: Could not download xml file!"
-msgstr "Внимание: XML файлът не може да бъде изтеглен!"
+msgid "No description has been entered by the author"
+msgstr "Няма въведено описание от автора"
 
-#: CTheme.cs:138
-#: CTheme.cs:140
-#: CFileDownloader.cs:66
-msgid "bytes"
-msgstr "байтове"
+msgid "not rated"
+msgstr "не е оценена"
 
-#: CTheme.cs:144
-#: CTheme.cs:146
-#: CFileDownloader.cs:72
-msgid "Initialize download"
-msgstr "Стартиране на изтеглянето"
+msgid "Gnome-Art-NG"
+msgstr "Gnome-Art-NG"
 
-#: CGdmTheme.cs:35
-#: CGdmTheme.cs:37
-msgid "Installation is not possible!"
-msgstr "Инсталирането е невъзможно!"
+msgid "_File"
+msgstr "Файл"
 
-#: CGdmTheme.cs:37
-msgid "Only GDM is supported"
-msgstr "Поддържа се само GDM"
+msgid "Quits the application"
+msgstr ""
 
-#: CGdmTheme.cs:73
-msgid "Couldn't get any usefull information from the tar-command...aborting"
-msgstr "Не може да се получи смислена информация от tar командата... прекратяване!"
+msgid "_Edit"
+msgstr ""
 
-#: CGtkTheme.cs:22
-#: CGtkTheme.cs:25
-#: CWindowDecorationTheme.cs:21
-#: CWindowDecorationTheme.cs:24
-#: CGtkTheme.cs:20
-#: CGtkTheme.cs:24
-msgid "Not yet implemented!!"
-msgstr "Все още не поддържа!"
+msgid "All Gnome-Art Next Gen related settings can be found here"
+msgstr ""
 
-#: gui.glade:814
-#: gui.glade:883
-#: gui.glade:877
-#: gui.glade:801
-#: gui.glade:878
-#: gui.glade:802
+msgid "_Help"
+msgstr "Помощ"
+
+msgid "Information about Gnome-Art Next Gen"
+msgstr "Informationen über Gnome-Art Next Gen"
+
+msgid "<b>Please choose your favourite background</b>"
+msgstr "<b>Моля изберете любимия си тапет</b>"
+
+msgid ""
+"Gnome\n"
+"Background"
+msgstr ""
+"Gnome\n"
+"Тапети"
+
+msgid ""
+"Other\n"
+"Backgrounds"
+msgstr ""
+"Други\n"
+"Тапети"
+
+msgid ""
+"Nature\n"
+"Backgrounds"
+msgstr ""
+"Природни\n"
+"Тапети"
+
+msgid ""
+"Abstract \n"
+"Backgrounds"
+msgstr ""
+"Абстрактни \n"
+"Тапети"
+
+msgid "<b>Please choose an application theme</b>"
+msgstr "<b>Моля изберете тема за бутоните и декорациите</b>"
+
+msgid "Application"
+msgstr "Бутони и декорации"
+
+msgid "<b>Please choose a window decoration</b>"
+msgstr "<b>Моля изберете рамка на прозорците</b>"
+
+msgid ""
+"Window\n"
+"Decoration"
+msgstr ""
+"Рамка на\n"
+"Прозорците"
+
+msgid "<b>Please choose an icon set</b>"
+msgstr "<b>Моля изберете тема за иконите</b>"
+
+msgid "Icons"
+msgstr "Икони"
+
+msgid "<b>Please choose your greeter for GDM</b>"
+msgstr "<b>Моля изберете тема за екрана за идентификация </b>"
+
+msgid "GDM Greeter"
+msgstr "Екран за идентификация"
+
+msgid "<b>Please choose a splash screen for the Gnome start</b>"
+msgstr "<b>Моля изберете предварителен екран за стартирането на Gnome</b>"
+
+msgid "Splash"
+msgstr "Предварителни екрани"
+
+msgid "Gtk-Engine"
+msgstr "Gtk-Engine"
+
+msgid "<b>Name:</b>"
+msgstr "<b>Име:</b>"
+
+msgid "label"
+msgstr "етикет"
+
+msgid "<b>Author:</b>"
+msgstr "<b>Автор:</b>"
+
+msgid "<b>License:</b>"
+msgstr "<b>Лиценз:</b>"
+
+msgid "<b>Description:</b>"
+msgstr "<b>Описание:</b>"
+
+msgid "<b>Image type:</b>"
+msgstr "<b>Вид изображение:</b>"
+
+msgid "<b>Resolution:</b>"
+msgstr "<b>Разделителна способност:</b>"
+
+msgid "<b>Rating:</b>"
+msgstr "<b>Оценка:</b>"
+
+msgid "<b>Download count:</b>"
+msgstr "<b>Изтегляния:</b>"
+
 msgid "<b>Style:</b>"
 msgstr "<b>Стил:</b>"
 
-#: gui.glade:952
-#: gui.glade:937
-#: gui.glade:938
-msgid "gtk-refresh"
-msgstr ""
+msgid "<b>Extended theme information</b>"
+msgstr "<b>Допълнителна информация</b>"
 
-#: Main.cs:111
-#: Main.cs:112
-#: Main.cs:110
-msgid "Centered"
-msgstr "В центъра на екрана"
-
-#: Main.cs:112
-#: Main.cs:113
-#: Main.cs:111
-msgid "Filled"
-msgstr "Разпъване по екрана"
-
-#: Main.cs:113
-#: Main.cs:114
-#: Main.cs:112
-msgid "Scaled"
-msgstr "Увеличаване в екрана"
-
-#: Main.cs:114
-#: Main.cs:115
-#: Main.cs:113
-msgid "Zoomed"
-msgstr "Дисплеят да е вътре"
-
-#: Main.cs:115
-#: Main.cs:116
-#: Main.cs:114
-msgid "Tiled"
-msgstr "На плочки"
-
-#: gui.glade:993
-#: gui.glade:994
 msgid "<b>About Gnome-Art Next Generation</b>"
 msgstr "<b>Относно Gnome-Art Next Generation</b>"
 
-#: gui.glade:1030
-#: gui.glade:1031
 msgid ""
 "If you encounter any problems please go to \n"
 "\n"
@@ -862,11 +358,15 @@ msgstr ""
 "\n"
 "Grüße, Tom (software@plasmasolutions.de)"
 
-#: gui.glade:1074
-#: gui.glade:1075
-#: gui.glade:1146
-#: gui.glade:1076
-#: gui.glade:1147
+msgid "<b>Version:</b>"
+msgstr "<b>Версия:</b>"
+
+msgid "<b>Greetings to:</b>"
+msgstr "<b>Поздрави на:</b>"
+
+msgid "<i>Thomas Beck</i>"
+msgstr "<i>Thomas Beck</i>"
+
 msgid ""
 "<i>My wife and my love Isabelle,\n"
 "My family: Maria, Gerd and my brother Daniel\n"
@@ -882,83 +382,75 @@ msgstr ""
 "и последни но не и по значение: Guillem и Teresa и\n"
 "всички, които пропуснах!</i>"
 
-#: gui.glade:1091
-#: gui.glade:1092
-#: gui.glade:1131
-#: gui.glade:1094
-#: gui.glade:1095
-#: gui.glade:1096
-#: gui.glade:1132
-msgid "<i>Thomas Beck</i>"
-msgstr "<i>Thomas Beck</i>"
+msgid "<big><b>Downloading</b></big>"
+msgstr "<big><b>Изтегляне</b></big>"
 
-#: gui.glade:1120
-#: gui.glade:1121
-#: gui.glade:1105
-#: gui.glade:1123
-#: gui.glade:1124
-#: gui.glade:1125
-#: gui.glade:1106
-msgid "<b>Greetings to:</b>"
-msgstr "<b>Поздрави на:</b>"
+msgid ""
+"<i>Your themes are beeing read</i>\n"
+"\n"
+"Please be patient while all themes that fit your selection are beeing read. When you've done this procedure previously, all themes will be read from a cache directory on your hard disc. Use the Expander beneath to see what action is exactly beeing done."
+msgstr ""
+"<i>Темите ви се четат</i>\n"
+"\n"
+"Моля проявете търпение докато всички избрани от вас теми се четат. Когато сте извършвали тази процедура преди, всички теми ще бъдат прочетени от кеш папката на твърдия диск. Използвайте стрелката по-долу за да видите какво точно е извършено."
 
-#: gui.glade:1150
-#: gui.glade:1151
-#: gui.glade:1076
-#: gui.glade:1153
-#: gui.glade:1154
-#: gui.glade:1155
-#: gui.glade:1077
-msgid "<b>Version:</b>"
-msgstr "<b>Версия:</b>"
-
-#: CBackgroundTheme.cs:267
-msgid "resolution-independend"
-msgstr "За всички разделителни способности"
-
-#: gui.glade:979
-msgid "About Gnome-Art-NG"
-msgstr "Относно Gnome-Art-NG"
-
-#: gui.glade:1297
 msgid "<i>ExtInfosLabel</i>"
 msgstr " "
 
-#: Main.cs:259
-msgid "not rated"
-msgstr "не е оценена"
+msgid "Extended information about the current action:"
+msgstr "Допълнителна информация за текущото действие:"
 
-#: gui.glade:1509
+msgid "<b>Previewing</b>"
+msgstr "<b>Предварителен преглед</b>"
+
+msgid "<b>Warning, something has gone wrong!</b>"
+msgstr "<b>Внимание, нещо се обърка!</b>"
+
+msgid "Exact information about the error:"
+msgstr "Точна информация за грешката:"
+
+msgid "Ok"
+msgstr "Добре"
+
+msgid "<b>Settings</b>"
+msgstr ""
+
+msgid "How often should GnomeArt-NG look for new themes?"
+msgstr ""
+
+msgid "Where are the themes to be saved?"
+msgstr ""
+
 msgid ""
-"<i>Willkommen zu GNOME-Art-ng.</i>\n"
-"\n"
-"Dieses Programm ist dafür gedacht, den Umgang mit den verschiedenen Themes die unter Linux verfügbar sind zu erleichtern und gleichzeitig für die Seite art.gnome.org ein passendes Frontend zur Verfügung zu stellen. \n"
-"\n"
-"Wählen Sie nun, welche Voransichten jetzt sofort heruntergeladen werden sollen"
-msgstr ""
-"<i>Willkommen zu GNOME-Art-ng.</i>\n"
-"\n"
-"Dieses Programm ist dafür gedacht, den Umgang mit den verschiedenen Themes die unter Linux verfügbar sind zu erleichtern und gleichzeitig für die Seite art.gnome.org ein passendes Frontend zur Verfügung zu stellen. \n"
-"\n"
-"Wählen Sie nun, welche Voransichten jetzt sofort heruntergeladen werden sollen"
-
-#: gui.glade:1545
-msgid "Gnome Backgrounds (contains all the background with an gnome relationship)"
-msgstr "Gnome тапети (съдържа всички тапети, имащи връзка с Gnome)"
-
-#: gui.glade:1555
-msgid "Other Backgrounds (contains all Backgrounds that don't fit into an special category)"
-msgstr "Други тапети (съдържа всички тапети, които не попадат в нито една категория)"
-
-#: gui.glade:1568
-msgid "Nature Backgrounds"
-msgstr "Природни тапети"
-
-#: gui.glade:1581
-#: gui.glade:1594
-#: gui.glade:1607
-#: gui.glade:1620
-#: gui.glade:1633
-msgid "Hallo Hallod ajsldkföjaöldjklö asjkasdjöla gklsaödfjö safjölasf d"
+"Everyday\n"
+"Every second day\n"
+"Every third day\n"
+"Every fourth day\n"
+"Every fifth day\n"
+"Every sixth day\n"
+"Once a week"
 msgstr ""
 
+msgid "Choose a location where you want your themes to be stored"
+msgstr ""
+
+msgid "Download settings"
+msgstr ""
+
+msgid "What account information do you like to edit?"
+msgstr ""
+
+msgid "Please enter your username:"
+msgstr ""
+
+msgid "Please enter your password:"
+msgstr ""
+
+msgid "Your username"
+msgstr ""
+
+msgid "Your password"
+msgstr ""
+
+msgid "Account information"
+msgstr ""
