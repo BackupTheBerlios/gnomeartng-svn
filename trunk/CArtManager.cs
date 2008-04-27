@@ -11,6 +11,13 @@ GNU General Public License for more details.
 Thomas Beck at 11:49 24.11.2007
 */
 
+/*
+ * Thoughts: CArtManager -> CGnomeArtManager
+ * New interface IArtManager
+ * New class CGnomeLookManager
+ *  
+ */
+
 using System;
 using System.Xml;
 using System.Net;

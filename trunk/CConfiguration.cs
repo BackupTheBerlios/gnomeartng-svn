@@ -275,12 +275,12 @@ namespace GnomeArtNG
 			GConfClient = new GConf.Client();
 			artType=type;
 			dirSep=Path.DirectorySeparatorChar.ToString();
-			homePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			homePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal)+dirSep;
 			settingsPath = Path.Combine(homePath,".gnome2"+dirSep+"gnome-art-ng");
-			splashInstallPath = homePath+dirSep+splashInstallDir+dirSep;
-			applicationInstallPath = homePath+dirSep+"."+themesDir+dirSep;
-			decorationInstallPath = homePath+dirSep+"."+themesDir+dirSep;
-			iconInstallPath = homePath+dirSep+iconDir+dirSep;
+			splashInstallPath = homePath+splashInstallDir+dirSep;
+			applicationInstallPath = homePath+"."+themesDir+dirSep;
+			decorationInstallPath = homePath+"."+themesDir+dirSep;
+			iconInstallPath = homePath+iconDir+dirSep;
 			tarIsAvailable = TestIfProgIsInstalled("tar","--version","gnu tar");
 			grepIsAvailable = TestIfProgIsInstalled("grep","--version","gnu grep");
 			sedIsAvailable = TestIfProgIsInstalled("sed","--version","gnu sed");
@@ -341,9 +341,10 @@ namespace GnomeArtNG
 					Console.WriteLine("Configuration folder created: "+settingsPath);
 					neverStartedBefore=true;
 				}
+
 				//Create .gnome directory if not existant
-				if (!Directory.Exists(settingsPath)){
-					Directory.CreateDirectory(settingsPath+".gnome");
+				if (!Directory.Exists(homePath+".gnome")){
+					Directory.CreateDirectory(homePath+".gnome");
 					Console.WriteLine("Configuration folder created: "+homePath+".gnome");
 					neverStartedBefore=true;					
 				} 

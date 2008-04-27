@@ -179,8 +179,8 @@ namespace GnomeArtNG
 
 			///home/.../.gnome2/backgrounds.xml einlesen und Background anhängen...
 			//Just a hack...TODO:paste in XMLDoc
-			if (!File.Exists(config.HomePath+"/.gnome2/backgrounds.xml")){
-				StreamWriter locFile = new StreamWriter(config.HomePath+"/.gnome2/backgrounds.xml");
+			if (!File.Exists(config.HomePath+".gnome2/backgrounds.xml")){
+				StreamWriter locFile = new StreamWriter(config.HomePath+".gnome2/backgrounds.xml");
 				locFile.WriteLine("<?xml version=\"1.0\"?>");
 				locFile.WriteLine("<!DOCTYPE wallpapers SYSTEM \"gnome-wp-list.dtd\"[]>");
 				locFile.WriteLine("  <wallpapers>");
@@ -189,7 +189,7 @@ namespace GnomeArtNG
 			}
 				
 			XmlDocument doc = new XmlDocument();
-			doc.Load(config.HomePath+"/.gnome2/backgrounds.xml");
+			doc.Load(config.HomePath+".gnome2/backgrounds.xml");
 			
 			//Nach schon vorhandenem Eintrag in Backgrounds suchen
 			XmlNode foundNode = doc.SelectSingleNode("wallpapers/wallpaper[filename='"+InstallThemeFile+"']");
@@ -230,7 +230,7 @@ namespace GnomeArtNG
 				wallpaper.AppendChild(newElem);
 				doc.DocumentElement.AppendChild(wallpaper);
 			}
-			doc.Save(config.HomePath+"/.gnome2/backgrounds.xml");
+			doc.Save(config.HomePath+".gnome2/backgrounds.xml");
 			sw.SetProgress("2/"+installationSteps);
 		}
 		

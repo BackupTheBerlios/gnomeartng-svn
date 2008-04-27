@@ -1,9 +1,8 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# This is a translation file for the package gnomeartng.
+# Copyright (C) 2008
+# This file is distributed under the same license as the gnomeartng package.
+# Thomas Beck software@plasmasolutions.de, 2008.
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"

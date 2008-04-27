@@ -77,7 +77,7 @@ public class GnomeArtNgApp
 		//TODO:IconList in Create		
 		Application.Init();
 		//Mehrsprachigkeit initialisieren
-		Catalog.Init("i18n","./locale");
+		Catalog.Init("gnomeartng","./locale");
 		config=new CConfiguration();
 		//GreeterWindow!
 		//if (config.NeverStartedBefore)

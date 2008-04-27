@@ -1,0 +1,13 @@
+Version 0.5 - Feature release
+-----------------------------
+Fixes Bug # xxxxx : Does not work on a fresh hardy install
+
+Introduces new features:
+- Select how often the xml file should be updated
+- New possibility to download a theme without installing it...
+- Select where to download the themes
+- New settings dialog
+
+Version 0.4.5 - Bugfix Release 
+-------------------------------
+Fixes Bug #013184: Crash due to an faulty image on art.gnome.org
