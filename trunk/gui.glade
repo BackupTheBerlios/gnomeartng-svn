@@ -1558,6 +1558,8 @@ Please be patient while all themes that fit your selection are beeing read. When
               <widget class="GtkAlignment" id="alignment5">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
+                <property name="top_padding">8</property>
+                <property name="bottom_padding">8</property>
                 <property name="left_padding">17</property>
                 <property name="right_padding">5</property>
                 <child>
@@ -1663,23 +1665,16 @@ Once a week</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkHSeparator" id="hseparator13">
-            <property name="visible">True</property>
-          </widget>
-          <packing>
-            <property name="expand">False</property>
-            <property name="padding">3</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child>
           <widget class="GtkFrame" id="frame4">
+            <property name="visible">True</property>
             <property name="label_xalign">0</property>
             <property name="shadow_type">GTK_SHADOW_NONE</property>
             <child>
               <widget class="GtkAlignment" id="alignment6">
-                <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="xalign">0</property>
+                <property name="top_padding">8</property>
+                <property name="bottom_padding">8</property>
                 <property name="left_padding">17</property>
                 <property name="right_padding">5</property>
                 <child>
@@ -1692,8 +1687,8 @@ Once a week</property>
                         <property name="homogeneous">True</property>
                         <child>
                           <widget class="GtkLabel" id="label22">
-                            <property name="width_request">0</property>
                             <property name="visible">True</property>
+                            <property name="sensitive">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">What account information do you like to edit?</property>
                             <property name="wrap">True</property>
@@ -1705,6 +1700,7 @@ Once a week</property>
                         <child>
                           <widget class="GtkLabel" id="label23">
                             <property name="visible">True</property>
+                            <property name="sensitive">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">Please enter your username:</property>
                             <property name="wrap">True</property>
@@ -1716,6 +1712,7 @@ Once a week</property>
                         <child>
                           <widget class="GtkLabel" id="label26">
                             <property name="visible">True</property>
+                            <property name="sensitive">False</property>
                             <property name="xalign">0</property>
                             <property name="label" translatable="yes">Please enter your password:</property>
                             <property name="wrap">True</property>
@@ -1731,11 +1728,11 @@ Once a week</property>
                     </child>
                     <child>
                       <widget class="GtkVBox" id="vbox19">
-                        <property name="visible">True</property>
                         <property name="homogeneous">True</property>
                         <child>
                           <widget class="GtkComboBox" id="SettingsSiteCb">
                             <property name="visible">True</property>
+                            <property name="sensitive">False</property>
                             <property name="items">www.gnome-look.org
 www.kde-look.org</property>
                           </widget>
@@ -1743,6 +1740,7 @@ www.kde-look.org</property>
                         <child>
                           <widget class="GtkEntry" id="OptionsUsernameEntry">
                             <property name="visible">True</property>
+                            <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                             <property name="text" translatable="yes">Your username</property>
@@ -1754,6 +1752,7 @@ www.kde-look.org</property>
                         <child>
                           <widget class="GtkEntry" id="OptionsPasswordEntry">
                             <property name="visible">True</property>
+                            <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                             <property name="visibility">False</property>
@@ -1774,7 +1773,6 @@ www.kde-look.org</property>
             </child>
             <child>
               <widget class="GtkHBox" id="hbox11">
-                <property name="visible">True</property>
                 <child>
                   <widget class="GtkImage" id="image4">
                     <property name="visible">True</property>
@@ -1787,6 +1785,7 @@ www.kde-look.org</property>
                 <child>
                   <widget class="GtkLabel" id="label24">
                     <property name="visible">True</property>
+                    <property name="sensitive">False</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">Account information</property>
                   </widget>
@@ -1802,16 +1801,7 @@ www.kde-look.org</property>
           </widget>
           <packing>
             <property name="padding">3</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="GtkHSeparator" id="hseparator15">
-            <property name="visible">True</property>
-          </widget>
-          <packing>
-            <property name="expand">False</property>
-            <property name="position">5</property>
+            <property name="position">3</property>
           </packing>
         </child>
         <child>
@@ -1843,7 +1833,7 @@ www.kde-look.org</property>
           <packing>
             <property name="expand">False</property>
             <property name="padding">2</property>
-            <property name="position">6</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </widget>

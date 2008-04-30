@@ -91,8 +91,14 @@ public class GnomeArtNgApp
 		//mainWindow.Icon = new Gdk.Pixbuf("../gnome.png");
 
 		if (config.LoadProgramSettings()) {
-			mainWindow.Move(config.Window.X, config.Window.Y);
+			CConfiguration.WindowAttrStruct windowAttr;
+			/*mainWindow.GetSize(out(windowAttr.Width), out(windowAttr.Height));		
+			mainWindow.GetPosition(out(windowAttr.X), out(windowAttr.Y));
+			Console.Out.WriteLine("c: width "+config.Window.Width+",height "+config.Window.Height+",X "+config.Window.X+",Y "+config.Window.Y);
+			Console.Out.WriteLine("width "+windowAttr.Width+",height "+windowAttr.Height+",X "+windowAttr.X+",Y "+windowAttr.Y);
+			*/
 			mainWindow.Resize(config.Window.Width, config.Window.Height);
+			mainWindow.Move(config.Window.X, config.Window.Y);
 		}
 		
 		//Connect the events
@@ -198,10 +204,10 @@ public class GnomeArtNgApp
 		FillExtendedSection(man.Theme);
 	}
 	private void SaveAllProgramSettings(){
-		CConfiguration.WindowAttrStruct window;
-		mainWindow.GetSize(out(window.Width), out(window.Height));		
-		mainWindow.GetPosition(out(window.X), out(window.Y));
-		config.Window = window;
+		CConfiguration.WindowAttrStruct windowAttr;
+		mainWindow.GetSize(out(windowAttr.Width), out(windowAttr.Height));		
+		mainWindow.GetPosition(out(windowAttr.X), out(windowAttr.Y));
+		config.Window = windowAttr;
 		config.SaveProgramSettings();
 	}
 
