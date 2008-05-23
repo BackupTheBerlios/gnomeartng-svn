@@ -1,5 +1,5 @@
-Version 0.5.1 - Bugfix release after 2 weeks of going the camino de santiago
-----------------------------------------------------------------------------
+Version 0.5.1 - Bugfix release after 2 weeks of walking the camino
+------------------------------------------------------------------
 Fixes Bug #13780 "Crash" thanks to polozero:
  - Due to a fault in the art.gnome.org server-response, GaNG closes with an exception.
 
