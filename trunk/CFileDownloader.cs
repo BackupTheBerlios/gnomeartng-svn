@@ -62,6 +62,7 @@ namespace GnomeArtNG
 			try	{
 				// Create a request to the file we are downloading
 				webRequest = (HttpWebRequest)WebRequest.Create(From);
+				webRequest.UserAgent="Gnome-Art NexGen";
 				webRequest.Timeout = 4000; 
 				webRequest.KeepAlive=holdConnection;
 				// Set default authentication for retrieving the file
@@ -79,7 +80,10 @@ namespace GnomeArtNG
 				Console.WriteLine("Filesize of "+From+" >> "+fileSize+" "+byteString);
 					
 				// Open the URL for download
-				strResponse = new WebClient().OpenRead(From);
+				WebClient client = new WebClient ();
+				client.Headers.Add ("user-agent", "Gnome-Art NexGen");
+				strResponse = client.OpenRead (From);
+
 				// Create a new file stream where we will be saving the data (local drive)
 				strLocal = new FileStream(To, FileMode.Create, FileAccess.Write, FileShare.None);
 				// Loop through the buffer until the buffer is empty

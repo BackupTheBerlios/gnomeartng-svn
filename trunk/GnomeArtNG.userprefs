@@ -2,12 +2,17 @@
   <Files>
     <File name="Welcome" />
     <File name="CTheme.cs" line="187" column="21" />
-    <File name="Main.cs" line="99" column="6" />
+    <File name="Main.cs" line="95" column="36" />
+    <File name="CConfiguration.cs" line="118" column="36" />
+    <File name="CFileDownloader.cs" line="85" column="39" />
+    <File name="VERSION" line="7" column="42" />
   </Files>
   <Views>
     <ViewMemento id="ProjectPad">
       <Node expanded="True">
-        <Node name="GnomeArtNG" expanded="True" selected="True" />
+        <Node name="GnomeArtNG" expanded="True">
+          <Node name="VERSION" selected="True" />
+        </Node>
       </Node>
     </ViewMemento>
     <ViewMemento id="ClassPad">
@@ -18,7 +23,7 @@
     </ViewMemento>
   </Views>
   <Properties>
-    <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/Main.cs" />
+    <Property key="ActiveWindow" value="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/VERSION" />
     <Property key="ActiveConfiguration" value="Release" />
   </Properties>
 </UserCombinePreferences>

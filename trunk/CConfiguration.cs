@@ -115,7 +115,7 @@ namespace GnomeArtNG
 		public string AttribPrep {get {return attribPrep;}}
 		public GConf.Client GConfClient;
 		// interval in which a new xml file will be downloaded (in days)
-		public int XmlRefreshInterval = 1;
+		public int XmlRefreshInterval = 0;
 		
 		//Returns and sets the path that will be used to download themes to the hd 
 		//(with "Slash" & "Backslash")

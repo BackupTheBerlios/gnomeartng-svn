@@ -1,8 +1,16 @@
+Version 0.5.1 - Bugfix release after 2 weeks of going the camino de santiago
+----------------------------------------------------------------------------
+Fixes Bug #13780 "Crash" thanks to polozero:
+ - Due to a fault in the art.gnome.org server-response, GaNG closes with an exception.
+
+Introduces those new features 
+-Updated bulgarian translations from Svetoslav Stefanov
+
 Version 0.5 - Feature release
 -----------------------------
-Fixes Bug # xxxxx : Does not work on a fresh hardy install
+Fixes Bug #13558 : Does not work on a fresh hardy install
 
-Introduces new features:
+Introduces those new features:
 - Select how often the xml file should be updated
 - New possibility to download a theme without installing it...
 - Select where to download the themes
