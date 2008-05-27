@@ -39,6 +39,7 @@
     <File name="CSettingsWindow.cs" subtype="Code" buildaction="Compile" />
     <File name="README" subtype="Code" buildaction="Nothing" />
     <File name="VERSION" subtype="Code" buildaction="Nothing" />
+    <File name="gtk-gui/gui.stetic" subtype="Code" buildaction="EmbedAsResource" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />

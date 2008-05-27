@@ -68,33 +68,32 @@ namespace GnomeArtNG
 				// Set default authentication for retrieving the file
 				webRequest.Credentials = CredentialCache.DefaultCredentials;
 				// Retrieve the response from the server
-				webResponse = (HttpWebResponse)webRequest.GetResponse();
+				webResponse = (HttpWebResponse)webRequest.GetResponse(); 
 				// Ask the server for the file size and store it
 				Int64 fileSize = webResponse.ContentLength;
-				//Close the request
-				webResponse.Close();
 				
 				// It will store the current number of bytes we receieved from the server
 				int bytesSize = 0;
 				InitializeDownloadBar(bar,fileSize,downBuffer.Length);
 				Console.WriteLine("Filesize of "+From+" >> "+fileSize+" "+byteString);
 					
-				// Open the URL for download
-				WebClient client = new WebClient ();
-				client.Headers.Add ("user-agent", "Gnome-Art NexGen");
-				strResponse = client.OpenRead (From);
-
-				// Create a new file stream where we will be saving the data (local drive)
-				strLocal = new FileStream(To, FileMode.Create, FileAccess.Write, FileShare.None);
-				// Loop through the buffer until the buffer is empty
-				while ((bytesSize = strResponse.Read(downBuffer, 0, downBuffer.Length)) > 0)
-				{
-					// Write the data from the buffer to the local hard drive
-					strLocal.Write(downBuffer, 0, bytesSize);
-					SetDownloadBarProgress(bar,fileSize,strLocal.Length,byteString);
+				if (webRequest.HaveResponse) {
+					strResponse = webResponse.GetResponseStream();
+				
+					// Create a new file stream where we will be saving the data (local drive)
+					strLocal = new FileStream(To, FileMode.Create, FileAccess.Write, FileShare.None);
+					// Loop through the buffer until the buffer is empty
+					while ((bytesSize = strResponse.Read(downBuffer, 0, downBuffer.Length)) > 0)
+					{
+						// Write the data from the buffer to the local hard drive
+						strLocal.Write(downBuffer, 0, bytesSize);
+						SetDownloadBarProgress(bar,fileSize,strLocal.Length,byteString);
+					}
+					//Close the request
+					webResponse.Close();
+					strResponse.Close();
+					strLocal.Close();
 				}
-				strResponse.Close();
-				strLocal.Close();
 			}
 			catch (Exception ex) {
 				throw new Exception("Download of file "+From+" failed:"+"\n"+ex.Message);
