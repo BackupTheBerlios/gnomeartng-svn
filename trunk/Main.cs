@@ -43,6 +43,8 @@ public class GnomeArtNgApp
 	[Widget] Gtk.ImageMenuItem QuitMenuItem;
 	[Widget] Gtk.ImageMenuItem InfoMenuItem;
 	[Widget] Gtk.ImageMenuItem PreferencesMenuItem;
+	[Widget] Gtk.ImageMenuItem UpdateMenuItem;
+	[Widget] Gtk.MenuItem FTAItem;
 
 	//Buttons
 	[Widget] Gtk.Button InstallButton;	
@@ -71,48 +73,47 @@ public class GnomeArtNgApp
 	public static void Main (string[] args) {
 		//Hauptformular und GTKMain-Schleife
 		new GnomeArtNgApp (args);
+		Console.WriteLine("Bye bye, have a nice day!");
 	}
 
 	public GnomeArtNgApp (string[] args) {
-		//TODO:IconList in Create		
 		Application.Init();
-		//Mehrsprachigkeit initialisieren
+		//i18n
 		Catalog.Init("gnomeartng","./locale");
 		config=new CConfiguration();
-		//GreeterWindow!
-		//if (config.NeverStartedBefore)
-		//	;
-		//Glade laden
+		//initialize Glade
 		string mainW = "MainWindow";
 		Glade.XML gxml = new Glade.XML (null, "gui.glade", mainW, null);
 		mainWindow = (Gtk.Window) gxml.GetWidget (mainW);
-		
 		gxml.Autoconnect (this);
-		//mainWindow.Icon = new Gdk.Pixbuf("../gnome.png");
 
 		if (config.LoadProgramSettings()) {
-			CConfiguration.WindowAttrStruct windowAttr;
-			/*mainWindow.GetSize(out(windowAttr.Width), out(windowAttr.Height));		
-			mainWindow.GetPosition(out(windowAttr.X), out(windowAttr.Y));
-			Console.Out.WriteLine("c: width "+config.Window.Width+",height "+config.Window.Height+",X "+config.Window.X+",Y "+config.Window.Y);
-			Console.Out.WriteLine("width "+windowAttr.Width+",height "+windowAttr.Height+",X "+windowAttr.X+",Y "+windowAttr.Y);
-			*/
 			mainWindow.Resize(config.Window.Width, config.Window.Height);
 			mainWindow.Move(config.Window.X, config.Window.Y);
 		}
 		
-		//Connect the events
+		//Connect all events
+		mainWindow.DeleteEvent+=new DeleteEventHandler(OnWindowDeleteEvent);		
 		ExtInfoPreviewButton.Clicked += new EventHandler(OnPreviewButtonClicked);
 		InstallButton.Clicked  += new EventHandler(OnInstallButtonClicked);
 		RevertButton.Clicked  += new EventHandler(OnRevertButtonClicked);
 		RefreshButton.Clicked += new EventHandler(OnRefreshButtonClicked);
 		SaveButton.Clicked  += new EventHandler(OnSaveButtonClicked);
 		MainNotebook.SwitchPage += new SwitchPageHandler(OnSwitchPage);
+
 		//Menuitems
 		QuitMenuItem.Activated += new EventHandler(OnQuitItemSelected);
+		UpdateMenuItem.Activated += new EventHandler(OnUpdateItemSelected);
 		InfoMenuItem.Activated += new EventHandler(OnInfoItemSelected);
 		PreferencesMenuItem.Activated += new EventHandler(OnPreferencesItemSelected);
+		FTAItem.Activated += new EventHandler(onFtaItemSelected);
 		
+		//First, download all thumbs...but don't bother the user with the update message, even if there is one
+		if (config.NeverStartedBefore)
+			new CFirstTimeAssistant(config);
+		else if ((config.UpdateAvailable) && (config.DontBotherForUpdates==false))
+			new CUpdateWindow(config,true);		
+
 		//ArtManager erzeugen
 		man = new CArtManager(config);
 
@@ -129,7 +130,7 @@ public class GnomeArtNgApp
 			IconViews[i].Show();
 		}
 		
-		//ComboBoxen anlegen
+		//Create the comboboxes
 		imageTypeBox = ComboBox.NewText();
 		imageResolutionsBox = ComboBox.NewText();
 		imageStyleBox = ComboBox.NewText();
@@ -146,7 +147,7 @@ public class GnomeArtNgApp
 		LowerTable.Attach(imageTypeBox,1,2,2,3);
 		LowerTable.Attach(imageResolutionsBox,1,2,3,4);
 		LowerTable.Attach(imageStyleBox,1,2,4,5);
-		
+
 		OnSwitchPage(MainNotebook,new SwitchPageArgs());
 		Application.Run ();
 	}
@@ -159,8 +160,15 @@ public class GnomeArtNgApp
 		new CAboutWindow(CConfiguration.Version,true);
 	}
 
+	private void OnUpdateItemSelected(object sender, EventArgs a){
+		new CUpdateWindow(config,true);
+	}
+
 	private void OnPreferencesItemSelected(object sender, EventArgs a){
 		new CSettingsWindow(config,true);
+	}
+	private void onFtaItemSelected(object sender, EventArgs a){
+		new CFirstTimeAssistant(config);
 	}
 	
 	private void OnImageTypeBoxChanged(object sender, EventArgs a){
@@ -204,7 +212,7 @@ public class GnomeArtNgApp
 		FillExtendedSection(man.Theme);
 	}
 	private void SaveAllProgramSettings(){
-		CConfiguration.WindowAttrStruct windowAttr;
+		WindowAttrStruct windowAttr;
 		mainWindow.GetSize(out(windowAttr.Width), out(windowAttr.Height));		
 		mainWindow.GetPosition(out(windowAttr.X), out(windowAttr.Y));
 		config.Window = windowAttr;

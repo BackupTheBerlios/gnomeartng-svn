@@ -37,11 +37,18 @@ namespace GnomeArtNG
 		[Widget] Gtk.Label SettingsExtInfoLabel;
 		[Widget] Gtk.Expander ExtendedInfoExpander;
 		*/
+		[Widget] Gtk.CheckButton SettingsUpdateCb;
 		[Widget] Gtk.Button SettingsOkButton;
 		[Widget] Gtk.Button SettingsCancelButton;
 		[Widget] Gtk.ComboBox SettingsXmlCb;
-		[Widget] Gtk.FileChooser SettingsLocationFc;		
+		[Widget] Gtk.FileChooser SettingsLocationFc;
 		
+		[Widget] Gtk.RadioButton SettingsNoProxyRb;
+		[Widget] Gtk.RadioButton SettingsProxyActiveRb;
+		[Widget] Gtk.Entry SettingsProxyPort;
+		[Widget] Gtk.Entry SettingsProxyAddress;
+
+
 		public void Invalidate(){
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration ();
@@ -58,10 +65,24 @@ namespace GnomeArtNG
 			SettingsLocationFc.SetCurrentFolder(config.ThemesDownloadPath);
 			SettingsCancelButton.Clicked+=new EventHandler(OnCancelButtonClicked);
 			SettingsOkButton.Clicked+=new EventHandler(OnOkButtonClicked);
-			config.GConfClient.AddNotify(CConfiguration.GnomeArtNgGConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);
+			SettingsNoProxyRb.Clicked+=new EventHandler(OnProxyClicked);
+			SettingsProxyActiveRb.Clicked+=new EventHandler(OnProxyClicked);
+			SettingsProxyAddress.Text = config.Proxy.Ip;
+			SettingsProxyPort.Text = config.Proxy.Port.ToString();
+			SettingsNoProxyRb.Active = !(config.Proxy.Active);
+			SettingsUpdateCb.Active = !(config.DontBotherForUpdates);
+			config.GConfClient.AddNotify(config.GConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);
 			if(ShowWindow) Show();
 		}
 				
+		private void OnProxyClicked (object sender, EventArgs a){
+			bool SettingsActive = !SettingsNoProxyRb.Active;		
+			SettingsProxyPort.IsEditable = SettingsActive;
+			SettingsProxyPort.Sensitive = SettingsActive;
+			SettingsProxyAddress.IsEditable = SettingsActive;
+			SettingsProxyAddress.Sensitive = SettingsActive;
+		}
+		
 		public void Close(){
 			mainWindow.Destroy();
 		}
@@ -72,7 +93,7 @@ namespace GnomeArtNG
 		}
 		
 		private void OnCancelButtonClicked (object sender, EventArgs a){
-			config.GConfClient.RemoveNotify(CConfiguration.GnomeArtNgGConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);
+			config.GConfClient.RemoveNotify(config.GConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);
 			Close();
 		}
 
@@ -80,11 +101,19 @@ namespace GnomeArtNG
 		private void OnOkButtonClicked (object sender, EventArgs a){
 			config.ThemesDownloadPath=SettingsLocationFc.CurrentFolder;
 			config.XmlRefreshInterval = SettingsXmlCb.Active;
+			config.Proxy.Ip = SettingsProxyAddress.Text;
+			try{
+				config.Proxy.Port = Int32.Parse(SettingsProxyPort.Text);
+			}catch{
+				config.Proxy.Port = 0;
+			}
+			config.Proxy.Active = SettingsProxyActiveRb.Active;
+			config.DontBotherForUpdates = !(SettingsUpdateCb.Active);
 			OnCancelButtonClicked(sender,a);
 		}
 
 		private void OnThemesPathChangedEventHandler(object sender, GConf.NotifyEventArgs a){
-			string path = (string)config.GConfClient.Get(CConfiguration.GnomeArtNgGConfPath+"themesDownloadPath");
+			string path = (string)config.GConfClient.Get(config.GConfPath+"themesDownloadPath");
 			if (Directory.Exists(path))
 			    SettingsLocationFc.SetCurrentFolder(path);
 			else {

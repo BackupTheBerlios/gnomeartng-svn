@@ -64,7 +64,6 @@ namespace GnomeArtNG
 		}
 		
 		
-		
 		public bool ExpanderLabelVisible{
 			get{ return ExtendedInfoExpander.Expanded;}
 			set{ 

@@ -26,7 +26,7 @@ namespace GnomeArtNG
 			string tarParams="";
 			client = new GConf.Client();
 
-			tarParams=config.GetTarParams(Path.GetExtension(DownloadUrl));
+			tarParams=CUtility.GetTarParams(Path.GetExtension(DownloadUrl));
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
 	
 			if (!File.Exists(LocalThemeFile))
@@ -35,7 +35,7 @@ namespace GnomeArtNG
 			//Entpacken
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtExtracting);
 			Console.WriteLine("Command: tar"+tarParams+LocalThemeFile+" -C "+config.DecorationInstallPath);
-			ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.DecorationInstallPath);
+			ConOutp = CUtility.Execute("tar",tarParams+LocalThemeFile+" -C "+config.DecorationInstallPath);
 			sw.SetProgress("2/"+installationSteps);
 			//Sichern
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtSavingForRestore);

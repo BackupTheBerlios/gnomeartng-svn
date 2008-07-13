@@ -10,7 +10,7 @@
       <Output directory="bin/Release" assemblyKeyFile="." assembly="GnomeArtNG" />
       <Build debugmode="False" target="Exe" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
-      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="GnomeArtNgApp" generatexmldocumentation="False" win32Icon="." ctype="CSharpCompilerParameters" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" nowarn="649" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="GnomeArtNgApp" generatexmldocumentation="False" win32Icon="." ctype="CSharpCompilerParameters" />
     </Configuration>
   </Configurations>
   <Contents>
@@ -40,6 +40,12 @@
     <File name="README" subtype="Code" buildaction="Nothing" />
     <File name="VERSION" subtype="Code" buildaction="Nothing" />
     <File name="gtk-gui/gui.stetic" subtype="Code" buildaction="EmbedAsResource" />
+    <File name="CUtility.cs" subtype="Code" buildaction="Compile" />
+    <File name="CUpdateWindow.cs" subtype="Code" buildaction="Compile" />
+    <File name="update_available.png" subtype="Code" buildaction="EmbedAsResource" />
+    <File name="update_checking.png" subtype="Code" buildaction="EmbedAsResource" />
+    <File name="CFirstTimeAssistant.cs" subtype="Code" buildaction="Compile" />
+    <File name="CWindow.cs" subtype="Code" buildaction="Compile" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -53,6 +59,8 @@
     <ProjectReference type="Gac" localcopy="True" refto="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <ProjectReference type="Gac" localcopy="True" refto="gconf-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <ProjectReference type="Gac" localcopy="True" refto="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <ProjectReference type="Gac" localcopy="True" refto="ICSharpCode.SharpZipLib, Version=2.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73" />
   </References>
   <Deployment.LinuxDeployData generateScript="False" />
   <GtkDesignInfo gtkVersion="2.12.0" />

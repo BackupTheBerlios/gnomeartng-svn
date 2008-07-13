@@ -73,13 +73,7 @@ namespace GnomeArtNG
 		}
 		public Gdk.Pixbuf ThumbnailPic{
 			get{
-				Gdk.Pixbuf pic;
-				try{
-					pic = new Gdk.Pixbuf(LocalThumbnailFile);
-				} catch{
-					pic = new Gdk.Pixbuf(config.NoThumb);
-				}
-				return pic;
+				return CUtility.GetPixbuf(LocalThumbnailFile,config);
 			}
 		}
 		
@@ -156,7 +150,7 @@ namespace GnomeArtNG
 		}
 		
 		protected void DownloadFile(string From, string To, Gtk.ProgressBar bar){
-			new CFileDownloader().DownloadFile(From, To, bar);
+			new CFileDownloader(config.Proxy).DownloadFile(From, To, bar);
 		}			
 		
 		//Theme installieren und Revert verfügbar machen 

@@ -16,41 +16,90 @@ using System.Net;
 using System.IO;
 using Mono.Unix;
 using System.Threading;
+using System.Collections;
 
 namespace GnomeArtNG
 {
+	
 	public class CFileDownloader
 	{
-		private bool massDownloadingActive=false;
-		private bool proxymode = false;
+		private bool keepConnection=false;
+		private WebProxy proxy;
+		private string currentDownloadUrl="";
+		private string currentDownloadLocation="";
+		
 		// The request to the web server for file information
 		HttpWebRequest webRequest;
 		// The response from the web server containing information about the file
-		HttpWebResponse webResponse;
+		//HttpWebResponse webResponse;
 	
-		public CFileDownloader() {
+		//public CFileDownloader() {
 			
+		//}
+
+		public CFileDownloader(ProxyAttrStruct ProxyAttr) {
+			if (ProxyAttr.Active){
+				proxy = new WebProxy(ProxyAttr.Ip, ProxyAttr.Port);
+			}
 		}
 		
-		public void StartMassDownloading(string Address){
-			massDownloadingActive=true;
+		private void initWebRequest(string From){
+			//if (webRequest==null) {
+			//	Console.WriteLine("New HTTP-connection established"); 
+			webRequest = (HttpWebRequest)WebRequest.Create(From);
+			webRequest.UserAgent="Gnome-Art NextGen development-test from Tom, Version "+ CConfiguration.Version;
+			if (proxy!=null)
+				webRequest.Proxy = proxy;
+			webRequest.Timeout = 4000; 
+			webRequest.KeepAlive=keepConnection;
+			// Set default authentication for retrieving the file
+			webRequest.Credentials = CredentialCache.DefaultCredentials;
+			//} else {
+			//	Console.WriteLine("Using existing HTTP-connection");
+			//}
+		}
+		
+		public void StartMassDownloading(){
+			keepConnection=true;
 			//Setze einen Request ab für art.gnome.org mit KeepAlive
 		}
 		
-		public void GetFile(string From, string To, Gtk.ProgressBar bar){
-			DownloadFile(From,To,bar,massDownloadingActive);
-		}
-		
 		void EndMassDownloading(){
-			massDownloadingActive=true;
+			keepConnection=false;
 			//Schließe die KeepAlive Verbindung
 		}
 		
-		public void DownloadFile(string From, string To, Gtk.ProgressBar bar){
-			DownloadFile(From,To,bar,false);
+		public void DownloadFiles(ArrayList FileUrls, ArrayList DownloadLocations, Gtk.ProgressBar bar){
+			try {
+				
+				if ((FileUrls==null) || (DownloadLocations==null))
+					throw new Exception("Files or DownloadLocations may not be null!");
+				else if (FileUrls.Count != DownloadLocations.Count)
+					Console.WriteLine("File and location count are different, using the last entry as a repeatable value");
+				StartMassDownloading();			
+				//Todo:unbedingt noch die grenzen der listen beachten 
+				for (int i=0;i<FileUrls.Count;i++){
+					currentDownloadUrl = (string)FileUrls[i];
+					currentDownloadLocation = (string)DownloadLocations[i];
+					DownloadFile(currentDownloadUrl, currentDownloadLocation, bar);
+				}
+			} finally  {
+				EndMassDownloading();
+			}			
+		}
+
+		public void Test(){
+			ArrayList ar1 = new ArrayList();
+			ArrayList ar2 = new ArrayList();
+			
+			for (int i=0;i<20;i++){
+				ar1.Add((string) CConfiguration.UpdateUrl);
+				ar2.Add((string) "/home/neo/version"+i.ToString()+".info");
+			}
+			DownloadFiles(ar1,ar2,null);			
 		}
 		
-		public void DownloadFile(string From, string To, Gtk.ProgressBar bar, bool holdConnection){
+		public void DownloadFile(string From, string To, Gtk.ProgressBar bar){
 			// The stream of data retrieved from the web server
 			Stream strResponse;
 			// The stream of data that we write to the harddrive
@@ -58,15 +107,11 @@ namespace GnomeArtNG
 			// A buffer for storing and writing the data retrieved from the server
 			byte[] downBuffer = new byte[2048];
 			string byteString = Catalog.GetString("bytes");
+			WebResponse webResponse;
 			
 			try	{
 				// Create a request to the file we are downloading
-				webRequest = (HttpWebRequest)WebRequest.Create(From);
-				webRequest.UserAgent="Gnome-Art NexGen";
-				webRequest.Timeout = 4000; 
-				webRequest.KeepAlive=holdConnection;
-				// Set default authentication for retrieving the file
-				webRequest.Credentials = CredentialCache.DefaultCredentials;
+				initWebRequest(From);
 				// Retrieve the response from the server
 				webResponse = (HttpWebResponse)webRequest.GetResponse(); 
 				// Ask the server for the file size and store it
@@ -75,10 +120,11 @@ namespace GnomeArtNG
 				// It will store the current number of bytes we receieved from the server
 				int bytesSize = 0;
 				InitializeDownloadBar(bar,fileSize,downBuffer.Length);
-				Console.WriteLine("Filesize of "+From+" >> "+fileSize+" "+byteString);
+				Console.WriteLine("Filesize of "+From+" -> "+fileSize+" "+byteString);
 					
 				if (webRequest.HaveResponse) {
 					strResponse = webResponse.GetResponseStream();
+					//Console.WriteLine();
 				
 					// Create a new file stream where we will be saving the data (local drive)
 					strLocal = new FileStream(To, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -90,10 +136,12 @@ namespace GnomeArtNG
 						SetDownloadBarProgress(bar,fileSize,strLocal.Length,byteString);
 					}
 					//Close the request
-					webResponse.Close();
-					strResponse.Close();
-					strLocal.Close();
-				}
+					if (!keepConnection){
+						webResponse.Close();
+						strResponse.Close();
+						strLocal.Close();
+					} 
+				} else Console.WriteLine("WebRequest didn't get a response...strange!");
 			}
 			catch (Exception ex) {
 				throw new Exception("Download of file "+From+" failed:"+"\n"+ex.Message);
@@ -123,9 +171,9 @@ namespace GnomeArtNG
 					}
 				} else  
 					bar.Pulse();
-				
-			while (Gtk.Application.EventsPending ())
-					Gtk.Application.RunIteration ();
+				if (currentSize % 2 == 0)	
+					while (Gtk.Application.EventsPending ())
+						Gtk.Application.RunIteration ();
 			}
 		}
 		

@@ -43,13 +43,13 @@ namespace GnomeArtNG
 				throw new Exception("Installation is not possible - Tar is missing");
 			string tarParams="";
 			
-			tarParams=config.GetTarParams(DownloadUrl);
+			tarParams=CUtility.GetTarParams(DownloadUrl);
 			//Herunterladen
 			GetThemeFile(sw);
 			sw.SetProgress("1/"+installationSteps);
 			
 			//Entpacken
-			ConOutp = config.Execute("tar",tarParams+LocalThemeFile+" -C "+config.IconInstallPath);
+			ConOutp = CUtility.Execute("tar",tarParams+LocalThemeFile+" -C "+config.IconInstallPath);
 			Console.WriteLine(ConOutp.ToString());
 			Folder = ConOutp.ToString().Split('/');
 			sw.SetProgress("2/"+installationSteps);

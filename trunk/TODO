@@ -1,4 +1,5 @@
 Development of version 0.x - 1.0:
+---------------------------------
 - DONE but needs a further look: Better error management while a connection is not working
 - DONE: Hardy testing... - BUG-> if no .gnome dir is available, it is not working!
 - DONE: Word wrap in several text boxes
@@ -6,18 +7,20 @@ Development of version 0.x - 1.0:
 - DONE: Introduce an option window with the possibility to set the xml refresh time
 - DONE: Options: Where do the downloaded themes go?
 - DONE: Possibility to download a theme without installing it
-- Welcome-Assistent
-- Improve CDownloader!! Connections has to be persistant...
+- DONE: Proxy
+- DONE: Check for updates by request - show a notification message afterwards
+- DONE but not complete: Improve CDownloader!! Connections has to be persistant...
+- IN PROGRESS: Welcome-Assistant
 - Possibility to sort the themes by download count, image size, filetype...
-- Search for special Themes (By Name, downloads, ...)
-- Think of the Gtk-Engines (Replace it through apt-get, yum or compile it by myself?)
-- Check for updates automatically by request - show a notification message afterwards
-- Partly DONE: Translation to french, russian, spanish, italian, brasilian, portuguese (saarlaedish :D )
+- Search for special themes (By name, downloads, ...)
+- Think about the Gtk-engines section (Replace it through apt-get, yum or compile it by myself?)
+- PARTLY: Translation to french, russian, spanish, italian, brasilian, portuguese (saarländisch :D )
 - NUNIT integration!
 - Rewrite the code to make it more general
--> DONE: Creation of a debian package (Look at: GnomeDo)
+-> DONE BUT NEEDS IMPROVEMENT: Creation of a debian package (Look at: GnomeDo)
 
 Development of version 1.0 - 2.0:
+---------------------------------
 - Installation der Themen durch Drag and Drop und eventueller Frage, welches Thema gewählt wurde...
 - Trennung von CTheme und den dazugehörigen Attributen
 - Integration von Gnome-Look.org (Hintergründe)
@@ -25,5 +28,6 @@ Development of version 1.0 - 2.0:
 
 
 Development of version 2.0 - 3.0:
+---------------------------------
 - Integration von KDE-Look.org? Themen werden umgewandelt?!
 - Themenpacks integrieren: Alle Themen können ausgewählt und als Pack verpackt werden.-> Einfache Weitergabe des Packs

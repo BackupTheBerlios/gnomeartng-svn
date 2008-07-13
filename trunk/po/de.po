@@ -192,6 +192,36 @@ msgstr ""
 "Die Installationsfunktion gab folgende Fehlermeldung zurück:\n"
 "\n"
 
+msgid "Find and install software-updates"
+msgstr ""
+
+msgid "All operations are done, do you like to restart GANG?"
+msgstr ""
+
+msgid "Restart app?"
+msgstr ""
+
+msgid "Connecting"
+msgstr ""
+
+msgid "An online update is available, Version "
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "Open download location"
+msgstr ""
+
+msgid "There is no new version of GANG available"
+msgstr ""
+
+msgid "Use \"Check\" or click here to search for an online update"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
 msgid "Centered"
 msgstr "Zentriert"
 
@@ -263,6 +293,12 @@ msgstr "Alle Einstellungen für Gnome-Art Next Gen können hier gefunden werden"
 
 msgid "_Help"
 msgstr "_Hilfe"
+
+msgid "Search for new updates"
+msgstr ""
+
+msgid "gtk-refresh"
+msgstr ""
 
 msgid "Information about Gnome-Art Next Gen"
 msgstr "Informationen über Gnome-Art Next Gen"
@@ -371,6 +407,9 @@ msgstr "<b>Stil:</b>"
 
 msgid "<b>Extended theme information</b>"
 msgstr "<b>Erweiterte Informationen</b>"
+
+msgid "About Gnome-Art-NG"
+msgstr ""
 
 msgid "<b>About Gnome-Art Next Generation</b>"
 msgstr "<b>Über Gnome-Art Next Generation</b>"
@@ -504,3 +543,72 @@ msgstr "Ihr Passwort"
 
 msgid "Account information"
 msgstr "Zugangsinformationen"
+
+msgid "Should Gnome-Art NG look for new updates online and tell you about it?"
+msgstr "Soll Gnome-Art NG online nach Aktualisierungen suchen?"
+
+msgid "Online-updates"
+msgstr "Online-Aktualisierungen"
+
+msgid "General settings"
+msgstr "Allgemeine Einstellungen"
+
+msgid "<b>Network settings</b>"
+msgstr "Netzwerkeinstellungen"
+
+msgid "Proxy connection"
+msgstr "Proxy-Verbindung"
+
+msgid "No proxy"
+msgstr "Kein Proxy"
+
+msgid "Manual proxy configuration"
+msgstr "Proxy-Konfiguration von Hand eingeben"
+
+msgid "Proxy address:"
+msgstr "Proxy-Adresse:"
+
+msgid "Port:"
+msgstr "Port:"
+
+msgid "Network settings"
+msgstr "Netzwerkeinstellungen"
+
+msgid "Newest version on the update-server:"
+msgstr "Neueste Version auf dem Update-Server"
+
+msgid "Current version of Gnome-Art Next Gen:"
+msgstr "Ihre aktuelle Gnome-Art Next Gen Version "
+
+msgid "Support the further development of this software by donating with"
+msgstr "Unterstützen Sie die Weiterentwicklung dieser Software durch Spenden mit"
+
+msgid "gtk-close"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "First time download assistant"
+msgstr "Willkommensassitent"
+
+msgid ""
+"Welcome to the first time download assistant of Gnome-Art Next Gen.\n"
+"\n"
+"If you'd like to download all the thumbnails (as a tar.gz file) you should "
+"choose \"apply\". It is strongly recommended to do so becauses it's a lot "
+"faster then downloading every single file one by one."
+msgstr "Willkommen zum Einrichtungsassisten von Gnome-Art Next Gen (GANG :) ).\n"
+"\n"
+"Falls Sie alle Vorschauansichten der zu installierenden Themen auf einen Rutsch "
+"herunterladen möchten (Sie sparen Zeit und entlasten die Server) so können sie dies "
+"durch einen Klick auf \"Anwenden\" tun."
+
+msgid "Download progress:"
+msgstr "Download-Fortschritt:"
+
+msgid "gtk-cancel"
+msgstr ""
+
+msgid "gtk-apply"
+msgstr ""

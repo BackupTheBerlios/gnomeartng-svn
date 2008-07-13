@@ -35,16 +35,16 @@ namespace GnomeArtNG
 		private CConfiguration config;
 
 		//Themelisten
-		public ArrayList SplashThemeList;
-		public ArrayList Gnome_BackgroundThemeList;
-		public ArrayList Other_BackgroundThemeList;
-		public ArrayList Nature_BackgroundThemeList;
-		public ArrayList Abstract_BackgroundThemeList;
-		public ArrayList GdmGreeterThemeList;
-		public ArrayList GtkThemeList;
-		public ArrayList WindowDecorationThemeList;
-		public ArrayList ApplicationThemeList;
-		public ArrayList IconThemeList;
+		private ArrayList SplashThemeList;
+		private ArrayList Gnome_BackgroundThemeList;
+		private ArrayList Other_BackgroundThemeList;
+		private ArrayList Nature_BackgroundThemeList;
+		private ArrayList Abstract_BackgroundThemeList;
+		private ArrayList GdmGreeterThemeList;
+		private ArrayList GtkThemeList;
+		private ArrayList WindowDecorationThemeList;
+		private ArrayList ApplicationThemeList;
+		private ArrayList IconThemeList;
 
 		//The current choosen theme
 		private CTheme currentTheme;
@@ -150,7 +150,7 @@ namespace GnomeArtNG
 				sw.SetProgress(Catalog.GetString("downloading... (no progress available)"));
 				sw.Invalidate();
 				try	{
-					(new CFileDownloader()).DownloadFile(remoteUri,localFileName,sw.DetailProgressBar);
+					(new CFileDownloader(config.Proxy)).DownloadFile(remoteUri,localFileName,sw.DetailProgressBar);
 				}
 				catch (Exception ex) {
 					sw.Close();
@@ -356,8 +356,8 @@ namespace GnomeArtNG
 			int themeCount=list.Count;
 			CStatusWindow w= new CStatusWindow(Catalog.GetString("Reading thumbnails on harddisc"),themeCount,true,false,true);
 			w.ButtonSensitive=false;
+
 			//Thumbs von der Platte lesen
-			
 			for (int i=0;i<(int)(themeCount);i++){
 				theme = ((CTheme)list[i]);
 				w.SetProgress((i+1).ToString()+"/"+themeCount.ToString());

@@ -12,9 +12,6 @@ GNU General Public License for more details.
 /*
  * Thoughts: 
  * ProgramSettings in an other class!
- * Load/Save methods for the settings, register the different settings in the constructor phase!
- * Own class with string constants for the different languages ?
- * 
  * */
 
 using System;
@@ -27,9 +24,33 @@ using System.Collections;
 namespace GnomeArtNG
 
 {
+	public struct WindowAttrStruct {
+		public int Height;
+		public int Width;
+		public int X;
+		public int Y;
+	}
+		
+	public struct ProxyAttrStruct {
+		public bool Active;
+		public int Port;
+		private string ip; 
+		public string Ip{
+			get{return ip;}
+			set{
+				try{
+					ip = CUtility.CheckAndSetIp(value);
+				}
+				catch {
+					ip = "0.0.0.0";
+				}
+			}
+		}
+	}
+
 	public class CConfiguration
 	{
-		public static string Version = "0.5.0";
+		public const string Version = "0.5.2";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11
@@ -50,13 +71,6 @@ namespace GnomeArtNG
 			dtSuse,
 			dtFedora
 		}
-
-		public struct WindowAttrStruct {
-			public int Height;
-			public int Width;
-			public int X;
-			public int Y;
-		}
 		
 		//Texts for the installation procedures
 		public static string txtExtracting=Catalog.GetString("<i>Extracting the theme</i>\n\n"+
@@ -72,8 +86,17 @@ namespace GnomeArtNG
 		public static string txtInstallDone=Catalog.GetString("<i>Theme installation is complete</i>\n\n"+
 			"Your Theme is now installed. You can now go on with your theme selection or (if you don't like the results) "+
 			"revert your current selection. Have fun! ");
-		public static string GnomeArtNgGConfPath ="/apps/gnome-art-ng/";
-		
+
+		private const string gConfPath ="/apps/gnome-art-ng/";
+		public string GConfPath{get {return gConfPath;}}
+		public const string UpdateUrl= "http://gnomeartng.plasmasolutions.de/version.info";
+		public const string ThemeBulkUrl="http://download.berlios.de/gnomeartng/thumbs.tar.gz";
+		public bool UpdateAvailable{
+			get{
+				return CUtility.IsAnUpdateAvailable(UpdateUrl,null,out NewestVersionNumberOnServer,out NewestVersionDownloadLocation,Proxy);
+			}
+		} 
+
 		private string dirSep="";
 		private string homePath="";
 		private string settingsPath="";
@@ -93,8 +116,11 @@ namespace GnomeArtNG
 		private string gdmCustomFile="";
 		private string gdmPath="";
 		private string themesDownloadPath ="";
-		private bool neverStartedBefore=false;		
+		public string NewestVersionNumberOnServer="";
+		public string NewestVersionDownloadLocation="";
+		public bool DontBotherForUpdates=false;
 		
+		private bool neverStartedBefore=false;		
 		private bool tarIsAvailable=false;
 		private bool grepIsAvailable=false;
 		private bool sedIsAvailable=false;
@@ -102,9 +128,10 @@ namespace GnomeArtNG
 		private static string sudoCommand="gksudo";
 		private string attribPrep="";
 		private ArtType artType;
-		private WindowAttrStruct windowAttributes;
 		
 		//Anschauen.Durcheinander mit getset und Funktionen dafür
+		public WindowAttrStruct Window;
+		public ProxyAttrStruct Proxy;
 		public string DirectorySeperator {get {return dirSep;}}
 		public string ProgramSettingsPath { get{ return settingsPath;} }
 		public string ThumbsPath { get{ return settingsPath+dirSep+thumbsDir+dirSep+((int)(artType)).ToString()+dirSep;} }
@@ -113,6 +140,7 @@ namespace GnomeArtNG
 		public string HomePath { get { return homePath;} }
 		public string SudoCommand { get { return sudoCommand;} }
 		public string AttribPrep {get {return attribPrep;}}
+		public DistriType Distribution {get {return distribution;}}
 		public GConf.Client GConfClient;
 		// interval in which a new xml file will be downloaded (in days)
 		public int XmlRefreshInterval = 0;
@@ -126,17 +154,12 @@ namespace GnomeArtNG
 				themesDownloadPath=Path.GetFullPath(value); 
 			}
 		}
-		public WindowAttrStruct Window{
-			get{return windowAttributes;} 
-			set{windowAttributes=value;}
-		}
 		
 		public ArtType ThemeType { 
 			get { return artType;} 
 			set { artType = value;} 
 		}
-		
-		
+				
 		public string NoThumb{get{return "/usr/share/pixmaps/apple-red.png";}}
 		
 		public string SplashInstallPath{get{return splashInstallPath;}}
@@ -156,13 +179,6 @@ namespace GnomeArtNG
 		
 		public string ArtFilePath(){
 			return Path.Combine(settingsPath,"gnomeArt"+((int)artType).ToString()+".xml");
-		}
-		
-		public string GetTarParams(string Filename){
-			if (Path.GetExtension(Filename) == ".gz")
-				return "-vxzf ";
-			else
-				return "-vxjf ";
 		}
 		
 		public string NodeEntryPath(){
@@ -187,35 +203,49 @@ namespace GnomeArtNG
 			}
 		}
 		
-		//loads all initial program settings (width, height, paths, etc...)
+		//Load all initial program settings (width, height, refresh interval, download folder...)
 		public bool LoadProgramSettings(){
 			try {
-				windowAttributes.X = (int)GConfClient.Get(GnomeArtNgGConfPath+"xPosition");
-				windowAttributes.Y = (int)GConfClient.Get(GnomeArtNgGConfPath+"yPosition");
-				windowAttributes.Width = (int)GConfClient.Get(GnomeArtNgGConfPath+"width");
-				windowAttributes.Height = (int)GConfClient.Get(GnomeArtNgGConfPath+"height");
+				Proxy.Active = false;
+				//WindowAttributes
+				Window.X = (int)GConfClient.Get(gConfPath+"xPosition");
+				Window.Y = (int)GConfClient.Get(gConfPath+"yPosition");
+				Window.Width = (int)GConfClient.Get(gConfPath+"width");
+				Window.Height = (int)GConfClient.Get(gConfPath+"height");
+				//Program paths				
+				themesDownloadPath = (string)GConfClient.Get(gConfPath+"themesDownloadPath");
+				XmlRefreshInterval = (int)GConfClient.Get(gConfPath+"xmlRefreshInterval");
+				//ProxySettings
+				Proxy.Active=(bool)GConfClient.Get(gConfPath+"useProxy");
+				Proxy.Ip=(string)GConfClient.Get(gConfPath+"proxyIp");
+				Proxy.Port=(int)GConfClient.Get(gConfPath+"proxyPort");
 				
-				themesDownloadPath = (string)GConfClient.Get(GnomeArtNgGConfPath+"themesDownloadPath");
-				XmlRefreshInterval = (int)GConfClient.Get(GnomeArtNgGConfPath+"xmlRefreshInterval");
+				//UpdateSettings
+				DontBotherForUpdates = (bool)GConfClient.Get(gConfPath+"dontBotherMeForUpdates");
 				return true;
 			} catch {
-				Console.Out.WriteLine("First time accessing the gconf settings...writing new settings!");
+				Console.Out.WriteLine("Old gconf settings detected...writing new settings!");
 				SaveProgramSettings();
 				return false;
 			}
 		}
 
-		//All program relevant settings will be saved here
+		//All program relevant settings are saved here
 		public void SaveProgramSettings(){
 			try{
-				GConfClient.Set(GnomeArtNgGConfPath+"xPosition",windowAttributes.X);
-				GConfClient.Set(GnomeArtNgGConfPath+"yPosition",windowAttributes.Y);
-				GConfClient.Set(GnomeArtNgGConfPath+"width",windowAttributes.Width);
-				GConfClient.Set(GnomeArtNgGConfPath+"height",windowAttributes.Height);	
-				GConfClient.Set(GnomeArtNgGConfPath+"themesDownloadPath",themesDownloadPath);
-				GConfClient.Set(GnomeArtNgGConfPath+"xmlRefreshInterval",XmlRefreshInterval); 
-			} catch{
-				Console.Out.WriteLine(Catalog.GetString("Error")+":"+Catalog.GetString("Program settings couldn't be saved"));
+				GConfClient.Set(gConfPath+"xPosition",Window.X);
+				GConfClient.Set(gConfPath+"yPosition",Window.Y);
+				GConfClient.Set(gConfPath+"width",Window.Width);
+				GConfClient.Set(gConfPath+"height",Window.Height);					
+				GConfClient.Set(gConfPath+"themesDownloadPath",themesDownloadPath);
+				GConfClient.Set(gConfPath+"xmlRefreshInterval",XmlRefreshInterval);
+				GConfClient.Set(gConfPath+"useProxy",Proxy.Active);	
+				GConfClient.Set(gConfPath+"proxyPort",Proxy.Port);	
+				GConfClient.Set(gConfPath+"proxyIp",Proxy.Ip);	
+				GConfClient.Set(gConfPath+"dontBotherMeForUpdates",DontBotherForUpdates);
+
+			} catch (Exception e){
+				Console.Out.WriteLine(Catalog.GetString("Error")+":"+Catalog.GetString("Program settings couldn't be saved")+", "+e.Message);
 			}
 		}
 		
@@ -251,7 +281,7 @@ namespace GnomeArtNG
 			sContent=sContent.ToLower();
             myFile.Close();
 			
-			//Ubuntu
+			//(K)Ubuntu, Suse
 			if (sContent.IndexOf("kubuntu",StringComparison.CurrentCulture)>-1)
 				distribution=DistriType.dtKubuntu;
 			if (sContent.IndexOf("ubuntu",StringComparison.CurrentCulture)>-1)
@@ -273,6 +303,8 @@ namespace GnomeArtNG
 		
 		public CConfiguration(ArtType type)	{
 			GConfClient = new GConf.Client();
+			Proxy = new ProxyAttrStruct();
+			Proxy.Ip = ""; //TODO:Why is it important to initialize it...an error occurs otherwise. 
 			artType=type;
 			dirSep=Path.DirectorySeparatorChar.ToString();
 			homePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal)+dirSep;
@@ -281,36 +313,15 @@ namespace GnomeArtNG
 			applicationInstallPath = homePath+"."+themesDir+dirSep;
 			decorationInstallPath = homePath+"."+themesDir+dirSep;
 			iconInstallPath = homePath+iconDir+dirSep;
-			tarIsAvailable = TestIfProgIsInstalled("tar","--version","gnu tar");
-			grepIsAvailable = TestIfProgIsInstalled("grep","--version","gnu grep");
-			sedIsAvailable = TestIfProgIsInstalled("sed","--version","gnu sed");
+			tarIsAvailable = CUtility.TestIfProgIsInstalled("tar","--version","gnu tar");
+			grepIsAvailable = CUtility.TestIfProgIsInstalled("grep","--version","gnu grep");
+			sedIsAvailable = CUtility.TestIfProgIsInstalled("sed","--version","gnu sed");
 			setDistributionDependendSettings();
 			CreateDownloadDirectories();
+			if (UpdateAvailable)
+				Console.WriteLine("An update is available, newest version is: "+NewestVersionNumberOnServer);
 		}
-		
-		public System.Text.StringBuilder Execute(string FileName, string Arguments){
-			ProcessStartInfo psi = new ProcessStartInfo();
-			psi.Arguments = Arguments;
-			psi.FileName = FileName;
-			//Console.WriteLine(psi.FileName+psi. Arguments);
-			psi.RedirectStandardOutput = true;
-			psi.UseShellExecute = false;
-			System.Text.StringBuilder sb = new System.Text.StringBuilder();
-			Process proc = Process.Start(psi);
-			while (proc.StandardOutput.Peek() != -1) 
-				sb.Append(proc.StandardOutput.ReadLine());
-			return sb;
-		}
-		
-		public System.Text.StringBuilder ExecuteSu(string Arguments){
-			return Execute(sudoCommand,attribPrep+"\""+Arguments+"\"");
-		}
-		
-		private bool TestIfProgIsInstalled(string programName, string arguments, string lookFor) {
-			lookFor=lookFor.ToLower();
-			return (Execute(programName,arguments)).ToString().ToLower().Contains(lookFor);
-		}
-
+				
 		private void CreateDownloadFilesysStructure(string directoryName){
 			string dirToCreate = "";
 			Type enumType = typeof(ArtType);

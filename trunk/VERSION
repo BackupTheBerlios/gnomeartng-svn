@@ -1,20 +1,37 @@
+Version 0.5.2 - Feature and bugfix release (2008-06-09)
+-------------------------------------------------------
+## Fixes Bug #XXX "Gnomeatng DoSes art.gnome.org" 
+ -
+## Introduces new features: 
+ - Update checker - looks for available updates and messages the user
+ - Proxy settings - Enter your proxy settings to download everything with a proxy
+ 
+## Donations:
+ - Thank you XXX for donating to gnomeartng!
+ 
+************************************************************************************
+
 Version 0.5.1 - Bugfix release after 2 weeks of walking the camino
 ------------------------------------------------------------------
-Fixes Bug #13780 "Crash" thanks to polozero:
+## Fixes Bug #13780 "Crash" thanks to polozero:
  - Due to a fault in the art.gnome.org server-response, GaNG closes with an exception.
 
-Introduces those new features 
--Updated bulgarian translations from Svetoslav Stefanov
+## Introduces new features: 
+- Updated bulgarian translations from Svetoslav Stefanov
+
+************************************************************************************
 
 Version 0.5 - Feature release
 -----------------------------
-Fixes Bug #13558 : Does not work on a fresh hardy install
+## Fixes Bug #13558 : Does not work on a fresh hardy install
 
-Introduces those new features:
+Introduces new features:
 - Select how often the xml file should be updated
 - New possibility to download a theme without installing it...
 - Select where to download the themes
 - New settings dialog
+
+************************************************************************************
 
 Version 0.4.5 - Bugfix Release 
 -------------------------------

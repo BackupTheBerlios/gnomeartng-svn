@@ -12,6 +12,6 @@
     <Execute type="None" entry="Packages" />
   </StartMode>
   <Entries>
-    <Entry filename="./GnomeArtNG.mdp" />
+    <Entry filename="GnomeArtNG.mdp" />
   </Entries>
 </Combine>
