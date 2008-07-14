@@ -193,34 +193,34 @@ msgstr ""
 "\n"
 
 msgid "Find and install software-updates"
-msgstr ""
+msgstr "Aktualisierungen finden und installieren"
 
 msgid "All operations are done, do you like to restart GANG?"
-msgstr ""
+msgstr "Alles erledigt, möchten Sie Gnome-Art NG neustarten?"
 
 msgid "Restart app?"
-msgstr ""
+msgstr "Anwendung neustarten?"
 
 msgid "Connecting"
-msgstr ""
+msgstr "Verbinde.."
 
-msgid "An online update is available, Version "
-msgstr ""
+msgid "An online update is available, version "
+msgstr "Eine neue Version ist verfügbar: Version "
 
 msgid "Install"
-msgstr ""
+msgstr "Installieren"
 
 msgid "Open download location"
-msgstr ""
+msgstr "Ordner öffnen"
 
 msgid "There is no new version of GANG available"
-msgstr ""
+msgstr "Leider ist keine neue Version verfügbar"
 
 msgid "Use \"Check\" or click here to search for an online update"
-msgstr ""
+msgstr "Benutzen Sie  \"Überprüfen\" oder klicken Sie hier um nach Updates zu suchen"
 
 msgid "Check"
-msgstr ""
+msgstr "Überprüfe"
 
 msgid "Centered"
 msgstr "Zentriert"
@@ -295,7 +295,7 @@ msgid "_Help"
 msgstr "_Hilfe"
 
 msgid "Search for new updates"
-msgstr ""
+msgstr "Suche nach neuen Updates"
 
 msgid "gtk-refresh"
 msgstr ""
@@ -562,6 +562,9 @@ msgstr "Proxy-Verbindung"
 msgid "No proxy"
 msgstr "Kein Proxy"
 
+msgid "Use the proxy configuration of my system"
+msgstr "Benutze meine Proxy-Systemeinstellungen"
+
 msgid "Manual proxy configuration"
 msgstr "Proxy-Konfiguration von Hand eingeben"
 
@@ -575,10 +578,10 @@ msgid "Network settings"
 msgstr "Netzwerkeinstellungen"
 
 msgid "Newest version on the update-server:"
-msgstr "Neueste Version auf dem Update-Server"
+msgstr "Neueste Version auf dem Update-Server: "
 
 msgid "Current version of Gnome-Art Next Gen:"
-msgstr "Ihre aktuelle Gnome-Art Next Gen Version "
+msgstr "Ihre aktuelle Gnome-Art Next Gen Version: "
 
 msgid "Support the further development of this software by donating with"
 msgstr "Unterstützen Sie die Weiterentwicklung dieser Software durch Spenden mit"

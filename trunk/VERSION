@@ -1,13 +1,14 @@
-Version 0.5.2 - Feature and bugfix release (2008-06-09)
+Version 0.6 - Feature and bugfix release (2008-07-14)
 -------------------------------------------------------
-## Fixes Bug #XXX "Gnomeatng DoSes art.gnome.org" 
+## Fixes Bug #13892 "Gnomeartng DoSes art.gnome.org" 
  -
 ## Introduces new features: 
- - Update checker - looks for available updates and messages the user
+ - Update checker - Look for available updates automatically
  - Proxy settings - Enter your proxy settings to download everything with a proxy
+ - First time assistant - Download all thumbs at once with ease
  
 ## Donations:
- - Thank you XXX for donating to gnomeartng!
+ - Thank you very much <<Joaquin Martinez Gadea>> for your donation to Gnome-Art NextGen!
  
 ************************************************************************************
 

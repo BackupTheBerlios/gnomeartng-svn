@@ -45,8 +45,11 @@ namespace GnomeArtNG
 		
 		[Widget] Gtk.RadioButton SettingsNoProxyRb;
 		[Widget] Gtk.RadioButton SettingsProxyActiveRb;
+		[Widget] Gtk.RadioButton SettingsProxySystemActiveRb;		
 		[Widget] Gtk.Entry SettingsProxyPort;
+		[Widget] Gtk.Entry SettingsProxySystemPort;
 		[Widget] Gtk.Entry SettingsProxyAddress;
+		[Widget] Gtk.Entry SettingsProxySystemAddress;
 
 
 		public void Invalidate(){
@@ -55,6 +58,7 @@ namespace GnomeArtNG
 		}
 		
 		public CSettingsWindow(CConfiguration config, bool ShowWindow)	{
+			ProxyAttrStruct proxy;
 			this.config=config;
 			string settingsW="SettingsWindow";
 			Glade.XML settingsXml= new Glade.XML (null, "gui.glade", settingsW, null);
@@ -67,9 +71,21 @@ namespace GnomeArtNG
 			SettingsOkButton.Clicked+=new EventHandler(OnOkButtonClicked);
 			SettingsNoProxyRb.Clicked+=new EventHandler(OnProxyClicked);
 			SettingsProxyActiveRb.Clicked+=new EventHandler(OnProxyClicked);
-			SettingsProxyAddress.Text = config.Proxy.Ip;
-			SettingsProxyPort.Text = config.Proxy.Port.ToString();
-			SettingsNoProxyRb.Active = !(config.Proxy.Active);
+			
+			//Proxies
+			proxy = config.GetProxy(CConfiguration.ProxyType.ptGang);
+			SettingsProxyAddress.Text = proxy.Ip;
+			SettingsProxyPort.Text = proxy.Port.ToString();
+			proxy = config.GetProxy(CConfiguration.ProxyType.ptSystem);
+			SettingsProxySystemAddress.Text = proxy.Ip;
+			SettingsProxySystemPort.Text = proxy.Port.ToString();
+			SettingsProxySystemPort.Sensitive = false;
+			SettingsProxySystemAddress.Sensitive = false;
+			SettingsProxySystemActiveRb.Active =  (config.ProxyKind == CConfiguration.ProxyType.ptSystem);
+			SettingsNoProxyRb.Active = (config.ProxyKind == CConfiguration.ProxyType.ptNone);
+			SettingsProxyActiveRb.Active = (config.ProxyKind == CConfiguration.ProxyType.ptGang);
+			
+			
 			SettingsUpdateCb.Active = !(config.DontBotherForUpdates);
 			config.GConfClient.AddNotify(config.GConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);
 			if(ShowWindow) Show();
@@ -101,13 +117,21 @@ namespace GnomeArtNG
 		private void OnOkButtonClicked (object sender, EventArgs a){
 			config.ThemesDownloadPath=SettingsLocationFc.CurrentFolder;
 			config.XmlRefreshInterval = SettingsXmlCb.Active;
-			config.Proxy.Ip = SettingsProxyAddress.Text;
+			ProxyAttrStruct proxy = config.Proxy;
+			proxy.Ip = SettingsProxyAddress.Text;
 			try{
-				config.Proxy.Port = Int32.Parse(SettingsProxyPort.Text);
+				proxy.Port = Int32.Parse(SettingsProxyPort.Text);
 			}catch{
-				config.Proxy.Port = 0;
+				proxy.Port = 0;
 			}
-			config.Proxy.Active = SettingsProxyActiveRb.Active;
+			
+			if (SettingsProxyActiveRb.Active)
+				config.ProxyKind = CConfiguration.ProxyType.ptGang;
+			else if (SettingsProxySystemActiveRb.Active) 
+				config.ProxyKind = CConfiguration.ProxyType.ptSystem;
+			else 
+				config.ProxyKind =CConfiguration.ProxyType.ptNone;
+			
 			config.DontBotherForUpdates = !(SettingsUpdateCb.Active);
 			OnCancelButtonClicked(sender,a);
 		}

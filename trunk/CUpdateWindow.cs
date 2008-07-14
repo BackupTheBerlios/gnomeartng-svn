@@ -27,7 +27,7 @@ namespace GnomeArtNG {
 		
 		private static string windowName="UpdateWindow";
 		private static string windowTitle = Catalog.GetString("Find and install software-updates");
-
+		public bool RestartRequested = false;
 		//updateWindow
 		[Widget] Gtk.ProgressBar UpdateProgressBar;
 		[Widget] Gtk.Button UpdateHeaderButton;		
@@ -43,12 +43,9 @@ namespace GnomeArtNG {
 		[Widget] Gtk.Label UpdateDonateLabel;
 		[Widget] Gtk.Label UpdateHeaderLabel;
 		
-		public CUpdateWindow(CConfiguration config, bool ShowWindow):base(config, windowName, windowTitle, false) {
+		public CUpdateWindow(CConfiguration config):base(config, windowName, windowTitle, WindowShowType.wstNo) {
 			initializeWidgets();
-			if (ShowWindow){
-				Show();
-				UpdateProgressBar.Hide();
-			}			
+			UpdateProgressBar.Hide();
 			UpdateStatusButton.IsFocus = true;
 		}
 		
@@ -82,13 +79,15 @@ namespace GnomeArtNG {
 			UpdateStatusButton.Clicked+=handler;
 			UpdateHeaderButton.Clicked+=handler;
 		}
-		
+					
 		private void onRestartClicked(object sender, EventArgs a){
 			removeClickHandler(onRestartClicked);			
 			//restart the application
 			CUtility.Execute(System.Windows.Forms.Application.ExecutablePath,"",false);
-			Application.Quit();
+			RestartRequested = true;
+			Close();
 		}
+		
 		private void onOpenLocationButtonClicked(object sender, EventArgs a){
 			CUtility.Execute("gnome-www-browser",@"http://gnomeartng.berlios.de");		
 		}
@@ -96,13 +95,16 @@ namespace GnomeArtNG {
 		private void setHeaderLabelText(string Text){
 			UpdateHeaderLabel.Markup = "<span size=\"x-large\" weight=\"bold\">"+Text+"</span>";		
 		}	
+		public void CheckForUpdate(){
+			onStatusButtonClicked(null,new EventArgs());
+		}
 		
 		private void onStatusButtonClicked (object sender, EventArgs a){
 			UpdateStatusLabel.Text=Catalog.GetString("Connecting");
 			try{
 				UpdateStatusButton.Sensitive = false;
 				if (config.UpdateAvailable){
-					setHeaderLabelText(Catalog.GetString("An online update is available, Version ")+config.NewestVersionNumberOnServer);
+					setHeaderLabelText(Catalog.GetString("An online update is available, version ")+config.NewestVersionNumberOnServer);
 					UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./update_available.png",config);
 					UpdateStatusImage.Stock = Gtk.Stock.Yes;
 					removeClickHandler(onStatusButtonClicked);

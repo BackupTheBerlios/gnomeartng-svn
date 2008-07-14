@@ -9,25 +9,40 @@ Development of version 0.x - 1.0:
 - DONE: Possibility to download a theme without installing it
 - DONE: Proxy
 - DONE: Check for updates by request - show a notification message afterwards
-- DONE but not complete: Improve CDownloader!! Connections has to be persistant...
-- IN PROGRESS: Welcome-Assistant
+- DONE: needs further tweaking: CDownloader!
+- DONE: Welcome-Assistant
+#-> Completing this tasks leads to version 0.6
 - Possibility to sort the themes by download count, image size, filetype...
 - Search for special themes (By name, downloads, ...)
+- Send a fix to art.gnome.org for the xml file
 - Think about the Gtk-engines section (Replace it through apt-get, yum or compile it by myself?)
+#-> Completing this tasks leads to version 0.7
+- Intrepid Ibex testing...
 - PARTLY: Translation to french, russian, spanish, italian, brasilian, portuguese (saarländisch :D )
-- NUNIT integration!
+- Write a library that converts old fashioned icon themes to the new gnome icon themes 
 - Rewrite the code to make it more general
+#-> Completing this tasks leads to version 0.8
+- NUNIT integration!
 -> DONE BUT NEEDS IMPROVEMENT: Creation of a debian package (Look at: GnomeDo)
+###-> Completing this tasks leads to version 0.9
+
 
 Development of version 1.0 - 2.0:
 ---------------------------------
-- Installation der Themen durch Drag and Drop und eventueller Frage, welches Thema gewählt wurde...
-- Trennung von CTheme und den dazugehörigen Attributen
-- Integration von Gnome-Look.org (Hintergründe)
+- Theme installation by Drag and Drop (maybe asking what theme has been choosen if it is not recognized)
+- Dividing the attributes from CTheme
+#-> Completing this tasks leads to version 1.0
+- Integration of www.Gnome-Look.org (Hintergründe)
+#-> This will continue to count the version numbers up
 ... Integration weiterer Themen
 
 
 Development of version 2.0 - 3.0:
 ---------------------------------
-- Integration von KDE-Look.org? Themen werden umgewandelt?!
-- Themenpacks integrieren: Alle Themen können ausgewählt und als Pack verpackt werden.-> Einfache Weitergabe des Packs
+- Integration of www.KDE-Look.org? Theme conversion from KDE to GNOME?!
+- Possibility to create theme packs: All themes can be packed in a theme package and exchanged easily.
+
+
+
+YOU got more ideas? Send me a mail software@plasmasolutions.de - I'll try to consider every single wish..
+YOU got an idea that needs to be implemented? Donate and your wish will be raised up on the todo list!

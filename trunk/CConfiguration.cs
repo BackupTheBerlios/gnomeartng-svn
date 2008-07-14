@@ -32,9 +32,11 @@ namespace GnomeArtNG
 	}
 		
 	public struct ProxyAttrStruct {
-		public bool Active;
 		public int Port;
 		private string ip; 
+		public string User;
+		public string Password;
+		public string[] BypassList;
 		public string Ip{
 			get{return ip;}
 			set{
@@ -72,6 +74,13 @@ namespace GnomeArtNG
 			dtFedora
 		}
 		
+		public enum ProxyType:int{
+			ptNone,
+			ptGang,
+			ptSystem
+		}
+	
+
 		//Texts for the installation procedures
 		public static string txtExtracting=Catalog.GetString("<i>Extracting the theme</i>\n\n"+
 			"Your theme is downloaded and has to be extracted now. You might be prompted to enter your "+
@@ -87,8 +96,15 @@ namespace GnomeArtNG
 			"Your Theme is now installed. You can now go on with your theme selection or (if you don't like the results) "+
 			"revert your current selection. Have fun! ");
 
-		private const string gConfPath ="/apps/gnome-art-ng/";
-		public string GConfPath{get {return gConfPath;}}
+		private const string gangGconfPath ="/apps/gnome-art-ng/";
+		private const string sProxyGconfPath = "/system/http_proxy";
+		private const string sProxyIpPath = sProxyGconfPath+"/host";
+		private const string sProxyPortPath = sProxyGconfPath+"/port";
+		private const string sProxyUserPath = sProxyGconfPath+"/authentication_user";
+		private const string sProxyPasswordPath = sProxyGconfPath+"/authentication_password";
+		private const string sProxyBypassPath = sProxyGconfPath+"/ignore_hosts";
+
+		public string GConfPath{get {return gangGconfPath;}}
 		public const string UpdateUrl= "http://gnomeartng.plasmasolutions.de/version.info";
 		public const string ThemeBulkUrl="http://download.berlios.de/gnomeartng/thumbs.tar.gz";
 		public bool UpdateAvailable{
@@ -119,6 +135,7 @@ namespace GnomeArtNG
 		public string NewestVersionNumberOnServer="";
 		public string NewestVersionDownloadLocation="";
 		public bool DontBotherForUpdates=false;
+		private bool settingsLoadOk = false;
 		
 		private bool neverStartedBefore=false;		
 		private bool tarIsAvailable=false;
@@ -128,10 +145,21 @@ namespace GnomeArtNG
 		private static string sudoCommand="gksudo";
 		private string attribPrep="";
 		private ArtType artType;
-		
+		private ProxyAttrStruct systemProxy;
+		private ProxyAttrStruct gangProxy;
+		public CConfiguration.ProxyType ProxyKind;
+
 		//Anschauen.Durcheinander mit getset und Funktionen dafür
 		public WindowAttrStruct Window;
-		public ProxyAttrStruct Proxy;
+		public ProxyAttrStruct Proxy{
+			get {
+				if (ProxyKind == ProxyType.ptSystem)
+					return systemProxy;
+				else
+					return gangProxy;
+			}
+			
+		}
 		public string DirectorySeperator {get {return dirSep;}}
 		public string ProgramSettingsPath { get{ return settingsPath;} }
 		public string ThumbsPath { get{ return settingsPath+dirSep+thumbsDir+dirSep+((int)(artType)).ToString()+dirSep;} }
@@ -140,6 +168,7 @@ namespace GnomeArtNG
 		public string HomePath { get { return homePath;} }
 		public string SudoCommand { get { return sudoCommand;} }
 		public string AttribPrep {get {return attribPrep;}}
+		public bool SettingsLoadOk{get{return settingsLoadOk;}}
 		public DistriType Distribution {get {return distribution;}}
 		public GConf.Client GConfClient;
 		// interval in which a new xml file will be downloaded (in days)
@@ -206,22 +235,23 @@ namespace GnomeArtNG
 		//Load all initial program settings (width, height, refresh interval, download folder...)
 		public bool LoadProgramSettings(){
 			try {
-				Proxy.Active = false;
+				ProxyKind = CConfiguration.ProxyType.ptNone;
 				//WindowAttributes
-				Window.X = (int)GConfClient.Get(gConfPath+"xPosition");
-				Window.Y = (int)GConfClient.Get(gConfPath+"yPosition");
-				Window.Width = (int)GConfClient.Get(gConfPath+"width");
-				Window.Height = (int)GConfClient.Get(gConfPath+"height");
+				Window.X = (int)GConfClient.Get(gangGconfPath+"xPosition");
+				Window.Y = (int)GConfClient.Get(gangGconfPath+"yPosition");
+				Window.Width = (int)GConfClient.Get(gangGconfPath+"width");
+				Window.Height = (int)GConfClient.Get(gangGconfPath+"height");
 				//Program paths				
-				themesDownloadPath = (string)GConfClient.Get(gConfPath+"themesDownloadPath");
-				XmlRefreshInterval = (int)GConfClient.Get(gConfPath+"xmlRefreshInterval");
+				themesDownloadPath = (string)GConfClient.Get(gangGconfPath+"themesDownloadPath");
+				XmlRefreshInterval = (int)GConfClient.Get(gangGconfPath+"xmlRefreshInterval");
 				//ProxySettings
-				Proxy.Active=(bool)GConfClient.Get(gConfPath+"useProxy");
-				Proxy.Ip=(string)GConfClient.Get(gConfPath+"proxyIp");
-				Proxy.Port=(int)GConfClient.Get(gConfPath+"proxyPort");
+				ProxyKind=(CConfiguration.ProxyType)GConfClient.Get(gangGconfPath+"proxyKind");
+				gangProxy.Ip=(string)GConfClient.Get(gangGconfPath+"proxyIp");
+				gangProxy.Port=(int)GConfClient.Get(gangGconfPath+"proxyPort");
+				readSystemProxySettings();
 				
 				//UpdateSettings
-				DontBotherForUpdates = (bool)GConfClient.Get(gConfPath+"dontBotherMeForUpdates");
+				DontBotherForUpdates = (bool)GConfClient.Get(gangGconfPath+"dontBotherMeForUpdates");
 				return true;
 			} catch {
 				Console.Out.WriteLine("Old gconf settings detected...writing new settings!");
@@ -233,16 +263,16 @@ namespace GnomeArtNG
 		//All program relevant settings are saved here
 		public void SaveProgramSettings(){
 			try{
-				GConfClient.Set(gConfPath+"xPosition",Window.X);
-				GConfClient.Set(gConfPath+"yPosition",Window.Y);
-				GConfClient.Set(gConfPath+"width",Window.Width);
-				GConfClient.Set(gConfPath+"height",Window.Height);					
-				GConfClient.Set(gConfPath+"themesDownloadPath",themesDownloadPath);
-				GConfClient.Set(gConfPath+"xmlRefreshInterval",XmlRefreshInterval);
-				GConfClient.Set(gConfPath+"useProxy",Proxy.Active);	
-				GConfClient.Set(gConfPath+"proxyPort",Proxy.Port);	
-				GConfClient.Set(gConfPath+"proxyIp",Proxy.Ip);	
-				GConfClient.Set(gConfPath+"dontBotherMeForUpdates",DontBotherForUpdates);
+				GConfClient.Set(gangGconfPath+"xPosition",Window.X);
+				GConfClient.Set(gangGconfPath+"yPosition",Window.Y);
+				GConfClient.Set(gangGconfPath+"width",Window.Width);
+				GConfClient.Set(gangGconfPath+"height",Window.Height);					
+				GConfClient.Set(gangGconfPath+"themesDownloadPath",themesDownloadPath);
+				GConfClient.Set(gangGconfPath+"xmlRefreshInterval",XmlRefreshInterval);
+				GConfClient.Set(gangGconfPath+"proxyKind",(int)ProxyKind);	
+				GConfClient.Set(gangGconfPath+"proxyPort",gangProxy.Port);	
+				GConfClient.Set(gangGconfPath+"proxyIp",gangProxy.Ip);	
+				GConfClient.Set(gangGconfPath+"dontBotherMeForUpdates",DontBotherForUpdates);
 
 			} catch (Exception e){
 				Console.Out.WriteLine(Catalog.GetString("Error")+":"+Catalog.GetString("Program settings couldn't be saved")+", "+e.Message);
@@ -300,17 +330,39 @@ namespace GnomeArtNG
 		public CConfiguration():this(CConfiguration.ArtType.atBackground_gnome)	{
 			
 		}
+		public ProxyAttrStruct GetProxy(ProxyType type){
+			switch(type){
+			case ProxyType.ptGang: return gangProxy;
+			case ProxyType.ptSystem: return systemProxy;
+			default: return systemProxy;
+			}
+		}
+
+		private void readSystemProxySettings(){
+			systemProxy.Ip = (string)GConfClient.Get(sProxyIpPath);
+			systemProxy.Port = (int)GConfClient.Get(sProxyPortPath);
+			systemProxy.User = (string)GConfClient.Get(sProxyUserPath);
+			systemProxy.Password = (string)GConfClient.Get(sProxyPasswordPath);
+			systemProxy.BypassList = (string []) GConfClient.Get(sProxyBypassPath);
+			Console.WriteLine("System proxy settings has been changed externally");
+		}
+
+		private void onSettingsChanged(object Sender, GConf.NotifyEventArgs args){
+			readSystemProxySettings();
+		}
 		
 		public CConfiguration(ArtType type)	{
 			GConfClient = new GConf.Client();
-			Proxy = new ProxyAttrStruct();
-			Proxy.Ip = ""; //TODO:Why is it important to initialize it...an error occurs otherwise. 
+			systemProxy = new ProxyAttrStruct();
+			gangProxy = new ProxyAttrStruct();
+			systemProxy.Ip = ""; //TODO:Why is it important to initialize it...an error occurs otherwise. 
+			gangProxy.Ip = ""; //TODO:Why is it important to initialize it...an error occurs otherwise. 
 			artType=type;
 			dirSep=Path.DirectorySeparatorChar.ToString();
 			homePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal)+dirSep;
 			settingsPath = Path.Combine(homePath,".gnome2"+dirSep+"gnome-art-ng");
 			splashInstallPath = homePath+splashInstallDir+dirSep;
-			applicationInstallPath = homePath+"."+themesDir+dirSep;
+			applicationInstallPath = homePath+"."+themesDir+dirSep;			
 			decorationInstallPath = homePath+"."+themesDir+dirSep;
 			iconInstallPath = homePath+iconDir+dirSep;
 			tarIsAvailable = CUtility.TestIfProgIsInstalled("tar","--version","gnu tar");
@@ -318,10 +370,21 @@ namespace GnomeArtNG
 			sedIsAvailable = CUtility.TestIfProgIsInstalled("sed","--version","gnu sed");
 			setDistributionDependendSettings();
 			CreateDownloadDirectories();
-			if (UpdateAvailable)
-				Console.WriteLine("An update is available, newest version is: "+NewestVersionNumberOnServer);
+
+			//Create GConf listeners			
+			GConf.NotifyEventHandler changed_handler = new GConf.NotifyEventHandler(onSettingsChanged);
+			GConfClient.AddNotify(sProxyGconfPath,changed_handler);
+			//Load Configurations
+			settingsLoadOk = LoadProgramSettings();
+			//Check for updates
+			if (!DontBotherForUpdates)
+			    if (UpdateAvailable)
+					Console.WriteLine("An update is available, newest version is: "+NewestVersionNumberOnServer);
+			
 		}
-				
+		
+
+
 		private void CreateDownloadFilesysStructure(string directoryName){
 			string dirToCreate = "";
 			Type enumType = typeof(ArtType);

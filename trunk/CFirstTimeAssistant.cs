@@ -33,12 +33,15 @@ namespace GnomeArtNG
 		[Widget] Gtk.Button FtaCancelButton;		
 		[Widget] Gtk.Image UpdateHeaderImage;
 		[Widget] Gtk.Label FtaProgressLabel;
+		[Widget] Gtk.Label FtaHeadlineLabel;
 		[Widget] Gtk.Label FtaDescriptionLabel;
 		
-		public CFirstTimeAssistant(CConfiguration config): base(config, windowName, windowTitle, true) {
+		public CFirstTimeAssistant(CConfiguration config): base(config, windowName, windowTitle, WindowShowType.wstNo) {
 			FtaCancelButton.Clicked += new EventHandler(onCancelClicked);
 			FtaApplyButton.Clicked += new EventHandler(onApplyClicked);
-			Application.Run();
+			FtaHeadlineLabel.Text = "<span size=\"x-large\" weight=\"bold\">"+FtaHeadlineLabel.Text+"</span>";
+			FtaHeadlineLabel.UseMarkup = true;
+			ShowModal();
 		}
 		
 
@@ -48,7 +51,6 @@ namespace GnomeArtNG
 				FtaCancelButton.Sensitive = false;
 				//new CFileDownloader(config.Proxy).DownloadFile(CConfiguration.ThemeBulkUrl,dfile,FtaProgressBar);
 				CUtility.UncompressFile(dfile,config.ProgramSettingsPath+config.DirectorySeperator,true,FtaProgressBar);
-				Application.Quit();
 				Close();				
 			}
 			catch{
@@ -56,8 +58,7 @@ namespace GnomeArtNG
 			}
 		}
 
-		private void onCancelClicked(object sender, EventArgs b){
-			Application.Quit();		
+		private void onCancelClicked(object sender, EventArgs b){	
 			Close();
 		}
 

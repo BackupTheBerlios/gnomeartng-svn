@@ -37,10 +37,21 @@ namespace GnomeArtNG
 			
 		//}
 
+		
+
 		public CFileDownloader(ProxyAttrStruct ProxyAttr) {
-			if (ProxyAttr.Active){
-				proxy = new WebProxy(ProxyAttr.Ip, ProxyAttr.Port);
+			proxy = new WebProxy(ProxyAttr.Ip, ProxyAttr.Port);
+
+			if (ProxyAttr.BypassList.Length > 0) {
+				for (int i = 0; i < ProxyAttr.BypassList.Length; i++)
+					ProxyAttr.BypassList[i] = "http://" + ProxyAttr.BypassList[i];
+				proxy.BypassList = ProxyAttr.BypassList;
 			}
+			proxy.Credentials = new NetworkCredential (ProxyAttr.User, ProxyAttr.Password);
+		}
+
+		public CFileDownloader() {
+			proxy = null;
 		}
 		
 		private void initWebRequest(string From){

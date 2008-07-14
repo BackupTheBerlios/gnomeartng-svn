@@ -72,6 +72,7 @@ public class GnomeArtNgApp
 
 	public static void Main (string[] args) {
 		//Hauptformular und GTKMain-Schleife
+		Console.WriteLine("Gnome-Art Next Gen is starting");
 		new GnomeArtNgApp (args);
 		Console.WriteLine("Bye bye, have a nice day!");
 	}
@@ -87,7 +88,7 @@ public class GnomeArtNgApp
 		mainWindow = (Gtk.Window) gxml.GetWidget (mainW);
 		gxml.Autoconnect (this);
 
-		if (config.LoadProgramSettings()) {
+		if (config.SettingsLoadOk) {
 			mainWindow.Resize(config.Window.Width, config.Window.Height);
 			mainWindow.Move(config.Window.X, config.Window.Y);
 		}
@@ -109,10 +110,16 @@ public class GnomeArtNgApp
 		FTAItem.Activated += new EventHandler(onFtaItemSelected);
 		
 		//First, download all thumbs...but don't bother the user with the update message, even if there is one
+		bool RestartApp= false;		
 		if (config.NeverStartedBefore)
 			new CFirstTimeAssistant(config);
-		else if ((config.UpdateAvailable) && (config.DontBotherForUpdates==false))
-			new CUpdateWindow(config,true);		
+		else if (config.DontBotherForUpdates==false) {
+			if (config.UpdateAvailable) { 
+				RestartApp = ShowUpdateWindow();
+			}
+		}	
+
+		if (!RestartApp) { 
 
 		//ArtManager erzeugen
 		man = new CArtManager(config);
@@ -150,6 +157,8 @@ public class GnomeArtNgApp
 
 		OnSwitchPage(MainNotebook,new SwitchPageArgs());
 		Application.Run ();
+
+		}
 	}
 
 	private void OnQuitItemSelected(object sender, EventArgs a){
@@ -160,8 +169,16 @@ public class GnomeArtNgApp
 		new CAboutWindow(CConfiguration.Version,true);
 	}
 
+	private bool ShowUpdateWindow(){
+		CUpdateWindow updW = new CUpdateWindow(config);
+		updW.CheckForUpdate();
+		updW.ShowModal();
+		return updW.RestartRequested;
+	}
+
 	private void OnUpdateItemSelected(object sender, EventArgs a){
-		new CUpdateWindow(config,true);
+		if (ShowUpdateWindow())
+		    Application.Quit();
 	}
 
 	private void OnPreferencesItemSelected(object sender, EventArgs a){

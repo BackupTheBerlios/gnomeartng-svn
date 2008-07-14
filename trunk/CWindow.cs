@@ -19,29 +19,55 @@ using Glade;
 
 namespace GnomeArtNG
 {
+	public enum WindowShowType:int{
+		wstNo,
+		wstNormal,
+		wstModal
+	}
 	
 	public class CWindow
 	{
 		protected Gtk.Window mainWindow;
 		protected CConfiguration config;
+		protected bool IsShownModal = false;
 		public Gtk.Window MainWindow {
 			get {return mainWindow;}
 		}
 		
-		public CWindow(CConfiguration config, string WindowName, string WindowTitle, bool ShowWindow) {
+		public CWindow(CConfiguration config, string WindowName, string WindowTitle, WindowShowType ShowType) {
 			this.config = config;
 			string win = WindowName;
 			Glade.XML settingsXml = new Glade.XML (null, "gui.glade", win, null);
 			settingsXml.Autoconnect (this);
 			mainWindow = (Gtk.Window) settingsXml.GetWidget (win);
 			mainWindow.Title = WindowTitle;
-			if(ShowWindow)
-				Show();
+			mainWindow.DeleteEvent += new DeleteEventHandler(OnWindowDeleteEvent);
+			IsShownModal = (ShowType == WindowShowType.wstModal);
+			switch (ShowType){
+			case WindowShowType.wstModal: ShowModal(); break;
+			case WindowShowType.wstNormal: Show(); break;
+			case WindowShowType.wstNo: break;
+			}
+					
 		}
+		protected void OnWindowDeleteEvent (object sender, DeleteEventArgs a) {
+			Close();
+		}
+		
 		//Gtk.Object[] HideArray
 		protected void Show() {
 			mainWindow.ShowAll();
 			Invalidate();
+		}
+		
+		protected void onDestroyHandler(object Sender, DestroyEventArgs args){
+			Close();
+		}
+
+		public void ShowModal(){
+			mainWindow.ShowAll();
+			IsShownModal = true;
+			Application.Run();
 		}
 		
 		public void Invalidate(){
@@ -50,6 +76,8 @@ namespace GnomeArtNG
 		}
 		
 		public void Close(){
+			if (IsShownModal)
+				Application.Quit();
 			mainWindow.Destroy();
 		}
 	}
