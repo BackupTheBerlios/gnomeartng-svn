@@ -30,14 +30,14 @@ namespace GnomeArtNG
 		//FirstTimeAssistant
 		[Widget] Gtk.ProgressBar FtaProgressBar;
 		[Widget] Gtk.Button FtaApplyButton;		
-		[Widget] Gtk.Button FtaCancelButton;		
+		[Widget] Gtk.Button FtaCloseButton;		
 		[Widget] Gtk.Image UpdateHeaderImage;
 		[Widget] Gtk.Label FtaProgressLabel;
 		[Widget] Gtk.Label FtaHeadlineLabel;
 		[Widget] Gtk.Label FtaDescriptionLabel;
 		
 		public CFirstTimeAssistant(CConfiguration config): base(config, windowName, windowTitle, WindowShowType.wstNo) {
-			FtaCancelButton.Clicked += new EventHandler(onCancelClicked);
+			FtaCloseButton.Clicked += new EventHandler(onCancelClicked);
 			FtaApplyButton.Clicked += new EventHandler(onApplyClicked);
 			FtaHeadlineLabel.Text = "<span size=\"x-large\" weight=\"bold\">"+FtaHeadlineLabel.Text+"</span>";
 			FtaHeadlineLabel.UseMarkup = true;
@@ -48,13 +48,15 @@ namespace GnomeArtNG
 		private void onApplyClicked(object sender, EventArgs b){
 			try{
 				string dfile="/tmp/thumbs.tar.gz";
-				FtaCancelButton.Sensitive = false;
-				//new CFileDownloader(config.Proxy).DownloadFile(CConfiguration.ThemeBulkUrl,dfile,FtaProgressBar);
+				FtaApplyButton.Sensitive = false;
+				FtaCloseButton.Sensitive = false;
+				new CFileDownloader(config).DownloadFile(CConfiguration.ThemeBulkUrl,dfile,FtaProgressBar);
 				CUtility.UncompressFile(dfile,config.ProgramSettingsPath+config.DirectorySeperator,true,FtaProgressBar);
 				Close();				
 			}
 			catch{
-				FtaCancelButton.Sensitive = true;	
+				FtaCloseButton.Sensitive = true;	
+				FtaApplyButton.Sensitive = false;
 			}
 		}
 

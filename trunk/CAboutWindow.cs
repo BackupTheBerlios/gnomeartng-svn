@@ -43,7 +43,7 @@ namespace GnomeArtNG
 			AboutVersion.Text=Version;
 			AboutCloseButton.Clicked+=new EventHandler(OnAboutCloseButtonClicked);
 			try{
-				AboutImage.Pixbuf = new Gdk.Pixbuf("./gnome.png");
+				AboutImage.Pixbuf = new Gdk.Pixbuf("./images/gnome.png");
 			} 
 			catch { 
 				AboutImage.Pixbuf = new Gdk.Pixbuf("/usr/share/pixmaps/apple-red.png");

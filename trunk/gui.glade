@@ -3,13 +3,13 @@
 <!--*- mode: xml -*-->
 <glade-interface>
   <widget class="GtkWindow" id="MainWindow">
-    <property name="width_request">900</property>
+    <property name="width_request">940</property>
     <property name="height_request">600</property>
     <property name="visible">True</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">Gnome-Art-NG</property>
     <property name="window_position">GTK_WIN_POS_CENTER</property>
-    <property name="default_width">900</property>
+    <property name="default_width">940</property>
     <property name="default_height">600</property>
     <property name="gravity">GDK_GRAVITY_CENTER</property>
     <child>
@@ -110,7 +110,7 @@
           <widget class="GtkHPaned" id="ExtInfoSplitter">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="position">620</property>
+            <property name="position">650</property>
             <child>
               <widget class="GtkNotebook" id="MainNotebook">
                 <property name="visible">True</property>
@@ -730,6 +730,7 @@ Decoration</property>
                             <property name="can_focus">True</property>
                             <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
                             <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                            <property name="window_placement_set">True</property>
                             <child>
                               <widget class="GtkViewport" id="DescriptionViewport">
                                 <property name="visible">True</property>
@@ -739,10 +740,9 @@ Decoration</property>
                                     <property name="visible">True</property>
                                     <property name="xalign">0</property>
                                     <property name="yalign">0</property>
-                                    <property name="xpad">12</property>
+                                    <property name="xpad">10</property>
                                     <property name="label" translatable="yes">No description has been entered by the author</property>
                                     <property name="wrap">True</property>
-                                    <property name="width_chars">40</property>
                                   </widget>
                                 </child>
                               </widget>
@@ -2353,21 +2353,22 @@ www.kde-look.org</property>
               <widget class="GtkHBox" id="hbox9">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkLabel" id="UpdateDonateLabel">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Support the further development of this software by donating with</property>
-                  </widget>
-                  <packing>
-                    <property name="padding">4</property>
-                  </packing>
-                </child>
-                <child>
                   <widget class="GtkImage" id="UpdateDonateButtonImage">
                     <property name="visible">True</property>
-                    <property name="stock">gtk-missing-image</property>
+                    <property name="stock">gtk-go-forward</property>
+                    <property name="icon_size">6</property>
                   </widget>
                   <packing>
                     <property name="expand">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkLabel" id="UpdateDonateLabel">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Support the further development of this software by donating with PayPal</property>
+                  </widget>
+                  <packing>
+                    <property name="padding">4</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
@@ -2466,12 +2467,24 @@ www.kde-look.org</property>
             <child>
               <widget class="GtkLabel" id="FtaHeadlineLabel">
                 <property name="visible">True</property>
-                <property name="xalign">0</property>
                 <property name="xpad">5</property>
                 <property name="label" translatable="yes">First time download assistant</property>
               </widget>
               <packing>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkImage" id="FtaHeadImage1">
+                <property name="height_request">80</property>
+                <property name="visible">True</property>
+                <property name="stock">gtk-dialog-info</property>
+                <property name="icon_size">6</property>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </widget>
@@ -2492,6 +2505,8 @@ www.kde-look.org</property>
             <property name="xalign">0</property>
             <property name="xpad">11</property>
             <property name="label" translatable="yes">Welcome to the first time download assistant of Gnome-Art Next Gen.
+
+This application eases the customization of your gnome desktop. To make this task visually pleasent is it necessary to download previews of all themes. 
 
 If you'd like to download all the thumbnails (as a tar.gz file) you should choose "apply". It is strongly recommended to do so becauses it's a lot faster then downloading every single file one by one.</property>
             <property name="justify">GTK_JUSTIFY_FILL</property>
@@ -2549,11 +2564,11 @@ If you'd like to download all the thumbnails (as a tar.gz file) you should choos
             <property name="homogeneous">True</property>
             <property name="layout_style">GTK_BUTTONBOX_END</property>
             <child>
-              <widget class="GtkButton" id="FtaCancelButton">
+              <widget class="GtkButton" id="FtaCloseButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="label" translatable="yes">gtk-cancel</property>
+                <property name="label" translatable="yes">gtk-close</property>
                 <property name="use_stock">True</property>
                 <property name="response_id">0</property>
               </widget>

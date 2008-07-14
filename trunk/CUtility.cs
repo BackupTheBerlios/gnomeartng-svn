@@ -8,8 +8,7 @@
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
 */
-//
-// UtilityClass.cs created with MonoDevelop
+
 // Thomas Beck at 11:40 02.06.2008
 
 using System;
@@ -49,12 +48,12 @@ namespace GnomeArtNG
 		}
 		
 		//true if an update is available; false if not or an error has occured
-		public static bool IsAnUpdateAvailable(string UpdateUrl, Gtk.ProgressBar bar, out string NewestVersionNumberOnServer, out string DownloadLocation,ProxyAttrStruct Proxy){
+		public static bool IsAnUpdateAvailable(string UpdateUrl, Gtk.ProgressBar bar, out string NewestVersionNumberOnServer, out string DownloadLocation,CConfiguration config){
 			NewestVersionNumberOnServer = CConfiguration.Version;
 			DownloadLocation = "";
 			try {
 				string localUpdateFile = Environment.GetFolderPath(Environment.SpecialFolder.Personal)+Path.DirectorySeparatorChar+ Path.GetFileName(UpdateUrl);
-				new CFileDownloader(Proxy).DownloadFile(UpdateUrl, localUpdateFile, bar);
+				new CFileDownloader(config).DownloadFile(UpdateUrl, localUpdateFile, bar);
 				// version information contains the text "x.x.x" (without the quotes) and the download location in the second row
 				if (File.Exists(localUpdateFile))
 				{

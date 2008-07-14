@@ -30,24 +30,18 @@ namespace GnomeArtNG
 		
 		// The request to the web server for file information
 		HttpWebRequest webRequest;
-		// The response from the web server containing information about the file
-		//HttpWebResponse webResponse;
-	
-		//public CFileDownloader() {
-			
-		//}
 
-		
-
-		public CFileDownloader(ProxyAttrStruct ProxyAttr) {
-			proxy = new WebProxy(ProxyAttr.Ip, ProxyAttr.Port);
-
-			if (ProxyAttr.BypassList.Length > 0) {
-				for (int i = 0; i < ProxyAttr.BypassList.Length; i++)
-					ProxyAttr.BypassList[i] = "http://" + ProxyAttr.BypassList[i];
-				proxy.BypassList = ProxyAttr.BypassList;
+		public CFileDownloader(CConfiguration config) {
+			ProxyAttrStruct ProxyAttr = config.Proxy;
+			if (config.ProxyKind != CConfiguration.ProxyType.ptNone){
+				proxy = new WebProxy(ProxyAttr.Ip, ProxyAttr.Port);
+				if ((ProxyAttr.BypassList!=null) && (ProxyAttr.BypassList.Length > 0)) {
+					for (int i = 0; i < ProxyAttr.BypassList.Length; i++)
+						ProxyAttr.BypassList[i] = "http://" + ProxyAttr.BypassList[i];
+					proxy.BypassList = ProxyAttr.BypassList;
+				}
+				proxy.Credentials = new NetworkCredential (ProxyAttr.User, ProxyAttr.Password);
 			}
-			proxy.Credentials = new NetworkCredential (ProxyAttr.User, ProxyAttr.Password);
 		}
 
 		public CFileDownloader() {
@@ -58,7 +52,7 @@ namespace GnomeArtNG
 			//if (webRequest==null) {
 			//	Console.WriteLine("New HTTP-connection established"); 
 			webRequest = (HttpWebRequest)WebRequest.Create(From);
-			webRequest.UserAgent="Gnome-Art NextGen development-test from Tom, Version "+ CConfiguration.Version;
+			webRequest.UserAgent="Gnome-Art NextGen, version "+ CConfiguration.Version;
 			if (proxy!=null)
 				webRequest.Proxy = proxy;
 			webRequest.Timeout = 4000; 
@@ -72,7 +66,7 @@ namespace GnomeArtNG
 		
 		public void StartMassDownloading(){
 			keepConnection=true;
-			//Setze einen Request ab für art.gnome.org mit KeepAlive
+			//Setze einen Request ab mit KeepAlive
 		}
 		
 		void EndMassDownloading(){
@@ -135,8 +129,6 @@ namespace GnomeArtNG
 					
 				if (webRequest.HaveResponse) {
 					strResponse = webResponse.GetResponseStream();
-					//Console.WriteLine();
-				
 					// Create a new file stream where we will be saving the data (local drive)
 					strLocal = new FileStream(To, FileMode.Create, FileAccess.Write, FileShare.None);
 					// Loop through the buffer until the buffer is empty

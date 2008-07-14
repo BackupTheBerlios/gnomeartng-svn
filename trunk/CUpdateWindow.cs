@@ -57,7 +57,7 @@ namespace GnomeArtNG {
 			string tmpfile="/tmp/newgang.deb";
 			UpdateProgressBar.Show();
 			try {
-				new CFileDownloader(config.Proxy).DownloadFile(config.NewestVersionDownloadLocation, tmpfile,UpdateProgressBar);
+				new CFileDownloader(config).DownloadFile(config.NewestVersionDownloadLocation, tmpfile,UpdateProgressBar);
 				if (File.Exists(tmpfile)){
 					CUtility.ExecuteSu(config,"gdebi-gtk "+tmpfile);						
 				}
@@ -105,7 +105,7 @@ namespace GnomeArtNG {
 				UpdateStatusButton.Sensitive = false;
 				if (config.UpdateAvailable){
 					setHeaderLabelText(Catalog.GetString("An online update is available, version ")+config.NewestVersionNumberOnServer);
-					UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./update_available.png",config);
+					UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./images/update_available.png",config);
 					UpdateStatusImage.Stock = Gtk.Stock.Yes;
 					removeClickHandler(onStatusButtonClicked);
 						
@@ -121,7 +121,7 @@ namespace GnomeArtNG {
 				else{
 					UpdateStatusImage.Stock = Gtk.Stock.Refresh;
 					UpdateStatusLabel.Text=Catalog.GetString("There is no new version of GANG available");
-					UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./update_checking.png",config);
+					UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./images/update_checking.png",config);
 				}
 				UpdateCurrentVersionLabel.Text=CConfiguration.Version;
 				UpdateNewVersionLabel.Text=config.NewestVersionNumberOnServer;
@@ -135,7 +135,7 @@ namespace GnomeArtNG {
 			UpdateCloseButton.Clicked+=new EventHandler(onCloseButtonClicked);
 			UpdateDonateButton.Clicked+=new EventHandler(onDonateButtonClicked);
 			addClickHandler(onStatusButtonClicked);
-				
+			/*		
 			UpdateDonateLabel.ModifyFg(Gtk.StateType.Normal,new Gdk.Color(230,230,230));
 			UpdateDonateLabel.ModifyFg(Gtk.StateType.Prelight,new Gdk.Color(230,230,230));
 			UpdateDonateButton.ModifyBg(Gtk.StateType.Prelight,new Gdk.Color(100,100,100));
@@ -145,11 +145,11 @@ namespace GnomeArtNG {
 			UpdateHeaderLabel.ModifyFg(Gtk.StateType.Prelight,new Gdk.Color(230,230,230));				
 			UpdateHeaderButton.ModifyBg(Gtk.StateType.Normal,new Gdk.Color(55,57,53));
 			UpdateHeaderButton.ModifyBg(Gtk.StateType.Prelight,new Gdk.Color(100,100,100));
-
+			*/
 			setHeaderLabelText(Catalog.GetString("Use \"Check\" or click here to search for an online update"));
-			UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./update_checking.png",config);
+			UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./images/update_checking.png",config);
 			
-			UpdateDonateButtonImage.Pixbuf = CUtility.GetPixbuf("./PayPalLogo.gif",config);
+			//UpdateDonateButtonImage.Pixbuf = CUtility.GetPixbuf("./PayPalLogo.gif",config);
 			UpdateStatusLabel.Text = Catalog.GetString("Check");
 		}
 		

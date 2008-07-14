@@ -150,7 +150,7 @@ namespace GnomeArtNG
 		}
 		
 		protected void DownloadFile(string From, string To, Gtk.ProgressBar bar){
-			new CFileDownloader(config.Proxy).DownloadFile(From, To, bar);
+			new CFileDownloader(config).DownloadFile(From, To, bar);
 		}			
 		
 		//Theme installieren und Revert verfügbar machen 

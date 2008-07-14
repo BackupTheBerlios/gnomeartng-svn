@@ -150,7 +150,7 @@ namespace GnomeArtNG
 				sw.SetProgress(Catalog.GetString("downloading... (no progress available)"));
 				sw.Invalidate();
 				try	{
-					(new CFileDownloader(config.Proxy)).DownloadFile(remoteUri,localFileName,sw.DetailProgressBar);
+					(new CFileDownloader(config)).DownloadFile(remoteUri,localFileName,sw.DetailProgressBar);
 				}
 				catch (Exception ex) {
 					sw.Close();

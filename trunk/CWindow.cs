@@ -8,8 +8,6 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
-//
-// CWindow.cs created with MonoDevelop
 // Thomas Beck at 14:54 07.07.2008
 
 using System;

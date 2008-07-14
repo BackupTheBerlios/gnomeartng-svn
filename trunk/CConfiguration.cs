@@ -109,7 +109,7 @@ namespace GnomeArtNG
 		public const string ThemeBulkUrl="http://download.berlios.de/gnomeartng/thumbs.tar.gz";
 		public bool UpdateAvailable{
 			get{
-				return CUtility.IsAnUpdateAvailable(UpdateUrl,null,out NewestVersionNumberOnServer,out NewestVersionDownloadLocation,Proxy);
+				return CUtility.IsAnUpdateAvailable(UpdateUrl,null,out NewestVersionNumberOnServer,out NewestVersionDownloadLocation,this);
 			}
 		} 
 
@@ -330,6 +330,7 @@ namespace GnomeArtNG
 		public CConfiguration():this(CConfiguration.ArtType.atBackground_gnome)	{
 			
 		}
+		
 		public ProxyAttrStruct GetProxy(ProxyType type){
 			switch(type){
 			case ProxyType.ptGang: return gangProxy;
@@ -344,7 +345,7 @@ namespace GnomeArtNG
 			systemProxy.User = (string)GConfClient.Get(sProxyUserPath);
 			systemProxy.Password = (string)GConfClient.Get(sProxyPasswordPath);
 			systemProxy.BypassList = (string []) GConfClient.Get(sProxyBypassPath);
-			Console.WriteLine("System proxy settings has been changed externally");
+			//Console.WriteLine("System proxy settings has been changed externally");
 		}
 
 		private void onSettingsChanged(object Sender, GConf.NotifyEventArgs args){
