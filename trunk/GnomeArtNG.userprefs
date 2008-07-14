@@ -1,5 +1,6 @@
 ﻿<UserCombinePreferences version="1.0" filename="/home/neo/Projekte/GnomeArtNG/trunk/GnomeArtNG.mds">
   <Files>
+    <File name="Welcome" />
     <File name="Main.cs" line="123" column="1" />
     <File name="CUpdateWindow.cs" line="90" column="3" />
     <File name="CFirstTimeAssistant.cs" line="44" column="1" />
@@ -9,9 +10,7 @@
   <Views>
     <ViewMemento id="ProjectPad">
       <Node expanded="True">
-        <Node name="GnomeArtNG" expanded="True">
-          <Node name="CConfiguration.cs" selected="True" />
-        </Node>
+        <Node name="GnomeArtNG" expanded="True" selected="True" />
       </Node>
     </ViewMemento>
     <ViewMemento id="ClassPad">
