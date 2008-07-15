@@ -166,7 +166,7 @@ public class GnomeArtNgApp
 	}
 
 	private void OnInfoItemSelected(object sender, EventArgs a){
-		new CAboutWindow(CConfiguration.Version,true);
+		new CAboutWindow(config,true);
 	}
 
 	private bool ShowUpdateWindow(){

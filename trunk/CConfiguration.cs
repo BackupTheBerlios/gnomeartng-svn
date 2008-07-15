@@ -52,7 +52,7 @@ namespace GnomeArtNG
 
 	public class CConfiguration
 	{
-		public const string Version = "0.5.2";
+		public const string Version = "0.6.0";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11

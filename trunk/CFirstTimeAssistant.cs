@@ -25,16 +25,13 @@ namespace GnomeArtNG
 	public class CFirstTimeAssistant : CWindow
 	{		
 		private static string windowName="FtaWindow";
-		private static string windowTitle = Catalog.GetString("First time assistant")+", "+ Catalog.GetString("welcome to")+' '+"Gnome-Art NG";
+		private static string windowTitle = Catalog.GetString("First time download assistant")+", "+ Catalog.GetString("welcome to")+' '+"Gnome-Art NG";
 
 		//FirstTimeAssistant
 		[Widget] Gtk.ProgressBar FtaProgressBar;
 		[Widget] Gtk.Button FtaApplyButton;		
 		[Widget] Gtk.Button FtaCloseButton;		
-		[Widget] Gtk.Image UpdateHeaderImage;
-		[Widget] Gtk.Label FtaProgressLabel;
 		[Widget] Gtk.Label FtaHeadlineLabel;
-		[Widget] Gtk.Label FtaDescriptionLabel;
 		
 		public CFirstTimeAssistant(CConfiguration config): base(config, windowName, windowTitle, WindowShowType.wstNo) {
 			FtaCloseButton.Clicked += new EventHandler(onCancelClicked);

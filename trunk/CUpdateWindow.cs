@@ -35,12 +35,10 @@ namespace GnomeArtNG {
 		[Widget] Gtk.Button UpdateCloseButton;
 		[Widget] Gtk.Button UpdateStatusButton;
 		[Widget] Gtk.Image UpdateHeaderImage;
-		[Widget] Gtk.Image UpdateDonateButtonImage;
 		[Widget] Gtk.Label UpdateCurrentVersionLabel;
 		[Widget] Gtk.Label UpdateNewVersionLabel;
 		[Widget] Gtk.Image UpdateStatusImage;
 		[Widget] Gtk.Label UpdateStatusLabel;
-		[Widget] Gtk.Label UpdateDonateLabel;
 		[Widget] Gtk.Label UpdateHeaderLabel;
 		
 		public CUpdateWindow(CConfiguration config):base(config, windowName, windowTitle, WindowShowType.wstNo) {
@@ -120,8 +118,9 @@ namespace GnomeArtNG {
 				}
 				else{
 					UpdateStatusImage.Stock = Gtk.Stock.Refresh;
-					UpdateStatusLabel.Text=Catalog.GetString("There is no new version of GANG available");
-					UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./images/update_checking.png",config);
+					setHeaderLabelText(Catalog.GetString("There is no new version of GANG available"));
+					UpdateStatusLabel.Text=Catalog.GetString("Check");
+					UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./images/update_same.png",config);
 				}
 				UpdateCurrentVersionLabel.Text=CConfiguration.Version;
 				UpdateNewVersionLabel.Text=config.NewestVersionNumberOnServer;
@@ -146,7 +145,7 @@ namespace GnomeArtNG {
 			UpdateHeaderButton.ModifyBg(Gtk.StateType.Normal,new Gdk.Color(55,57,53));
 			UpdateHeaderButton.ModifyBg(Gtk.StateType.Prelight,new Gdk.Color(100,100,100));
 			*/
-			setHeaderLabelText(Catalog.GetString("Use \"Check\" or click here to search for an online update"));
+			setHeaderLabelText(Catalog.GetString("Use \"Check\" to search for updates"));
 			UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./images/update_checking.png",config);
 			
 			//UpdateDonateButtonImage.Pixbuf = CUtility.GetPixbuf("./PayPalLogo.gif",config);

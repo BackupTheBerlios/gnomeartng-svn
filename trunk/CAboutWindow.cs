@@ -17,44 +17,32 @@ using Gtk;
 using Gdk;
 using Glade;
 using GnomeArtNG;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
 	
 	
-	public class CAboutWindow
+	public class CAboutWindow : CWindow
 	{
-		
-		private Gtk.Window mainWindow;
-		public Gtk.Window MainWindow {
-			get {return mainWindow;}
-		}
+		private static string windowName="AboutWindow";
+		private static string windowTitle = Catalog.GetString("About")+" "+ Catalog.GetString("Gnome-Art-NG");	
 		
 		//AboutWindow
 		[Widget] Gtk.Label AboutVersion;
 		[Widget] Gtk.Button AboutCloseButton;
 		[Widget] Gtk.Image AboutImage;
 		
-		public CAboutWindow(string Version,bool ShowWindow)	{
-			string aboutW="AboutWindow";
-			Glade.XML aboutXml= new Glade.XML (null, "gui.glade", aboutW, null);
-			aboutXml.Autoconnect (this);
-			mainWindow = (Gtk.Window) aboutXml.GetWidget (aboutW);
-			AboutVersion.Text=Version;
+		public CAboutWindow(CConfiguration config,bool ShowWindow):base(config, windowName, windowTitle, WindowShowType.wstNo) {
+			AboutVersion.Text = CConfiguration.Version;
 			AboutCloseButton.Clicked+=new EventHandler(OnAboutCloseButtonClicked);
-			try{
-				AboutImage.Pixbuf = new Gdk.Pixbuf("./images/gnome.png");
-			} 
-			catch { 
-				AboutImage.Pixbuf = new Gdk.Pixbuf("/usr/share/pixmaps/apple-red.png");
-				Console.Out.WriteLine("Missing the GnomeArtNG about image!! Using fallbackimage!");
-			}
+			AboutImage.Pixbuf = CUtility.GetPixbuf("./images/gnome.png", config);
 			if(ShowWindow)
 				mainWindow.ShowAll();
 		}
 		
 		private void OnAboutCloseButtonClicked (object sender, EventArgs b){
-			mainWindow.Destroy();
+			Close();
 		}
 	}
 }
