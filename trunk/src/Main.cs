@@ -87,14 +87,9 @@ public class GnomeArtNgApp
 		Glade.XML gxml = new Glade.XML (null, "gui.glade", mainW, null);
 		mainWindow = (Gtk.Window) gxml.GetWidget (mainW);
 		gxml.Autoconnect (this);
-
-		if (config.SettingsLoadOk) {
-			mainWindow.Resize(config.Window.Width, config.Window.Height);
-			mainWindow.Move(config.Window.X, config.Window.Y);
-		}
 		
 		//Connect all events
-		mainWindow.DeleteEvent+=new DeleteEventHandler(OnWindowDeleteEvent);		
+		mainWindow.DeleteEvent+=new DeleteEventHandler(OnWindowDeleteEvent);
 		ExtInfoPreviewButton.Clicked += new EventHandler(OnPreviewButtonClicked);
 		InstallButton.Clicked  += new EventHandler(OnInstallButtonClicked);
 		RevertButton.Clicked  += new EventHandler(OnRevertButtonClicked);
@@ -121,9 +116,17 @@ public class GnomeArtNgApp
 
 		if (!RestartApp) { 
 
+			//Application placement - doesn't work properly with compiz (is it the window placement plugin?)			
+			if (config.SettingsLoadOk) {
+				mainWindow.Resize(config.Window.Width, config.Window.Height);
+				mainWindow.Move(config.Window.X, config.Window.Y);
+				//Console.WriteLine(config.Window.X+" "+ config.Window.Y);
+			}
+
 			//ArtManager erzeugen
 			man = new CArtManager(config);
 			
+
 			//Stores anlegen und IconViews anlegen
 			for(int i=0;i<ListStoreCount;i++){
 				sWins[i] = (Gtk.ScrolledWindow)(gxml.GetWidget("swin"+i));
@@ -156,11 +159,12 @@ public class GnomeArtNgApp
 			LowerTable.Attach(imageStyleBox,1,2,4,5);
 			
 			OnSwitchPage(MainNotebook,new SwitchPageArgs());
-			Application.Run ();
+
+			Gtk.Application.Run ();
 			
 		}
 	}
-	
+
 	private void OnQuitItemSelected(object sender, EventArgs a){
 		Application.Quit();
 	}
@@ -177,6 +181,7 @@ public class GnomeArtNgApp
 	}
 
 	private void OnUpdateItemSelected(object sender, EventArgs a){
+
 		if (ShowUpdateWindow())
 		    Application.Quit();
 	}
@@ -190,7 +195,7 @@ public class GnomeArtNgApp
 	
 	private void OnImageTypeBoxChanged(object sender, EventArgs a){
 		CBackgroundTheme bgTheme = (CBackgroundTheme)(man.Theme);
-		bgTheme.BgType = bgTheme.GetImageTypeFromString(imageTypeBox.ActiveText);
+		bgTheme.BgType = CUtility.StrToImageType(imageTypeBox.ActiveText);
 		FillComboboxWithStrings(imageResolutionsBox, bgTheme.GetAvailableResolutions());
 		//Console.WriteLine(imageTypeBox.ActiveText);
 	}
@@ -234,8 +239,6 @@ public class GnomeArtNgApp
 		mainWindow.GetPosition(out(windowAttr.X), out(windowAttr.Y));
 		config.Window = windowAttr;
 		config.SaveProgramSettings();
-		Console.WriteLine("WindowAttr bei Save X:"+windowAttr.X+" Y:"+ windowAttr.Y+"width:"+windowAttr.Width+" height:"+ windowAttr.Height);
-		Console.WriteLine("Config nach Save X:"+config.Window.X+" Y:"+ config.Window.Y+"width:"+config.Window.Width+" height:"+ config.Window.Height);
 	}
 
 	private void OnWindowDeleteEvent (object sender, DeleteEventArgs a) {
@@ -343,7 +346,7 @@ public class GnomeArtNgApp
 			imageTypeBox.Changed -= (EventHandler)OnImageTypeBoxChanged;
 			imageResolutionsBox.Changed -= (EventHandler)OnImageResolutionsBoxChanged;
 			FillComboboxWithStrings(imageTypeBox, bgt.GetAvailableTypes());
-			FillComboboxWithStrings(imageResolutionsBox, bgt.GetAvailableResolutions(bgt.GetImageTypeFromString(imageTypeBox.ActiveText)));
+			FillComboboxWithStrings(imageResolutionsBox, bgt.GetAvailableResolutions(CUtility.StrToImageType(imageTypeBox.ActiveText)));
 			imageTypeBox.Changed += new EventHandler(OnImageTypeBoxChanged);
 			imageResolutionsBox.Changed += new EventHandler(OnImageResolutionsBoxChanged);
 		}

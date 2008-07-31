@@ -24,12 +24,6 @@ namespace GnomeArtNG
 	
 	public class CBackgroundTheme: CTheme
 	{
-		public enum ImageType:int{
-			itPng,
-			itJpg,
-			itSvg
-		}
-		
 		//Reihenfolge muss mit GetStyles übereinstimmen
 		public enum ImageStyle:int{
 			isCenter,
@@ -124,7 +118,7 @@ namespace GnomeArtNG
 			
 		public void addImage(string type, CBackgroundImage image){
 			//Console.WriteLine(type.ToLower());
-			addImage(GetImageTypeFromString(type),image);
+			addImage(CUtility.StrToImageType(type),image);
 		}
 	
 		public void addImage(CBackgroundImage image){
@@ -133,15 +127,7 @@ namespace GnomeArtNG
 			currentList.Add(image);
 		}
 		
-		public ImageType GetImageTypeFromString(string type){
-			if (type.ToLower()=="png")
-				return ImageType.itPng;
-			else if (type.ToLower()=="jpg")
-				return ImageType.itJpg;
-			else if (type.ToLower()=="svg")
-				return ImageType.itSvg;
-			else throw new Exception(String.Format("Image Type {0} couldn't been recognized",type));
-		}
+
 					
 		public CBackgroundImage addNewImage(ImageType type){
 			BgType=type;

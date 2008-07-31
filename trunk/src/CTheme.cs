@@ -164,8 +164,9 @@ namespace GnomeArtNG
 				Installation(sw);
 				PostInstallation(sw);
 				sw.SetProgress(installationSteps+"/"+installationSteps);
-				sw.Mainlabel=CConfiguration.txtInstallDone;
+				sw.Mainlabel=CConfiguration.txtInstallDone; 
 				sw.DetailProgressBar.Fraction=1.0;
+				sw.DetailProgressBar.Text = Catalog.GetString("All changes has been applied");
 				//Hint:It's enough to change the caption to the stock item!! No need for image transformations!
 				sw.ButtonCaption = "gtk-ok";
 			} 

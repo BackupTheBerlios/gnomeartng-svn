@@ -89,6 +89,9 @@ namespace GnomeArtNG
 			"Your previous settings are now stored to make it possible to revert your theme installation easily");
 		public static string txtDownloadTheme=Catalog.GetString("<i>Downloading the theme from art.gnome.org</i>\n\n"+
 			"Your theme is being downloaded...please be patient while the download is progressing");
+		public static string txtConvertingIcons=Catalog.GetString("<i>Converting your theme</i>\n\n"+
+			"Your Theme is now converted to the appropriate form. It's most likely that your environment is newer than the"+
+		    "selected theme...just wait a moment - some icon themes got 50 Mib and more so it can take some time to complete!");
 		public static string txtInstalling=Catalog.GetString("<i>Installing the theme</i>\n\n"+
 			"Your Theme is now being installed. Therefore system files will get changed and/or your "+
 			"GConf settings are changed. To revert this action and make all undone simply click on Revert.");

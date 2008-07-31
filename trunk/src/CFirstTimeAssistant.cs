@@ -18,6 +18,7 @@ using Glade;
 using GnomeArtNG;
 using Mono.Unix;
 using System.IO;
+using System.Collections;
 
 namespace GnomeArtNG
 {
@@ -48,7 +49,7 @@ namespace GnomeArtNG
 				FtaApplyButton.Sensitive = false;
 				FtaCloseButton.Sensitive = false;
 				new CFileDownloader(config).DownloadFile(CConfiguration.ThemeBulkUrl,dfile,FtaProgressBar);
-				CUtility.UncompressFile(dfile,config.ProgramSettingsPath+config.DirectorySeperator,true,FtaProgressBar);
+				CUtility.UncompressFile(dfile,config.ProgramSettingsPath+config.DirectorySeperator,true,FtaProgressBar,new System.Collections.ArrayList());
 				Close();				
 			}
 			catch{

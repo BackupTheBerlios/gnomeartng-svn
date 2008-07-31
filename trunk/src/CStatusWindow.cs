@@ -88,13 +88,14 @@ namespace GnomeArtNG
 				Invalidate();
 			}
 		}
-		
+		//This should be done through an event handling mechanism
 		public void SetProgress(string Text){
 			StatusProgressBar.Text=Text;
 			StatusProgressBar.Fraction = StatusProgressBar.Fraction+StatusProgressBar.PulseStep;
 			Invalidate();
 		}
-		 
+
+		//This should be done through an event handling mechanism!
 		public void SetDetailProgress(string Text){
 			StatusDetailProgressBar.Text=Text;
 			StatusDetailProgressBar.Fraction = StatusDetailProgressBar.Fraction+StatusDetailProgressBar.PulseStep;
@@ -116,17 +117,18 @@ namespace GnomeArtNG
 		}
 		
 		public void SetProgressStep(int MaxCount){
-			if (MaxCount==0)
+			if (MaxCount<=0)
 				MaxCount=1;
 			StatusProgressBar.PulseStep=1.0/MaxCount;
 			StatusProgressBar.Fraction=0.0;
 		}
 		
 		public void SetDetailProgressStep(int MaxCount){
-			if (MaxCount==0)
+			if (MaxCount<=0)
 				MaxCount=1;
-			StatusDetailProgressBar.PulseStep=1.0/MaxCount;
 			StatusDetailProgressBar.Fraction=0.0;
+			StatusDetailProgressBar.PulseStep=(double)(1.0/MaxCount);
+			Console.WriteLine(StatusDetailProgressBar.PulseStep);
 		}
 		
 		public CStatusWindow(string Headline,int MaxCount,bool CloseByRequest, bool ExpandExpander, bool ShowWindow)	{

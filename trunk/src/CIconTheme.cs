@@ -30,7 +30,6 @@ namespace GnomeArtNG
 		private string prevIconTheme="";
 		//Beim Installieren benötigt
 		private string[] Folder;
-		System.Text.StringBuilder ConOutp;
 			
 		override public void Revert(){
 			client = new GConf.Client();
@@ -39,26 +38,34 @@ namespace GnomeArtNG
 		}
 
 		override protected void PreInstallation(CStatusWindow sw){
-			if (!installationIsPossible)
-				throw new Exception("Installation is not possible - Tar is missing");
-			string tarParams="";
-			
-			tarParams=CUtility.GetTarParams(DownloadUrl);
 			//Herunterladen
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtDownloadTheme);
 			GetThemeFile(sw);
 			sw.SetProgress("1/"+installationSteps);
 			
 			//Entpacken
-			ConOutp = CUtility.Execute("tar",tarParams+LocalThemeFile+" -C "+config.IconInstallPath);
-			Console.WriteLine(ConOutp.ToString());
-			Folder = ConOutp.ToString().Split('/');
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtExtracting);
+			System.Collections.ArrayList al = new System.Collections.ArrayList();
+			al = CUtility.UncompressFile(LocalThemeFile,Path.GetTempPath(),false, null,al);
+			Folder = ((string)(al[0])).Split('/');
+			//Console.WriteLine(Folder[0]);
 			sw.SetProgress("2/"+installationSteps);
+			
+			//Convertieren
+			sw.Mainlabel=Catalog.GetString(CConfiguration.txtConvertingIcons);
+			sw.SetProgress("3/"+installationSteps);
+			CIconThemeManager iconmanager = new CIconThemeManager();
+			iconmanager.ThemeName = Folder[0];
+			iconmanager.StatusWindow = sw;
+			iconmanager.ImportIcons(Path.GetTempPath()+Folder[0]);
+			sw.SetProgress("4/"+installationSteps);
+			iconmanager.SaveAllIcons(config.IconInstallPath+"/",true);
 			
 			//Sichern
 			client = new GConf.Client();
 			sw.Mainlabel=Catalog.GetString(CConfiguration.txtSavingForRestore);
 			prevIconTheme=(string)client.Get(GConfIconThemeKey);
-			sw.SetProgress("3/"+installationSteps);
+			sw.SetProgress("5/"+installationSteps); 
 		}
 		
 		override protected void Installation(CStatusWindow sw){
@@ -73,8 +80,7 @@ namespace GnomeArtNG
 		}
 
 		public CIconTheme(CConfiguration config):base(config)	{
-			installationIsPossible = config.TarIsAvailable;
-			installationSteps=4;
+			installationSteps=6;
 		}
 			
 	}

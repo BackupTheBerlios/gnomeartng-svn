@@ -12,6 +12,7 @@
 // Thomas Beck at 11:40 02.06.2008
 
 using System;
+using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -19,9 +20,16 @@ using System.Text.RegularExpressions;
 using ICSharpCode.SharpZipLib.Tar;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
+using ICSharpCode.SharpZipLib.BZip2;	
+
+namespace GnomeArtNG {
 	
-namespace GnomeArtNG
-{
+	public enum ImageType:int{
+		itPng,
+		itJpg,
+		itSvg
+	}
+	
 	public class CUtility
 	{
 		
@@ -34,20 +42,51 @@ namespace GnomeArtNG
 			ProcessStartInfo psi = new ProcessStartInfo();
 			psi.Arguments = Arguments;
 			psi.FileName = FileName;
-			//Console.WriteLine(psi.FileName+psi. Arguments);
-			psi.RedirectStandardOutput = WaitForCompletion;
-			psi.UseShellExecute = false;
+			//Console.WriteLine(psi.FileName+' '+psi.Arguments);
+			if (WaitForCompletion){
+				psi.RedirectStandardOutput = true;
+				psi.UseShellExecute = false;
+			} else
+				psi.RedirectStandardOutput = false;
+			
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			Process proc = Process.Start(psi);
-			if (WaitForCompletion){ 
-				while (proc.StandardOutput.Peek() != -1) 
+			if (WaitForCompletion){
+				proc.WaitForExit();
+				while (proc.StandardOutput.Peek() != -1){ 
 					sb.Append(proc.StandardOutput.ReadLine());
+					//Console.WriteLine("Read "+proc.StandardOutput.ReadLine());
+				}
 			} else
 			    sb.Append("Process "+FileName+" started");
 			return sb;
 		}
 		
-		//true if an update is available; false if not or an error has occured
+		public static ImageType StrToImageType(string type){
+			type = type.ToLower();
+			if (type.Contains("png"))
+				return ImageType.itPng;
+			else if (type.Contains("jpg") || type.Contains("jpeg"))
+				return ImageType.itJpg;
+			else if (type.Contains("svg"))
+				return ImageType.itSvg;
+			else throw new Exception(String.Format("Image Type {0} couldn't been recognized",type));
+		}
+
+		public static string ImageTypeToStr(ImageType type){
+			switch (type){
+			case ImageType.itPng: 
+				return "png";  
+			case ImageType.itJpg: 
+				return "jpeg"; 
+			case ImageType.itSvg: 
+				return "svg"; 
+			default:
+				throw new Exception("Unknown image type in typeToStr");
+			}
+		}
+
+		//true if an update is available; false if not or an error occured
 		public static bool IsAnUpdateAvailable(string UpdateUrl, Gtk.ProgressBar bar, out string NewestVersionNumberOnServer, out string DownloadLocation,CConfiguration config){
 			NewestVersionNumberOnServer = CConfiguration.Version;
 			DownloadLocation = "";
@@ -106,7 +145,7 @@ namespace GnomeArtNG
 		// TODO: Create a class Archive.cs and do all the archiving stuff there!
 		public static bool UncompressGzipFile(string Filename, string To, Gtk.ProgressBar bar){
 			try{
-				
+				Console.WriteLine(Filename);
 				GZipInputStream gzipIn = new GZipInputStream(File.OpenRead(Filename));				
 				FileStream streamWriter = File.Create(To+Path.GetFileNameWithoutExtension(Filename));
 				long size=0;
@@ -127,16 +166,45 @@ namespace GnomeArtNG
 			}
 		}
 
+		// TODO: Create a class Archive.cs and do all the archiving stuff there!
+		public static bool UncompressBzip2File(string Filename, string To, Gtk.ProgressBar bar){
+			try{
+				Console.WriteLine(Filename);
+				BZip2InputStream bzipIn = new BZip2InputStream(File.OpenRead(Filename));				
+				FileStream streamWriter = File.Create(To+Path.GetFileNameWithoutExtension(Filename));
+				long size=0;
+				byte[] data = new byte[1024];
+				while (true)
+					{
+					size = bzipIn.Read(data, 0, data.Length);
+					if (size > 0) streamWriter.Write(data, 0, (int) size);
+					else break;
+				}
+				streamWriter.Close();
+				Console.WriteLine("Deflating the gzip file done!");
+				return true;
+			}
+			catch(Exception e) {
+				Console.WriteLine("An exception occured while deflating the bzip2 file: "+e.Message);
+				return false;
+			}
+		}
+
 		// TODO: Create a class Archive.cs and do all the archiving stuff there! This is just copy and paste crap
-		public static bool UncompressTarFile(string Filename, string To, Gtk.ProgressBar bar){
+		public static ArrayList UncompressTarFile(string Filename, string To, Gtk.ProgressBar bar){
+			ArrayList entries=new ArrayList();
 			try{
 				TarInputStream tarIn = new TarInputStream(File.OpenRead(Filename));				
 				TarEntry entry;
 				while ((entry = tarIn.GetNextEntry()) != null)
 				{
-					if (entry.IsDirectory)
-						Directory.CreateDirectory(To+entry.Name);
-					else {
+					string savepath = Path.GetDirectoryName(To+entry.Name);
+					if (!Directory.Exists(savepath)){
+						Directory.CreateDirectory(savepath);
+						//Console.WriteLine(Path.GetDirectoryName(entry.Name));
+					}					
+					entries.Add(Path.GetDirectoryName(entry.Name));					
+					if (!entry.IsDirectory) {
 						FileStream streamWriter = File.Create(To + entry.Name);
 						long size = entry.Size;
 						byte[] data = new byte[size];
@@ -150,21 +218,24 @@ namespace GnomeArtNG
 					}
 				}
 				Console.WriteLine("Deflating the tar file done!");
-				return true;
+				return entries;
 			}
 			catch(Exception e) {
 				Console.WriteLine("An exception occured while deflating the tar file: "+e.Message);
-				return false;
+				return entries;
 			}
 		}
 
 		// TODO: Create a class Archive.cs and do all the archiving stuff there! This is just copy and paste crap
-		public static bool UncompressZipFile(string Filename, string To, Gtk.ProgressBar bar){
+		public static ArrayList UncompressZipFile(string Filename, string To, Gtk.ProgressBar bar){
+			ArrayList entries=new ArrayList();			
 			try{
 				ZipInputStream zipIn = new ZipInputStream(File.OpenRead(Filename));				
 				ZipEntry entry;
 				while ((entry = zipIn.GetNextEntry()) != null)
 				{
+					if (entry.IsDirectory)
+						entries.Add(entry.Name);
 					FileStream streamWriter = File.Create(To+entry.Name);
 					long size = entry.Size;
 					byte[] data = new byte[size];
@@ -177,32 +248,37 @@ namespace GnomeArtNG
 					streamWriter.Close();
 				}
 				Console.WriteLine("Deflating the zip file done!");
-				return true;
+				return entries;
 			}
 			catch(Exception e) {
 				Console.WriteLine("An exception occured while deflating the zip file: "+e.Message);
-				return false;
+				return entries;
 			}
 		}
-		public static void UncompressFile(string Filename, string To,bool DeleteOriginal, Gtk.ProgressBar bar){
-			if (Path.GetExtension(Path.GetFileNameWithoutExtension(Filename)) == ".tar"){
+		public static ArrayList UncompressFile(string Filename, string To,bool DeleteOriginal, Gtk.ProgressBar bar,ArrayList entries){
+						
+			string ext = Path.GetExtension(Filename);			
+			if (ext == ".tar")
+				entries = UncompressTarFile(Filename,To,bar);
+			else if (ext == ".zip")
+				entries = UncompressZipFile(Filename,To,bar);
+			else if (ext == ".bz2")
+				UncompressBzip2File(Filename,To,bar);
+			else if (ext == ".gz")
 				UncompressGzipFile(Filename,To,bar);
-				string newfile=To+Path.GetFileNameWithoutExtension(Filename);
-				UncompressTarFile(newfile,To,bar);
-				if (DeleteOriginal){
-					File.Delete(Filename);
-					File.Delete(newfile);
-				}
-			} 
-			else {
-				string ext = Path.GetExtension(Filename);			
-				if (ext == ".tar")
-					UncompressTarFile(Filename,To,bar);
-				else if (ext == ".zip")
-					UncompressZipFile(Filename,To,bar);
-				else if (ext == ".gz")
-					UncompressGzipFile(Filename,To,bar);
+
+			string newfile=To+Path.GetFileNameWithoutExtension(Filename);	
+			ext=Path.GetExtension(newfile);
+			if ((ext ==".tar") || (ext ==".zip") || (ext ==".bz2") || (ext ==".gz")){
+				entries = UncompressFile(newfile,To,DeleteOriginal,bar,entries);
 			}
+			
+			if (DeleteOriginal){
+				File.Delete(Filename);
+				File.Delete(newfile);
+			} 	
+
+			return entries;
 		}
 		
 		public static string CheckAndSetIp(string ip){
