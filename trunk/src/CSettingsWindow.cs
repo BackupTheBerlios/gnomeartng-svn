@@ -42,7 +42,7 @@ namespace GnomeArtNG
 		[Widget] Gtk.Button SettingsCancelButton;
 		[Widget] Gtk.ComboBox SettingsXmlCb;
 		[Widget] Gtk.FileChooser SettingsLocationFc;
-		
+		[Widget] Gtk.Label SettingsGeneralHeadlineLabel;
 		[Widget] Gtk.RadioButton SettingsNoProxyRb;
 		[Widget] Gtk.RadioButton SettingsProxyActiveRb;
 		[Widget] Gtk.RadioButton SettingsProxySystemActiveRb;		
@@ -65,13 +65,14 @@ namespace GnomeArtNG
 			settingsXml.Autoconnect (this);
 			mainWindow = (Gtk.Window) settingsXml.GetWidget (settingsW);
 			mainWindow.Title = Catalog.GetString("Settings");
+			SettingsGeneralHeadlineLabel.Text = "<b>"+Catalog.GetString("General settings")+"</b>";
 			SettingsXmlCb.Active = config.XmlRefreshInterval;
 			SettingsLocationFc.SetCurrentFolder(config.ThemesDownloadPath);
+            //Events
 			SettingsCancelButton.Clicked+=new EventHandler(OnCancelButtonClicked);
 			SettingsOkButton.Clicked+=new EventHandler(OnOkButtonClicked);
 			SettingsNoProxyRb.Clicked+=new EventHandler(OnProxyClicked);
 			SettingsProxyActiveRb.Clicked+=new EventHandler(OnProxyClicked);
-			
 			//Proxies
 			proxy = config.GetProxy(CConfiguration.ProxyType.ptGang);
 			SettingsProxyAddress.Text = proxy.Ip;
@@ -84,7 +85,6 @@ namespace GnomeArtNG
 			SettingsProxySystemActiveRb.Active =  (config.ProxyKind == CConfiguration.ProxyType.ptSystem);
 			SettingsNoProxyRb.Active = (config.ProxyKind == CConfiguration.ProxyType.ptNone);
 			SettingsProxyActiveRb.Active = (config.ProxyKind == CConfiguration.ProxyType.ptGang);
-			
 			
 			SettingsUpdateCb.Active = !(config.DontBotherForUpdates);
 			config.GConfClient.AddNotify(config.GConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);

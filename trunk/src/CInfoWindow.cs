@@ -16,6 +16,7 @@ using Gtk;
 using Gdk;
 using Glade;
 using GnomeArtNG;
+using Mono.Unix;
 
 namespace GnomeArtNG
 {
@@ -31,9 +32,9 @@ namespace GnomeArtNG
 		
 		//InfoWindow
 		[Widget] Gtk.Label InfoHeadLabel;
-		//[Widget] Gtk.Label InfoDescriptionLabel;
 		[Widget] Gtk.TextView InfoDescription;
 		[Widget] Gtk.Button InfoOkButton;
+		[Widget] Gtk.Button InfoCopyToClipboardButton;
 		[Widget] Gtk.Image InfoImage;
 		
 		
@@ -64,6 +65,7 @@ namespace GnomeArtNG
 			this.Headline = Headline;
 			this.Description = Description;
 			InfoOkButton.Clicked+=new EventHandler(OnOkButtonClicked);
+			InfoCopyToClipboardButton.Clicked+=new EventHandler(OnCopyToClipboardClicked);
 			InfoImage.Stock= StockIcon;
 			if(ShowWindow)
 				Show();
@@ -82,7 +84,16 @@ namespace GnomeArtNG
 			mainWindow.ShowAll();
 			Invalidate();
 		}
-		
+		private void OnCopyToClipboardClicked(object sender, EventArgs b){
+			Gtk.TextIter start,end; 
+			InfoDescription.Buffer.GetBounds(out start, out end);
+			InfoDescription.Buffer.SelectRange(start,end);
+			InfoDescription.Buffer.CopyClipboard(Clipboard.Get (Gdk.Selection.Clipboard));
+			InfoDescription.Buffer.SelectRange(start,start);
+			InfoCopyToClipboardButton.Label = Catalog.GetString("Copied to clipboard.."+"!");
+			InfoCopyToClipboardButton.Sensitive = false;
+		}
+
 		private void OnOkButtonClicked (object sender, EventArgs b){
 			Close();
 		}

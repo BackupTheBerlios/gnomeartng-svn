@@ -33,6 +33,7 @@ public class GnomeArtNgApp
 	private static int ListStoreCount = 10;
 	private ListStore[] stores = new ListStore[ListStoreCount];
 	private Gtk.IconView[] IconViews=new Gtk.IconView[ListStoreCount];
+	private Gtk.IconView CurrentIconView;
 	private Gtk.ScrolledWindow[] sWins = new Gtk.ScrolledWindow[ListStoreCount]; 
 	
 	//[Widget] Gtk.Image AboutImage;	
@@ -135,9 +136,11 @@ public class GnomeArtNgApp
 				IconViews[i].SelectionChanged += new System.EventHandler(OnSelChanged);
 				IconViews[i].ItemActivated += new ItemActivatedHandler(OnItemActivated);
 				IconViews[i].PixbufColumn = 0;
+				CurrentIconView = IconViews[0];
 				
 				sWins[i].Add(IconViews[i]);
 				IconViews[i].Show();
+				
 			}
 			
 			//Create the comboboxes
@@ -210,6 +213,7 @@ public class GnomeArtNgApp
 	
 	private void OnSwitchPage(object sender, SwitchPageArgs s){
 		int pageNum = ((Gtk.Notebook)sender).Page;
+		CurrentIconView = IconViews[pageNum];
 		switch(pageNum){
 			case 0: man.ArtType=CConfiguration.ArtType.atBackground_gnome; break;
 			case 1: man.ArtType=CConfiguration.ArtType.atBackground_other; break;
@@ -224,13 +228,15 @@ public class GnomeArtNgApp
 		}
 
 		Gtk.TreeIter iter;
-		IconViews[pageNum].Model.GetIterFirst(out iter);
+		CurrentIconView.Model.GetIterFirst(out iter);
 		//Falls noch kein gefüllter Store (und damit noch kein gültiger Iterator -> Stamp==0
 		if (iter.Stamp==0){
 			man.GetAllThumbs();
 			FillStore(pageNum);
-	        IconViews[pageNum].GrabFocus ();
-		}
+	        CurrentIconView.GrabFocus ();
+		} 
+		if (CurrentIconView.SelectedItems.Length > 0)
+			man.ThemeIndex=int.Parse(CurrentIconView.SelectedItems[0].ToString());
 		FillExtendedSection(man.Theme);
 	}
 	private void SaveAllProgramSettings(){
@@ -263,14 +269,6 @@ public class GnomeArtNgApp
 	}
 	
 	private void OnPreviewButtonClicked (object sender, EventArgs e){
-		/*
-			Pango.Layout layout = new Pango.Layout(ExtInfoImage.PangoContext);			
-			layout.Wrap = Pango.WrapMode.Word;
-			layout.FontDescription = FontDescription.FromString ("Bitstream Vera Sans Mono 10");
-			layout.SetMarkup ("Hello Pango.Layout");
-			ExtInfoImage.Pixmap.DrawLayout(ExtInfoImage.Style.TextGC(StateType.Normal), 0, 0, layout);
-		 */ 
-		
 		CStatusWindow sw=new CStatusWindow(Catalog.GetString("Downloading the preview file"),1,false,true,true);
 		sw.SetProgress("1/1 - " +Catalog.GetString("Connected to art.gnome.org"));
 		sw.Mainlabel=Catalog.GetString("<i>Downloading the preview file</i>\n\nYour preview is beeing downloaded. After the download has been finished,"+
@@ -304,17 +302,34 @@ public class GnomeArtNgApp
 	
 	private void OnSelChanged(object sender,EventArgs e){
 		if (((Gtk.IconView)sender).SelectedItems.Length>0){
-			man.ThemeIndex=int.Parse(((Gtk.IconView)sender).SelectedItems[0].ToString());
-			FillExtendedSection(man.Theme);
+			//man.ThemeIndex=int.Parse(((Gtk.IconView)sender).SelectedItems[0].ToString());
+			Gtk.TreeIter iter;
+			CurrentIconView.Model.GetIter(out iter, CurrentIconView.SelectedItems[0]);
+			string themename = CurrentIconView.Model.GetValue(iter, 1).ToString ();
+			CTheme theme = man.GetTheme(themename);
+			FillExtendedSection(theme);
 		}
 	}
 	
-	//Test zum einfachen reload oder neuladen von einzelnen Thumbs
+	//Doubleclick
 	private void OnItemActivated(object sender, ItemActivatedArgs a){
-		man.GetThumb();
-		FillStore(MainNotebook.Page);
+		OnInstallButtonClicked(sender, a);
+		//Gtk.TreeModelFilter filter = new Gtk.TreeModelFilter (IconViews[0].Model, null);
+		//filter.VisibleFunc = new Gtk.TreeModelFilterVisibleFunc (FilterTree);
+		//IconViews[0].Model = filter;
 	}
-		
+	
+	/* Will handle the filtering
+	private bool FilterTree (Gtk.TreeModel model, Gtk.TreeIter iter)
+	{
+		string name = model.GetValue (iter, 1).ToString ();
+		Console.WriteLine(name);
+		if (name == "Ancona at Down")
+			return true;
+		else
+			return false;
+	}	
+	*/
 	private void FillComboboxWithStrings(Gtk.ComboBox box, string[] strings){
 		((Gtk.ListStore)(box.Model)).Clear();
 		for (int i=0;i<strings.Length;i++){
@@ -364,7 +379,6 @@ public class GnomeArtNgApp
 		for(int i=0; i<themeCount;i++) {
 			CTheme theme = man.GetTheme(i);
 			stores[StoreIndex].AppendValues (theme.ThumbnailPic,theme.Name, theme.Author);
-			
           }
 		if (themeCount>=0)
 			man.ThemeIndex=0;

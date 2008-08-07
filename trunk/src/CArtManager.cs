@@ -81,10 +81,10 @@ namespace GnomeArtNG
 		public int ThemeIndex{
 			get {return currentThemeIndex;}
 			set {
-				currentThemeIndex = value;
 				ArrayList tempList=getThemeList();
 				if ((value<0) || (value>tempList.Count-1))
 					throw new Exception(String.Format("ThemeIndex has to be in range ({0}-{1})",0,tempList.Count));
+				currentThemeIndex = value;
 				currentTheme=(CTheme)(tempList[currentThemeIndex]);
 			}
 		}
@@ -125,7 +125,7 @@ namespace GnomeArtNG
 			bool downloadFile=false;
 			if (!ForceReload){
 		        if (File.Exists(localFileName)) {
-					localFileDate = File.GetCreationTime(localFileName).Date;
+					localFileDate = File.GetLastWriteTime(localFileName).Date;
 					daysBetween = DateTime.Now.Date.Subtract(localFileDate).Days;
 		            if ( daysBetween >= config.XmlRefreshInterval) {
 		                Console.WriteLine("Xml file too old ({0} day(s) since last download - downloading new one",daysBetween);
@@ -257,7 +257,8 @@ namespace GnomeArtNG
 							item = attributes.Item(i);
 							if (item.Name=="release_date")
 								Theme.ReleaseDate=item.InnerText;
-							else if	(item.Name=="vote_sum")
+							//TODO: will be rating soon votesum and count are deprecated							
+							else if	(item.Name=="vote_sum") 
 								Theme.VoteSum=GetIntFromXML(item.InnerText);
 							else if	(item.Name=="vote_count")
 								Theme.VoteCount=GetIntFromXML(item.InnerText);

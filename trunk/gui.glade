@@ -3,7 +3,7 @@
 <!--*- mode: xml -*-->
 <glade-interface>
   <widget class="GtkWindow" id="MainWindow">
-    <property name="width_request">940</property>
+    <property name="width_request">960</property>
     <property name="height_request">600</property>
     <property name="visible">True</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -31,7 +31,7 @@
                       <widget class="GtkMenuItem" id="FTAItem">
                         <property name="visible">True</property>
                         <property name="tooltip" translatable="yes">Starts the first time assistant</property>
-                        <property name="label" translatable="yes">First time assistant</property>
+                        <property name="label" translatable="yes">First time download assistant</property>
                         <property name="use_underline">True</property>
                       </widget>
                     </child>
@@ -82,9 +82,14 @@
                       <widget class="GtkImageMenuItem" id="UpdateMenuItem">
                         <property name="visible">True</property>
                         <property name="tooltip" translatable="yes">Search for new updates</property>
-                        <property name="label" translatable="yes">gtk-refresh</property>
+                        <property name="label" translatable="yes">Update</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <child internal-child="image">
+                          <widget class="GtkImage" id="menu-item-image1">
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-refresh</property>
+                          </widget>
+                        </child>
                       </widget>
                     </child>
                     <child>
@@ -109,7 +114,7 @@
           <widget class="GtkHPaned" id="ExtInfoSplitter">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="position">650</property>
+            <property name="position">640</property>
             <child>
               <widget class="GtkNotebook" id="MainNotebook">
                 <property name="visible">True</property>
@@ -334,7 +339,8 @@ Backgrounds</property>
                   <widget class="GtkLabel" id="label5">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Application</property>
+                    <property name="label" translatable="yes">Application
+Look</property>
                   </widget>
                   <packing>
                     <property name="type">tab</property>
@@ -598,6 +604,7 @@ Decoration</property>
                                 <property name="height_request">70</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="tooltip" translatable="yes">Click to view a full preview</property>
                                 <property name="response_id">0</property>
                                 <child>
                                   <widget class="GtkImage" id="ExtInfoImage">
@@ -876,6 +883,7 @@ Decoration</property>
                           <widget class="GtkButton" id="InstallButton">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip" translatable="yes">Download, install, and apply the selected thumbnail</property>
                             <property name="label">gtk-apply</property>
                             <property name="use_stock">True</property>
                             <property name="response_id">0</property>
@@ -889,6 +897,7 @@ Decoration</property>
                           <widget class="GtkButton" id="RevertButton">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="tooltip" translatable="yes">Undo one last action</property>
                             <property name="label">gtk-undo</property>
                             <property name="use_stock">True</property>
                             <property name="response_id">0</property>
@@ -1094,7 +1103,7 @@ Greetings, Tom (software@plasmasolutions.de)</property>
               <widget class="GtkLabel" id="AboutAuthor">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
-                <property name="label" translatable="yes">&lt;i&gt;Thomas Beck&lt;/i&gt;</property>
+                <property name="label">&lt;i&gt;Thomas Beck&lt;/i&gt;</property>
                 <property name="use_markup">True</property>
               </widget>
               <packing>
@@ -1231,7 +1240,7 @@ All I've forgotten now&lt;/i&gt;</property>
                 <property name="ypad">7</property>
                 <property name="label" translatable="yes">&lt;i&gt;Your themes are beeing read&lt;/i&gt;
 
-Please be patient while all themes that fit your selection are beeing read. When you've done this procedure previously, all themes will be read from a cache directory on your hard disc. Use the Expander beneath to see what action is exactly beeing done.</property>
+Please be patient while all themes that fit your selection are beeing read. When you've done this procedure previously, all themes will be read from a cache directory on your hard disc. Use the Expander beneath to see what action is exactly being done.</property>
                 <property name="use_markup">True</property>
                 <property name="justify">GTK_JUSTIFY_FILL</property>
                 <property name="wrap">True</property>
@@ -1390,6 +1399,7 @@ Please be patient while all themes that fit your selection are beeing read. When
               <widget class="GtkButton" id="PreviewCloseButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="tooltip" translatable="yes">Closes without any changes done</property>
                 <property name="label">gtk-close</property>
                 <property name="use_stock">True</property>
                 <property name="response_id">0</property>
@@ -1399,6 +1409,7 @@ Please be patient while all themes that fit your selection are beeing read. When
               <widget class="GtkButton" id="PreviewInstallButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="tooltip" translatable="yes">Downloads, installs, and applies this item</property>
                 <property name="label">gtk-apply</property>
                 <property name="use_stock">True</property>
                 <property name="response_id">0</property>
@@ -1499,13 +1510,51 @@ Please be patient while all themes that fit your selection are beeing read. When
           </packing>
         </child>
         <child>
-          <widget class="GtkButton" id="InfoOkButton">
-            <property name="height_request">26</property>
+          <widget class="GtkHButtonBox" id="hbuttonbox6">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="label" translatable="yes">Ok</property>
-            <property name="use_underline">True</property>
-            <property name="response_id">0</property>
+            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <child>
+              <widget class="GtkButton" id="InfoCopyToClipboardButton">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip" translatable="yes">Copy error information to the clipboard</property>
+                <property name="response_id">0</property>
+                <child>
+                  <widget class="GtkHBox" id="hbox21">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkImage" id="image3">
+                        <property name="visible">True</property>
+                        <property name="stock">gtk-copy</property>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="label16">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Copy to Clipboard</property>
+                      </widget>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+            <child>
+              <widget class="GtkButton" id="InfoOkButton">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="label" translatable="yes">gtk-close</property>
+                <property name="use_stock">True</property>
+                <property name="response_id">0</property>
+              </widget>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </widget>
           <packing>
             <property name="expand">False</property>
@@ -1550,11 +1599,11 @@ Please be patient while all themes that fit your selection are beeing read. When
                       </packing>
                     </child>
                     <child>
-                      <widget class="GtkLabel" id="label39">
+                      <widget class="GtkLabel" id="SettingsGeneralHeadlineLabel">
                         <property name="visible">True</property>
                         <property name="xalign">0</property>
                         <property name="xpad">7</property>
-                        <property name="label" translatable="yes">&lt;b&gt;General settings&lt;/b&gt;</property>
+                        <property name="label">&lt;b&gt;General settings&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
                       </widget>
                       <packing>
@@ -1869,7 +1918,7 @@ www.kde-look.org</property>
                           <widget class="GtkLabel" id="label20">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Online-updates</property>
+                            <property name="label" translatable="yes">Online updates</property>
                           </widget>
                           <packing>
                             <property name="position">1</property>
@@ -2518,11 +2567,12 @@ www.kde-look.org</property>
             <property name="visible">True</property>
             <property name="xalign">0</property>
             <property name="xpad">11</property>
-            <property name="label" translatable="yes">Welcome to the first time download assistant of Gnome-Art Next Gen.
+            <property name="label" translatable="yes">Welcome to the first time download assistant of Gnome-Art Next Gen!
 
-This application eases the customization of your gnome desktop. To make this task visually pleasent is it necessary to download previews of all themes. 
+This application eases the customization of your gnome desktop. To make this task visually pleasant is it necessary to download previews of all themes. 
 
-If you'd like to download all the thumbnails (as a tar.gz file) you should choose "apply". It is strongly recommended to do so becauses it's a lot faster then downloading every single file one by one.</property>
+If you'd like to download all the thumbnails (as a &lt;i&gt;tar.gz&lt;/i&gt; file) you should choose &lt;b&gt;Apply&lt;/b&gt;. It is strongly recommended to do so because it's a lot faster then downloading every single file one by one.</property>
+            <property name="use_markup">True</property>
             <property name="justify">GTK_JUSTIFY_FILL</property>
             <property name="wrap">True</property>
             <property name="width_chars">60</property>

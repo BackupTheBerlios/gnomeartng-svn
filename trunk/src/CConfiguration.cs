@@ -11,7 +11,10 @@ GNU General Public License for more details.
 
 /*
  * Thoughts: 
- * ProgramSettings in an other class!
+ * Settings in an ISettings interface !
+ * Interface has got some method definitions to Load, Save and setDefaults
+ * CSettings got the ability to include different setting classes: Window,Program,Proxy
+ * GlobalConfigOptions in an own module
  * */
 
 using System;
@@ -52,7 +55,7 @@ namespace GnomeArtNG
 
 	public class CConfiguration
 	{
-		public const string Version = "0.6.0";
+		public const string Version = "0.6.01";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11
@@ -90,7 +93,7 @@ namespace GnomeArtNG
 		public static string txtDownloadTheme=Catalog.GetString("<i>Downloading the theme from art.gnome.org</i>\n\n"+
 			"Your theme is being downloaded...please be patient while the download is progressing");
 		public static string txtConvertingIcons=Catalog.GetString("<i>Converting your theme</i>\n\n"+
-			"Your Theme is now converted to the appropriate form. It's most likely that your environment is newer than the"+
+			"Your Theme is now converted to the appropriate form. It's most likely that your environment is newer than the "+
 		    "selected theme...just wait a moment - some icon themes got 50 Mib and more so it can take some time to complete!");
 		public static string txtInstalling=Catalog.GetString("<i>Installing the theme</i>\n\n"+
 			"Your Theme is now being installed. Therefore system files will get changed and/or your "+
