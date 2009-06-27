@@ -39,9 +39,16 @@ public class GnomeArtNgApp
 	//[Widget] Gtk.Image AboutImage;	
 
 	//Die Iconviews mit den einzelnen Voransichten werden dynamisch erzeugt 
+
+	//FilterBar
+	[Widget] Gtk.HBox FilterBar;
+	
+	//Entries
+	[Widget] Gtk.Entry FilterEntry;
 	
 	//Menüs
 	[Widget] Gtk.ImageMenuItem QuitMenuItem;
+	[Widget] Gtk.ImageMenuItem FilterMenuItem;
 	[Widget] Gtk.ImageMenuItem InfoMenuItem;
 	[Widget] Gtk.ImageMenuItem PreferencesMenuItem;
 	[Widget] Gtk.ImageMenuItem UpdateMenuItem;
@@ -101,6 +108,7 @@ public class GnomeArtNgApp
 		//Menuitems
 		QuitMenuItem.Activated += new EventHandler(OnQuitItemSelected);
 		UpdateMenuItem.Activated += new EventHandler(OnUpdateItemSelected);
+		FilterMenuItem.Activated += new EventHandler(OnFilterItemSelected);
 		InfoMenuItem.Activated += new EventHandler(OnInfoItemSelected);
 		PreferencesMenuItem.Activated += new EventHandler(OnPreferencesItemSelected);
 		FTAItem.Activated += new EventHandler(onFtaItemSelected);
@@ -117,7 +125,7 @@ public class GnomeArtNgApp
 
 		if (!RestartApp) { 
 
-			//Application placement - doesn't work properly with compiz (is it the window placement plugin?)			
+			//Application placement - doesn't work properly with compiz (is it the window placement plugin?)
 			if (config.SettingsLoadOk) {
 				mainWindow.Resize(config.Window.Width, config.Window.Height);
 				mainWindow.Move(config.Window.X, config.Window.Y);
@@ -182,7 +190,34 @@ public class GnomeArtNgApp
 		updW.ShowModal();
 		return updW.RestartRequested;
 	}
+	
+	//Methode zum manuellen filtern der Ergebnisse
+	private bool onFilter (Gtk.TreeModel model, Gtk.TreeIter iter)
+	{
+		string name = model.GetValue (iter, 1).ToString ();
+		//Console.WriteLine(name);
+		if (FilterEntry.Text.Length>2) {
+			if (name.Contains(FilterEntry.Text)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return true;
+		}
+				
+	}	
 
+	private void OnFilterItemSelected(object sender, EventArgs a){
+		if (FilterBar.Visible) {
+			FilterBar.Hide();
+			CurrentIconView.GrabFocus();
+		} else {
+			FilterBar.Show();
+			FilterEntry.GrabFocus();
+		}
+	}
+	
 	private void OnUpdateItemSelected(object sender, EventArgs a){
 
 		if (ShowUpdateWindow())
@@ -233,6 +268,9 @@ public class GnomeArtNgApp
 		if (iter.Stamp==0){
 			man.GetAllThumbs();
 			FillStore(pageNum);
+			Gtk.TreeModelFilter filter = new Gtk.TreeModelFilter (CurrentIconView.Model, null);
+			filter.VisibleFunc = new Gtk.TreeModelFilterVisibleFunc (onFilter);
+			CurrentIconView.Model = filter;
 	        CurrentIconView.GrabFocus ();
 		} 
 		if (CurrentIconView.SelectedItems.Length > 0)
@@ -314,22 +352,8 @@ public class GnomeArtNgApp
 	//Doubleclick
 	private void OnItemActivated(object sender, ItemActivatedArgs a){
 		OnInstallButtonClicked(sender, a);
-		//Gtk.TreeModelFilter filter = new Gtk.TreeModelFilter (IconViews[0].Model, null);
-		//filter.VisibleFunc = new Gtk.TreeModelFilterVisibleFunc (FilterTree);
-		//IconViews[0].Model = filter;
 	}
 	
-	/* Will handle the filtering
-	private bool FilterTree (Gtk.TreeModel model, Gtk.TreeIter iter)
-	{
-		string name = model.GetValue (iter, 1).ToString ();
-		Console.WriteLine(name);
-		if (name == "Ancona at Down")
-			return true;
-		else
-			return false;
-	}	
-	*/
 	private void FillComboboxWithStrings(Gtk.ComboBox box, string[] strings){
 		((Gtk.ListStore)(box.Model)).Clear();
 		for (int i=0;i<strings.Length;i++){

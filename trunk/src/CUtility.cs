@@ -21,6 +21,7 @@ using ICSharpCode.SharpZipLib.Tar;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.BZip2;	
+using Mono.Unix;
 
 namespace GnomeArtNG {
 	
@@ -256,7 +257,8 @@ namespace GnomeArtNG {
 			}
 		}
 		public static ArrayList UncompressFile(string Filename, string To,bool DeleteOriginal, Gtk.ProgressBar bar,ArrayList entries){
-						
+			if (bar	!= null)
+				bar.Text = Catalog.GetString("Decompressing")+ " " +Catalog.GetString("file")+" "+Path.GetFileNameWithoutExtension(Filename);
 			string ext = Path.GetExtension(Filename);			
 			if (ext == ".tar")
 				entries = UncompressTarFile(Filename,To,bar);

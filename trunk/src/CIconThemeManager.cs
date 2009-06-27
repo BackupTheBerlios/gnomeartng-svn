@@ -414,7 +414,7 @@ namespace GnomeArtNG
 			try{				
 				if (Context == ContextType.cNone){
 					Context = guessContextFromStr(Path.GetFullPath(Filename));
-					//Console.WriteLine("Guessing the icon "+Filename+", belongs probably to "+ Context.ToString());
+					Console.WriteLine("Guessing the icon "+Filename+", belongs probably to "+ Context.ToString());
 				}
 				if (!Directory.Exists(newpath))
 					Directory.CreateDirectory(Path.GetFullPath(newpath));
