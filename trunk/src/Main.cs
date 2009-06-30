@@ -45,7 +45,7 @@ public class GnomeArtNgApp
 	
 	//Entries
 	[Widget] Gtk.Entry FilterEntry;
-	
+		
 	//Menüs
 	[Widget] Gtk.ImageMenuItem QuitMenuItem;
 	[Widget] Gtk.ImageMenuItem FilterMenuItem;
@@ -53,8 +53,9 @@ public class GnomeArtNgApp
 	[Widget] Gtk.ImageMenuItem PreferencesMenuItem;
 	[Widget] Gtk.ImageMenuItem UpdateMenuItem;
 	[Widget] Gtk.MenuItem FTAItem;
-
+	
 	//Buttons
+	[Widget] Gtk.Button FilterCloseButton;
 	[Widget] Gtk.Button InstallButton;	
 	[Widget] Gtk.Button RevertButton;
 	[Widget] Gtk.Button RefreshButton;	
@@ -105,7 +106,8 @@ public class GnomeArtNgApp
 		SaveButton.Clicked  += new EventHandler(OnSaveButtonClicked);
 		MainNotebook.SwitchPage += new SwitchPageHandler(OnSwitchPage);
 		FilterEntry.Changed += new EventHandler(OnFilterEntriesChanged);
-
+		FilterEntry.KeyReleaseEvent += new KeyReleaseEventHandler(OnFilterbarKeyReleased);
+		FilterCloseButton.Clicked += new EventHandler(OnFilterbarCloseClicked);
 		//Menuitems
 		QuitMenuItem.Activated += new EventHandler(OnQuitItemSelected);
 		UpdateMenuItem.Activated += new EventHandler(OnUpdateItemSelected);
@@ -206,17 +208,24 @@ public class GnomeArtNgApp
 	}	
 
 	private void OnFilterItemSelected(object sender, EventArgs a){
-		if (FilterBar.Visible) {
-			FilterBar.Hide();
-			CurrentIconView.GrabFocus();
-		} else {
+		if (!FilterBar.Visible) {
 			FilterBar.Show();
-			FilterEntry.GrabFocus();
 		}
+		FilterEntry.GrabFocus();
 	}
 	
 	private void OnFilterEntriesChanged(object sender, EventArgs a){
 		((Gtk.TreeModelFilter) CurrentIconView.Model).Refilter();
+	}
+	
+	private void OnFilterbarKeyReleased(object sender, KeyReleaseEventArgs e){
+		if (e.Event.Key == Gdk.Key.Escape){
+			OnFilterbarCloseClicked(sender,e);
+		}
+	}
+	
+	private void OnFilterbarCloseClicked(object sender, EventArgs a){
+		FilterBar.Hide();
 	}
 	
 	private void OnUpdateItemSelected(object sender, EventArgs a){

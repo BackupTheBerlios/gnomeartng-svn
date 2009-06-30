@@ -120,6 +120,25 @@
         <child>
           <widget class="GtkHBox" id="FilterBar">
             <child>
+              <widget class="GtkButton" id="FilterCloseButton">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <property name="focus_on_click">False</property>
+                <child>
+                  <widget class="GtkImage" id="image2">
+                    <property name="visible">True</property>
+                    <property name="stock">gtk-cancel</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
               <widget class="GtkLabel" id="FilterLabel">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Find Theme:</property>
@@ -127,7 +146,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="padding">6</property>
-                <property name="position">0</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
@@ -137,7 +156,7 @@
                 <property name="invisible_char">&#x25CF;</property>
               </widget>
               <packing>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -148,7 +167,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="padding">3</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </widget>
