@@ -89,6 +89,7 @@ namespace GnomeArtNG
 			}
 		}
 		
+		
 		public CTheme Theme{
 			get{ return currentTheme; }
 		}

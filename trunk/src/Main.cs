@@ -104,6 +104,7 @@ public class GnomeArtNgApp
 		RefreshButton.Clicked += new EventHandler(OnRefreshButtonClicked);
 		SaveButton.Clicked  += new EventHandler(OnSaveButtonClicked);
 		MainNotebook.SwitchPage += new SwitchPageHandler(OnSwitchPage);
+		FilterEntry.Changed += new EventHandler(OnFilterEntriesChanged);
 
 		//Menuitems
 		QuitMenuItem.Activated += new EventHandler(OnQuitItemSelected);
@@ -194,18 +195,14 @@ public class GnomeArtNgApp
 	//Methode zum manuellen filtern der Ergebnisse
 	private bool onFilter (Gtk.TreeModel model, Gtk.TreeIter iter)
 	{
-		string name = model.GetValue (iter, 1).ToString ();
+		string name = model.GetValue (iter, 1).ToString();
+		string entry = FilterEntry.Text;
 		//Console.WriteLine(name);
 		if (FilterEntry.Text.Length>2) {
-			if (name.Contains(FilterEntry.Text)) {
-				return true;
-			} else {
-				return false;
-			}
+			return name.ToLower().Contains(entry.ToLower());
 		} else {
 			return true;
 		}
-				
 	}	
 
 	private void OnFilterItemSelected(object sender, EventArgs a){
@@ -216,6 +213,10 @@ public class GnomeArtNgApp
 			FilterBar.Show();
 			FilterEntry.GrabFocus();
 		}
+	}
+	
+	private void OnFilterEntriesChanged(object sender, EventArgs a){
+		((Gtk.TreeModelFilter) CurrentIconView.Model).Refilter();
 	}
 	
 	private void OnUpdateItemSelected(object sender, EventArgs a){
