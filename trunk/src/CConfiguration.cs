@@ -71,16 +71,24 @@ namespace GnomeArtNG
 		}
 		
 		public enum DistriType:int{
-			dtUbuntu,
-			dtKubuntu,
-			dtSuse,
-			dtFedora
+			Ubuntu,
+			Kubuntu,
+			Suse,
+			Fedora
+		}
+		
+		
+		public enum DistriVersion:int{
+			Hardy,
+			Intrepid,
+			Jaunty,
+			Karmic
 		}
 		
 		public enum ProxyType:int{
-			ptNone,
-			ptGang,
-			ptSystem
+			None,
+			Gang,
+			System
 		}
 	
 
@@ -147,7 +155,8 @@ namespace GnomeArtNG
 		private bool tarIsAvailable=false;
 		private bool grepIsAvailable=false;
 		private bool sedIsAvailable=false;
-		private DistriType distribution = DistriType.dtUbuntu;
+		private DistriType distribution = DistriType.Ubuntu;
+		private DistriVersion distributionVersion = DistriVersion.Hardy;
 		private static string sudoCommand="gksudo";
 		private string attribPrep="";
 		private ArtType artType;
@@ -159,7 +168,7 @@ namespace GnomeArtNG
 		public WindowAttrStruct Window;
 		public ProxyAttrStruct Proxy{
 			get {
-				if (ProxyKind == ProxyType.ptSystem)
+				if (ProxyKind == ProxyType.System)
 					return systemProxy;
 				else
 					return gangProxy;
@@ -241,7 +250,7 @@ namespace GnomeArtNG
 		//Load all initial program settings (width, height, refresh interval, download folder...)
 		public bool LoadProgramSettings(){
 			try {
-				ProxyKind = CConfiguration.ProxyType.ptNone;
+				ProxyKind = CConfiguration.ProxyType.None;
 				//WindowAttributes
 				Window.X = (int)GConfClient.Get(gangGconfPath+"xPosition");
 				Window.Y = (int)GConfClient.Get(gangGconfPath+"yPosition");
@@ -286,18 +295,18 @@ namespace GnomeArtNG
 		}
 		
 		private void setDistributionDependendSettings(){
-			getDistribution();
+			getDistributionAndVersion();
 			gdmFile="gdm.conf";
 			gdmCustomFile="gdm.conf-custom";
 			attribPrep="";
 			switch (distribution) {
-			 case DistriType.dtKubuntu: 
+			 case DistriType.Kubuntu: 
 				sudoCommand="kdesu";
 				break; 
-			 case DistriType.dtUbuntu: 
+			 case DistriType.Ubuntu: 
 				sudoCommand="gksudo"; 
 				break;
-			 case DistriType.dtSuse:
+			 case DistriType.Suse:
 				sudoCommand="gnomesu"; 
 				gdmFile="custom.conf";
 				gdmCustomFile="custom.conf";
@@ -307,25 +316,35 @@ namespace GnomeArtNG
 			 }
 			gdmPath="/etc/gdm/";
 		}
-		
-		private void getDistribution(){
-			string issueFile="/etc/issue";
-			if (!File.Exists(issueFile))
-				throw new Exception("Could not get /etc/issue...aborting!!");
-			StreamReader myFile = new StreamReader(issueFile, System.Text.Encoding.Default);
-            string sContent = myFile.ReadToEnd();
-			sContent=sContent.ToLower();
-            myFile.Close();
+
+		private void getDistributionAndVersion(){
+			string sContent = CUtility.GetContentFromFile("/etc/issue",true);
+			string vinfo=String.Empty;
 			
 			//(K)Ubuntu, Suse
 			if (sContent.IndexOf("kubuntu",StringComparison.CurrentCulture)>-1)
-				distribution=DistriType.dtKubuntu;
+				distribution=DistriType.Kubuntu;
 			if (sContent.IndexOf("ubuntu",StringComparison.CurrentCulture)>-1)
-				distribution=DistriType.dtUbuntu;
+				distribution=DistriType.Ubuntu;
 			if (sContent.Contains("suse"))
-				distribution=DistriType.dtSuse;
-
-			Console.WriteLine(distribution);
+				distribution=DistriType.Suse;
+			
+			//Version
+			if (distribution == DistriType.Ubuntu) {
+				sContent = CUtility.GetContentFromFile("/etc/lsb-release",true);
+				if (sContent.IndexOf("hardy",StringComparison.CurrentCulture)>-1)
+					distributionVersion=DistriVersion.Hardy;
+				if (sContent.IndexOf("intrepid",StringComparison.CurrentCulture)>-1)
+					distributionVersion=DistriVersion.Intrepid;
+				if (sContent.Contains("jaunty"))
+					distributionVersion = DistriVersion.Jaunty;
+				if (sContent.Contains("karmic"))
+					distributionVersion = DistriVersion.Karmic;
+				vinfo = ", version: " + distributionVersion;
+						
+			}
+			
+			Console.WriteLine("It seems you're using an flavour of "+distribution+vinfo);
 		}
 		
 		public string XmlFileUrl(){
@@ -339,8 +358,8 @@ namespace GnomeArtNG
 		
 		public ProxyAttrStruct GetProxy(ProxyType type){
 			switch(type){
-			case ProxyType.ptGang: return gangProxy;
-			case ProxyType.ptSystem: return systemProxy;
+			case ProxyType.Gang: return gangProxy;
+			case ProxyType.System: return systemProxy;
 			default: return systemProxy;
 			}
 		}

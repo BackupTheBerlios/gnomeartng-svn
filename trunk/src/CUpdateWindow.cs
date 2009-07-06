@@ -107,7 +107,7 @@ namespace GnomeArtNG {
 					UpdateStatusImage.Stock = Gtk.Stock.Yes;
 					removeClickHandler(onStatusButtonClicked);
 						
-					if (config.Distribution == CConfiguration.DistriType.dtUbuntu){
+					if (config.Distribution == CConfiguration.DistriType.Ubuntu){
 						UpdateStatusLabel.Text=Catalog.GetString("Install");
 						addClickHandler(onInstallClicked);
 					}

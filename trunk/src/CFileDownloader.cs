@@ -33,7 +33,7 @@ namespace GnomeArtNG
 
 		public CFileDownloader(CConfiguration config) {
 			ProxyAttrStruct ProxyAttr = config.Proxy;
-			if (config.ProxyKind != CConfiguration.ProxyType.ptNone){
+			if (config.ProxyKind != CConfiguration.ProxyType.None){
 				proxy = new WebProxy(ProxyAttr.Ip, ProxyAttr.Port);
 				if ((ProxyAttr.BypassList!=null) && (ProxyAttr.BypassList.Length > 0)) {
 					for (int i = 0; i < ProxyAttr.BypassList.Length; i++)
@@ -55,7 +55,7 @@ namespace GnomeArtNG
 			webRequest.UserAgent="Gnome-Art NextGen, version "+ CConfiguration.Version;
 			if (proxy!=null)
 				webRequest.Proxy = proxy;
-			webRequest.Timeout = 4000; 
+			webRequest.Timeout = 7000; 
 			webRequest.KeepAlive=keepConnection;
 			// Set default authentication for retrieving the file
 			webRequest.Credentials = CredentialCache.DefaultCredentials;

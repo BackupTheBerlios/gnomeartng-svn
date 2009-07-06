@@ -1,0 +1,621 @@
+# Swedish translation for gnomeartng.
+# Copyright (C) 2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnomeartng package.
+# Daniel Nylander <po@danielnylander.se>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-art-ng\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-02-27 23:09+0100\n"
+"PO-Revision-Date: 2009-03-01 18:32+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "About"
+msgstr "Om"
+
+msgid "Gnome-Art-NG"
+msgstr "Gnome-Art-NG"
+
+msgid "Downloading new XML file"
+msgstr "Hämtar ny XML-fil"
+
+msgid "Downloading"
+msgstr "Hämtar"
+
+msgid ""
+"<i>XML file is beeing downloaded</i>\n"
+"\n"
+"This program needs a descriptive file that contains information about \n"
+"\n"
+"1) where the theme is located,\n"
+"2) what kind of theme is it, \n"
+"3) How often someone downloaded it, and so on \n"
+"\n"
+"So please be patient while the download progress is going on.."
+msgstr ""
+"<i>XML-filen hämtas</i>\n"
+"\n"
+"Detta program behöver en beskrivande fil som innehåller information om \n"
+"\n"
+"1) var temat finns,\n"
+"2) vilken typ av tema det är, \n"
+"3) Hur ofta någon har hämtat det, och så vidare \n"
+"\n"
+"Vänta under tiden hämtningsförloppet pågår.."
+
+msgid "downloading... (no progress available)"
+msgstr "hämtar... (inget förlopp tillgänglig)"
+
+msgid "Warning: Could not download xml file!"
+msgstr "Varning: Kunde inte hämta xml-filen!"
+
+msgid "Reading thumbnails on harddisc"
+msgstr "Läser miniatyrbilder på hårddisken"
+
+msgid "Downloading missing thumbnails"
+msgstr "Hämtar saknade miniatyrbilder"
+
+msgid "resolution-independend"
+msgstr "oberoende av upplösning"
+
+msgid ""
+"<i>Extracting the theme</i>\n"
+"\n"
+"Your theme is downloaded and has to be extracted now. You might be prompted to enter your user password to legetimate the copying of all extracted files to the right path."
+msgstr ""
+"<i>Packar upp temat</i>\n"
+"\n"
+"Ditt temat har hämtats och måste nu packas upp. Du kanske kommer att tillfrågas om att ange ditt användarlösenord för att kunna kopiera de uppackade filerna till deras rätta sökvägar."
+
+msgid ""
+"<i>Saving your previous settings</i>\n"
+"\n"
+"Your previous settings are now stored to make it possible to revert your theme installation easily"
+msgstr ""
+"<i>Sparar dina tidigare inställningar</i>\n"
+"\n"
+"Din tidigare inställningar lagras nu för att göra det möjligt att enklare kunna återställa din temainstallation"
+
+msgid ""
+"<i>Downloading the theme from art.gnome.org</i>\n"
+"\n"
+"Your theme is being downloaded...please be patient while the download is progressing"
+msgstr ""
+"<i>Hämtar temat från art.gnome.org</i>\n"
+"\n"
+"Ditt tema hämtas nu... vänta"
+
+msgid ""
+"<i>Converting your theme</i>\n"
+"\n"
+"Your Theme is now converted to the appropriate form. It's most likely that your environment is newer than the selected theme...just wait a moment - some icon themes got 50 Mib and more so it can take some time to complete!"
+msgstr ""
+"<i>Konverterar ditt tema</i>\n"
+"\n"
+"Ditt tema konverteras nu till lämpligt format. Det är möjligt att din miljö är nyare än det valda temat... vänta en kort stund - någon ikonteman är 50 MB och större så det kan ta lite tid att genomföra!"
+
+msgid ""
+"<i>Installing the theme</i>\n"
+"\n"
+"Your Theme is now being installed. Therefore system files will get changed and/or your GConf settings are changed. To revert this action and make all undone simply click on Revert."
+msgstr ""
+"<i>Installerar temat</i>\n"
+"\n"
+"Ditt tema installeras nu. Därför kommer systemfiler att ändras och/eller dina GConf-inställningar. För att återställa denna åtgärd och göra allt som det var tidigare så kan du helt enkelt klicka på Återställ."
+
+msgid ""
+"<i>Theme installation is complete</i>\n"
+"\n"
+"Your Theme is now installed. You can now go on with your theme selection or (if you don't like the results) revert your current selection. Have fun! "
+msgstr ""
+"<i>Temainstallationen är färdig</i>\n"
+"\n"
+"Ditt tema är nu installerat. Du kan nu gå vidare med dina temval eller (om du inte gillar resultatet) återställa ditt aktuella val. Ha det så kul! "
+
+msgid "Error"
+msgstr "Fel"
+
+msgid "Program settings couldn't be saved"
+msgstr "Programinställningarna kunde inte sparas"
+
+msgid "bytes"
+msgstr "byte"
+
+msgid "Initialize download"
+msgstr "Initiera hämtning"
+
+msgid "First time download assistant"
+msgstr "Guide för förstagångshämtning"
+
+msgid "welcome to"
+msgstr "välkommen till"
+
+msgid "Installation is not possible!"
+msgstr "Installation är inte möjlig!"
+
+msgid "Only GDM is supported"
+msgstr "Endast GDM stöds"
+
+msgid "Couldn't get any usefull information from the tar-command...aborting"
+msgstr "Kunde inte få någon användbar information från tar-kommandot... avbryter"
+
+msgid "Not yet implemented!!"
+msgstr "Ännu inte implementerat!"
+
+msgid "Converting icon"
+msgstr "Konverterar ikon"
+
+msgid "Creating icon theme index"
+msgstr "Skapar ikontemaindex"
+
+msgid "Icon conversion has been completed"
+msgstr "Ikonkonverteringen är färdig"
+
+msgid "Copied to clipboard..!"
+msgstr "Kopierat till urklipp.."
+
+msgid "Previewing \""
+msgstr "Förhandsvisar \""
+
+msgid "Settings"
+msgstr "Inställningar"
+
+msgid "General settings"
+msgstr "Allmänna inställningar"
+
+msgid ""
+"The download location has been changed manually! Normally, this is no problem at all! But if you change the location to a place that doesn't exists then it will be a problem!\n"
+"\n"
+" So this is a \"Location couldn't be found\" message. Please correct the download location!"
+msgstr ""
+"Hämtningsplatsen har ändrats manuellt! Normalt så är detta inte ett problem alls! Men om du ändrade platsen till en plats som inte finns så är det ett problem!\n"
+"\n"
+" Så detta är ett \"Platsen kunder inte hittas\"-meddelande. Korrigera hämtningplatsen!"
+
+msgid ""
+"<i>Installing</i>\n"
+"\n"
+"Your selection is beeing downloaded and installed...please be patient while the installation procedure proceeds. After everything's done, this window will get closed.\n"
+"\n"
+" Have fun with your new theme, Greetings Tom"
+msgstr ""
+"<i>Installerar</i>\n"
+"\n"
+"Dina val hämtas och installeras... vänta under tiden installationsprocessen fortgår. Efter att allting är färdig så kommer detta fönster att stängas.\n"
+"\n"
+" Ha det så kul med ditt nya tema, Hälsningar, Tom"
+
+msgid "All changes have been applied"
+msgstr "Alla ändringar har verkställts"
+
+msgid "Theme installation failed!"
+msgstr "Temainstallationen misslyckades!"
+
+msgid ""
+"This message was reported from the installation function:\n"
+"\n"
+msgstr ""
+"Detta meddelande rapporterades från installationsfunktionen:\n"
+"\n"
+
+msgid "Find and install software-updates"
+msgstr "Sök och installera programuppdateringar"
+
+msgid "All operations are done, do you like to restart GANG?"
+msgstr "Alla åtgärder är färdiga. Vill du starta om GANG?"
+
+msgid "Restart app?"
+msgstr "Starta om?"
+
+msgid "Connecting"
+msgstr "Ansluter"
+
+msgid "An online update is available, version "
+msgstr "En uppdatering finns tillgänglig på nätet, version "
+
+msgid "Install"
+msgstr "Installera"
+
+msgid "Open download location"
+msgstr "Öppna hämtningsplatsen"
+
+msgid "There is no new version of GANG available"
+msgstr "Det finns ingen ny version av GANG tillgänglig"
+
+msgid "Check"
+msgstr "Kontrollera"
+
+msgid "Use \"Check\" to search for updates"
+msgstr "Använd \"Kontrollera\" för att söka efter uppdateringar"
+
+msgid "Centered"
+msgstr "Centrerad"
+
+msgid "Filled"
+msgstr "Fyll"
+
+msgid "Scaled"
+msgstr "Skalad"
+
+msgid "Zoomed"
+msgstr "Zoomad"
+
+msgid "Tiled"
+msgstr "Sida vid sida"
+
+msgid "Downloading the theme"
+msgstr "Hämtar temat"
+
+msgid "Download location"
+msgstr "Hämtningsplats"
+
+msgid "Download failed!"
+msgstr "Hämtningen misslyckades!"
+
+msgid "Downloading the preview file"
+msgstr "Hämtar fil för förhandsvisning"
+
+msgid "Connected to art.gnome.org"
+msgstr "Ansluten till art.gnome.org"
+
+msgid ""
+"<i>Downloading the preview file</i>\n"
+"\n"
+"Your preview is beeing downloaded. After the download has been finished, the preview will be rescaled if it's not fitting the preview window. See the lower bar to follow the progress."
+msgstr ""
+"<i>Hämtar fil för förhandsvisning</i>\n"
+"\n"
+"Din förhandsvisning hämtas nu. Efter att hämtningen är färdig så kommer förhandsvisningen att skalas om den inte passar förhandsvisningsfönstret. Se den nedre raden för att följa förloppet."
+
+msgid "Error: the preview image could not be loaded!"
+msgstr "Fel: förhandsvisningsbilden kunde inte läsas in!"
+
+msgid "No description has been entered by the author"
+msgstr "Ingen beskrivning har angivits av upphovsmannen"
+
+msgid "not rated"
+msgstr "inte betygsatt"
+
+msgid "_File"
+msgstr "_Arkiv"
+
+msgid "Starts the first time assistant"
+msgstr "Startar förstgångsguiden"
+
+msgid "Quits the application"
+msgstr "Avslutar programmet"
+
+msgid "_Edit"
+msgstr "R_edigera"
+
+msgid "All Gnome-Art Next Gen related settings can be found here"
+msgstr "Alla Gnome-Art Next Gen-relaterade inställningar kan hittas här"
+
+msgid "_Help"
+msgstr "_Hjälp"
+
+msgid "Search for new updates"
+msgstr "Sök efter nya uppdateringar"
+
+msgid "Update"
+msgstr "Uppdatera"
+
+msgid "Information about Gnome-Art Next Gen"
+msgstr "Information om Gnome-Art Next Gen"
+
+msgid "<b>Please choose your favourite background</b>"
+msgstr "<b>Välj din favoritbakgrund</b>"
+
+msgid ""
+"Gnome\n"
+"Background"
+msgstr ""
+"Gnome-\n"
+"bakgrund"
+
+msgid ""
+"Other\n"
+"Backgrounds"
+msgstr ""
+"Övriga\n"
+"bakgrunder"
+
+msgid ""
+"Nature\n"
+"Backgrounds"
+msgstr ""
+"Natur-\n"
+"bakgrunder"
+
+msgid ""
+"Abstract \n"
+"Backgrounds"
+msgstr ""
+"Abstrakta \n"
+"bakgrunder"
+
+msgid "<b>Please choose an application theme</b>"
+msgstr "<b>Välj ett programtema</b>"
+
+msgid ""
+"Application\n"
+"Look"
+msgstr ""
+"Program-\n"
+"utseende"
+
+msgid "<b>Please choose a window decoration</b>"
+msgstr "<b>Välj en fönsterdekoration</b>"
+
+msgid ""
+"Window\n"
+"Decoration"
+msgstr ""
+"Fönster-\n"
+"dekoration"
+
+msgid "<b>Please choose an icon set</b>"
+msgstr "<b>Välj en ikonuppsättning</b>"
+
+msgid "Icons"
+msgstr "Ikoner"
+
+msgid "<b>Please choose your greeter for GDM</b>"
+msgstr "<b>Välj din hälsare för GDM</b>"
+
+msgid "GDM Greeter"
+msgstr "GDM-hälsare"
+
+msgid "<b>Please choose a splash screen for the Gnome start</b>"
+msgstr "<b>Välj en startbild för uppstart av Gnome</b>"
+
+msgid "Splash"
+msgstr "Startbild"
+
+msgid "<b>Please choose a GTK theme</b>"
+msgstr "<b>Välj ett GTK-tema</b>"
+
+msgid "Gtk-Engine"
+msgstr "Gtk-motor"
+
+msgid "Click to view a full preview"
+msgstr "Klicka för att se fullständig förhandsvisning"
+
+msgid "<b>Name:</b>"
+msgstr "<b>Namn:</b>"
+
+msgid "label"
+msgstr "etikett"
+
+msgid "<b>Author:</b>"
+msgstr "<b>Upphovsman:</b>"
+
+msgid "<b>License:</b>"
+msgstr "<b>Licens:</b>"
+
+msgid "<b>Description:</b>"
+msgstr "<b>Beskrivning:</b>"
+
+msgid "<b>Style:</b>"
+msgstr "<b>Stil:</b>"
+
+msgid "<b>Download count:</b>"
+msgstr "<b>Hämtningsantal:</b>"
+
+msgid "<b>Rating:</b>"
+msgstr "<b>Betyg:</b>"
+
+msgid "<b>Resolution:</b>"
+msgstr "<b>Upplösning:</b>"
+
+msgid "<b>Image type:</b>"
+msgstr "<b>Bildtyp:</b>"
+
+msgid "Download, install, and apply the selected thumbnail"
+msgstr "Hämta, installera och tillämpa den markerade miniatyrbilden"
+
+msgid "Undo one last action"
+msgstr "Ångra senaste åtgärden"
+
+msgid "<b>Extended theme information</b>"
+msgstr "<b>Utökad temainformation</b>"
+
+msgid "About Gnome-Art-NG"
+msgstr "Om Gnome-Art-NG"
+
+msgid "<b>About Gnome-Art Next Generation</b>"
+msgstr "<b>Om Gnome-Art Next Generation</b>"
+
+msgid ""
+"If you encounter any problems please go to \n"
+"\n"
+"<i><b>http://gnomeartng.berlios.de</b></i>\n"
+"\n"
+"and launch a bug-report or a help request. To support my work, you are welcome to make a donation, thank you !\n"
+"\n"
+"Greetings, Tom (software@plasmasolutions.de)"
+msgstr ""
+"Om du påträffar några problem så gå till \n"
+"\n"
+"<i><b>http://gnomeartng.berlios.de</b></i>\n"
+"\n"
+"och skicka in en felrapport eller fråga om hjälp. Du får mer än gärna donera för att ge stöd till mitt arbete, tack!\n"
+"\n"
+"Hälsningar, Tom (software@plasmasolutions.de)"
+
+msgid "<b>Version:</b>"
+msgstr "<b>Version:</b>"
+
+msgid "<b>Greetings to:</b>"
+msgstr "<b>Hälsningar till:</b>"
+
+msgid ""
+"<i>My wife and my love Isabelle,\n"
+"My family: Maria, Gerd and my brother Daniel\n"
+"All of my friends: Especially Fedi, Michael and Kirsten,\n"
+"the Engels and the Klees, Sina and the Rosches\n"
+"and last but not least: Guillem and Teresa\n"
+"All I've forgotten now</i>"
+msgstr ""
+"<i>Min fru och min älskade Isabelle,\n"
+"Min familj: Maria, Gerd och min bror Daniel\n"
+"Alla mina vänner: Speciellt Fedi, Michael och Kirsten,\n"
+"familjerna Engels och Klees, Sina och familjen Rosches\n"
+"och sist men inte minst: Guillem och Teresa\n"
+"Alla som jag har glömt nu</i>"
+
+msgid "<big><b>Downloading</b></big>"
+msgstr "<big><b>Hämtar</b></big>"
+
+msgid ""
+"<i>Your themes are beeing read</i>\n"
+"\n"
+"Please be patient while all themes that fit your selection are beeing read. When you've done this procedure previously, all themes will be read from a cache directory on your hard disc. Use the Expander beneath to see what action is exactly being done."
+msgstr ""
+"<i>Dina teman läses</i>\n"
+"\n"
+"Vänta under tiden alla teman som matchar ditt val läses. När du gör denna process senare så kommer alla teman att läsas från en cachekatalog på din hårddisk. Använd Expandera nedan för att se vilken åtgärd som utförs."
+
+msgid "<i>ExtInfosLabel</i>"
+msgstr "<i>ExtInfosLabel</i>"
+
+msgid "Extended information about the current action:"
+msgstr "Utökad information om aktuell åtgärd:"
+
+msgid "<b>Previewing</b>"
+msgstr "<b>Förhandsvisning</b>"
+
+msgid "Closes without any changes done"
+msgstr "Stänger utan några ändringar"
+
+msgid "Downloads, installs, and applies this item"
+msgstr "Hämtar, installerar och tillämpar detta objekt"
+
+msgid "<b>Warning, something has gone wrong!</b>"
+msgstr "<b>Varning: någonting har gått fel!</b>"
+
+msgid "Exact information about the error:"
+msgstr "Exakt information om felet:"
+
+msgid "Copy error information to the clipboard"
+msgstr "Kopiera felinformationen till urklipp"
+
+msgid "Copy to Clipboard"
+msgstr "Kopiera till urklipp"
+
+msgid "gtk-close"
+msgstr "Stäng"
+
+msgid "How often should GnomeArt-NG look for new themes?"
+msgstr "Hur ofta ska GnomeArt-NG leta efter nya teman?"
+
+msgid "Where are the themes to be saved?"
+msgstr "Var ska teman sparas till?"
+
+msgid ""
+"Everyday\n"
+"Every second day\n"
+"Every third day\n"
+"Every fourth day\n"
+"Every fifth day\n"
+"Every sixth day\n"
+"Once a week"
+msgstr ""
+"Varje dag\n"
+"Varannan dag\n"
+"Var tredje dag\n"
+"Var fjärde dag\n"
+"Var femte dag\n"
+"Var sjätte dag\n"
+"En gång i veckan"
+
+msgid "Choose a location where you want your themes to be stored"
+msgstr "Välj en plats där du vill lagra dina teman"
+
+msgid "Download settings"
+msgstr "Hämtningsinställningar"
+
+msgid "What account information do you like to edit?"
+msgstr "Vilken kontoinformation vill du redigera?"
+
+msgid "Please enter your username:"
+msgstr "Ange ditt användarnamn:"
+
+msgid "Please enter your password:"
+msgstr "Ange ditt lösenord:"
+
+msgid "Your username"
+msgstr "Ditt användarnamn"
+
+msgid "Your password"
+msgstr "Ditt lösenord"
+
+msgid "Account information"
+msgstr "Kontoinformation"
+
+msgid "Should Gnome-Art NG look for new updates online and tell you about it?"
+msgstr "Ska Gnome-Art NG leta efter nya uppdateringar på nätet och berätta det för dig?"
+
+msgid "Online updates"
+msgstr "Uppdateringar på nätet"
+
+msgid "<b>Network settings</b>"
+msgstr "<b>Nätverksinställningar</b>"
+
+msgid "Proxy connection"
+msgstr "Proxyanslutning"
+
+msgid "No proxy"
+msgstr "Ingen proxy"
+
+msgid "Use the proxy configuration of my system"
+msgstr "Använd proxykonfigurationen på mitt system"
+
+msgid "Proxy address:"
+msgstr "Proxyadress:"
+
+msgid "Port:"
+msgstr "Port:"
+
+msgid "Manual proxy configuration"
+msgstr "Manuell proxykonfiguration"
+
+msgid "Network settings"
+msgstr "Nätverksinställningar"
+
+msgid "Newest version on the update-server:"
+msgstr "Nyaste versionen på uppdateringsservern:"
+
+msgid "Current version of Gnome-Art Next Gen:"
+msgstr "Aktuell version av Gnome-Art Next Gen:"
+
+msgid "Download progress:"
+msgstr "Hämtningsförlopp:"
+
+msgid "Support the further development of this software by donating with PayPal"
+msgstr "Stöd vidare utveckling av denna programvara genom att donera via PayPal"
+
+msgid "Label"
+msgstr "Etikett"
+
+msgid ""
+"Welcome to the first time download assistant of Gnome-Art Next Gen!\n"
+"\n"
+"This application eases the customization of your gnome desktop. To make this task visually pleasant is it necessary to download previews of all themes. \n"
+"\n"
+"If you'd like to download all the thumbnails (as a <i>tar.gz</i> file) you should choose <b>Apply</b>. It is strongly recommended to do so because it's a lot faster then downloading every single file one by one."
+msgstr ""
+"Välkommen till förstagångsguiden för Gnome-Art Next Gen!\n"
+"\n"
+"Detta program förenklar anpassningen av ditt Gnome-skrivbord. För att göra denna uppgift visuellt vacker så är det nödvändigt att hämta ner förhandsvisningar av alla teman. \n"
+"\n"
+"Om du vill hämta alla miniatyrbilder (som en <i>tar.gz</i>-fil) så ska du välja <b>Verkställ</b>. Det rekommenderas starkt att göra det därför att det är mycket snabbare än att hämta ner varje fil för sig."
+
+msgid "gtk-apply"
+msgstr "Verkställ"
+

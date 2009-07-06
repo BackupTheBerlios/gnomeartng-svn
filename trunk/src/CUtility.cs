@@ -283,6 +283,17 @@ namespace GnomeArtNG {
 			return entries;
 		}
 		
+		public static string GetContentFromFile(string filename, bool lowercase){
+			if (!File.Exists(filename))
+				throw new Exception("Could not get "+ filename + "...aborting!!");
+			StreamReader myFile = new StreamReader(filename, System.Text.Encoding.Default);
+            string fileContent = myFile.ReadToEnd();
+            myFile.Close();
+			if (lowercase)
+				fileContent=fileContent.ToLower();
+			return fileContent;
+		}
+
 		public static string CheckAndSetIp(string ip){
 			string pattern = @"\d\d?\d?\.\d\d?\d?\.\d\d?\d?\.\d\d?\d?";
 			Regex regex = new Regex( pattern );

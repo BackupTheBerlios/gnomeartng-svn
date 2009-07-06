@@ -782,6 +782,13 @@
        fx="21.525126"
        fy="30.439341"
        r="18.888176" />
+    <inkscape:perspective
+       id="perspective2529"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -790,16 +797,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="-133.52525"
-     inkscape:cy="536.97619"
+     inkscape:zoom="0.5"
+     inkscape:cx="102.7241"
+     inkscape:cy="578.65122"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="998"
      inkscape:window-height="698"
-     inkscape:window-x="21"
-     inkscape:window-y="47" />
+     inkscape:window-x="25"
+     inkscape:window-y="71" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -1129,5 +1136,13 @@
          d="M -219.46404,637.29066 L -219.71404,645.99177 L -239.88642,645.99177 L -195.43247,681.85378 L -153.59346,645.99177 L -171.89803,645.99177 C -168.37474,615.61201 -170.98671,623.11803 -219.46404,637.29066 z"
          style="fill:url(#linearGradient3311);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.10700011;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </g>
+    <image
+       y="-23.637817"
+       x="-352"
+       id="image2531"
+       height="256"
+       width="256"
+       sodipodi:absref="/home/neo/Projekte/Programmierung/Cs/Gnome-Art-Ng/trunk/images/Coffee_icon.png"
+       xlink:href="Coffee_icon.png" />
   </g>
 </svg>

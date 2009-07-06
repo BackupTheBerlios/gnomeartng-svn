@@ -225,6 +225,7 @@ public class GnomeArtNgApp
 	}
 	
 	private void OnFilterbarCloseClicked(object sender, EventArgs a){
+		FilterEntry.Text = "";
 		FilterBar.Hide();
 	}
 	
@@ -259,6 +260,7 @@ public class GnomeArtNgApp
 	private void OnSwitchPage(object sender, SwitchPageArgs s){
 		int pageNum = ((Gtk.Notebook)sender).Page;
 		CurrentIconView = IconViews[pageNum];
+		FilterEntry.Text = "";
 		switch(pageNum){
 			case 0: man.ArtType=CConfiguration.ArtType.atBackground_gnome; break;
 			case 1: man.ArtType=CConfiguration.ArtType.atBackground_other; break;

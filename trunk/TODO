@@ -17,7 +17,7 @@ Development of version 0.x - 1.0:
 - Search for themes (By name, downloads, ...)
 - Think about the Gtk-engines section (Replace it through apt-get, yum or compile it by myself?)
 #-> Completing this tasks leads to version 0.7
-- Intrepid Ibex testing...
+- Jaunty testing...
 - PARTLY: Translation to french, russian, spanish, italian, brasilian, portuguese (saarländisch :D )
 - DONE: Write a library that converts old fashioned icon themes to the new gnome icon themes 
 - Rewrite the code to make it more general !Important!!
@@ -29,7 +29,9 @@ Development of version 0.x - 1.0:
 
 Development of version 1.0 - 2.0:
 ---------------------------------
-- Theme installation by Drag and Drop (maybe asking what theme has been choosen if it is not recognized)
+- Getting specific used themes (like icon-,window-themes or backgrounds) and save them to a theme package
+ - The theme package is a gzipped package (with a version information file) that contains all previously collected themes.
+- Theme and package installation by Drag and Drop (maybe asking what theme has been choosen if it is not recognized)
 - Dividing the attributes from CTheme
 #-> Completing this tasks leads to version 1.0
 - More and more integration of www.Gnome-Look.org (Hintergründe)

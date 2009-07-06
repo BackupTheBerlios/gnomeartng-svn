@@ -43,6 +43,7 @@ namespace GnomeArtNG
 		[Widget] Gtk.ComboBox SettingsXmlCb;
 		[Widget] Gtk.FileChooser SettingsLocationFc;
 		[Widget] Gtk.Label SettingsGeneralHeadlineLabel;
+		[Widget] Gtk.Label SettingsNetworkHeadlineLabel;
 		[Widget] Gtk.RadioButton SettingsNoProxyRb;
 		[Widget] Gtk.RadioButton SettingsProxyActiveRb;
 		[Widget] Gtk.RadioButton SettingsProxySystemActiveRb;		
@@ -66,6 +67,9 @@ namespace GnomeArtNG
 			mainWindow = (Gtk.Window) settingsXml.GetWidget (settingsW);
 			mainWindow.Title = Catalog.GetString("Settings");
 			SettingsGeneralHeadlineLabel.Text = "<b>"+Catalog.GetString("General settings")+"</b>";
+			SettingsGeneralHeadlineLabel.UseMarkup = true;
+			SettingsNetworkHeadlineLabel.Text = "<b>"+Catalog.GetString("Network settings")+"</b>";
+			SettingsNetworkHeadlineLabel.UseMarkup = true;
 			SettingsXmlCb.Active = config.XmlRefreshInterval;
 			SettingsLocationFc.SetCurrentFolder(config.ThemesDownloadPath);
             //Events
@@ -74,17 +78,17 @@ namespace GnomeArtNG
 			SettingsNoProxyRb.Clicked+=new EventHandler(OnProxyClicked);
 			SettingsProxyActiveRb.Clicked+=new EventHandler(OnProxyClicked);
 			//Proxies
-			proxy = config.GetProxy(CConfiguration.ProxyType.ptGang);
+			proxy = config.GetProxy(CConfiguration.ProxyType.Gang);
 			SettingsProxyAddress.Text = proxy.Ip;
 			SettingsProxyPort.Text = proxy.Port.ToString();
-			proxy = config.GetProxy(CConfiguration.ProxyType.ptSystem);
+			proxy = config.GetProxy(CConfiguration.ProxyType.System);
 			SettingsProxySystemAddress.Text = proxy.Ip;
 			SettingsProxySystemPort.Text = proxy.Port.ToString();
 			SettingsProxySystemPort.Sensitive = false;
 			SettingsProxySystemAddress.Sensitive = false;
-			SettingsProxySystemActiveRb.Active =  (config.ProxyKind == CConfiguration.ProxyType.ptSystem);
-			SettingsNoProxyRb.Active = (config.ProxyKind == CConfiguration.ProxyType.ptNone);
-			SettingsProxyActiveRb.Active = (config.ProxyKind == CConfiguration.ProxyType.ptGang);
+			SettingsProxySystemActiveRb.Active =  (config.ProxyKind == CConfiguration.ProxyType.System);
+			SettingsNoProxyRb.Active = (config.ProxyKind == CConfiguration.ProxyType.None);
+			SettingsProxyActiveRb.Active = (config.ProxyKind == CConfiguration.ProxyType.Gang);
 			
 			SettingsUpdateCb.Active = !(config.DontBotherForUpdates);
 			config.GConfClient.AddNotify(config.GConfPath+"themesDownloadPath",OnThemesPathChangedEventHandler);
@@ -126,11 +130,11 @@ namespace GnomeArtNG
 			}
 			
 			if (SettingsProxyActiveRb.Active)
-				config.ProxyKind = CConfiguration.ProxyType.ptGang;
+				config.ProxyKind = CConfiguration.ProxyType.Gang;
 			else if (SettingsProxySystemActiveRb.Active) 
-				config.ProxyKind = CConfiguration.ProxyType.ptSystem;
+				config.ProxyKind = CConfiguration.ProxyType.System;
 			else 
-				config.ProxyKind =CConfiguration.ProxyType.ptNone;
+				config.ProxyKind =CConfiguration.ProxyType.None;
 			
 			config.DontBotherForUpdates = !(SettingsUpdateCb.Active);
 			OnCancelButtonClicked(sender,a);
