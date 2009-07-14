@@ -30,7 +30,7 @@ public class GnomeArtNgApp
 	private ComboBox imageTypeBox;
 	private ComboBox imageResolutionsBox;
     private ComboBox imageStyleBox;
-	private static int ListStoreCount = 10;
+	private static int ListStoreCount = 9;
 	private ListStore[] stores = new ListStore[ListStoreCount];
 	private Gtk.IconView[] IconViews=new Gtk.IconView[ListStoreCount];
 	private Gtk.IconView CurrentIconView;
@@ -40,8 +40,14 @@ public class GnomeArtNgApp
 
 	//Die Iconviews mit den einzelnen Voransichten werden dynamisch erzeugt 
 
-	//FilterBar
+	//HBox
 	[Widget] Gtk.HBox FilterBar;
+	//[Widget] Gtk.HBox SortBar;
+
+	//Combobox
+	//[Widget] Gtk.ComboBox SortKindCb;
+	//[Widget] Gtk.ComboBox SortDirectionCb;
+
 	
 	//Entries
 	[Widget] Gtk.Entry FilterEntry;
@@ -49,6 +55,7 @@ public class GnomeArtNgApp
 	//Menüs
 	[Widget] Gtk.ImageMenuItem QuitMenuItem;
 	[Widget] Gtk.ImageMenuItem FilterMenuItem;
+	//[Widget] Gtk.ImageMenuItem SortMenuItem;
 	[Widget] Gtk.ImageMenuItem InfoMenuItem;
 	[Widget] Gtk.ImageMenuItem PreferencesMenuItem;
 	[Widget] Gtk.ImageMenuItem UpdateMenuItem;
@@ -56,6 +63,7 @@ public class GnomeArtNgApp
 	
 	//Buttons
 	[Widget] Gtk.Button FilterCloseButton;
+	//[Widget] Gtk.Button SortCloseButton;
 	[Widget] Gtk.Button InstallButton;	
 	[Widget] Gtk.Button RevertButton;
 	[Widget] Gtk.Button RefreshButton;	
@@ -106,12 +114,17 @@ public class GnomeArtNgApp
 		SaveButton.Clicked  += new EventHandler(OnSaveButtonClicked);
 		MainNotebook.SwitchPage += new SwitchPageHandler(OnSwitchPage);
 		FilterEntry.Changed += new EventHandler(OnFilterEntriesChanged);
+//		SortKindCb.Changed += new EventHandler(OnSortKindEntryChanged);
+//		SortDirectionCb.Changed += new EventHandler(OnSortDirectionEntryChanged);
+//		SortCloseButton.Clicked += new EventHandler(OnSortCloseClicked);
 		FilterEntry.KeyReleaseEvent += new KeyReleaseEventHandler(OnFilterbarKeyReleased);
 		FilterCloseButton.Clicked += new EventHandler(OnFilterbarCloseClicked);
+		
 		//Menuitems
 		QuitMenuItem.Activated += new EventHandler(OnQuitItemSelected);
 		UpdateMenuItem.Activated += new EventHandler(OnUpdateItemSelected);
 		FilterMenuItem.Activated += new EventHandler(OnFilterItemSelected);
+//		SortMenuItem.Activated += new EventHandler(OnSortItemSelected);
 		InfoMenuItem.Activated += new EventHandler(OnInfoItemSelected);
 		PreferencesMenuItem.Activated += new EventHandler(OnPreferencesItemSelected);
 		FTAItem.Activated += new EventHandler(onFtaItemSelected);
@@ -122,6 +135,7 @@ public class GnomeArtNgApp
 			new CFirstTimeAssistant(config);
 		else if (config.DontBotherForUpdates==false) {
 			if (config.UpdateAvailable) { 
+				Console.WriteLine("An update is available, newest version is: "+config.NewestVersionNumberOnServer);			
 				RestartApp = ShowUpdateWindow();
 			}
 		}	
@@ -142,7 +156,7 @@ public class GnomeArtNgApp
 			//Stores anlegen und IconViews anlegen
 			for(int i=0;i<ListStoreCount;i++){
 				sWins[i] = (Gtk.ScrolledWindow)(gxml.GetWidget("swin"+i));
-				stores[i]= new ListStore (typeof(Pixbuf),typeof (string), typeof (string));
+				stores[i]= new ListStore (typeof(Pixbuf),typeof (string), typeof (string), typeof(int));
 				IconViews[i] = new Gtk.IconView(stores[i]);
 				IconViews[i].SelectionChanged += new System.EventHandler(OnSelChanged);
 				IconViews[i].ItemActivated += new ItemActivatedHandler(OnItemActivated);
@@ -197,7 +211,7 @@ public class GnomeArtNgApp
 	//Methode zum manuellen filtern der Ergebnisse
 	private bool onFilter (Gtk.TreeModel model, Gtk.TreeIter iter)
 	{
-		string name = model.GetValue (iter, 1).ToString();
+		string name = model.GetValue(iter, 1).ToString();
 		string entry = FilterEntry.Text;
 		//Console.WriteLine(name);
 		if (FilterEntry.Text.Length>2) {
@@ -213,11 +227,33 @@ public class GnomeArtNgApp
 		}
 		FilterEntry.GrabFocus();
 	}
-	
+
+/*	private void OnSortItemSelected(object sender, EventArgs a){
+		if (!SortBar.Visible) {
+			SortBar.Show();
+		}
+	}
+*/	
 	private void OnFilterEntriesChanged(object sender, EventArgs a){
 		((Gtk.TreeModelFilter) CurrentIconView.Model).Refilter();
 	}
-	
+/*	
+	private void OnSortKindEntryChanged(object sender, EventArgs a){
+		System.Console.WriteLine(CurrentIconView.Model.ToString());
+		TreeModelFilter store = (TreeModelFilter)(CurrentIconView.Model);
+		System.Console.WriteLine("hups");
+		int activeItem = ((Gtk.ComboBox)sender).Active;
+		if (activeItem == 0) {
+			//store.SetSortColumnId(-1, SortType.Ascending);
+		} else {
+			//store.SetSortColumnId (activeItem, SortType.Ascending);
+		}
+	}
+	private void OnSortDirectionEntryChanged(object sender, EventArgs a){
+
+	}
+*/
+
 	private void OnFilterbarKeyReleased(object sender, KeyReleaseEventArgs e){
 		if (e.Event.Key == Gdk.Key.Escape){
 			OnFilterbarCloseClicked(sender,e);
@@ -228,7 +264,11 @@ public class GnomeArtNgApp
 		FilterEntry.Text = "";
 		FilterBar.Hide();
 	}
-	
+/*	
+	private void OnSortCloseClicked(object sender, EventArgs a){
+		SortBar.Hide();
+	}
+*/		
 	private void OnUpdateItemSelected(object sender, EventArgs a){
 
 		if (ShowUpdateWindow())
@@ -414,7 +454,7 @@ public class GnomeArtNgApp
 		stores[StoreIndex].Clear();
 		for(int i=0; i<themeCount;i++) {
 			CTheme theme = man.GetTheme(i);
-			stores[StoreIndex].AppendValues (theme.ThumbnailPic,theme.Name, theme.Author);
+			stores[StoreIndex].AppendValues (theme.ThumbnailPic,theme.Name, theme.Author, theme.DownloadCount);
           }
 		if (themeCount>=0)
 			man.ThemeIndex=0;

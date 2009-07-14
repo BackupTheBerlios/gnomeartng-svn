@@ -55,7 +55,7 @@ namespace GnomeArtNG
 
 	public class CConfiguration
 	{
-		public const string Version = "0.6.01";
+		public const string Version = "0.7.0";
 		public enum ArtType:int{
 			atBackground_gnome=10,
 			atBackground_other, //11
@@ -74,7 +74,9 @@ namespace GnomeArtNG
 			Ubuntu,
 			Kubuntu,
 			Suse,
-			Fedora
+			Fedora,
+			PcLinuxOs,
+			Unknown
 		}
 		
 		
@@ -82,7 +84,8 @@ namespace GnomeArtNG
 			Hardy,
 			Intrepid,
 			Jaunty,
-			Karmic
+			Karmic,
+			Unknown
 		}
 		
 		public enum ProxyType:int{
@@ -119,7 +122,7 @@ namespace GnomeArtNG
 		private const string sProxyBypassPath = sProxyGconfPath+"/ignore_hosts";
 
 		public string GConfPath{get {return gangGconfPath;}}
-		public const string UpdateUrl= "http://gnomeartng.plasmasolutions.de/version.info";
+		public const string UpdateUrl= "http://gnomeartng.plasmasolutions.de/update.info";
 		public const string ThemeBulkUrl="http://download.berlios.de/gnomeartng/thumbs.tar.gz";
 		public bool UpdateAvailable{
 			get{
@@ -155,8 +158,8 @@ namespace GnomeArtNG
 		private bool tarIsAvailable=false;
 		private bool grepIsAvailable=false;
 		private bool sedIsAvailable=false;
-		private DistriType distribution = DistriType.Ubuntu;
-		private DistriVersion distributionVersion = DistriVersion.Hardy;
+		private DistriType distribution = DistriType.Unknown;
+		private DistriVersion distributionVersion = DistriVersion.Unknown;
 		private static string sudoCommand="gksudo";
 		private string attribPrep="";
 		private ArtType artType;
@@ -185,6 +188,7 @@ namespace GnomeArtNG
 		public string AttribPrep {get {return attribPrep;}}
 		public bool SettingsLoadOk{get{return settingsLoadOk;}}
 		public DistriType Distribution {get {return distribution;}}
+		public DistriVersion DistributionVersion {get {return distributionVersion;}}
 		public GConf.Client GConfClient;
 		// interval in which a new xml file will be downloaded (in days)
 		public int XmlRefreshInterval = 0;
@@ -312,6 +316,9 @@ namespace GnomeArtNG
 				gdmCustomFile="custom.conf";
 				attribPrep="--command=";
 				break;
+			 case DistriType.PcLinuxOs: 
+				sudoCommand="gksu"; 
+				break;
 			 default: throw new Exception("Unknown distribution...aborting!!");
 			 }
 			gdmPath="/etc/gdm/";
@@ -320,7 +327,9 @@ namespace GnomeArtNG
 		private void getDistributionAndVersion(){
 			string sContent = CUtility.GetContentFromFile("/etc/issue",true);
 			string vinfo=String.Empty;
-			
+			distribution = DistriType.Unknown;
+			distributionVersion = DistriVersion.Unknown;
+
 			//(K)Ubuntu, Suse
 			if (sContent.IndexOf("kubuntu",StringComparison.CurrentCulture)>-1)
 				distribution=DistriType.Kubuntu;
@@ -328,22 +337,26 @@ namespace GnomeArtNG
 				distribution=DistriType.Ubuntu;
 			if (sContent.Contains("suse"))
 				distribution=DistriType.Suse;
-			
+			if (sContent.Contains("pclinuxos"))
+				distribution=DistriType.PcLinuxOs;
+
 			//Version
 			if (distribution == DistriType.Ubuntu) {
-				sContent = CUtility.GetContentFromFile("/etc/lsb-release",true);
-				if (sContent.IndexOf("hardy",StringComparison.CurrentCulture)>-1)
-					distributionVersion=DistriVersion.Hardy;
-				if (sContent.IndexOf("intrepid",StringComparison.CurrentCulture)>-1)
-					distributionVersion=DistriVersion.Intrepid;
-				if (sContent.Contains("jaunty"))
-					distributionVersion = DistriVersion.Jaunty;
-				if (sContent.Contains("karmic"))
-					distributionVersion = DistriVersion.Karmic;
-				vinfo = ", version: " + distributionVersion;
-						
+				try {				
+					sContent = CUtility.GetContentFromFile("/etc/lsb-release",true);
+					if (sContent.IndexOf("hardy",StringComparison.CurrentCulture)>-1)
+						distributionVersion=DistriVersion.Hardy;
+					if (sContent.IndexOf("intrepid",StringComparison.CurrentCulture)>-1)
+						distributionVersion=DistriVersion.Intrepid;
+					if (sContent.Contains("jaunty"))
+						distributionVersion = DistriVersion.Jaunty;
+					if (sContent.Contains("karmic"))
+						distributionVersion = DistriVersion.Karmic;
+					vinfo = ", version: " + distributionVersion;				
+				} catch (Exception e) {
+					Console.WriteLine("Couldn't detect the version of your distribution, error: " + e.Message );
+				}
 			}
-			
 			Console.WriteLine("It seems you're using an flavour of "+distribution+vinfo);
 		}
 		
@@ -402,10 +415,6 @@ namespace GnomeArtNG
 			GConfClient.AddNotify(sProxyGconfPath,changed_handler);
 			//Load Configurations
 			settingsLoadOk = LoadProgramSettings();
-			//Check for updates
-			if (!DontBotherForUpdates)
-			    if (UpdateAvailable)
-					Console.WriteLine("An update is available, newest version is: "+NewestVersionNumberOnServer);
 			
 		}
 		

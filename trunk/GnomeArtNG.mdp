@@ -1,5 +1,5 @@
 <Project name="GnomeArtNG" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
-  <Configurations active="Release">
+  <Configurations active="Debug">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
       <Output directory="bin/Debug" assemblyKeyFile="." assembly="GnomeArtNG" />
       <Build debugmode="True" target="Exe" />
@@ -10,7 +10,7 @@
       <Output directory="bin/Release" assemblyKeyFile="." assembly="GnomeArtNG" />
       <Build debugmode="False" target="Exe" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_2_0" />
-      <CodeGeneration compiler="Mcs" warninglevel="4" nowarn="649" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="GnomeArtNgApp" generatexmldocumentation="False" win32Icon="." ctype="CSharpCompilerParameters" />
+      <CodeGeneration compiler="Mcs" warninglevel="0" nowarn="649" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="GnomeArtNgApp" generatexmldocumentation="False" win32Icon="." ctype="CSharpCompilerParameters" />
     </Configuration>
   </Configurations>
   <Contents>

@@ -376,7 +376,7 @@ namespace GnomeArtNG
 				w.Headline=Catalog.GetString("Downloading missing thumbnails");
 				w.ButtonSensitive=true;
 				w.SetProgressStep(downloadList.Count);
-				Console.WriteLine("FileCount: "+downloadList.Count);
+				Console.WriteLine("New files: "+downloadList.Count);
 				
 				//Thread[] ta = new Thread[downloadCount];
 				

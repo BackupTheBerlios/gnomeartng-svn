@@ -99,8 +99,21 @@ namespace GnomeArtNG {
 				{
 					TextReader tr = new StreamReader(localUpdateFile);
 					string newestVer = tr.ReadLine();
-					DownloadLocation = tr.ReadLine();
+					//Get the appropriate download location (Releasename@Location)
+	                while (true) {
+						DownloadLocation = tr.ReadLine();
+	                    if (DownloadLocation != null) {
+	                        if (DownloadLocation.ToLower().Contains(config.DistributionVersion.ToString().ToLower()+'@')){
+								int pos = DownloadLocation.IndexOf('@')+1;
+								DownloadLocation = DownloadLocation.Substring(pos);
+								break;
+							}
+	                    } else 
+							break;
+	                }
+					System.Console.WriteLine(DownloadLocation);
 					tr.Close();
+	                tr = null;
 					File.Delete(localUpdateFile);
 					string shortVersionFromFile = newestVer.Replace(".", String.Empty);
 					string shortVersionFromApp = CConfiguration.Version.Replace(".", String.Empty);

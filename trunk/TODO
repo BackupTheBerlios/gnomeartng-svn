@@ -29,7 +29,7 @@ Development of version 0.x - 1.0:
 
 Development of version 1.0 - 2.0:
 ---------------------------------
-- Getting specific used themes (like icon-,window-themes or backgrounds) and save them to a theme package
+- Getting currently used themes (like icon-,window-themes or backgrounds) and save them to a theme package
  - The theme package is a gzipped package (with a version information file) that contains all previously collected themes.
 - Theme and package installation by Drag and Drop (maybe asking what theme has been choosen if it is not recognized)
 - Dividing the attributes from CTheme

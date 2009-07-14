@@ -108,8 +108,10 @@ namespace GnomeArtNG {
 					removeClickHandler(onStatusButtonClicked);
 						
 					if (config.Distribution == CConfiguration.DistriType.Ubuntu){
-						UpdateStatusLabel.Text=Catalog.GetString("Install");
-						addClickHandler(onInstallClicked);
+						if (config.DistributionVersion != CConfiguration.DistriVersion.Unknown ){ 
+							UpdateStatusLabel.Text=Catalog.GetString("Install");
+							addClickHandler(onInstallClicked);
+						}
 					}
 					else{
 						UpdateStatusLabel.Text=Catalog.GetString("Open download location");
