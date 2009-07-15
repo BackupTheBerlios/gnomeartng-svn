@@ -141,7 +141,6 @@ public class GnomeArtNgApp
 		}	
 
 		if (!RestartApp) { 
-
 			//Application placement - doesn't work properly with compiz (is it the window placement plugin?)
 			if (config.SettingsLoadOk) {
 				mainWindow.Resize(config.Window.Width, config.Window.Height);
@@ -151,7 +150,6 @@ public class GnomeArtNgApp
 
 			//ArtManager erzeugen
 			man = new CArtManager(config);
-			
 
 			//Stores anlegen und IconViews anlegen
 			for(int i=0;i<ListStoreCount;i++){
@@ -165,7 +163,6 @@ public class GnomeArtNgApp
 				
 				sWins[i].Add(IconViews[i]);
 				IconViews[i].Show();
-				
 			}
 			
 			//Create the comboboxes
@@ -187,7 +184,6 @@ public class GnomeArtNgApp
 			LowerTable.Attach(imageStyleBox,1,2,4,5);
 			
 			OnSwitchPage(MainNotebook,new SwitchPageArgs());
-
 			Gtk.Application.Run ();
 			
 		}
@@ -213,7 +209,6 @@ public class GnomeArtNgApp
 	{
 		string name = model.GetValue(iter, 1).ToString();
 		string entry = FilterEntry.Text;
-		//Console.WriteLine(name);
 		if (FilterEntry.Text.Length>2) {
 			return name.ToLower().Contains(entry.ToLower());
 		} else {
@@ -235,7 +230,9 @@ public class GnomeArtNgApp
 	}
 */	
 	private void OnFilterEntriesChanged(object sender, EventArgs a){
-		((Gtk.TreeModelFilter) CurrentIconView.Model).Refilter();
+		if (CurrentIconView.Model is Gtk.TreeModelFilter){
+			((Gtk.TreeModelFilter) CurrentIconView.Model).Refilter();
+		}
 	}
 /*	
 	private void OnSortKindEntryChanged(object sender, EventArgs a){
@@ -286,7 +283,6 @@ public class GnomeArtNgApp
 		CBackgroundTheme bgTheme = (CBackgroundTheme)(man.Theme);
 		bgTheme.BgType = CUtility.StrToImageType(imageTypeBox.ActiveText);
 		FillComboboxWithStrings(imageResolutionsBox, bgTheme.GetAvailableResolutions());
-		//Console.WriteLine(imageTypeBox.ActiveText);
 	}
 	
 	private void OnImageStyleBoxChanged(object sender, EventArgs a){
@@ -298,6 +294,7 @@ public class GnomeArtNgApp
 	}
 	
 	private void OnSwitchPage(object sender, SwitchPageArgs s){
+		OnFilterbarCloseClicked(sender, s);
 		int pageNum = ((Gtk.Notebook)sender).Page;
 		CurrentIconView = IconViews[pageNum];
 		FilterEntry.Text = "";
