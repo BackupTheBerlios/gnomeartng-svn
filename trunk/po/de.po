@@ -325,6 +325,9 @@ msgstr "_Bearbeiten"
 msgid "All Gnome-Art Next Gen related settings can be found here"
 msgstr "Alle Einstellungen für Gnome-Art Next Gen können hier gefunden werden"
 
+msgid "Search for themes"
+msgstr "Suche nach Themen"
+
 msgid "_Help"
 msgstr "_Hilfe"
 

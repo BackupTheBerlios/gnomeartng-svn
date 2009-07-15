@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Wed Jul 15 19:55:05 2009 -->
+<!--Generated with glade3 3.4.5 on Wed Jul 15 20:52:44 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="MainWindow">
     <property name="width_request">960</property>
@@ -75,7 +75,7 @@
                     <child>
                       <widget class="GtkImageMenuItem" id="FilterMenuItem">
                         <property name="visible">True</property>
-                        <property name="tooltip" translatable="yes">All Gnome-Art Next Gen related settings can be found here</property>
+                        <property name="tooltip" translatable="yes">Search for themes</property>
                         <property name="label">gtk-find</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
@@ -885,31 +885,28 @@ Decoration</property>
                               <placeholder/>
                             </child>
                             <child>
-                              <widget class="GtkLabel" id="ExtInfoImageTypeLabel">
+                              <widget class="GtkLabel" id="ExtInfoImageStyleLabel">
                                 <property name="xalign">0</property>
                                 <property name="xpad">6</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Image type:&lt;/b&gt;</property>
+                                <property name="label" translatable="yes">&lt;b&gt;Style:&lt;/b&gt;</property>
                                 <property name="use_markup">True</property>
                               </widget>
                               <packing>
-                                <property name="top_attach">2</property>
-                                <property name="bottom_attach">3</property>
+                                <property name="top_attach">4</property>
+                                <property name="bottom_attach">5</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkLabel" id="ExtInfoResolutionsLabel">
+                              <widget class="GtkLabel" id="ExtInfoDownloadsLabel">
+                                <property name="visible">True</property>
                                 <property name="xalign">0</property>
                                 <property name="xpad">6</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Resolution:&lt;/b&gt;</property>
+                                <property name="label" translatable="yes">&lt;b&gt;Download count:&lt;/b&gt;</property>
                                 <property name="use_markup">True</property>
                               </widget>
-                              <packing>
-                                <property name="top_attach">3</property>
-                                <property name="bottom_attach">4</property>
-                              </packing>
                             </child>
                             <child>
-                              <widget class="GtkLabel" id="ExtInfoRating">
+                              <widget class="GtkLabel" id="ExtInfoDownloads">
                                 <property name="visible">True</property>
                                 <property name="xalign">0</property>
                                 <property name="label" translatable="yes">label</property>
@@ -917,8 +914,6 @@ Decoration</property>
                               <packing>
                                 <property name="left_attach">1</property>
                                 <property name="right_attach">2</property>
-                                <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                             <child>
@@ -935,7 +930,7 @@ Decoration</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkLabel" id="ExtInfoDownloads">
+                              <widget class="GtkLabel" id="ExtInfoRating">
                                 <property name="visible">True</property>
                                 <property name="xalign">0</property>
                                 <property name="label" translatable="yes">label</property>
@@ -943,27 +938,32 @@ Decoration</property>
                               <packing>
                                 <property name="left_attach">1</property>
                                 <property name="right_attach">2</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkLabel" id="ExtInfoDownloadsLabel">
-                                <property name="visible">True</property>
+                              <widget class="GtkLabel" id="ExtInfoResolutionsLabel">
                                 <property name="xalign">0</property>
                                 <property name="xpad">6</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Download count:&lt;/b&gt;</property>
-                                <property name="use_markup">True</property>
-                              </widget>
-                            </child>
-                            <child>
-                              <widget class="GtkLabel" id="ExtInfoImageStyleLabel">
-                                <property name="xalign">0</property>
-                                <property name="xpad">6</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Style:&lt;/b&gt;</property>
+                                <property name="label" translatable="yes">&lt;b&gt;Resolution:&lt;/b&gt;</property>
                                 <property name="use_markup">True</property>
                               </widget>
                               <packing>
-                                <property name="top_attach">4</property>
-                                <property name="bottom_attach">5</property>
+                                <property name="top_attach">3</property>
+                                <property name="bottom_attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <widget class="GtkLabel" id="ExtInfoImageTypeLabel">
+                                <property name="xalign">0</property>
+                                <property name="xpad">6</property>
+                                <property name="label" translatable="yes">&lt;b&gt;Image type:&lt;/b&gt;</property>
+                                <property name="use_markup">True</property>
+                              </widget>
+                              <packing>
+                                <property name="top_attach">2</property>
+                                <property name="bottom_attach">3</property>
                               </packing>
                             </child>
                           </widget>
@@ -1150,61 +1150,14 @@ Greetings, Tom (software@plasmasolutions.de)</property>
             <property name="column_spacing">12</property>
             <property name="row_spacing">2</property>
             <child>
-              <widget class="GtkLabel" id="AboutGreetings">
+              <widget class="GtkLabel" id="AboutVersionLabel">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
-                <property name="label" translatable="yes">&lt;i&gt;My love Katrin,
-My family: Maria, Gerd and my brother Daniel
-All of my friends: Especially Fedi, Michael and Kirsten,
-the Engels and the Klees, Roland and Vanessa
-and last but not least: Guillem and Teresa
-All I've forgotten now&lt;/i&gt;</property>
-                <property name="use_markup">True</property>
-              </widget>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkLabel" id="AboutAuthor">
-                <property name="visible">True</property>
-                <property name="xalign">0</property>
-                <property name="label">&lt;i&gt;Thomas Beck&lt;/i&gt;</property>
-                <property name="use_markup">True</property>
-              </widget>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkLabel" id="AboutVersion">
-                <property name="visible">True</property>
-                <property name="xalign">0</property>
-                <property name="label" translatable="yes">label</property>
-              </widget>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkLabel" id="AboutGreetingsLabel">
-                <property name="visible">True</property>
-                <property name="xalign">0</property>
-                <property name="yalign">0</property>
                 <property name="xpad">6</property>
-                <property name="label" translatable="yes">&lt;b&gt;Greetings to:&lt;/b&gt;</property>
+                <property name="label" translatable="yes">&lt;b&gt;Version:&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
               </widget>
               <packing>
-                <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
                 <property name="x_options"></property>
               </packing>
             </child>
@@ -1223,15 +1176,62 @@ All I've forgotten now&lt;/i&gt;</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkLabel" id="AboutVersionLabel">
+              <widget class="GtkLabel" id="AboutGreetingsLabel">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
+                <property name="yalign">0</property>
                 <property name="xpad">6</property>
-                <property name="label" translatable="yes">&lt;b&gt;Version:&lt;/b&gt;</property>
+                <property name="label" translatable="yes">&lt;b&gt;Greetings to:&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
               </widget>
               <packing>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
                 <property name="x_options"></property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkLabel" id="AboutVersion">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">label</property>
+              </widget>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkLabel" id="AboutAuthor">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="label">&lt;i&gt;Thomas Beck&lt;/i&gt;</property>
+                <property name="use_markup">True</property>
+              </widget>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">1</property>
+                <property name="bottom_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkLabel" id="AboutGreetings">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">&lt;i&gt;My love Katrin,
+My family: Maria, Gerd and my brother Daniel
+All of my friends: Especially Fedi, Michael and Kirsten,
+the Engels and the Klees, Roland and Vanessa
+and last but not least: Guillem and Teresa
+All I've forgotten now&lt;/i&gt;</property>
+                <property name="use_markup">True</property>
+              </widget>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
               </packing>
             </child>
           </widget>
