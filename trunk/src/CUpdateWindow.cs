@@ -30,7 +30,6 @@ namespace GnomeArtNG {
 		public bool RestartRequested = false;
 		//updateWindow
 		[Widget] Gtk.ProgressBar UpdateProgressBar;
-		[Widget] Gtk.Button UpdateHeaderButton;		
 		[Widget] Gtk.Button UpdateDonateButton;
 		[Widget] Gtk.Button UpdateCloseButton;
 		[Widget] Gtk.Button UpdateStatusButton;
@@ -38,6 +37,7 @@ namespace GnomeArtNG {
 		[Widget] Gtk.Label UpdateCurrentVersionLabel;
 		[Widget] Gtk.Label UpdateNewVersionLabel;
 		[Widget] Gtk.Image UpdateStatusImage;
+		[Widget] Gtk.Image UpdateDonatePayPalButtonImage;		
 		[Widget] Gtk.Label UpdateStatusLabel;
 		[Widget] Gtk.Label UpdateHeaderLabel;
 		
@@ -70,12 +70,10 @@ namespace GnomeArtNG {
 		}
 		private void removeClickHandler(EventHandler handler){
 			UpdateStatusButton.Clicked-=handler;
-			UpdateHeaderButton.Clicked-=handler;
 		}
 		
 		private void addClickHandler(EventHandler handler){
 			UpdateStatusButton.Clicked+=handler;
-			UpdateHeaderButton.Clicked+=handler;
 		}
 					
 		private void onRestartClicked(object sender, EventArgs a){
@@ -136,21 +134,10 @@ namespace GnomeArtNG {
 			UpdateCloseButton.Clicked+=new EventHandler(onCloseButtonClicked);
 			UpdateDonateButton.Clicked+=new EventHandler(onDonateButtonClicked);
 			addClickHandler(onStatusButtonClicked);
-			/*		
-			UpdateDonateLabel.ModifyFg(Gtk.StateType.Normal,new Gdk.Color(230,230,230));
-			UpdateDonateLabel.ModifyFg(Gtk.StateType.Prelight,new Gdk.Color(230,230,230));
-			UpdateDonateButton.ModifyBg(Gtk.StateType.Prelight,new Gdk.Color(100,100,100));
-			UpdateDonateButton.ModifyBg(Gtk.StateType.Normal,new Gdk.Color(55,57,53));
-			
-			UpdateHeaderLabel.ModifyFg(Gtk.StateType.Normal,new Gdk.Color(230,230,230));
-			UpdateHeaderLabel.ModifyFg(Gtk.StateType.Prelight,new Gdk.Color(230,230,230));				
-			UpdateHeaderButton.ModifyBg(Gtk.StateType.Normal,new Gdk.Color(55,57,53));
-			UpdateHeaderButton.ModifyBg(Gtk.StateType.Prelight,new Gdk.Color(100,100,100));
-			*/
 			setHeaderLabelText(Catalog.GetString("Use \"Check\" to search for updates"));
 			UpdateHeaderImage.Pixbuf = CUtility.GetPixbuf("./images/update_checking.png",config);
 			
-			//UpdateDonateButtonImage.Pixbuf = CUtility.GetPixbuf("./PayPalLogo.gif",config);
+			UpdateDonatePayPalButtonImage.Pixbuf = CUtility.GetPixbuf("./images/paypal.gif",config);
 			UpdateStatusLabel.Text = Catalog.GetString("Check");
 		}
 		

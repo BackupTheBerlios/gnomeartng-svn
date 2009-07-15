@@ -42,8 +42,10 @@ cd $vzname
 find . -name .svn -exec rm -Rf {} \;
 cd ..
 
+gzname=$vzname-$version.tar.gz
+
 echo "---Packe das Verzeichnis"
-tar -czf $vzname.tar.gz $vzname/
+tar -czf $gzname $vzname/
 
 echo "---Lösche das Verzeichnis"
 cd $vzname
@@ -52,8 +54,8 @@ cd ..
 rmdir $vzname
 
 echo "---Verschiebe tar-file in Releases"
-mv $vzname.tar.gz ./Releases/
-echo "###->Creating Binary package(tar.gz) -> finished"
+mv $gzname ./Releases/
+echo "###->Creating Binary package($gzname) -> finished"
 
 echo "Creating $1 debian package"
 vzname=gnomeartng_deb
@@ -69,6 +71,7 @@ cp runGnomeArtNG.sh $destination
 cp GnomeArtNg.exe $destination
 rm -f $destination/images/GaNG-Design.svg
 rm -f $destination/images/Icon.svg
+rm -f $destination/software-update-icon-512x512.png
 cd $vzname
 find . -name .svn -exec rm -Rf {} \;
 cd ..
