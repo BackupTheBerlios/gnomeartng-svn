@@ -1,3 +1,23 @@
+Version 0.6 - Feature and bugfix release (2009-07-16)
+-------------------------------------------------------
+## Fixes Bug #15629 - assemblyref bug under ubuntu 9.04
+
+## Introduces new features: 
+ - Completely rewritten internal and external: Update checker
+ - Old icon themes are converted on the fly now to use them in newer gnome-versions
+   -> more icon themes can be installed without a hazzle
+ - Introducing a new Themesearch (looks for parts of the theme name in the current category)
+ - Gtk-Themes tab is dismissed - it had no use (only 8 themes, every theme needs a 
+   full compilation to take effect)
+ - Swedish translation thanks to Daniel Nylander - great work!
+ - German translation updated
+ 
+## Donations:
+ - Thank you very very much <<Nicola Jelmorini>> for your big donation...you really made my day!!
+ - Thank you very much <<V. Mark Lehky>> for your donation to Gnome-Art NextGen!
+
+************************************************************************************
+
 Version 0.6 - Feature and bugfix release (2008-07-14)
 -------------------------------------------------------
 ## Fixes Bug #13892 "Gnomeartng DoSes art.gnome.org" 
