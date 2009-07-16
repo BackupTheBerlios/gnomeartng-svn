@@ -382,7 +382,7 @@ msgstr ""
 msgid "<big><b>Downloading</b></big>"
 msgstr "<big><b>Изтегляне</b></big>"
 
-msgid ""
+msgid "" 
 "<i>Your themes are being read</i>\n"
 "\n"
 "Please be patient while all themes that fit your selection are being read. When you've done this procedure previously, all themes will be read from a cache directory on your hard disc. Use the Expander beneath to see what action is exactly being done."

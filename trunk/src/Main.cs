@@ -358,7 +358,7 @@ public class GnomeArtNgApp
 	private void OnPreviewButtonClicked (object sender, EventArgs e){
 		CStatusWindow sw=new CStatusWindow(Catalog.GetString("Downloading the preview file"),1,false,true,true);
 		sw.SetProgress("1/1 - " +Catalog.GetString("Connected to art.gnome.org"));
-		sw.Mainlabel=Catalog.GetString("<i>Downloading the preview file</i>\n\nYour preview is beeing downloaded. After the download has been finished,"+
+		sw.Mainlabel=Catalog.GetString("<i>Downloading the preview file</i>\n\nYour preview is being downloaded. After the download has been finished,"+
 		                               " the preview will be rescaled if it's not fitting the preview window. See the lower bar to follow the progress.");
 		sw.ButtonSensitive=false;
 		try{

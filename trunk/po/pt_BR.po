@@ -23,7 +23,7 @@ msgid "Downloading"
 msgstr "Descarregando"
 
 msgid ""
-"<i>XML file is beeing downloaded</i>\n"
+"<i>XML file is being downloaded</i>\n"
 "\n"
 "This program needs a descriptive file that contains information about \n"
 "\n"
@@ -143,7 +143,7 @@ msgstr ""
 "O local para descarga foi alterado manualmente! Normalmente, não há problema nisso! Mas se você apontar para um local inválido então será um problema!\n"
 "\n"
 " Essa mensagem indica \"Não foi possível encontrar a localização de descarga\". Por favor, corrija o local para descargas."
-
+ 
 msgid ""
 "<i>Installing</i>\n"
 "\n"
