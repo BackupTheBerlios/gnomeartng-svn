@@ -144,10 +144,10 @@ namespace GnomeArtNG
 				CStatusWindow sw= new CStatusWindow(Catalog.GetString("Downloading new XML file"),1,false,true,true);
 				sw.ButtonSensitive=false;
 				sw.ExtInfoLabel=Catalog.GetString("Downloading")+": " + remoteUri;
-				sw.Mainlabel=Catalog.GetString("<i>XML file is beeing downloaded</i>\n\nThis program needs a descriptive "+
+				sw.Mainlabel=Catalog.GetString("<i>XML file is being downloaded</i>\n\nThis program needs a descriptive "+
 				                               "file that contains information about \n\n1) where the theme is located,"+
 				                               "\n2) what kind of theme is it, \n3) How often someone downloaded it,"+
-				                               " and so on \n\nSo please be patient while the download progress is going on..");
+				                               " and so on  \n\nSo please be patient while the download progress is going on..");
 				sw.SetProgress(Catalog.GetString("downloading... (no progress available)"));
 				sw.Invalidate();
 				try	{
