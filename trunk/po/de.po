@@ -27,7 +27,7 @@ msgstr "Lade neue XML-Datei herunter"
 msgid "Downloading"
 msgstr "Am Herunterladen"
 
-msgid "" 
+msgid ""
 "<i>XML file is being downloaded</i>\n"
 "\n"
 "This program needs a descriptive file that contains information about \n"
