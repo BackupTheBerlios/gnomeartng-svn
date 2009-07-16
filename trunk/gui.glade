@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Thu Jul 16 00:48:16 2009 -->
+<!--Generated with glade3 3.4.5 on Thu Jul 16 18:19:07 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="MainWindow">
     <property name="width_request">960</property>
@@ -2467,17 +2467,21 @@ www.kde-look.org</property>
 
 It would be great if you'd donate some money for the further development of 
 this software. It doesn't have to be much, a cup of tea is enough! The donations 
-are going to be invested in a better development infrastructure, a small Thinkpad 
+are going to be invested in a better development infrastructure, an used Thinkpad 
 to develop more efficient while travelling by train and therefore be more flexible in
-the development of GnomeArt-NextGen. So please donate...you're making a 
-programmers life much easier.
+the development of GnomeArt-NextGen. I've got sorrows that my current laptop is 
+not gonna make it through the summer or even the winter.So please donate...you're
+making a programmers life much easier and you're supporting this project at long 
+sight.
 
 If you're donating a little more you will be credited in the "about" section and be
-my new best friend forever :) Please add a feature wish for the near future of
-GnomeArt-NextGen to your donation if you've got one.
+my new best friend forever :) Furthermore you're receiving preview releases of 
+GnomeArt-NextGen whenever available.Please add a feature wish for the near 
+future of GnomeArt-NextGen to your donation if you've got one.
 
-By the way: every donation and donator will find it's way to the home of
-GnomeArt-NextGen - gnomeartng.plasmasolutions.de</property>
+By the way: No matter how small or big the donation is, all donators will credited
+by name at the home of GnomeArt-NextGen - gnomeartng.plasmasolutions.de. 
+At this point a thank you very much in advance, you're all great! </property>
                     <property name="use_markup">True</property>
                   </widget>
                 </child>
