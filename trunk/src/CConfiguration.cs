@@ -76,6 +76,7 @@ namespace GnomeArtNG
 			Suse,
 			Fedora,
 			PcLinuxOs,
+			ArchLinux,
 			Unknown
 		}
 		
@@ -307,6 +308,7 @@ namespace GnomeArtNG
 			 case DistriType.Kubuntu: 
 				sudoCommand="kdesu";
 				break; 
+			 case DistriType.ArchLinux: 
 			 case DistriType.Ubuntu: 
 				sudoCommand="gksudo"; 
 				break;
@@ -319,7 +321,9 @@ namespace GnomeArtNG
 			 case DistriType.PcLinuxOs: 
 				sudoCommand="gksu"; 
 				break;
-			 default: throw new Exception("Unknown distribution...aborting!!");
+			 default: 
+				Console.WriteLine("Unknown distribution...installing your gdm greeter will probably not be successful!!");
+				break;
 			 }
 			gdmPath="/etc/gdm/";
 		}
@@ -339,6 +343,8 @@ namespace GnomeArtNG
 				distribution=DistriType.Suse;
 			if (sContent.Contains("pclinuxos"))
 				distribution=DistriType.PcLinuxOs;
+			if (sContent.Contains("arch"))
+				distribution=DistriType.ArchLinux;
 
 			//Version
 			if (distribution == DistriType.Ubuntu) {
