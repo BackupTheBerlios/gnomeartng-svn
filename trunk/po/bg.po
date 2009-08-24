@@ -459,4 +459,3 @@ msgstr "Вашата парола"
 
 msgid "Account information"
 msgstr "Информация за сметката"
-

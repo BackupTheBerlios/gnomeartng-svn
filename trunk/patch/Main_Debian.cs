@@ -135,12 +135,12 @@ public class GnomeArtNgApp
 		bool RestartApp= false;		
 		if (config.NeverStartedBefore)
 			new CFirstTimeAssistant(config);
-		else if (config.DontBotherForUpdates==false) {
-			if (config.UpdateAvailable) { 
-				Console.WriteLine("An update is available, newest version is: "+config.NewestVersionNumberOnServer);			
-				RestartApp = ShowUpdateWindow();
-			}
-		}	
+//		else if (config.DontBotherForUpdates==false) {
+//			if (config.UpdateAvailable) { 
+//				Console.WriteLine("An update is available, newest version is: "+config.NewestVersionNumberOnServer);			
+//			RestartApp = ShowUpdateWindow();
+//			}
+//		}	
 
 		if (!RestartApp) { 
 			//Application placement - doesn't work properly with compiz (is it the window placement plugin?)
@@ -184,6 +184,8 @@ public class GnomeArtNgApp
 			LowerTable.Attach(imageTypeBox,1,2,2,3);
 			LowerTable.Attach(imageResolutionsBox,1,2,3,4);
 			LowerTable.Attach(imageStyleBox,1,2,4,5);
+			
+			UpdateMenuItem.Hide();
 			
 			OnSwitchPage(MainNotebook,new SwitchPageArgs());
 			Gtk.Application.Run ();

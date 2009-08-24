@@ -1,0 +1,30 @@
+--- src/Main.cs	2009-08-24 22:43:32.000000000 +0200
++++ patch/Main_Debian.cs	2009-08-24 23:01:29.000000000 +0200
+@@ -135,12 +135,12 @@
+ 		bool RestartApp= false;		
+ 		if (config.NeverStartedBefore)
+ 			new CFirstTimeAssistant(config);
+-		else if (config.DontBotherForUpdates==false) {
+-			if (config.UpdateAvailable) { 
+-				Console.WriteLine("An update is available, newest version is: "+config.NewestVersionNumberOnServer);			
+-				RestartApp = ShowUpdateWindow();
+-			}
+-		}	
++//		else if (config.DontBotherForUpdates==false) {
++//			if (config.UpdateAvailable) { 
++//				Console.WriteLine("An update is available, newest version is: "+config.NewestVersionNumberOnServer);			
++//			RestartApp = ShowUpdateWindow();
++//			}
++//		}	
+ 
+ 		if (!RestartApp) { 
+ 			//Application placement - doesn't work properly with compiz (is it the window placement plugin?)
+@@ -185,6 +185,8 @@
+ 			LowerTable.Attach(imageResolutionsBox,1,2,3,4);
+ 			LowerTable.Attach(imageStyleBox,1,2,4,5);
+ 			
++			UpdateMenuItem.Hide();
++			
+ 			OnSwitchPage(MainNotebook,new SwitchPageArgs());
+ 			Gtk.Application.Run ();
+ 			

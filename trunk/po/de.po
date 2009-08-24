@@ -726,3 +726,6 @@ msgstr "Willkommen zum Einrichtungsassisten von Gnome-Art Next Gen (GANG :) ).\n
 msgid "gtk-apply"
 msgstr ""
 
+msgid "Buy me a coffee :)"
+msgstr "Spenden Sie!"
+

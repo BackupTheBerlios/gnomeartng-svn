@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Thu Jul 16 18:19:07 2009 -->
+<?xml version="1.0"?>
 <glade-interface>
+  <!-- interface-requires gtk+ 2.16 -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="MainWindow">
     <property name="width_request">960</property>
     <property name="height_request">600</property>
     <property name="visible">True</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">Gnome-Art-NG</property>
-    <property name="window_position">GTK_WIN_POS_CENTER</property>
+    <property name="window_position">center</property>
     <property name="default_width">940</property>
     <property name="default_height">600</property>
     <child>
@@ -37,9 +37,9 @@
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="QuitMenuItem">
+                        <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="tooltip" translatable="yes">Quits the application</property>
-                        <property name="label">gtk-quit</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                       </widget>
@@ -58,25 +58,25 @@
                     <property name="visible">True</property>
                     <child>
                       <widget class="GtkImageMenuItem" id="PreferencesMenuItem">
+                        <property name="label">gtk-preferences</property>
                         <property name="visible">True</property>
                         <property name="tooltip" translatable="yes">All Gnome-Art Next Gen related settings can be found here</property>
-                        <property name="label">gtk-preferences</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                       </widget>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="SortMenuItem">
-                        <property name="label">Sortieren</property>
+                        <property name="label">gtk-index</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                       </widget>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="FilterMenuItem">
+                        <property name="label">gtk-find</property>
                         <property name="visible">True</property>
                         <property name="tooltip" translatable="yes">Search for themes</property>
-                        <property name="label">gtk-find</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                       </widget>
@@ -96,20 +96,35 @@
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <child>
                       <widget class="GtkImageMenuItem" id="UpdateMenuItem">
+                        <property name="label">Update</property>
                         <property name="visible">True</property>
                         <property name="tooltip" translatable="yes">Search for new updates</property>
-                        <property name="label">Update</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                       </widget>
                     </child>
                     <child>
                       <widget class="GtkImageMenuItem" id="InfoMenuItem">
+                        <property name="label">gtk-about</property>
                         <property name="visible">True</property>
                         <property name="tooltip" translatable="yes">Information about Gnome-Art Next Gen</property>
-                        <property name="label">gtk-about</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="DonateMenuItem">
+                        <property name="label" translatable="yes">Buy me a coffee :)</property>
+                        <property name="visible">True</property>
+                        <property name="tooltip" translatable="yes">Buy me a coffee</property>
+                        <property name="use_stock">False</property>
+                        <property name="always_show_image">True</property>
+                        <child internal-child="image">
+                          <widget class="GtkImage" id="image3">
+                            <property name="visible">True</property>
+                            <property name="icon_name">applications-internet</property>
+                          </widget>
+                        </child>
                       </widget>
                     </child>
                   </widget>
@@ -119,6 +134,7 @@
           </widget>
           <packing>
             <property name="expand">False</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -127,9 +143,9 @@
               <widget class="GtkButton" id="FilterCloseButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="relief">GTK_RELIEF_NONE</property>
+                <property name="receives_default">False</property>
+                <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
-                <property name="response_id">0</property>
                 <child>
                   <widget class="GtkImage" id="image2">
                     <property name="visible">True</property>
@@ -139,6 +155,7 @@
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -184,9 +201,9 @@
               <widget class="GtkButton" id="SortCloseButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="relief">GTK_RELIEF_NONE</property>
+                <property name="receives_default">False</property>
+                <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
-                <property name="response_id">0</property>
                 <child>
                   <widget class="GtkImage" id="image10">
                     <property name="visible">True</property>
@@ -196,6 +213,7 @@
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -237,9 +255,9 @@ Descending</property>
               <widget class="GtkButton" id="SortApplyButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="relief">GTK_RELIEF_NONE</property>
+                <property name="receives_default">False</property>
+                <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
-                <property name="response_id">0</property>
                 <child>
                   <widget class="GtkImage" id="image11">
                     <property name="visible">True</property>
@@ -268,7 +286,7 @@ Descending</property>
               <widget class="GtkNotebook" id="MainNotebook">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="tab_pos">GTK_POS_LEFT</property>
+                <property name="tab_pos">left</property>
                 <child>
                   <widget class="GtkVBox" id="vbox0">
                     <property name="visible">True</property>
@@ -281,14 +299,15 @@ Descending</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin0">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -307,8 +326,8 @@ Descending</property>
 Background</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
@@ -323,14 +342,15 @@ Background</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin1">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -352,9 +372,9 @@ Background</property>
 Backgrounds</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="position">1</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
@@ -369,14 +389,15 @@ Backgrounds</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin2">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -398,9 +419,9 @@ Backgrounds</property>
 Backgrounds</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="position">2</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
@@ -415,14 +436,15 @@ Backgrounds</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin3">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -445,9 +467,9 @@ Backgrounds</property>
                     <property name="wrap">True</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="position">3</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
@@ -462,14 +484,15 @@ Backgrounds</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin4">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -491,9 +514,9 @@ Backgrounds</property>
 Look</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="position">4</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
@@ -508,14 +531,15 @@ Look</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin5">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -537,9 +561,9 @@ Look</property>
 Decoration</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="position">5</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
@@ -554,14 +578,15 @@ Decoration</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin6">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -582,9 +607,9 @@ Decoration</property>
                     <property name="label" translatable="yes">Icons</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="position">6</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
@@ -599,14 +624,15 @@ Decoration</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin7">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -627,9 +653,9 @@ Decoration</property>
                     <property name="label" translatable="yes">GDM Greeter</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="position">7</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
@@ -644,14 +670,15 @@ Decoration</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <widget class="GtkScrolledWindow" id="swin8">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -672,9 +699,9 @@ Decoration</property>
                     <property name="label" translatable="yes">Splash</property>
                   </widget>
                   <packing>
-                    <property name="type">tab</property>
                     <property name="position">8</property>
                     <property name="tab_fill">False</property>
+                    <property name="type">tab</property>
                   </packing>
                 </child>
               </widget>
@@ -688,7 +715,7 @@ Decoration</property>
                 <property name="width_request">280</property>
                 <property name="visible">True</property>
                 <property name="label_xalign">0</property>
-                <property name="shadow_type">GTK_SHADOW_NONE</property>
+                <property name="shadow_type">none</property>
                 <child>
                   <widget class="GtkAlignment" id="alignment1">
                     <property name="visible">True</property>
@@ -707,18 +734,19 @@ Decoration</property>
                                 <property name="height_request">70</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="receives_default">False</property>
                                 <property name="tooltip" translatable="yes">Click to view a full preview</property>
-                                <property name="response_id">0</property>
                                 <child>
                                   <widget class="GtkImage" id="ExtInfoImage">
                                     <property name="visible">True</property>
                                     <property name="stock">gtk-missing-image</property>
-                                    <property name="icon_size">6</property>
+                                    <property name="icon-size">6</property>
                                   </widget>
                                 </child>
                               </widget>
                               <packing>
                                 <property name="expand">False</property>
+                                <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
@@ -732,6 +760,9 @@ Decoration</property>
                                     <property name="label" translatable="yes">&lt;b&gt;Name:&lt;/b&gt;</property>
                                     <property name="use_markup">True</property>
                                   </widget>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
                                 <child>
                                   <widget class="GtkLabel" id="ExtInfoName">
@@ -739,7 +770,7 @@ Decoration</property>
                                     <property name="xalign">0</property>
                                     <property name="xpad">10</property>
                                     <property name="label" translatable="yes">label</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                                    <property name="ellipsize">end</property>
                                     <property name="single_line_mode">True</property>
                                   </widget>
                                   <packing>
@@ -766,7 +797,7 @@ Decoration</property>
                                     <property name="xalign">0</property>
                                     <property name="xpad">10</property>
                                     <property name="label" translatable="yes">label</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                                    <property name="ellipsize">end</property>
                                     <property name="single_line_mode">True</property>
                                   </widget>
                                   <packing>
@@ -791,7 +822,7 @@ Decoration</property>
                                     <property name="xalign">0</property>
                                     <property name="xpad">10</property>
                                     <property name="label" translatable="yes">label</property>
-                                    <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                                    <property name="ellipsize">end</property>
                                     <property name="single_line_mode">True</property>
                                   </widget>
                                   <packing>
@@ -808,6 +839,7 @@ Decoration</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="padding">4</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -837,12 +869,12 @@ Decoration</property>
                           <widget class="GtkScrolledWindow" id="ScrolledWindowDescription">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
-                            <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                            <property name="hscrollbar_policy">never</property>
+                            <property name="vscrollbar_policy">automatic</property>
                             <child>
                               <widget class="GtkViewport" id="DescriptionViewport">
                                 <property name="visible">True</property>
-                                <property name="shadow_type">GTK_SHADOW_NONE</property>
+                                <property name="shadow_type">none</property>
                                 <child>
                                   <widget class="GtkLabel" id="ExtInfoDescription">
                                     <property name="visible">True</property>
@@ -875,15 +907,6 @@ Decoration</property>
                             <property name="n_rows">5</property>
                             <property name="n_columns">2</property>
                             <property name="row_spacing">4</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
                             <child>
                               <widget class="GtkLabel" id="ExtInfoImageStyleLabel">
                                 <property name="xalign">0</property>
@@ -966,6 +989,15 @@ Decoration</property>
                                 <property name="bottom_attach">3</property>
                               </packing>
                             </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
@@ -983,12 +1015,12 @@ Decoration</property>
                         </child>
                         <child>
                           <widget class="GtkButton" id="InstallButton">
+                            <property name="label">gtk-apply</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
                             <property name="tooltip" translatable="yes">Download, install, and apply the selected thumbnail</property>
-                            <property name="label">gtk-apply</property>
                             <property name="use_stock">True</property>
-                            <property name="response_id">0</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
@@ -997,12 +1029,12 @@ Decoration</property>
                         </child>
                         <child>
                           <widget class="GtkButton" id="RevertButton">
+                            <property name="label">gtk-undo</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
                             <property name="tooltip" translatable="yes">Undo one last action</property>
-                            <property name="label">gtk-undo</property>
                             <property name="use_stock">True</property>
-                            <property name="response_id">0</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
@@ -1011,11 +1043,11 @@ Decoration</property>
                         </child>
                         <child>
                           <widget class="GtkButton" id="RefreshButton">
+                            <property name="label">gtk-refresh</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="label">gtk-refresh</property>
+                            <property name="receives_default">False</property>
                             <property name="use_stock">True</property>
-                            <property name="response_id">0</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
@@ -1024,11 +1056,11 @@ Decoration</property>
                         </child>
                         <child>
                           <widget class="GtkButton" id="SaveButton">
+                            <property name="label">gtk-save</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="label">gtk-save</property>
+                            <property name="receives_default">False</property>
                             <property name="use_stock">True</property>
-                            <property name="response_id">0</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
@@ -1069,7 +1101,7 @@ Decoration</property>
     <property name="title" translatable="yes">About Gnome-Art-NG</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
+    <property name="window_position">center-on-parent</property>
     <property name="destroy_with_parent">True</property>
     <child>
       <widget class="GtkVBox" id="vbox13">
@@ -1083,6 +1115,7 @@ Decoration</property>
           </widget>
           <packing>
             <property name="expand">False</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -1105,6 +1138,7 @@ Decoration</property>
               <packing>
                 <property name="expand">False</property>
                 <property name="padding">4</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -1252,18 +1286,19 @@ All I've forgotten now&lt;/i&gt;</property>
         <child>
           <widget class="GtkHButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
             <child>
               <widget class="GtkButton" id="AboutCloseButton">
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label">gtk-close</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
           </widget>
@@ -1279,10 +1314,10 @@ All I've forgotten now&lt;/i&gt;</property>
   <widget class="GtkWindow" id="StatusWindow">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
+    <property name="window_position">center-on-parent</property>
     <property name="default_width">400</property>
     <property name="default_height">300</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
     <property name="urgency_hint">True</property>
@@ -1304,10 +1339,11 @@ All I've forgotten now&lt;/i&gt;</property>
                     <property name="xalign">1</property>
                     <property name="xpad">4</property>
                     <property name="stock">gtk-save</property>
-                    <property name="icon_size">5</property>
+                    <property name="icon-size">5</property>
                   </widget>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
@@ -1316,7 +1352,7 @@ All I've forgotten now&lt;/i&gt;</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;Downloading&lt;/b&gt;&lt;/big&gt;</property>
                     <property name="use_markup">True</property>
-                    <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                    <property name="ellipsize">end</property>
                     <property name="single_line_mode">True</property>
                   </widget>
                   <packing>
@@ -1326,6 +1362,7 @@ All I've forgotten now&lt;/i&gt;</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -1347,7 +1384,7 @@ All I've forgotten now&lt;/i&gt;</property>
 
 Please be patient while all themes that fit your selection are being read. When you've done this procedure previously, all themes will be read from a cache directory on your hard disc. Use the Expander beneath to see what action is exactly being done.</property>
                 <property name="use_markup">True</property>
-                <property name="justify">GTK_JUSTIFY_FILL</property>
+                <property name="justify">fill</property>
                 <property name="wrap">True</property>
               </widget>
               <packing>
@@ -1425,18 +1462,19 @@ Please be patient while all themes that fit your selection are being read. When 
                 <property name="visible">True</property>
                 <property name="border_width">2</property>
                 <property name="spacing">4</property>
-                <property name="layout_style">GTK_BUTTONBOX_END</property>
+                <property name="layout_style">end</property>
                 <child>
                   <widget class="GtkButton" id="StatusCancelButton">
+                    <property name="label">gtk-stop</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="label">gtk-stop</property>
+                    <property name="receives_default">False</property>
                     <property name="use_stock">True</property>
-                    <property name="response_id">0</property>
                   </widget>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
               </widget>
@@ -1454,7 +1492,7 @@ Please be patient while all themes that fit your selection are being read. When 
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
+    <property name="window_position">center-on-parent</property>
     <child>
       <widget class="GtkVBox" id="vbox15">
         <property name="visible">True</property>
@@ -1467,6 +1505,7 @@ Please be patient while all themes that fit your selection are being read. When 
           </widget>
           <packing>
             <property name="expand">False</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -1482,7 +1521,7 @@ Please be patient while all themes that fit your selection are being read. When 
           <widget class="GtkImage" id="PreviewMainImage">
             <property name="visible">True</property>
             <property name="stock">gtk-missing-image</property>
-            <property name="icon_size">6</property>
+            <property name="icon-size">6</property>
           </widget>
           <packing>
             <property name="position">2</property>
@@ -1501,29 +1540,30 @@ Please be patient while all themes that fit your selection are being read. When 
           <widget class="GtkHButtonBox" id="hbuttonbox3">
             <property name="visible">True</property>
             <property name="spacing">4</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
             <child>
               <widget class="GtkButton" id="PreviewCloseButton">
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
                 <property name="tooltip" translatable="yes">Closes without any changes done</property>
-                <property name="label">gtk-close</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
               <widget class="GtkButton" id="PreviewInstallButton">
+                <property name="label">gtk-apply</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
                 <property name="tooltip" translatable="yes">Downloads, installs, and applies this item</property>
-                <property name="label">gtk-apply</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -1547,8 +1587,8 @@ Please be patient while all themes that fit your selection are being read. When 
     <property name="height_request">300</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
     <child>
       <widget class="GtkVBox" id="vbox16">
         <property name="visible">True</property>
@@ -1560,10 +1600,11 @@ Please be patient while all themes that fit your selection are being read. When 
                 <property name="visible">True</property>
                 <property name="xpad">5</property>
                 <property name="stock">gtk-dialog-warning</property>
-                <property name="icon_size">6</property>
+                <property name="icon-size">6</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -1581,13 +1622,14 @@ Please be patient while all themes that fit your selection are being read. When 
           </widget>
           <packing>
             <property name="expand">False</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
           <widget class="GtkFrame" id="frame1">
             <property name="visible">True</property>
             <property name="label_xalign">0.0099999997764825821</property>
-            <property name="shadow_type">GTK_SHADOW_NONE</property>
+            <property name="shadow_type">none</property>
             <child>
               <widget class="GtkAlignment" id="alignment2">
                 <property name="visible">True</property>
@@ -1599,7 +1641,7 @@ Please be patient while all themes that fit your selection are being read. When 
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="editable">False</property>
-                    <property name="wrap_mode">GTK_WRAP_CHAR</property>
+                    <property name="wrap_mode">char</property>
                     <property name="left_margin">7</property>
                     <property name="right_margin">6</property>
                     <property name="accepts_tab">False</property>
@@ -1625,13 +1667,13 @@ Please be patient while all themes that fit your selection are being read. When 
         <child>
           <widget class="GtkHButtonBox" id="hbuttonbox6">
             <property name="visible">True</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
             <child>
               <widget class="GtkButton" id="InfoCopyToClipboardButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
                 <property name="tooltip" translatable="yes">Copy error information to the clipboard</property>
-                <property name="response_id">0</property>
                 <child>
                   <widget class="GtkHBox" id="hbox21">
                     <property name="visible">True</property>
@@ -1640,6 +1682,9 @@ Please be patient while all themes that fit your selection are being read. When 
                         <property name="visible">True</property>
                         <property name="stock">gtk-copy</property>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkLabel" id="label16">
@@ -1656,15 +1701,16 @@ Please be patient while all themes that fit your selection are being read. When 
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
               <widget class="GtkButton" id="InfoOkButton">
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label">gtk-close</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -1684,8 +1730,8 @@ Please be patient while all themes that fit your selection are being read. When 
   <widget class="GtkWindow" id="SettingsWindow">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="urgency_hint">True</property>
     <child>
@@ -1695,7 +1741,7 @@ Please be patient while all themes that fit your selection are being read. When 
           <widget class="GtkNotebook" id="notebook1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="tab_pos">GTK_POS_LEFT</property>
+            <property name="tab_pos">left</property>
             <child>
               <widget class="GtkVBox" id="vbox10">
                 <property name="visible">True</property>
@@ -1708,10 +1754,11 @@ Please be patient while all themes that fit your selection are being read. When 
                         <property name="visible">True</property>
                         <property name="xpad">5</property>
                         <property name="stock">gtk-preferences</property>
-                        <property name="icon_size">5</property>
+                        <property name="icon-size">5</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
@@ -1729,6 +1776,7 @@ Please be patient while all themes that fit your selection are being read. When 
                   </widget>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
@@ -1744,7 +1792,7 @@ Please be patient while all themes that fit your selection are being read. When 
                   <widget class="GtkFrame" id="frame3">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
-                    <property name="shadow_type">GTK_SHADOW_NONE</property>
+                    <property name="shadow_type">none</property>
                     <child>
                       <widget class="GtkAlignment" id="alignment5">
                         <property name="visible">True</property>
@@ -1769,6 +1817,9 @@ Please be patient while all themes that fit your selection are being read. When 
                                     <property name="label" translatable="yes">How often should GnomeArt-NG look for new themes?</property>
                                     <property name="wrap">True</property>
                                   </widget>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
                                 <child>
                                   <widget class="GtkLabel" id="label18">
@@ -1785,6 +1836,7 @@ Please be patient while all themes that fit your selection are being read. When 
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">False</property>
+                                <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
@@ -1802,11 +1854,14 @@ Every fifth day
 Every sixth day
 Once a week</property>
                                   </widget>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
                                 <child>
                                   <widget class="GtkFileChooserButton" id="SettingsLocationFc">
                                     <property name="visible">True</property>
-                                    <property name="action">GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER</property>
+                                    <property name="action">select-folder</property>
                                     <property name="title" translatable="yes">Choose a location where you want your themes to be stored</property>
                                   </widget>
                                   <packing>
@@ -1832,6 +1887,7 @@ Once a week</property>
                           </widget>
                           <packing>
                             <property name="padding">6</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -1859,7 +1915,7 @@ Once a week</property>
                   <widget class="GtkFrame" id="frame4">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
-                    <property name="shadow_type">GTK_SHADOW_NONE</property>
+                    <property name="shadow_type">none</property>
                     <child>
                       <widget class="GtkAlignment" id="alignment6">
                         <property name="sensitive">False</property>
@@ -1886,6 +1942,7 @@ Once a week</property>
                                   </widget>
                                   <packing>
                                     <property name="expand">False</property>
+                                    <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -1915,6 +1972,7 @@ Once a week</property>
                               </widget>
                               <packing>
                                 <property name="expand">False</property>
+                                <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
@@ -1927,6 +1985,9 @@ Once a week</property>
                                     <property name="items">www.gnome-look.org
 www.kde-look.org</property>
                                   </widget>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
                                 <child>
                                   <widget class="GtkEntry" id="OptionsUsernameEntry">
@@ -1971,6 +2032,7 @@ www.kde-look.org</property>
                           </widget>
                           <packing>
                             <property name="padding">6</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -1999,7 +2061,7 @@ www.kde-look.org</property>
                   <widget class="GtkFrame" id="frame2">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
-                    <property name="shadow_type">GTK_SHADOW_NONE</property>
+                    <property name="shadow_type">none</property>
                     <child>
                       <widget class="GtkAlignment" id="alignment8">
                         <property name="visible">True</property>
@@ -2010,11 +2072,11 @@ www.kde-look.org</property>
                         <property name="right_padding">5</property>
                         <child>
                           <widget class="GtkCheckButton" id="SettingsUpdateCb">
+                            <property name="label" translatable="yes">Should Gnome-Art NG look for new updates online and tell you about it?</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="label" translatable="yes">Should Gnome-Art NG look for new updates online and tell you about it?</property>
+                            <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="response_id">0</property>
                             <property name="draw_indicator">True</property>
                           </widget>
                         </child>
@@ -2029,6 +2091,7 @@ www.kde-look.org</property>
                           </widget>
                           <packing>
                             <property name="padding">6</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -2060,8 +2123,8 @@ www.kde-look.org</property>
                 <property name="label" translatable="yes">General settings</property>
               </widget>
               <packing>
-                <property name="type">tab</property>
                 <property name="tab_fill">False</property>
+                <property name="type">tab</property>
               </packing>
             </child>
             <child>
@@ -2076,10 +2139,11 @@ www.kde-look.org</property>
                         <property name="visible">True</property>
                         <property name="xpad">5</property>
                         <property name="stock">gtk-network</property>
-                        <property name="icon_size">5</property>
+                        <property name="icon-size">5</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
@@ -2097,6 +2161,7 @@ www.kde-look.org</property>
                   </widget>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
@@ -2119,6 +2184,7 @@ www.kde-look.org</property>
                       <packing>
                         <property name="expand">False</property>
                         <property name="padding">6</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
@@ -2139,12 +2205,12 @@ www.kde-look.org</property>
                 </child>
                 <child>
                   <widget class="GtkRadioButton" id="SettingsNoProxyRb">
+                    <property name="label" translatable="yes">No proxy</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="border_width">5</property>
-                    <property name="label" translatable="yes">No proxy</property>
                     <property name="use_underline">True</property>
-                    <property name="response_id">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">SettingsProxySystemActiveRb</property>
@@ -2156,12 +2222,12 @@ www.kde-look.org</property>
                 </child>
                 <child>
                   <widget class="GtkRadioButton" id="SettingsProxySystemActiveRb">
+                    <property name="label" translatable="yes">Use the proxy configuration of my system</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="border_width">5</property>
-                    <property name="label" translatable="yes">Use the proxy configuration of my system</property>
                     <property name="use_underline">True</property>
-                    <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                   </widget>
                   <packing>
@@ -2188,6 +2254,7 @@ www.kde-look.org</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">False</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -2239,12 +2306,12 @@ www.kde-look.org</property>
                 </child>
                 <child>
                   <widget class="GtkRadioButton" id="SettingsProxyActiveRb">
+                    <property name="label" translatable="yes">Manual proxy configuration</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="border_width">5</property>
-                    <property name="label" translatable="yes">Manual proxy configuration</property>
                     <property name="use_underline">True</property>
-                    <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">SettingsProxySystemActiveRb</property>
                   </widget>
@@ -2272,6 +2339,7 @@ www.kde-look.org</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">False</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -2340,38 +2408,42 @@ www.kde-look.org</property>
                 <property name="label" translatable="yes">Network settings</property>
               </widget>
               <packing>
-                <property name="type">tab</property>
                 <property name="position">1</property>
                 <property name="tab_fill">False</property>
+                <property name="type">tab</property>
               </packing>
             </child>
           </widget>
+          <packing>
+            <property name="position">0</property>
+          </packing>
         </child>
         <child>
           <widget class="GtkHButtonBox" id="hbuttonbox4">
             <property name="visible">True</property>
             <property name="spacing">4</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
             <child>
               <widget class="GtkButton" id="SettingsCancelButton">
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label">gtk-cancel</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
               <widget class="GtkButton" id="SettingsOkButton">
+                <property name="label">gtk-apply</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label">gtk-apply</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -2391,8 +2463,8 @@ www.kde-look.org</property>
   </widget>
   <widget class="GtkWindow" id="UpdateWindow">
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="urgency_hint">True</property>
     <child>
@@ -2414,6 +2486,7 @@ www.kde-look.org</property>
                   <packing>
                     <property name="expand">False</property>
                     <property name="padding">2</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
@@ -2435,6 +2508,7 @@ www.kde-look.org</property>
           <packing>
             <property name="expand">False</property>
             <property name="padding">5</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -2484,6 +2558,9 @@ by name at the home of GnomeArt-NextGen - gnomeartng.plasmasolutions.de.
 At this point a thank you very much in advance, you're all great! </property>
                     <property name="use_markup">True</property>
                   </widget>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
                 <child>
                   <widget class="GtkButton" id="UpdateDonateButton">
@@ -2491,9 +2568,8 @@ At this point a thank you very much in advance, you're all great! </property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="relief">GTK_RELIEF_NONE</property>
+                    <property name="relief">none</property>
                     <property name="focus_on_click">False</property>
-                    <property name="response_id">0</property>
                     <child>
                       <widget class="GtkHBox" id="hbox9">
                         <property name="visible">True</property>
@@ -2502,10 +2578,11 @@ At this point a thank you very much in advance, you're all great! </property>
                           <widget class="GtkImage" id="UpdateDonateButtonImage">
                             <property name="visible">True</property>
                             <property name="stock">gtk-go-forward</property>
-                            <property name="icon_size">3</property>
+                            <property name="icon-size">3</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -2578,6 +2655,9 @@ At this point a thank you very much in advance, you're all great! </property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Newest version on the update-server:</property>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkLabel" id="label9">
@@ -2603,6 +2683,7 @@ At this point a thank you very much in advance, you're all great! </property>
                   </widget>
                   <packing>
                     <property name="padding">5</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
@@ -2615,6 +2696,9 @@ At this point a thank you very much in advance, you're all great! </property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">label</property>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkLabel" id="UpdateCurrentVersionLabel">
@@ -2663,25 +2747,26 @@ At this point a thank you very much in advance, you're all great! </property>
           <widget class="GtkHButtonBox" id="hbuttonbox2">
             <property name="visible">True</property>
             <property name="spacing">4</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
             <child>
               <widget class="GtkButton" id="UpdateCloseButton">
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label">gtk-close</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
               <widget class="GtkButton" id="UpdateStatusButton">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="response_id">0</property>
+                <property name="receives_default">False</property>
                 <child>
                   <widget class="GtkHBox" id="hbox8">
                     <property name="visible">True</property>
@@ -2692,6 +2777,7 @@ At this point a thank you very much in advance, you're all great! </property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
@@ -2724,8 +2810,8 @@ At this point a thank you very much in advance, you're all great! </property>
   </widget>
   <widget class="GtkWindow" id="FtaWindow">
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
     <property name="urgency_hint">True</property>
     <child>
       <widget class="GtkVBox" id="FtaVbox">
@@ -2738,11 +2824,12 @@ At this point a thank you very much in advance, you're all great! </property>
                 <property name="height_request">80</property>
                 <property name="visible">True</property>
                 <property name="stock">gtk-dialog-info</property>
-                <property name="icon_size">6</property>
+                <property name="icon-size">6</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -2760,7 +2847,7 @@ At this point a thank you very much in advance, you're all great! </property>
                 <property name="height_request">80</property>
                 <property name="visible">True</property>
                 <property name="stock">gtk-dialog-info</property>
-                <property name="icon_size">6</property>
+                <property name="icon-size">6</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
@@ -2769,6 +2856,9 @@ At this point a thank you very much in advance, you're all great! </property>
               </packing>
             </child>
           </widget>
+          <packing>
+            <property name="position">0</property>
+          </packing>
         </child>
         <child>
           <widget class="GtkHSeparator" id="hseparator17">
@@ -2791,7 +2881,7 @@ This application eases the customization of your gnome desktop. To make this tas
 
 If you'd like to download all the thumbnails (as a &lt;i&gt;tar.gz&lt;/i&gt; file) you should choose &lt;b&gt;Apply&lt;/b&gt;. It is strongly recommended to do so because it's a lot faster then downloading every single file one by one.</property>
             <property name="use_markup">True</property>
-            <property name="justify">GTK_JUSTIFY_FILL</property>
+            <property name="justify">fill</property>
             <property name="wrap">True</property>
             <property name="width_chars">60</property>
           </widget>
@@ -2811,6 +2901,7 @@ If you'd like to download all the thumbnails (as a &lt;i&gt;tar.gz&lt;/i&gt; fil
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -2843,27 +2934,28 @@ If you'd like to download all the thumbnails (as a &lt;i&gt;tar.gz&lt;/i&gt; fil
           <widget class="GtkHButtonBox" id="hbuttonbox5">
             <property name="visible">True</property>
             <property name="spacing">4</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
             <child>
               <widget class="GtkButton" id="FtaCloseButton">
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label">gtk-close</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
               <widget class="GtkButton" id="FtaApplyButton">
+                <property name="label">gtk-apply</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label">gtk-apply</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <property name="response_id">0</property>
               </widget>
               <packing>
                 <property name="expand">False</property>

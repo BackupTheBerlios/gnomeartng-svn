@@ -142,7 +142,7 @@ namespace GnomeArtNG {
 		}
 		
 		
-		private void onDonateButtonClicked (object sender, EventArgs a){
+		public static void onDonateButtonClicked (object sender, EventArgs a){
 			CUtility.Execute("gnome-www-browser",@"https://www.paypal.com/cgi-bin/webscr"+
 			                 "?cmd=_donations&business=software%40plasmasolutions%2ede&item_name=Gnome%2dArt%20Next%20Generation%20donation"+
 			                 "&no_shipping=0&no_note=1&tax=0&currency_code=EUR&lc=DE&bn=PP%2dDonationsBF&charset=UTF%2d8",false);
