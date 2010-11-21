@@ -11,7 +11,7 @@ if [ ! -d "$2" ]; then
     exit 1
 fi
 vzname=GnomeArtNG-$1
-versioncommand=
+#versioncommand=
 version=`cat /etc/lsb-release | grep DISTRIB_CODENAME | sed s/.*=//`
 
 echo "---Wechsele ins GnomeArtNg Verzeichnis"

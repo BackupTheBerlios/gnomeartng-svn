@@ -26,9 +26,9 @@ namespace GnomeArtNG
 
 		private GConf.Client client; 
 		// Die zu verändernden Werte in der Gnome Registry
-		static string GConfAppPath = "/apps/gnome-session/options";
-		static string GConfSplashImageKey = GConfAppPath + "/splash_image";
-		static string GConfShowSplashKey = GConfAppPath + "/show_splash_screen";
+		static string GConfAppPath = "/apps/gnome-session/options/";
+		static string GConfSplashImageKey = GConfAppPath + "splash_image";
+		static string GConfShowSplashKey = GConfAppPath + "show_splash_screen";
 		
 		//War vor dem Install der Splashscreen aktiv?
 		private bool splashWasActive=false;

@@ -406,7 +406,7 @@ namespace GnomeArtNG
 			dirSep=Path.DirectorySeparatorChar.ToString();
 			homePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal)+dirSep;
 			settingsPath = Path.Combine(homePath,".gnome2"+dirSep+"gnome-art-ng");
-			splashInstallPath = homePath+splashInstallDir+dirSep;
+			splashInstallPath = homePath+".local/share/pixmaps/splash"+dirSep;
 			applicationInstallPath = homePath+"."+themesDir+dirSep;			
 			decorationInstallPath = homePath+"."+themesDir+dirSep;
 			iconInstallPath = homePath+iconDir+dirSep;
@@ -440,7 +440,7 @@ namespace GnomeArtNG
 				dirToCreate = settingsPath+dirSep+directoryName+dirSep+((int)art).ToString(); 
 				if (!Directory.Exists(dirToCreate)){
 					Directory.CreateDirectory(dirToCreate);
-				Console.WriteLine("Folder created: "+ dirToCreate);
+					Console.WriteLine("Folder created: "+ dirToCreate);
 				}
 			}
 		}
